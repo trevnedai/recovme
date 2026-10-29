@@ -95,6 +95,17 @@ PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit
 and contributors (IBM Public License / Common Public License and others — see `licenses/`
 in the engine folder).
 
+## Signing the Windows installer
+
+Windows installers are signed for free through the [SignPath Foundation](https://signpath.org) open-source program (see the [code signing policy](https://recovme.app/code-signing.html)). Signing switches on by itself once these repository secrets exist:
+
+| Secret | What it is |
+|---|---|
+| `SIGNPATH_API_TOKEN` | API token of a SignPath CI user with submitter rights |
+| `SIGNPATH_ORGANIZATION_ID` | The SignPath organization ID |
+
+Optional repository variables: `SIGNPATH_PROJECT_SLUG` (default `recovme`) and `SIGNPATH_POLICY_SLUG` (default `release-signing`). Builds from version tags use the release policy; other builds use `test-signing`.
+
 ## Author
 
 RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) by Christophe Grenier and [The Sleuth Kit](https://www.sleuthkit.org) by Brian Carrier and contributors.

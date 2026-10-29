@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Signing Policy — RecovMe</title>
+<meta name="description" content="How RecovMe's Mac and Windows downloads are signed, who can release them, and RecovMe's privacy commitment.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Instrument+Sans:wght@400;600;700&display=swap">
+<style>
+:root {
+  --ground: #f3f6f5; --paper: #ffffff; --ink: #0f1a19; --ink-2: #4a5957;
+  --teal: #0e3b39; --teal-ink: #f2f7f6; --accent: #0b7a6b;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --text: "Instrument Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --ground: #0b1312; --paper: #121e1c; --ink: #e8f0ee; --ink-2: #a4b6b2; --teal: #0a2e2c; --accent: #3cc4ab; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --ground: #0b1312; --paper: #121e1c; --ink: #e8f0ee; --ink-2: #a4b6b2; --teal: #0a2e2c; --accent: #3cc4ab; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 17px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+.top { background: var(--teal); }
+.top .wrap { display: flex; align-items: center; padding-block: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--teal-ink); text-decoration: none; font: 800 22px/1 var(--display); letter-spacing: -0.02em; }
+.brand img { width: 40px; height: 40px; }
+.wrap { max-width: 820px; margin: 0 auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)); }
+main { padding-block: 64px 96px; }
+h1 { font: 800 clamp(36px, 5vw, 56px)/1.05 var(--display); letter-spacing: -0.025em; margin: 0; }
+.lede { margin-top: 18px; color: var(--ink-2); font-size: 19px; }
+section { margin-top: 28px; background: var(--paper); border-radius: 18px; padding: 26px 28px; }
+h2 { font: 800 24px/1.15 var(--display); letter-spacing: -0.015em; margin: 0 0 10px; }
+p { margin: 0; }
+p + p, p + ul, ul + p { margin-top: 12px; }
+ul { margin: 12px 0 0; padding-left: 20px; }
+li + li { margin-top: 6px; }
+.muted { color: var(--ink-2); }
+.back { display: inline-block; margin-top: 36px; font-weight: 600; }
+@media (max-width: 520px) { section { padding: 22px 20px; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="./"><img src="assets/icon-256.png" alt="">RecovMe</a></div></header>
+<main class="wrap">
+  <h1>Code Signing Policy</h1>
+  <p class="lede">Every RecovMe download is built automatically from the public source code on GitHub and signed, so your computer can check that it really comes from RecovMe and hasn't been changed.</p>
+
+  <section>
+    <h2>Windows</h2>
+    <p>Free code signing provided by <a href="https://signpath.io" rel="noopener">SignPath.io</a>, certificate by <a href="https://signpath.org" rel="noopener">SignPath Foundation</a>.</p>
+    <p class="muted"><b>Status:</b> RecovMe has applied to the SignPath Foundation program. Windows releases are signed as soon as the application is approved.</p>
+    <p class="muted">Only installers built by RecovMe's public GitHub Actions workflow from the <a href="https://github.com/trevnedai/recovme" rel="noopener">trevnedai/recovme</a> repository are submitted for signing, and each release is approved by hand before it is signed.</p>
+  </section>
+
+  <section>
+    <h2>Mac</h2>
+    <p>The Mac app is signed with an Apple Developer ID and notarized by Apple, so macOS confirms it before it opens.</p>
+  </section>
+
+  <section>
+    <h2>Team and Roles</h2>
+    <ul>
+      <li><b>Committers and reviewers:</b> <a href="https://github.com/trevnedai" rel="noopener">Dhan Denvert Asuncion</a></li>
+      <li><b>Approvers:</b> <a href="https://github.com/trevnedai" rel="noopener">Dhan Denvert Asuncion</a></li>
+    </ul>
+    <p class="muted">Changes from outside contributors are reviewed before they are merged. All team accounts use two-factor authentication.</p>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <p>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.</p>
+    <p class="muted">RecovMe has no account, no analytics and no tracking. The scan and the recovered files stay on your computer. The app only opens a web page (such as the optional PayPal donation page or the GitHub project) when you click a link to it.</p>
+  </section>
+
+  <section>
+    <h2>Included Components</h2>
+    <p>RecovMe bundles two open-source recovery engines, distributed unchanged under their own licenses: <a href="https://www.cgsecurity.org/wiki/PhotoRec" rel="noopener">PhotoRec</a> by CGSecurity (GPL) and <a href="https://www.sleuthkit.org" rel="noopener">The Sleuth Kit</a>.</p>
+  </section>
+
+  <a class="back" href="./">← Back to RecovMe</a>
+</main>
+</body>
+</html>

@@ -115,6 +115,11 @@ jobs:
   windows:
     name: Windows (64-bit)
     runs-on: windows-latest
+    env:
+      # Free open-source code signing by SignPath Foundation switches on by
+      # itself once these repository secrets exist. Without them the
+      # installer is built unsigned, as before.
+      HAS_SIGNPATH: ${{ secrets.SIGNPATH_API_TOKEN != '' && secrets.SIGNPATH_ORGANIZATION_ID != '' }}
     steps:
       - uses: actions/checkout@v4
       - name: Fetch recovery engines
@@ -146,9 +151,35 @@ jobs:
             exit 1
           }
       - uses: actions/upload-artifact@v4
+        id: upload-unsigned
+        with:
+          name: ${{ env.HAS_SIGNPATH == 'true' && 'RecovMe-Windows-unsigned' || 'RecovMe-Windows' }}
+          path: src-tauri/target/release/bundle/nsis/*.exe
+      - name: Sign the installer (SignPath)
+        if: env.HAS_SIGNPATH == 'true'
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'recovme' }}
+          signing-policy-slug: ${{ startsWith(github.ref, 'refs/tags/v') && (vars.SIGNPATH_POLICY_SLUG || 'release-signing') || 'test-signing' }}
+          github-artifact-id: ${{ steps.upload-unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed
+      - name: Check the signature
+        if: env.HAS_SIGNPATH == 'true'
+        shell: pwsh
+        run: |
+          Get-ChildItem signed -Recurse -Filter *.exe | ForEach-Object {
+            $sig = Get-AuthenticodeSignature $_.FullName
+            Write-Host "$($_.Name): $($sig.Status) — $($sig.SignerCertificate.Subject)"
+            if ($sig.Status -ne 'Valid') { Write-Host "::error title=Signature::$($_.Name) is not validly signed"; exit 1 }
+          }
+      - uses: actions/upload-artifact@v4
+        if: env.HAS_SIGNPATH == 'true'
         with:
           name: RecovMe-Windows
-          path: src-tauri/target/release/bundle/nsis/*.exe
+          path: signed/**/*.exe
 
   release:
     name: Publish release
@@ -159,6 +190,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: dist
+      - name: Leave out the unsigned Windows copy
+        run: rm -rf dist/*-unsigned
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/**/*

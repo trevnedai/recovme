@@ -1,0 +1,165 @@
+name: Build installers
+
+# Runs when you press "Run workflow" on GitHub, or when a version tag (v0.1.0) is pushed.
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+env:
+  TESTDISK_COMMIT: f9e57dc98be47a952078e6a7f54cb134bddfb141
+  TSK_VERSION: 4.15.0
+  TESTDISK_WIN_VERSION: "7.2"
+
+jobs:
+  macos:
+    name: macOS (Apple Silicon)
+    runs-on: macos-15
+    env:
+      # Signing and notarization switch on by themselves once these repository
+      # secrets exist (Settings → Secrets and variables → Actions). Without them
+      # the app is built unsigned, as before.
+      HAS_APPLE_CERT: ${{ secrets.APPLE_CERTIFICATE != '' }}
+      HAS_APPLE_NOTARY: ${{ secrets.APPLE_API_PRIVATE_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build recovery engines
+        run: bash scripts/build-engines-macos.sh
+      - name: Import Developer ID certificate
+        if: env.HAS_APPLE_CERT == 'true'
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN="$RUNNER_TEMP/signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(openssl rand -hex 24)"
+          echo "$APPLE_CERTIFICATE" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security import "$RUNNER_TEMP/cert.p12" -P "$APPLE_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN" > /dev/null
+          security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | tr -d '"')
+          rm -f "$RUNNER_TEMP/cert.p12"
+          IDENTITY="$(security find-identity -v -p codesigning "$KEYCHAIN" | grep 'Developer ID Application' | head -1 | sed -E 's/.*"(.*)"/\1/')"
+          if [ -z "$IDENTITY" ]; then
+            echo "::error title=Signing::No 'Developer ID Application' certificate found in APPLE_CERTIFICATE."
+            exit 1
+          fi
+          echo "APPLE_SIGNING_IDENTITY=$IDENTITY" >> "$GITHUB_ENV"
+      - name: Sign the recovery engines
+        if: env.HAS_APPLE_CERT == 'true'
+        run: |
+          set -euo pipefail
+          # Every program inside the app must carry the Developer ID signature,
+          # hardened runtime and a timestamp, or Apple's notary service rejects it.
+          for b in src-tauri/resources/engines/photorec/photorec src-tauri/resources/engines/tsk/tsk_recover; do
+            codesign --force --options runtime --timestamp --sign "$APPLE_SIGNING_IDENTITY" "$b"
+            codesign --verify --strict --verbose=2 "$b"
+          done
+      - name: Prepare notarization key
+        if: env.HAS_APPLE_CERT == 'true' && env.HAS_APPLE_NOTARY == 'true'
+        env:
+          APPLE_API_PRIVATE_KEY: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          KEY="$RUNNER_TEMP/AuthKey.p8"
+          printf '%s\n' "$APPLE_API_PRIVATE_KEY" > "$KEY"
+          echo "APPLE_API_KEY_PATH=$KEY" >> "$GITHUB_ENV"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - run: npm ci
+      - name: Build app
+        shell: bash
+        env:
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+        run: |
+          set -o pipefail
+          LOG="$RUNNER_TEMP/app-build.log"
+          EXTRA=()
+          if [ "$HAS_APPLE_CERT" = "true" ]; then
+            # Sign with the Developer ID instead of the ad-hoc "-" identity.
+            EXTRA=(--config "$(jq -cn --arg id "$APPLE_SIGNING_IDENTITY" '{bundle:{macOS:{signingIdentity:$id}}}')")
+          fi
+          if [ "$HAS_APPLE_NOTARY" != "true" ]; then
+            unset APPLE_API_ISSUER APPLE_API_KEY APPLE_API_KEY_PATH
+          fi
+          npx tauri build --bundles app,dmg "${EXTRA[@]}" 2>&1 | tee "$LOG" || {
+            grep -nE -A6 "^error" "$LOG" | head -60 | sed 's/%/%25/g' | awk 'BEGIN{printf "::error title=App build failed::"} {printf "%s%%0A", $0} END{print ""}'
+            tail -n 30 "$LOG" | sed 's/%/%25/g' | awk 'BEGIN{printf "::error title=App build log tail::"} {printf "%s%%0A", $0} END{print ""}'
+            exit 1
+          }
+      - name: Check signature and notarization
+        if: env.HAS_APPLE_CERT == 'true'
+        run: |
+          APP="$(ls -d src-tauri/target/release/bundle/macos/*.app | head -1)"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          spctl --assess --type execute --verbose=4 "$APP" || echo "::warning title=Gatekeeper::spctl did not accept the app yet (expected if notarization secrets are missing)."
+          xcrun stapler validate "$APP" || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecovMe-macOS
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+
+  windows:
+    name: Windows (64-bit)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch recovery engines
+        shell: pwsh
+        run: |
+          try { ./scripts/fetch-engines-windows.ps1 }
+          catch {
+            $m = (($_ | Out-String) + ($_.ScriptStackTrace | Out-String)) -replace '%','%25' -replace "`r",'' -replace "`n",'%0A'
+            Write-Host "::error title=Engine fetch failed::$m"
+            exit 1
+          }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - run: npm ci
+      - name: Build app
+        shell: bash
+        run: |
+          set -o pipefail
+          LOG="$RUNNER_TEMP/app-build.log"
+          npx tauri build --bundles nsis 2>&1 | tee "$LOG" || {
+            grep -nE -A6 "^error" "$LOG" | head -60 | sed 's/%/%25/g' | awk 'BEGIN{printf "::error title=App build failed::"} {printf "%s%%0A", $0} END{print ""}'
+            tail -n 30 "$LOG" | sed 's/%/%25/g' | awk 'BEGIN{printf "::error title=App build log tail::"} {printf "%s%%0A", $0} END{print ""}'
+            exit 1
+          }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecovMe-Windows
+          path: src-tauri/target/release/bundle/nsis/*.exe
+
+  release:
+    name: Publish release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [macos, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/**/*
+          generate_release_notes: true

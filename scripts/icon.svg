@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Base tile: deep teal, lit softly from the top like a macOS app icon -->
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16504D"/>
+      <stop offset="1" stop-color="#0A2A29"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.18" r="0.75">
+      <stop offset="0" stop-color="#2E7C74" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2E7C74" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFD27A"/>
+      <stop offset="1" stop-color="#F29A2E"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9EFEC"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A8C80"/>
+      <stop offset="1" stop-color="#155E57"/>
+    </linearGradient>
+    <filter id="tileShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#021413" flood-opacity="0.45"/>
+    </filter>
+    <filter id="arcShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#3A1E00" flood-opacity="0.35"/>
+    </filter>
+    <clipPath id="photo">
+      <rect x="-150" y="-112" width="300" height="224" rx="26"/>
+    </clipPath>
+  </defs>
+
+  <!-- tile -->
+  <g filter="url(#tileShadow)">
+    <rect x="100" y="100" width="824" height="824" rx="186" fill="url(#tile)"/>
+  </g>
+  <rect x="100" y="100" width="824" height="824" rx="186" fill="url(#glow)"/>
+  <rect x="101.5" y="101.5" width="821" height="821" rx="184.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="3"/>
+
+  <!-- restore arc: sweeps around the photo and comes back to its start -->
+  <g filter="url(#arcShadow)">
+    <path d="M 324.4 383.3 A 248 248 0 1 1 315.2 646.0"
+          fill="none" stroke="url(#arc)" stroke-width="64" stroke-linecap="round"/>
+    <!-- arrow head pointing back (counter-clockwise) -->
+    <path d="M 253 489 L 265 336 L 391 421 Z" fill="#FFC35E" stroke="#FFC35E" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+
+  <!-- the photo being brought back -->
+  <g transform="translate(540 528) rotate(-7)" filter="url(#soft)">
+    <rect x="-168" y="-130" width="336" height="260" rx="38" fill="url(#card)"/>
+    <g clip-path="url(#photo)">
+      <rect x="-150" y="-112" width="300" height="224" fill="#CFE6E0"/>
+      <circle cx="78" cy="-46" r="34" fill="#F6AE45"/>
+      <path d="M -150 112 L -150 40 L -62 -30 L 8 34 L 52 4 L 150 82 L 150 112 Z" fill="url(#hill)"/>
+      <path d="M -150 112 L -150 78 L -40 30 L 40 70 L 150 50 L 150 112 Z" fill="#0F4A45" opacity="0.55"/>
+    </g>
+  </g>
+</svg>

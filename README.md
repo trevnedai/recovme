@@ -1,0 +1,96 @@
+# RecovMe — free file & photo recovery
+
+Bring back deleted photos, videos, music and documents from SD cards, USB sticks,
+external drives and hard disks. Free, open source, private (nothing leaves your
+computer) and **read-only** on the drive you scan.
+
+Runs on **macOS (Apple Silicon)** and **Windows 10/11 (64-bit)**.
+
+**Website and downloads: [trevnedai.github.io/recovme](https://trevnedai.github.io/recovme)**
+
+## How it works
+
+RecovMe runs two proven recovery engines and tidies up what they find:
+
+| Step | Engine | What it does |
+|---|---|---|
+| **Quick Scan** | [The Sleuth Kit](https://sleuthkit.org) `tsk_recover` | Reads the drive's file table and brings back recently deleted files **with their original names and folders**. Works on FAT, exFAT and NTFS drives (SD cards, USB sticks, Windows drives). |
+| **Deep Scan** | [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) | Searches every block for file signatures — **480+ file types** — even after a format or when the file table is gone. |
+| **Organize** | RecovMe | Sorts results into `Photos / Videos / Audio / Documents / Archives / Other`, names photos by the date they were taken (`Photos/2024-07/2024-07-12 14.33.02.jpg`), removes duplicates (size first, then BLAKE3 only when sizes match), drops empty files and sets tiny embedded thumbnails aside. |
+
+**Smart scan** (the default) runs Quick Scan first, then Deep Scan, and removes Deep Scan
+copies of files Quick Scan already found by name.
+
+### Speed
+- Deep Scan searches only **free space** by default (where deleted files live), not the files you still have. Turn on *Search the whole drive* after a format.
+- Only the file types you choose are searched for — fewer signatures, faster scan.
+- macOS reads the raw device (`/dev/rdiskN`), which is much faster than the buffered one.
+- Live progress, time left and a preview of photos found; **Stop** keeps everything found so far.
+
+### Safety
+- Engines only **read** the source drive. Results must be saved to a **different drive** — the app refuses otherwise.
+- On macOS the drive is unmounted during the scan (optional, on by default) so the system can't write to it.
+
+### Honest limits
+- **Internal SSDs** (and every Apple Silicon Mac's internal drive) erase deleted data automatically (TRIM) and are encrypted, so carving rarely finds anything. Check Trash, Time Machine / File History and cloud backups first. The app warns about this.
+- Files that were partly overwritten come back damaged. Open the important ones and back them up.
+
+## Using it
+
+1. Pick the drive (or a volume on it, or a disk image file).
+2. Choose what to look for and the scan type.
+3. Choose where to save (another drive), then **Start scan**.
+
+- **macOS:** enter your password when asked — the engines need it to read the drive. If a scan says it can't read the drive, allow RecovMe in *System Settings → Privacy & Security → Full Disk Access*.
+- **Windows:** the app asks for administrator rights when it opens (needed for raw disk access).
+
+## Building
+
+The engines are built/fetched by scripts, then bundled into the app:
+
+```bash
+# macOS (Apple Silicon, needs Xcode command line tools + Homebrew)
+bash scripts/build-engines-macos.sh
+npm ci
+npx tauri build --bundles app,dmg
+```
+
+```powershell
+# Windows (PowerShell 7)
+./scripts/fetch-engines-windows.ps1
+npm ci
+npx tauri build --bundles nsis
+```
+
+Or push to GitHub and run **Actions → Build installers → Run workflow**: it produces a
+`.dmg` and a Windows installer. Pushing a tag like `v0.1.0` also publishes a GitHub Release.
+
+### Signing and notarizing the Mac app
+
+The macOS build signs and notarizes the app by itself once these repository secrets
+exist (Settings → Secrets and variables → Actions). Without them it builds unsigned.
+
+| Secret | What it is |
+|---|---|
+| `APPLE_CERTIFICATE` | Your **Developer ID Application** certificate exported as `.p12`, base64-encoded (`base64 -i cert.p12 \| pbcopy`) |
+| `APPLE_CERTIFICATE_PASSWORD` | The password you chose when exporting the `.p12` |
+| `APPLE_API_ISSUER` | App Store Connect → Users and Access → Integrations → App Store Connect API: the Issuer ID |
+| `APPLE_API_KEY` | The Key ID of that API key |
+| `APPLE_API_PRIVATE_KEY` | The full text of the downloaded `AuthKey_XXXX.p8` file |
+
+The Mac App Store is not an option for RecovMe: App Store apps are sandboxed and
+can't read drives directly.
+
+For development the app also finds `photorec` and `tsk_recover` on your `PATH`
+(`brew install testdisk sleuthkit`). `recovme-cli` runs the same scan code without a window:
+
+```bash
+cargo run --bin recovme-cli -- /path/to/card.img /path/to/save smart photos,videos
+```
+
+## Licenses
+
+RecovMe is GPL-3.0-or-later. It bundles, unmodified and as separate programs:
+PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit © Brian Carrier
+and contributors (IBM Public License / Common Public License and others — see `licenses/`
+in the engine folder).

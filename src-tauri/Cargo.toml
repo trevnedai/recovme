@@ -1,6 +1,6 @@
 [package]
 name = "recovme"
-version = "0.1.0"
+version = "0.2.0"
 description = "Free file and photo recovery for Mac and Windows"
 authors = ["Dhan Denvert Asuncion"]
 license = "GPL-3.0-or-later"

@@ -75,6 +75,16 @@
         <div id="driveWarn" class="note warn hidden"></div>
         <div id="driveInfo" class="note info hidden"></div>
 
+        <div class="block expect hidden" id="expectBlock">
+          <h2>What to Expect</h2>
+          <div class="expect-cols">
+            <div class="can"><h3>Can Bring Back</h3><ul id="expectCan"></ul></div>
+            <div class="cant"><h3>Can't Bring Back</h3><ul id="expectCant"></ul></div>
+          </div>
+          <p class="expect-why" id="expectWhy"></p>
+          <p class="expect-first" id="expectFirst"></p>
+        </div>
+
         <div class="block hidden" id="passwordBlock">
           <h2>Backup Password</h2>
           <input type="password" class="field" id="backupPassword" autocomplete="off" spellcheck="false" placeholder="Password" aria-describedby="passwordHelp" />
@@ -226,9 +236,25 @@
       </div>
     </div>
   </div>
+  <div class="modal hidden" id="expectModal" role="dialog" aria-modal="true" aria-labelledby="expectTitle">
+    <div class="modal-card help-card">
+      <h3 id="expectTitle">Before You Start</h3>
+      <p id="expectLead"></p>
+      <div class="expect-cols">
+        <div class="can"><h4>Can Bring Back</h4><ul id="expectModalCan"></ul></div>
+        <div class="cant"><h4>Can't Bring Back</h4><ul id="expectModalCant"></ul></div>
+      </div>
+      <p id="expectModalFirst"></p>
+      <div class="modal-actions">
+        <button class="btn" id="expectCancel">Cancel</button>
+        <button class="btn primary" id="expectOk">I Understand</button>
+      </div>
+    </div>
+  </div>
   <div class="modal hidden" id="phoneModal" role="dialog" aria-modal="true" aria-labelledby="phoneTitle">
     <div class="modal-card help-card">
       <h3 id="phoneTitle">Recover From a Phone or Tablet</h3>
+      <p><b>Please read this first.</b> Phones can't be searched block by block like a memory card, so RecovMe can only bring back files that still exist somewhere: in the phone's trash, in thumbnail previews, in chat apps, or in an iPhone backup on this computer. Files that are fully deleted from a phone can't be brought back by RecovMe or by any other app.</p>
       <h4>Android</h4>
       <ol>
         <li>On the phone, open Settings → About phone and tap <b>Build number</b> seven times.</li>

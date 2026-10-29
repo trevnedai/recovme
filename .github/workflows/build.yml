@@ -197,7 +197,9 @@ jobs:
           files: dist/**/*
           name: RecovMe ${{ github.ref_name }}
           body: |
-            Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV and dashcam footage, documents and archives.
+            Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV and dashcam footage, documents and archives, from cards, drives, Android phones and iPhone or iPad backups.
+
+            See [what's new](https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md).
 
             **Download:** [recovme.app](https://recovme.app)
 

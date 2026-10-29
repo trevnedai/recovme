@@ -129,6 +129,68 @@
   };
 
   const KIND_LABEL = { removable: "Card or USB stick", external: "External drive", internal: "Internal drive", image: "Disk image", android: "Android phone", "ios-backup": "iPhone or iPad backup" };
+  // What phone recovery can and can't do, said plainly. Shown before the first
+  // phone scan and on the setup screen, so nobody starts with false hopes.
+  const EXPECT = {
+    android: {
+      lead: "RecovMe can't search a phone block by block like a memory card. It can only copy files that still exist on the phone. Most fully deleted files are gone for good, and no app can bring them back.",
+      can: [
+        "Photos and videos deleted in about the last 30 days, while they are still in the phone's trash",
+        "Files in the trash of Samsung, Xiaomi, Huawei, OPPO, vivo and other gallery and file apps",
+        "Small preview pictures (thumbnails) of some older deleted photos, in low quality",
+        "Photos, videos and voice notes from WhatsApp, Telegram and other chat apps that are still on the phone",
+      ],
+      cant: [
+        "Files removed from the trash, or deleted more than about 30 days ago",
+        "Anything after the phone was reset to factory settings",
+        "Text messages, contacts and call history",
+        "Photos that are only in the cloud (Google Photos, OneDrive…)",
+      ],
+      why: "<b>Why:</b> Android phones encrypt their storage, and the phone wipes the space of deleted files by itself. Once that happens, the data no longer exists anywhere on the phone.",
+      first: "<b>Check these first:</b> the Trash in your Gallery or Google Photos app, and photos.google.com → Trash (kept 60 days). If the phone has a memory card, take it out and scan it in a card reader: that is where recovery works best.",
+    },
+    "ios-backup": {
+      lead: "Apple doesn't let any app read an iPhone's storage directly, not even to look for deleted files. RecovMe can only read a backup that is already on this computer. Without one, nothing can be recovered.",
+      can: [
+        "Everything that was on the iPhone or iPad when this backup was made, even if you deleted it later",
+        "Photos and videos, including those that were in Recently Deleted at that time",
+        "Photos and videos sent in Messages and WhatsApp, voice memos, Notes attachments and app documents",
+      ],
+      cant: [
+        "Anything taken or saved after this backup was made",
+        "Anything that was already deleted before this backup was made",
+        "Backups that are only in iCloud (they live on Apple's servers)",
+        "The text of messages and chats",
+      ],
+      why: "<b>Why:</b> a backup is a copy of the device at one moment. RecovMe reads that copy, so it can only give back what was in it.",
+      first: "<b>Important:</b> don't make a new backup of this device yet. A new backup replaces this one. Check icloud.com → Photos → Recently Deleted too (kept 30 days).",
+    },
+  };
+  const acknowledged = new Set();
+
+  function fillList(el, items) {
+    el.innerHTML = items.map((x) => `<li>${esc(x)}</li>`).join("");
+  }
+
+  // The first time a kind of phone is picked: say what to expect, and ask to confirm.
+  function confirmExpectations(kind) {
+    const e = EXPECT[kind];
+    if (!e || acknowledged.has(kind)) return Promise.resolve(true);
+    return new Promise((resolve) => {
+      $("expectTitle").textContent = kind === "android" ? "Before You Start: Android Phones" : "Before You Start: iPhone and iPad";
+      $("expectLead").textContent = e.lead;
+      fillList($("expectModalCan"), e.can);
+      fillList($("expectModalCant"), e.cant);
+      $("expectModalFirst").innerHTML = e.first;
+      const close = openModal($("expectModal"), (ok) => {
+        if (ok === true) acknowledged.add(kind);
+        resolve(ok === true);
+      }, $("expectOk"));
+      $("expectOk").onclick = () => close(true);
+      $("expectCancel").onclick = () => close(false);
+    });
+  }
+
   const isPhone = (d) => !!d && (d.kind === "android" || d.kind === "ios-backup");
 
   // ── drives ──
@@ -214,6 +276,7 @@
       await dialog(d.kind === "android" ? "Allow This Computer on the Phone" : "One More Step", d.blocked, "OK", true);
       return;
     }
+    if (isPhone(d) && !(await confirmExpectations(d.kind))) return;
     if (state.selected && state.selected.id !== d.id) $("backupPassword").value = "";
     if (d.warning && d.isSystem) {
       const ok = await dialog("Scan This Drive Anyway?", `${d.warning} A scan of this drive can take a long time.`, "Scan Anyway");
@@ -238,12 +301,15 @@
     $("moreBlock").classList.toggle("hidden", phone);
     $("placesBlock").classList.toggle("hidden", d.kind !== "android");
     $("passwordBlock").classList.toggle("hidden", !(d.kind === "ios-backup" && d.encrypted));
-    $("driveInfo").textContent =
-      d.kind === "android"
-        ? "Phones encrypt their storage and erase deleted space, so they can't be searched block by block. RecovMe copies the places where deleted files survive: the phone's trash, thumbnail previews and chat app media. Nothing on the phone is changed."
-        : d.kind === "ios-backup"
-          ? "RecovMe reads this backup without changing it. Everything that was on the device when it was backed up is in it, even if it was deleted later, including photos that were in Recently Deleted."
-          : "";
+    const e = EXPECT[d.kind];
+    $("expectBlock").classList.toggle("hidden", !e);
+    if (e) {
+      fillList($("expectCan"), e.can);
+      fillList($("expectCant"), e.cant);
+      $("expectWhy").innerHTML = e.why;
+      $("expectFirst").innerHTML = e.first;
+    }
+    $("driveInfo").textContent = d.kind === "android" ? "Nothing on the phone is changed: files are only copied off it." : d.kind === "ios-backup" ? "Nothing in the backup is changed: files are only copied out of it." : "";
     $("driveInfo").classList.toggle("hidden", !phone);
     $("btnStart").textContent = phone ? "Recover Files" : "Start Scan";
     const isVol = !d.isWholeDisk;
@@ -666,6 +732,7 @@
       const d = await call("pick_image").catch((e) => toast(String(e)));
       if (d) {
         if (d.blocked) return dialog("Can't Read This Backup", d.blocked, "OK", true);
+        if (isPhone(d) && !(await confirmExpectations(d.kind))) return;
         if (isPhone(d)) d.picked = true;
         $("backupPassword").value = "";
         state.selected = d;

@@ -309,6 +309,17 @@ footer.bar .btn { height: 38px; padding: 0 20px; font-size: 14.5px; }
 .modal-card h3 { font-size: 17px; font-weight: 650; }
 .modal-card p { color: var(--ink-2); font-size: 14px; margin-top: 8px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.expect-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.expect-cols > div { padding: 14px 16px; border-radius: 10px; background: var(--surface-2); }
+.expect-cols h3, .expect-cols h4 { font-size: 14px; font-weight: 650; margin: 0 0 6px; }
+.expect-cols .can h3, .expect-cols .can h4 { color: var(--accent); }
+.expect-cols .cant h3, .expect-cols .cant h4 { color: var(--warn); }
+.expect-cols ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-2); }
+.expect-cols li + li { margin-top: 4px; }
+.expect-why, .expect-first { font-size: 13.5px; color: var(--ink-2); margin-top: 12px; max-width: 760px; }
+.expect-first b, .expect-why b { color: var(--ink); }
+.help-card .expect-cols { margin-top: 14px; }
+.help-card .expect-cols h4 { margin-top: 0; }
 .help-card { width: min(560px, 92vw); max-height: 88vh; overflow-y: auto; }
 .help-card h4 { font-size: 14px; font-weight: 650; margin: 18px 0 0; }
 .help-card ol { color: var(--ink-2); font-size: 14px; margin: 8px 0 0; padding-left: 20px; }
@@ -338,6 +349,7 @@ footer.bar .btn { height: 38px; padding: 0 20px; font-size: 14.5px; }
   footer.bar { padding: 0 26px; }
   .modes { grid-template-columns: 1fr; }
   .how { grid-template-columns: 1fr; gap: 16px; }
+  .expect-cols { grid-template-columns: 1fr; }
   .hero { background: linear-gradient(90deg, #0d3634 0%, rgba(13,54,52,.9) 60%, rgba(13,54,52,.55) 100%), url(banner.webp) right center / cover no-repeat, #0d3634; }
 }
 @media (prefers-reduced-motion: reduce) {

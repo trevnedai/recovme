@@ -1,0 +1,80 @@
+<div class="chance" data-level="high">
+  <p class="label">Probabilità di recupero: buone su un hard disk</p>
+  <p>Gli hard disk non cancellano davvero i file eliminati. Segnano lo spazio come libero e lasciano i file al loro posto finché non viene salvato qualcosa di nuovo. Gli SSD esterni sono diversi, quindi controlla qui sotto che tipo di disco hai.</p>
+</div>
+
+<h2>Hard disk, SSD o qualcosa di peggio?</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Il tuo disco</th><th scope="col">Probabilità</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Hard disk esterno (disco rotante, come la maggior parte dei dischi capienti Seagate, WD, Toshiba o LaCie)</th><td><span class="lvl good">Buone</span>, sia se hai cancellato i file, sia se hai svuotato il Cestino o fatto una formattazione veloce.</td></tr>
+      <tr><th scope="row">SSD esterno</th><td><span class="lvl mid">Dipende.</span> Alcuni cancellano i file eliminati in pochi minuti, altri li conservano. Quelli formattati in exFAT di solito li conservano. Scollegalo subito ed esegui la scansione prima di usarlo ancora.</td></tr>
+      <tr><th scope="row">Il disco fa clic, non viene rilevato o continua a scollegarsi</th><td><span class="lvl low">Fermati.</span> Si sta guastando fisicamente e usare qualsiasi programma può peggiorare le cose. La scelta sicura è un laboratorio di recupero dati.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Prima di tutto</h2>
+  <ul>
+    <li><strong>Non salvare nulla sul disco</strong> e non installarci app. I nuovi file possono finire dove si trovano quelli cancellati.</li>
+    <li><strong>Non avviare riparazioni del disco</strong> (S.O.S. o chkdsk) prima di aver recuperato ciò che ti serve. Le riparazioni scrivono sul disco.</li>
+    <li><strong>Non salvare i file recuperati sullo stesso disco.</strong> Usa il disco del computer o un altro disco esterno.</li>
+  </ul>
+</section>
+
+<h2>Controlla prima il Cestino</h2>
+<p>Su Mac, i file cancellati da un disco esterno finiscono nel Cestino, ma compaiono lì solo mentre il disco è collegato. Collegalo e apri il Cestino. Su Windows, i file cancellati da un hard disk esterno di solito finiscono nel Cestino. Quelli cancellati da una chiavetta USB, o con Maiusc + Canc, lo saltano.</p>
+
+<h2>Recupera i file in 7 passaggi</h2>
+<p>Funziona allo stesso modo su Mac e su Windows. RecovMe è gratis fino alla fine: nessuna prova, nessun limite di dimensione, niente da pagare prima di salvare. Per ora l’app è in inglese, quindi qui trovi il nome esatto di ogni pulsante.</p>
+
+<ol class="steps">
+  <li><b>Collega il disco e apri RecovMe</b>
+    <p>Scaricalo gratis e aprilo. Su Mac, inserisci la password quando richiesta, perché leggere lo spazio cancellato richiede l’accesso diretto al disco. Su Windows, se compare SmartScreen, scegli <span class="ui">Ulteriori informazioni</span> e poi <span class="ui">Esegui comunque</span>.</p></li>
+  <li><b>Scegli il disco</b>
+    <p>Selezionalo nell’elenco a sinistra. Se sotto il disco compaiono più parti (volumi), scegli quella in cui si trovavano i file.</p></li>
+  <li><b>Scegli cosa cercare</b>
+    <p>Photos, Videos e Documents sono attivi di default. Aggiungi <span class="ui">Music &amp; Audio</span> o <span class="ui">Archives</span>, oppure scegli <span class="ui">All File Types</span>. Meno tipi rendono la scansione più veloce e i risultati più piccoli.</p></li>
+  <li><b>Lascia Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> prima recupera i file cancellati con il loro nome e le loro cartelle originali, poi cerca il resto in ogni blocco. I nomi originali tornano sui dischi formattati per Windows (NTFS, exFAT o FAT32), che è il formato con cui arriva la maggior parte dei dischi esterni. Sui dischi formattati per Mac (APFS o Mac OS esteso), i file tornano dalla ricerca approfondita, ordinati per tipo.</p></li>
+  <li><b>Salva su un altro disco</b>
+    <p>Scegli una cartella sul disco del computer, o su un secondo disco esterno, con abbastanza spazio libero per ciò che vuoi recuperare. Se scegli una cartella di OneDrive o iCloud, RecovMe ti avvisa che i file verrebbero caricati online.</p></li>
+  <li><b>Avvia la scansione e lasciala lavorare</b>
+    <p>Premi <span class="ui">Start Scan</span>. Un disco grande può richiedere ore, quindi tieni il computer collegato alla corrente e acceso. Su Mac, <span class="ui">Protect the drive while scanning</span> (Proteggi il disco durante la scansione) lo smonta, così nulla può scriverci. Torna disponibile alla fine della scansione. Puoi premere <span class="ui">Stop</span> in qualsiasi momento e tenere ciò che è stato trovato.</p>
+    <figure class="shot">
+      <img src="/assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="Una scansione in corso con la percentuale, il tempo rimanente e i file che compaiono man mano.">
+      <figcaption>Avanzamento, tempo rimanente e foto trovate finora.</figcaption>
+    </figure></li>
+  <li><b>Apri i tuoi file</b>
+    <p>Premi <span class="ui">Open Recovered Files</span>. I file che hanno mantenuto nome e cartelle sono in <span class="ui">Original names</span>. Tutto il resto è ordinato in Photos, Videos, Music, Documents e Archives, con foto e video rinominati con la data di scatto.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Il mio disco è formattato per Mac o per Windows?</strong> Su Mac, seleziona il disco nel Finder, scegli Archivio › Ottieni informazioni e guarda la voce Formato. Su Windows, fai clic destro sul disco in Questo PC, scegli Proprietà e guarda la voce File system.</p>
+</div>
+
+<h2>Domande</h2>
+<div class="faq">
+  <details>
+    <summary>Quanto spazio libero mi serve per salvare i file?</summary>
+    <p>Tanto quanto i file che vuoi recuperare. Scegliere solo i tipi di file che ti servono, come le foto, rende i risultati più piccoli. I duplicati vengono rimossi automaticamente.</p>
+  </details>
+  <details>
+    <summary>Posso recuperare file cancellati dal disco interno del computer?</summary>
+    <p>Solo se è un hard disk, come in molti PC meno recenti. Gli SSD interni dei portatili cancellano da soli i file eliminati, e ogni Mac con Apple silicon cifra il proprio disco, quindi nessuna app può recuperarli. Usa prima il Cestino, Time Machine, Cronologia file o OneDrive.</p>
+  </details>
+  <details>
+    <summary>Funziona con qualsiasi marca di disco?</summary>
+    <p>Sì. Seagate, WD, Toshiba, LaCie, Samsung e qualsiasi altro disco che il computer vede come unità.</p>
+  </details>
+  <details>
+    <summary>RecovMe è davvero gratis?</summary>
+    <p>Sì, al 100%. Nessuna prova, nessun limite di dimensione e niente da sbloccare dopo la scansione. È open source e le donazioni sono facoltative.</p>
+  </details>
+  <details>
+    <summary>Può danneggiare il disco?</summary>
+    <p>No. RecovMe legge soltanto il disco che analizzi e si rifiuta di salvarci sopra i file recuperati, perché scrivere lì potrebbe sovrascrivere ciò che vuoi recuperare.</p>
+  </details>
+</div>

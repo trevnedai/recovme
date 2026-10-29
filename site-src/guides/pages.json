@@ -1,0 +1,71 @@
+{
+  "updated": "2026-10-29",
+  "guides": [
+    {
+      "id": "sd-photos",
+      "published": "2026-10-29",
+      "en": {
+        "slug": "recover-deleted-photos-sd-card",
+        "short": "Deleted photos on an SD card",
+        "title": "Recover Deleted Photos from an SD Card for Free | RecovMe",
+        "description": "Deleted photos from an SD or camera card? They are usually still there. Get them back free on Mac or Windows, step by step, with no paywall after the scan.",
+        "h1": "How to Recover Deleted Photos from an SD Card",
+        "lede": "Deleted the wrong photos from a camera, phone or drone card? They are almost always still on the card. Here’s how to get them back for free on a Mac or Windows PC.",
+        "card": "Camera, phone and drone cards keep deleted photos until new ones are saved over them."
+      },
+      "it": {
+        "slug": "recuperare-foto-cancellate-scheda-sd",
+        "short": "Foto cancellate da una scheda SD",
+        "title": "Recuperare foto cancellate da una scheda SD gratis | RecovMe",
+        "description": "Hai cancellato foto da una scheda SD o della fotocamera? Di solito sono ancora lì. Recuperale gratis su Mac o Windows, passo passo, senza pagare nulla.",
+        "h1": "Come recuperare le foto cancellate da una scheda SD",
+        "lede": "Hai cancellato le foto sbagliate dalla scheda della fotocamera, del telefono o del drone? Quasi sempre sono ancora sulla scheda. Ecco come recuperarle gratis su Mac o PC Windows.",
+        "card": "Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra."
+      }
+    },
+    {
+      "id": "formatted",
+      "published": "2026-10-29",
+      "en": {
+        "slug": "recover-formatted-sd-card-usb-stick",
+        "short": "Formatted SD card or USB stick",
+        "title": "Recover a Formatted SD Card or USB Stick for Free | RecovMe",
+        "description": "Formatted an SD card or USB stick by mistake, or it asks to be formatted? Your files are usually still there. Recover them free on Mac or Windows.",
+        "h1": "How to Recover Files from a Formatted SD Card or USB Stick",
+        "lede": "Formatted the wrong card, or your computer keeps asking you to format it? In most cases the photos and files are still there. Here’s how to tell, and how to get them back for free on a Mac or Windows PC.",
+        "card": "A normal format only clears the index. Here’s which formats can be undone, and how."
+      },
+      "it": {
+        "slug": "recuperare-scheda-sd-chiavetta-usb-formattata",
+        "short": "Scheda SD o chiavetta USB formattata",
+        "title": "Recuperare una scheda SD o chiavetta USB formattata | RecovMe",
+        "description": "Hai formattato per sbaglio una scheda SD o una chiavetta USB, o ti chiede di formattarla? I file di solito sono ancora lì. Recuperali gratis su Mac o Windows.",
+        "h1": "Come recuperare i file da una scheda SD o chiavetta USB formattata",
+        "lede": "Hai formattato la scheda sbagliata, o il computer continua a chiederti di formattarla? Nella maggior parte dei casi foto e file sono ancora lì. Ecco come capirlo e come recuperarli gratis su Mac o PC Windows.",
+        "card": "Una formattazione normale cancella solo l’indice. Ecco quali formattazioni si possono annullare, e come."
+      }
+    },
+    {
+      "id": "external-drive",
+      "published": "2026-10-29",
+      "en": {
+        "slug": "recover-deleted-files-external-hard-drive",
+        "short": "Deleted files on an external drive",
+        "title": "Recover Deleted Files from an External Hard Drive | RecovMe",
+        "description": "Deleted files from an external hard drive or emptied the Trash? On a hard drive they usually stay until the space is reused. Recover them free, step by step.",
+        "h1": "How to Recover Deleted Files from an External Hard Drive",
+        "lede": "Deleted files from an external drive, emptied the Trash or Recycle Bin, or formatted it by mistake? On a hard drive, the files usually stay until the space is used again. Here’s how to get them back for free on a Mac or Windows PC.",
+        "card": "Hard drives leave deleted files in place. External SSDs are a different story."
+      },
+      "it": {
+        "slug": "recuperare-file-cancellati-hard-disk-esterno",
+        "short": "File cancellati da un hard disk esterno",
+        "title": "Recuperare file cancellati da un hard disk esterno | RecovMe",
+        "description": "Hai cancellato file da un hard disk esterno o svuotato il Cestino? Su un hard disk di solito restano finché lo spazio non viene riusato. Recuperali gratis.",
+        "h1": "Come recuperare i file cancellati da un hard disk esterno",
+        "lede": "Hai cancellato file da un disco esterno, svuotato il Cestino o formattato il disco per sbaglio? Su un hard disk i file di solito restano finché lo spazio non viene usato di nuovo. Ecco come recuperarli gratis su Mac o PC Windows.",
+        "card": "Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia."
+      }
+    }
+  ]
+}

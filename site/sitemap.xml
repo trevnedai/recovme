@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://recovme.app/</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-deleted-photos-sd-card/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-formatted-sd-card-usb-stick/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-deleted-files-external-hard-drive/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/code-signing.html</loc>
+    <lastmod>2026-10-29</lastmod>
+  </url>
+</urlset>

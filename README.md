@@ -109,3 +109,10 @@ Optional repository variables: `SIGNPATH_PROJECT_SLUG` (default `recovme`) and `
 ## Author
 
 RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) by Christophe Grenier and [The Sleuth Kit](https://www.sleuthkit.org) by Brian Carrier and contributors.
+
+## Website
+
+The website in `site/` is published to [recovme.app](https://recovme.app) by GitHub Pages
+whenever it changes on `main`. The guide pages and `sitemap.xml` are generated: edit the
+text in `site-src/guides/` (one file per guide and language, plus `pages.json` for titles
+and addresses), then run `npm run site` and commit the result.

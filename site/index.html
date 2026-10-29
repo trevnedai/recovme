@@ -3,16 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RecovMe — Free file recovery for Mac and Windows</title>
+<title>RecovMe — Free File &amp; Photo Recovery for Mac and Windows</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="RecovMe brings back deleted and formatted files — photos, videos, music, recordings, CCTV footage and documents — from SD cards, USB sticks and hard drives. 100% free and open source for Mac and Windows. No paywall after the scan.">
+<meta name="description" content="RecovMe brings back deleted and formatted photos, videos, CCTV footage and documents from SD cards, USB sticks and hard drives. 100% free for Mac and Windows.">
+<link rel="canonical" href="https://recovme.app/">
 <link rel="icon" href="assets/favicon.png">
+<meta property="og:site_name" content="RecovMe">
 <meta property="og:title" content="RecovMe — Get your files back. Free.">
 <meta property="og:description" content="Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV footage and documents. No paywall after the scan.">
 <meta property="og:image" content="https://recovme.app/assets/og.png">
 <meta property="og:url" content="https://recovme.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" id="ld">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://recovme.app/#site",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "inLanguage": "en",
+   "publisher": {
+    "@id": "https://recovme.app/#maker"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://recovme.app/#maker",
+   "name": "Dhan Denvert Asuncion",
+   "url": "https://recovme.app/#about"
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://recovme.app/#app",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "description": "RecovMe brings back deleted and formatted photos, videos, CCTV footage and documents from SD cards, USB sticks and hard drives. 100% free for Mac and Windows.",
+   "applicationCategory": "UtilitiesApplication",
+   "applicationSubCategory": "Data recovery",
+   "operatingSystem": "macOS 11 or later (Apple silicon), Windows 10, Windows 11",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+   },
+   "isAccessibleForFree": true,
+   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+   "downloadUrl": "https://github.com/trevnedai/recovme/releases/latest",
+   "screenshot": [
+    "https://recovme.app/assets/app-setup.webp",
+    "https://recovme.app/assets/app-scan.webp",
+    "https://recovme.app/assets/app-done.webp"
+   ],
+   "image": "https://recovme.app/assets/icon-256.png",
+   "author": {
+    "@id": "https://recovme.app/#maker"
+   },
+   "codeRepository": "https://github.com/trevnedai/recovme"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://recovme.app/#questions",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is it really free?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, 100%. There is no trial, no file limit, no paid version and nothing to unlock after the scan. RecovMe is open source, so anyone can check how it works. Donations are optional and change nothing in the app."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can it damage my drive?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "RecovMe only reads the drive you scan and refuses to save recovered files onto it, because writing there could overwrite what you want back. On a Mac it can also unmount the drive during the scan, so the system can't write to it either."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does my Mac ask for my password?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Reading deleted space needs direct access to the drive, which macOS only allows with your password. If a scan says it can't read the drive, allow RecovMe in System Settings › Privacy & Security › Full Disk Access."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it safe to install?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The Mac app is signed with an Apple Developer ID and checked by Apple (notarized), so it opens without warnings. The Windows version isn't signed yet, so Windows may show a blue SmartScreen window: choose More info and then Run anyway. Windows code signing is provided free by SignPath.io, with a certificate by SignPath Foundation. The full source code is public on GitHub. See the code signing policy."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "The card was formatted. Is it too late?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Usually not. A quick format only clears the card's index. Run a Deep Scan. RecovMe searches the whole drive by default, so it finds files even after a format. File names are lost after a format, but photos and videos come back named by the date they were taken."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Some recovered files won't open.",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Parts of them were overwritten by newer files, or the file was stored in pieces. That is why it matters to stop using a drive straight away. Open the important files first and copy the good ones to a safe place."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can it recover from a CCTV camera or dashcam card?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, for cameras that record MP4 video, which is most home cameras and dashcams (Tapo, Ezviz, Reolink, Xiaomi, Eufy and others). Take the card out of the camera straight away, because it records over old footage, and scan it with a card reader."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does it send my files anywhere?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Everything happens on your computer. RecovMe has no account, no cloud and no tracking."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -197,6 +320,18 @@ p { margin: 0; }
 .faq details p { padding-bottom: 22px; color: var(--ink-2); max-width: 64ch; }
 .faq details p + p { margin-top: -8px; }
 
+/* ── guides ── */
+.guides { background: var(--tint); }
+.guides h2 { font-size: clamp(38px, 4.6vw, 64px); }
+.guides .lead2 { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 56ch; }
+.guide-list { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.guide-list a { display: flex; flex-direction: column; height: 100%; background: var(--paper); border-radius: 18px; padding: 28px; color: var(--ink); text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+.guide-list a:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 2px var(--accent); }
+.guide-list h3 { font-size: 24px; }
+.guide-list p { margin-top: 10px; color: var(--ink-2); font-size: 16px; }
+.guide-list .go { margin-top: auto; padding-top: 18px; color: var(--accent); font-weight: 600; font-size: 15px; }
+.guides .more { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 600; }
+
 /* ── footer ── */
 .foot { background: var(--teal); color: var(--teal-ink); }
 .foot .wrap { padding-block: 96px 48px; }
@@ -247,7 +382,7 @@ p { margin: 0; }
 @media (max-width: 960px) {
   .band { padding-block: 88px; }
   .hero .wrap, .check .wrap, .coffee .wrap, .faq .wrap, .result-name, .free .wrap, .maker .wrap { grid-template-columns: minmax(0, 1fr); }
-  .cards { grid-template-columns: minmax(0, 1fr); }
+  .cards, .guide-list { grid-template-columns: minmax(0, 1fr); }
   .finds .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero { background: #0d3634; }
   .hero .wrap { min-height: 0; padding-top: 8px; }
@@ -296,6 +431,7 @@ p { margin: 0; }
       <a href="#different">Why RecovMe</a>
       <a href="#finds">What It Finds</a>
       <a href="#chances">Your Chances</a>
+      <a href="/guides/">Guides</a>
       <a href="#coffee">Support</a>
       <a href="#questions">Questions</a>
     </nav>
@@ -471,6 +607,19 @@ p { margin: 0; }
     </div>
   </section>
 
+  <section class="guides band" id="guides" aria-labelledby="guides-title">
+    <div class="wrap">
+      <h2 id="guides-title">Step-by-Step Guides</h2>
+      <p class="lead2">Clear help for the most common ways files get lost, with an honest answer about your chances first.</p>
+      <ul class="guide-list">
+        <li><a href="/guides/recover-deleted-photos-sd-card/"><h3>Deleted Photos on an SD Card</h3><p>Camera, phone and drone cards keep deleted photos until new ones are saved over them.</p><span class="go">Read the guide →</span></a></li>
+        <li><a href="/guides/recover-formatted-sd-card-usb-stick/"><h3>Formatted SD Card or USB Stick</h3><p>A normal format only clears the index. Which formats can be undone, and how.</p><span class="go">Read the guide →</span></a></li>
+        <li><a href="/guides/recover-deleted-files-external-hard-drive/"><h3>Deleted Files on an External Drive</h3><p>Hard drives leave deleted files in place. External SSDs are a different story.</p><span class="go">Read the guide →</span></a></li>
+      </ul>
+      <p class="more"><a href="/guides/">All guides →</a><a href="/it/guide/" hreflang="it" lang="it">Guide in italiano →</a></p>
+    </div>
+  </section>
+
   <section class="coffee band" id="coffee" aria-labelledby="coffee-title">
     <div class="wrap">
       <div>
@@ -558,7 +707,7 @@ p { margin: 0; }
     <div class="big"><img src="assets/icon-256.png" alt="">RecovMe</div>
     <div class="row">
       <p class="credits">© 2026 Dhan Denvert Asuncion. Free and open source under GPL-3.0. Recovery engines: <a href="https://www.cgsecurity.org/wiki/PhotoRec" target="_blank" rel="noopener">PhotoRec</a> by CGSecurity and <a href="https://www.sleuthkit.org" target="_blank" rel="noopener">The Sleuth Kit</a>. Free code signing for Windows provided by <a href="https://signpath.io" target="_blank" rel="noopener">SignPath.io</a>, certificate by <a href="https://signpath.org" target="_blank" rel="noopener">SignPath Foundation</a>.</p>
-      <p><a href="code-signing.html">Code Signing Policy</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a></p>
+      <p><a href="/guides/">Guides</a> · <a href="/it/guide/" hreflang="it" lang="it">Guide in italiano</a> · <a href="code-signing.html">Code Signing Policy</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a></p>
     </div>
   </div>
 </footer>

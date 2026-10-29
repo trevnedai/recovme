@@ -6,7 +6,7 @@ computer) and **read-only** on the drive you scan.
 
 Runs on **macOS (Apple Silicon)** and **Windows 10/11 (64-bit)**.
 
-**Website and downloads: [trevnedai.github.io/recovme](https://trevnedai.github.io/recovme)**
+**Website and downloads: [recovme.app](https://recovme.app)**
 
 ## How it works
 

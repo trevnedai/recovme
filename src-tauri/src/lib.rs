@@ -127,11 +127,12 @@ fn open_path(app: AppHandle, path: String) -> Result<(), String> {
 /// Opens one of RecovMe's own web pages (donation, source code) in the browser.
 #[tauri::command]
 fn open_url(app: AppHandle, url: String) -> Result<(), String> {
-    const ALLOWED: [&str; 4] = [
+    const ALLOWED: [&str; 5] = [
         "https://paypal.me/",
         "https://www.paypal.com/paypalme/",
         "https://github.com/trevnedai/recovme",
         "https://trevnedai.github.io/recovme",
+        "https://recovme.app/",
     ];
     if !ALLOWED.iter().any(|p| url.starts_with(p)) {
         return Err("That link isn't allowed.".into());

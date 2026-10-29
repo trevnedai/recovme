@@ -1,8 +1,8 @@
 name: Website
 
-# Publishes the site/ folder to GitHub Pages (https://trevnedai.github.io/recovme)
+# Publishes the site/ folder to GitHub Pages (https://recovme.app)
 # whenever it changes on main, or when you press "Run workflow".
-# One-time setup: Settings → Pages → Source: GitHub Actions.
+# One-time setup: Settings → Pages → Source: GitHub Actions, Custom domain: recovme.app.
 on:
   workflow_dispatch:
   push:

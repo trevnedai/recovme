@@ -311,7 +311,7 @@ p { margin: 0; }
   <section class="facts" aria-label="RecovMe in short">
     <div class="wrap">
       <div><b>100% free</b><span>Every file it finds is yours to save. No size cap, no paywall at the end.</span></div>
-      <div><b>350+ formats</b><span>Photos, RAW, videos, music, recordings, documents, archives.</span></div>
+      <div><b>480+ file types</b><span>Photos, RAW, videos, music, recordings, documents, archives.</span></div>
       <div><b>Read-only</b><span>The drive you scan is never written to.</span></div>
       <div><b>Open source</b><span>Every line of code is public. GPL-3.0.</span></div>
     </div>
@@ -436,7 +436,7 @@ p { margin: 0; }
   <section class="finds band" id="finds" aria-labelledby="finds-title">
     <div class="wrap">
       <h2 id="finds-title">What it finds.</h2>
-      <p class="lead2">More than 350 file formats, recognised by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.</p>
+      <p class="lead2">More than 480 file types, recognised by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.</p>
       <div class="grid">
         <div><h3>Photos</h3><ul><li>JPG, HEIC, PNG, GIF</li><li>RAW: CR2, CR3, NEF, ARW, DNG, RAF, ORF</li><li>PSD, TIFF, WebP</li></ul></div>
         <div><h3>Videos</h3><ul><li>MP4, MOV, 3GP</li><li>AVI, MKV, MTS, M2TS</li><li>MPG, WMV, FLV</li></ul></div>
@@ -574,8 +574,13 @@ p { margin: 0; }
       const find = (re) => (rel.assets || []).find((a) => re.test(a.name));
       const dmg = find(/\.dmg$/i);
       const exe = find(/setup\.exe$/i) || find(/\.exe$/i);
-      if (dmg) mac.href = dmg.browser_download_url;
-      if (exe) win.href = exe.browser_download_url;
+      const soon = (btn, name) => {
+        btn.removeAttribute("href");
+        btn.setAttribute("aria-disabled", "true");
+        label(btn, `${name}: coming soon`);
+      };
+      if (dmg) mac.href = dmg.browser_download_url; else soon(mac, "Mac");
+      if (exe) win.href = exe.browser_download_url; else soon(win, "Windows");
       const ver = (rel.tag_name || "").replace(/^v/, "");
       const req = document.querySelector(".req");
       if (ver && req) req.textContent = `Version ${ver} · ${req.textContent}`;

@@ -162,4 +162,13 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/**/*
-          generate_release_notes: true
+          name: RecovMe ${{ github.ref_name }}
+          body: |
+            Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV and dashcam footage, documents and archives.
+
+            **Download:** [recovme.app](https://recovme.app)
+
+            - **Mac** (Apple silicon, macOS 11 or later): signed and notarized by Apple.
+            - **Windows** (10 or 11, 64-bit): may show a SmartScreen notice; choose More info → Run anyway.
+
+            100% free: no trial, no limits, no paywall after the scan. Made by Dhan Denvert Asuncion.

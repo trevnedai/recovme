@@ -57,7 +57,7 @@ jobs:
           set -euo pipefail
           # Every program inside the app must carry the Developer ID signature,
           # hardened runtime and a timestamp, or Apple's notary service rejects it.
-          for b in src-tauri/resources/engines/photorec/photorec src-tauri/resources/engines/tsk/tsk_recover; do
+          for b in src-tauri/resources/engines/photorec/photorec src-tauri/resources/engines/tsk/tsk_recover src-tauri/resources/engines/adb/adb; do
             codesign --force --options runtime --timestamp --sign "$APPLE_SIGNING_IDENTITY" "$b"
             codesign --verify --strict --verbose=2 "$b"
           done

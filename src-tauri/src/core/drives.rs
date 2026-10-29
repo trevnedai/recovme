@@ -45,6 +45,8 @@ pub fn image_drive(path: &str) -> Result<Drive, String> {
         is_system: false,
         warning: None,
         quick_supported: true,
+        blocked: None,
+        encrypted: false,
     })
 }
 
@@ -250,6 +252,8 @@ mod mac {
                     is_whole_disk: false,
                     is_system: internal,
                     warning: if internal { Some(MAC_INTERNAL_WARNING.into()) } else { None },
+                    blocked: None,
+                    encrypted: false,
                 });
             }
 
@@ -284,6 +288,8 @@ mod mac {
                 is_whole_disk: true,
                 is_system: internal,
                 warning: if internal { Some(MAC_INTERNAL_WARNING.into()) } else { None },
+                blocked: None,
+                encrypted: false,
             };
             groups.push(DiskGroup { disk, volumes });
         }
@@ -433,6 +439,8 @@ $vols = @(Get-Volume | Where-Object { $_.DriveLetter } | ForEach-Object { [pscus
                     is_whole_disk: false,
                     is_system: system || letter == "C",
                     warning: if trim_warn { Some(TRIM_WARNING.into()) } else { None },
+                    blocked: None,
+                    encrypted: false,
                 });
             }
             groups.push(DiskGroup {
@@ -461,6 +469,8 @@ $vols = @(Get-Volume | Where-Object { $_.DriveLetter } | ForEach-Object { [pscus
                     warning: if trim_warn { Some(TRIM_WARNING.into()) } else { None },
                     // Quick Scan reads one file system; pick a volume for it.
                     quick_supported: volumes.is_empty(),
+                    blocked: None,
+                    encrypted: false,
                 },
                 volumes,
             });

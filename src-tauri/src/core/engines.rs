@@ -1,7 +1,9 @@
 //! Locates the bundled recovery engines:
 //!   - PhotoRec (CGSecurity) — Deep Scan, signature carving, 480+ file types
 //!   - tsk_recover (The Sleuth Kit) — Quick Scan, undelete with original names
-//! Bundled under resources/engines/{photorec,tsk}/…; falls back to PATH for development.
+//!   - adb (Android platform tools) — copies deleted and forgotten files off Android phones
+//!
+//! Bundled under resources/engines/{photorec,tsk,adb}/…; falls back to PATH for development.
 
 use serde::Serialize;
 use std::path::{Path, PathBuf};
@@ -11,6 +13,7 @@ use std::path::{Path, PathBuf};
 pub struct Engines {
     pub photorec: Option<PathBuf>,
     pub tsk_recover: Option<PathBuf>,
+    pub adb: Option<PathBuf>,
 }
 
 #[cfg(windows)]
@@ -21,6 +24,24 @@ const PHOTOREC_NAMES: &[&str] = &["photorec"];
 const TSK_NAMES: &[&str] = &["tsk_recover.exe"];
 #[cfg(not(windows))]
 const TSK_NAMES: &[&str] = &["tsk_recover"];
+#[cfg(windows)]
+const ADB_NAMES: &[&str] = &["adb.exe"];
+#[cfg(not(windows))]
+const ADB_NAMES: &[&str] = &["adb"];
+
+/// Where the Android SDK puts adb, for people who already have it installed.
+fn sdk_platform_tools() -> Vec<PathBuf> {
+    let mut v = Vec::new();
+    if let Some(home) = std::env::var_os(if cfg!(windows) { "LOCALAPPDATA" } else { "HOME" }) {
+        let home = PathBuf::from(home);
+        v.push(home.join("Android").join("Sdk").join("platform-tools"));
+        v.push(home.join("Library").join("Android").join("sdk").join("platform-tools"));
+    }
+    if let Some(sdk) = std::env::var_os("ANDROID_HOME") {
+        v.push(PathBuf::from(sdk).join("platform-tools"));
+    }
+    v
+}
 
 fn find_in(dir: &Path, names: &[&str]) -> Option<PathBuf> {
     if !dir.is_dir() {
@@ -74,6 +95,9 @@ pub fn locate(resource_root: Option<&Path>) -> Engines {
         if e.tsk_recover.is_none() {
             e.tsk_recover = find_in(&r.join("tsk"), TSK_NAMES);
         }
+        if e.adb.is_none() {
+            e.adb = find_in(&r.join("adb"), ADB_NAMES);
+        }
     }
     if e.photorec.is_none() {
         e.photorec = find_on_path(PHOTOREC_NAMES);
@@ -81,8 +105,16 @@ pub fn locate(resource_root: Option<&Path>) -> Engines {
     if e.tsk_recover.is_none() {
         e.tsk_recover = find_on_path(TSK_NAMES);
     }
+    if e.adb.is_none() {
+        e.adb = find_on_path(ADB_NAMES).or_else(|| {
+            sdk_platform_tools()
+                .into_iter()
+                .map(|d| d.join(ADB_NAMES[0]))
+                .find(|p| p.is_file())
+        });
+    }
     #[cfg(unix)]
-    for p in [&e.photorec, &e.tsk_recover].into_iter().flatten() {
+    for p in [&e.photorec, &e.tsk_recover, &e.adb].into_iter().flatten() {
         // Bundled resources can lose the executable bit.
         use std::os::unix::fs::PermissionsExt;
         if let Ok(m) = std::fs::metadata(p) {

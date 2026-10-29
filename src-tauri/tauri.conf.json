@@ -42,8 +42,8 @@
     ],
     "category": "Utility",
     "shortDescription": "Free file and photo recovery",
-    "longDescription": "Bring back deleted photos, videos and documents from SD cards, USB sticks, external drives and hard disks. Free and open source.",
-    "copyright": "© 2026 Dhan Denvert Asuncion. GPL-3.0-or-later. Uses PhotoRec (CGSecurity) and The Sleuth Kit.",
+    "longDescription": "Bring back deleted photos, videos and documents from SD cards, USB sticks, external drives, hard disks, Android phones and iPhone backups. Free and open source.",
+    "copyright": "© 2026 Dhan Denvert Asuncion. GPL-3.0-or-later. Uses PhotoRec (CGSecurity), The Sleuth Kit and Android adb.",
     "resources": [
       "resources/engines/**/*"
     ],

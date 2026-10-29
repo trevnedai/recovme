@@ -34,6 +34,9 @@ pub struct Job {
 }
 
 impl Job {
+    pub(crate) fn new(session: PathBuf, stop_file: PathBuf, stop_flag: Arc<AtomicBool>, finished: Arc<AtomicBool>) -> Self {
+        Job { session, stop_file, stop_flag, finished }
+    }
     pub fn stop(&self) {
         self.stop_flag.store(true, Ordering::SeqCst);
         let _ = fs::write(&self.stop_file, b"stop");
@@ -51,6 +54,10 @@ struct Step {
 }
 
 pub fn start(opts: ScanOptions, engines: Engines, emit: Emit) -> Result<Job, String> {
+    // Phones and phone backups are copied from, not scanned block by block.
+    if super::devices::is_device(&opts.device) {
+        return super::devices::start(opts, engines, emit);
+    }
     // ── Decide which engines run ──
     let fs_ok = quick_supported(opts.filesystem.as_deref())
         && !matches!(opts.filesystem.as_deref(), Some("apfs") | Some("hfs"));
@@ -104,29 +111,7 @@ so RecovMe searched the whole drive instead of only its free space."
     }
 
     // ── Output folder checks ──
-    let mut out_root = PathBuf::from(&opts.output_dir);
-    if out_root.is_relative() {
-        if let Ok(abs) = fs::canonicalize(&out_root) {
-            out_root = abs;
-        }
-    }
-    if !out_root.is_dir() {
-        return Err("The save folder doesn't exist. Please pick another one.".into());
-    }
-    check_output_not_on_source(
-        &opts.output_dir,
-        &opts.device,
-        opts.bsd_name.as_deref(),
-        &opts.source_mounts,
-    )?;
-    let stamp = chrono::Local::now().format("%Y-%m-%d %H.%M");
-    let base = format!("Recovered - {} - {stamp}", safe_name(&opts.device_label));
-    let mut session = out_root.join(&base);
-    let mut n = 2;
-    while session.exists() {
-        session = out_root.join(format!("{base} ({n})"));
-        n += 1;
-    }
+    let session = new_session(&opts)?;
     let work = session.join(".recovme");
     let quick_dir = work.join("quick");
     let deep_dir = work.join("deep");
@@ -416,8 +401,37 @@ To get original names, scan a volume listed under the drive. Deep Scan still sea
     Ok(job)
 }
 
+/// Checks the save folder and picks a fresh "Recovered - <drive> - <date>" folder in it
+/// (not created yet).
+pub(crate) fn new_session(opts: &ScanOptions) -> Result<PathBuf, String> {
+    let mut out_root = PathBuf::from(&opts.output_dir);
+    if out_root.is_relative() {
+        if let Ok(abs) = fs::canonicalize(&out_root) {
+            out_root = abs;
+        }
+    }
+    if !out_root.is_dir() {
+        return Err("The save folder doesn't exist. Please pick another one.".into());
+    }
+    check_output_not_on_source(
+        &opts.output_dir,
+        &opts.device,
+        opts.bsd_name.as_deref(),
+        &opts.source_mounts,
+    )?;
+    let stamp = chrono::Local::now().format("%Y-%m-%d %H.%M");
+    let base = format!("Recovered - {} - {stamp}", safe_name(&opts.device_label));
+    let mut session = out_root.join(&base);
+    let mut n = 2;
+    while session.exists() {
+        session = out_root.join(format!("{base} ({n})"));
+        n += 1;
+    }
+    Ok(session)
+}
+
 /// Remove a session folder that holds nothing but the engines' work files.
-fn remove_if_empty(session: &Path) {
+pub(crate) fn remove_if_empty(session: &Path) {
     let has_results = fs::read_dir(session)
         .map(|it| it.flatten().any(|e| e.file_name() != ".recovme"))
         .unwrap_or(true);

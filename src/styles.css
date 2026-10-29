@@ -105,6 +105,10 @@ body.mac .side-top { padding-top: 46px; } /* room for the window buttons */
 .drv .flag { font-size: 11.5px; font-weight: 600; color: var(--warn); flex: none; }
 .drv.sel .flag { color: inherit; }
 
+.side-sub { font-size: 13px; font-weight: 600; color: var(--ink-2); padding: 16px 10px 6px; }
+.side-help { font-size: 12.5px; font-weight: 600; color: var(--accent); padding: 6px 10px; border-radius: 6px; }
+.side-help:hover { background: var(--surface-3); }
+
 .side-foot { padding: 10px 10px 14px; }
 .side-link {
   display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border-radius: var(--r);
@@ -162,6 +166,15 @@ body.mac .main-drag { height: 30px; }
 .note.danger { background: var(--danger-soft); color: var(--danger); }
 .note.info { background: var(--accent-soft); color: var(--accent); }
 #saveError { margin-top: 10px; }
+#driveWarn + #driveInfo { margin-top: 10px; }
+
+.field {
+  width: min(420px, 100%); height: 38px; padding: 0 12px; border-radius: var(--r); border: 0;
+  background: var(--surface-2); color: var(--ink); font: inherit; font-size: 14px;
+  box-shadow: inset 0 0 0 1.5px var(--line); user-select: text; -webkit-user-select: text;
+}
+.field:focus { outline: none; box-shadow: inset 0 0 0 2px var(--focus); }
+.field-help { font-size: 13px; color: var(--ink-2); margin-top: 8px; max-width: 640px; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
@@ -296,6 +309,11 @@ footer.bar .btn { height: 38px; padding: 0 20px; font-size: 14.5px; }
 .modal-card h3 { font-size: 17px; font-weight: 650; }
 .modal-card p { color: var(--ink-2); font-size: 14px; margin-top: 8px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.help-card { width: min(560px, 92vw); max-height: 88vh; overflow-y: auto; }
+.help-card h4 { font-size: 14px; font-weight: 650; margin: 18px 0 0; }
+.help-card ol { color: var(--ink-2); font-size: 14px; margin: 8px 0 0; padding-left: 20px; }
+.help-card li + li { margin-top: 4px; }
+.help-card b { color: var(--ink); font-weight: 600; }
 .coffee-ways { display: flex; align-items: center; gap: 18px; margin-top: 16px; padding: 14px; border-radius: 12px; background: var(--surface-2); }
 .coffee-ways .qr { width: 148px; height: 148px; border-radius: 10px; background: #ffffff; padding: 6px; flex: none; }
 .coffee-ways p { margin: 0 0 12px; }

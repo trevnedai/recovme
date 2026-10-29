@@ -15,7 +15,7 @@ pub struct Drive {
     /// macOS identifier (disk4s1) used for unmount/mount. None elsewhere.
     pub bsd_name: Option<String>,
     pub size: u64,
-    /// "internal" | "external" | "removable" | "image"
+    /// "internal" | "external" | "removable" | "image" | "android" | "ios-backup"
     pub kind: String,
     pub solid_state: Option<bool>,
     pub filesystem: Option<String>,
@@ -27,6 +27,10 @@ pub struct Drive {
     pub warning: Option<String>,
     /// Quick Scan (original names) can work on this file system.
     pub quick_supported: bool,
+    /// Why this source can't be scanned yet (a phone that hasn't allowed USB debugging).
+    pub blocked: Option<String>,
+    /// An encrypted iPhone backup: needs its password.
+    pub encrypted: bool,
 }
 
 #[derive(Serialize, Clone, Debug, Default)]
@@ -66,6 +70,12 @@ pub struct ScanOptions {
     pub rename_photos: bool,
     /// macOS: unmount the volume while scanning so the system can't overwrite deleted data.
     pub unmount: bool,
+    /// Android: where to look ("trash", "thumbnails", "apps", "all").
+    #[serde(default)]
+    pub places: Vec<String>,
+    /// Encrypted iPhone backup: its password. Only kept in memory.
+    #[serde(default)]
+    pub password: Option<String>,
 }
 
 #[derive(Serialize, Clone, Debug)]
@@ -113,7 +123,7 @@ pub struct Summary {
 pub enum ScanEvent {
     #[serde(rename_all = "camelCase")]
     Progress {
-        /// "starting" | "quick" | "deep" | "organize"
+        /// "starting" | "quick" | "deep" | "copy" | "organize"
         phase: String,
         label: String,
         percent: Option<f32>,

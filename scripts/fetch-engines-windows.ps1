@@ -1,6 +1,7 @@
 # Downloads the official Windows builds of the two recovery engines into
 # src-tauri/resources/engines so the installer carries them.
 #   PhotoRec 7.2 (CGSecurity, 64-bit)   The Sleuth Kit (tsk_recover)
+#   adb (Android platform tools, for Android phones)
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
@@ -10,8 +11,8 @@ $tmp = Join-Path ($env:RUNNER_TEMP ?? $env:TEMP) 'recovme-engines'
 $testdiskVersion = $env:TESTDISK_WIN_VERSION ?? '7.2'
 $tskVersion = $env:TSK_VERSION ?? '4.15.0'
 
-Remove-Item -Recurse -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk') -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk') | Out-Null
+Remove-Item -Recurse -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk'), (Join-Path $out 'adb') -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk'), (Join-Path $out 'adb') | Out-Null
 
 Write-Host "── PhotoRec $testdiskVersion ──"
 $zip = Join-Path $tmp 'testdisk.zip'
@@ -47,6 +48,17 @@ Get-ChildItem $bin.DirectoryName -Filter '*.dll' | ForEach-Object { Copy-Item $_
 $lic = Get-ChildItem (Join-Path $tmp 'tsk') -Recurse -Directory -Filter 'licenses' | Select-Object -First 1
 if ($lic) { Copy-Item $lic.FullName (Join-Path $out 'tsk/licenses') -Recurse -Force }
 
+Write-Host '── Android platform tools (adb) ──'
+$pzip = Join-Path $tmp 'platform-tools.zip'
+Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile $pzip -UseBasicParsing
+Expand-Archive $pzip (Join-Path $tmp 'pt') -Force
+# adb and the two USB DLLs it loads; the other platform tools aren't used.
+foreach ($f in 'adb.exe', 'AdbWinApi.dll', 'AdbWinUsbApi.dll', 'NOTICE.txt') {
+  $src = Join-Path $tmp "pt/platform-tools/$f"
+  if (Test-Path $src) { Copy-Item $src (Join-Path $out 'adb') -Force }
+  elseif ($f -ne 'NOTICE.txt') { throw "$f not found in the platform tools download" }
+}
+
 Write-Host '── Smoke test ──'
 $v = & (Join-Path $out 'photorec/photorec_win.exe') /version 2>&1 | Out-String
 if ($LASTEXITCODE -ne 0 -or $v -notmatch 'PhotoRec') { throw "PhotoRec did not start: $v" }
@@ -54,4 +66,7 @@ $v.Split("`n") | Select-Object -First 3 | ForEach-Object { Write-Host $_ }
 $t = & (Join-Path $out 'tsk/tsk_recover.exe') -V 2>&1 | Out-String
 if ($LASTEXITCODE -ne 0 -or $t -notmatch 'Sleuth') { throw "tsk_recover did not start: $t" }
 Write-Host $t
+$a = & (Join-Path $out 'adb/adb.exe') version 2>&1 | Out-String
+if ($LASTEXITCODE -ne 0 -or $a -notmatch 'Android Debug Bridge') { throw "adb did not start: $a" }
+Write-Host ($a.Split("`n") | Select-Object -First 1)
 Get-ChildItem -Recurse $out | Measure-Object -Property Length -Sum | ForEach-Object { "Engines: {0:N1} MB" -f ($_.Sum / 1MB) }

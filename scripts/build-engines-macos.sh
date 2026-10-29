@@ -3,7 +3,8 @@
 # drops them into src-tauri/resources/engines so the app bundle carries them.
 #   PhotoRec   – CGSecurity testdisk repo, pinned commit (7.3-WIP, newest file signatures)
 #   tsk_recover – The Sleuth Kit release tarball
-# Both are linked only against macOS system libraries (libjpeg is linked statically).
+#   adb         – Android platform tools (Google's prebuilt), for Android phones
+# PhotoRec and tsk_recover are linked only against macOS system libraries (libjpeg is linked statically).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -33,8 +34,8 @@ on_err() {
 }
 trap 'on_err $LINENO $?' ERR
 
-rm -rf "$WORK" "$OUT/photorec" "$OUT/tsk"
-mkdir -p "$WORK/static" "$OUT/photorec" "$OUT/tsk"
+rm -rf "$WORK" "$OUT/photorec" "$OUT/tsk" "$OUT/adb"
+mkdir -p "$WORK/static" "$OUT/photorec" "$OUT/tsk" "$OUT/adb"
 
 brew list autoconf >/dev/null 2>&1 || brew install autoconf
 brew list automake >/dev/null 2>&1 || brew install automake
@@ -67,10 +68,17 @@ make -j"$JOBS"
 cp tools/autotools/tsk_recover "$OUT/tsk/tsk_recover"
 [ -d licenses ] && cp -R licenses "$OUT/tsk/licenses" || true
 
-chmod 755 "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover"
+echo "── Android platform tools (adb) ──"
+cd "$WORK"
+curl -fsSL -o platform-tools.zip "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+unzip -q platform-tools.zip
+cp platform-tools/adb "$OUT/adb/adb"
+cp platform-tools/NOTICE.txt "$OUT/adb/NOTICE.txt" 2>/dev/null || true
+
+chmod 755 "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover" "$OUT/adb/adb"
 
 echo "── Checking the engines are self-contained ──"
-for b in "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover"; do
+for b in "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover" "$OUT/adb/adb"; do
   otool -L "$b"
   if otool -L "$b" | tail -n +2 | grep -vE "^[[:space:]]*/(usr/lib|System)/" | grep -q .; then
     echo "ERROR: $b links a library that won't exist on users' Macs" >&2
@@ -79,4 +87,5 @@ for b in "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover"; do
 done
 "$OUT/photorec/photorec" /version
 "$OUT/tsk/tsk_recover" -V
+"$OUT/adb/adb" version
 echo "Engines ready in $OUT"

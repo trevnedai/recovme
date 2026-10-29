@@ -282,7 +282,7 @@ fn set_file_dates(p: &Path, dt: NaiveDateTime) {
     }
 }
 
-fn unique(dest: PathBuf) -> PathBuf {
+pub(crate) fn unique(dest: PathBuf) -> PathBuf {
     if !dest.exists() {
         return dest;
     }
@@ -298,7 +298,7 @@ fn unique(dest: PathBuf) -> PathBuf {
     dest
 }
 
-fn move_file(src: &Path, dest: &Path) -> std::io::Result<()> {
+pub(crate) fn move_file(src: &Path, dest: &Path) -> std::io::Result<()> {
     if let Some(p) = dest.parent() {
         fs::create_dir_all(p)?;
     }
@@ -497,7 +497,9 @@ pub fn write_report(session: &Path, s: &Summary, device_label: &str) {
         t.push_str("Stopped early: yes (results below are what was found until then)\n");
     }
     t.push_str(&format!("\nFiles recovered: {}\n", s.total));
-    t.push_str(&format!("  With original names: {}\n", s.original_names));
+    if s.original_names > 0 || s.categories.is_empty() {
+        t.push_str(&format!("  With original names: {}\n", s.original_names));
+    }
     for c in &s.categories {
         t.push_str(&format!("  {}: {}\n", c.label, c.count));
     }

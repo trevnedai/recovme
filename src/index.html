@@ -26,7 +26,7 @@
       <div class="side-foot">
         <button class="side-link" id="btnImage">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 2.5h6.5L15 6v11.5H5z"/><path d="M11.5 2.5V6H15"/></svg>
-          Open a Disk Image…
+          Open a Disk Image or Backup…
         </button>
         <button class="side-link" id="btnSupport">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8h10v4a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4V8Z"/><path d="M13.5 9h1.2a2 2 0 0 1 0 4h-1.2"/><path d="M7 3.5c0 .8.8 1.2.8 2M10 3.5c0 .8.8 1.2.8 2"/></svg>
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="how">
-            <div><h3>Pick the Drive</h3><p>An SD card, USB stick, external drive or hard disk. Plug it in and choose it on the left.</p></div>
+            <div><h3>Pick the Drive or Phone</h3><p>An SD card, USB stick, external drive or hard disk, an Android phone, or an iPhone or iPad backup. Choose it on the left.</p></div>
             <div><h3>Choose What to Find</h3><p>Photos, videos, music, documents, or any of the 480+ file types it knows.</p></div>
             <div><h3>Save Somewhere Safe</h3><p>Files are restored to a different drive, sorted by type, with photos and videos named by the date they were taken.</p></div>
           </div>
@@ -73,6 +73,23 @@
           <span class="chance" id="driveChance"></span>
         </header>
         <div id="driveWarn" class="note warn hidden"></div>
+        <div id="driveInfo" class="note info hidden"></div>
+
+        <div class="block hidden" id="passwordBlock">
+          <h2>Backup Password</h2>
+          <input type="password" class="field" id="backupPassword" autocomplete="off" spellcheck="false" placeholder="Password" aria-describedby="passwordHelp" />
+          <p class="field-help" id="passwordHelp">The password you chose when you turned on “Encrypt local backup”, not the iPhone's passcode. It is only used on this computer and never saved.</p>
+        </div>
+
+        <div class="block hidden" id="placesBlock">
+          <h2>Look In</h2>
+          <div class="chips" id="places">
+            <button class="chip on" data-place="trash" aria-pressed="true">Recently Deleted &amp; Trash</button>
+            <button class="chip on" data-place="thumbnails" aria-pressed="true">Photo Thumbnails</button>
+            <button class="chip on" data-place="apps" aria-pressed="true">WhatsApp, Telegram &amp; Other Chats</button>
+            <button class="chip" data-place="all" aria-pressed="false">Everything in the Phone's Folders</button>
+          </div>
+        </div>
 
         <div class="block">
           <h2>Look For</h2>
@@ -86,7 +103,7 @@
           </div>
         </div>
 
-        <div class="block">
+        <div class="block" id="modesBlock">
           <h2>Scan</h2>
           <div class="modes" id="modes" role="radiogroup" aria-label="Scan type">
             <button class="mode on" data-mode="smart" role="radio" aria-checked="true">
@@ -115,7 +132,7 @@
           <div id="saveCloud" class="note warn hidden">This folder syncs to the cloud, so recovered files will be uploaded too. Pick a folder outside OneDrive or iCloud to keep them on this computer.</div>
         </div>
 
-        <details class="block more">
+        <details class="block more" id="moreBlock">
           <summary>More Options</summary>
           <label class="toggle"><input type="checkbox" id="optWhole" checked /><span class="switch"></span><span><b>Search the whole drive</b>Finds the most, even after a format or when the drive shows as empty. Files that are still on the drive are left out. Turn off for a faster search of free space only.</span></label>
           <label class="toggle"><input type="checkbox" id="optDedupe" checked /><span class="switch"></span><span><b>Remove duplicates</b>Keep one copy of files that are identical.</span></label>
@@ -206,6 +223,26 @@
       </div>
       <div class="modal-actions">
         <button class="btn" id="coffeeClose">Close</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="phoneModal" role="dialog" aria-modal="true" aria-labelledby="phoneTitle">
+    <div class="modal-card help-card">
+      <h3 id="phoneTitle">Recover From a Phone or Tablet</h3>
+      <h4>Android</h4>
+      <ol>
+        <li>On the phone, open Settings → About phone and tap <b>Build number</b> seven times.</li>
+        <li>Open Settings → Developer options (on some phones under System) and turn on <b>USB debugging</b>.</li>
+        <li>Connect the phone with a USB cable, unlock it, and tap <b>Allow</b> when it asks “Allow USB debugging?”. Then press refresh.</li>
+      </ol>
+      <p class="windows-only">On Windows, some phones also need their maker's USB driver.</p>
+      <h4>iPhone and iPad</h4>
+      <p>Apple doesn't let any app read an iPhone directly, so RecovMe reads the backups Finder, iTunes or the Apple Devices app made on this computer. A backup from before the files were deleted still has them, including photos that were in Recently Deleted.</p>
+      <p><b>Scan an old backup before making a new one:</b> a new backup replaces the last backup of that device.</p>
+      <h4>Cameras, Drones, Dashcams and Consoles</h4>
+      <p>Take the memory card out and put it in a card reader. It shows up under Drives and can be searched block by block.</p>
+      <div class="modal-actions">
+        <button class="btn primary" id="phoneClose">Got It</button>
       </div>
     </div>
   </div>

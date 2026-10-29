@@ -67,3 +67,53 @@ pub fn safe_name(s: &str) -> String {
         t.chars().take(60).collect()
     }
 }
+
+/// Run a command, giving up (and killing it) after `limit`. Output is read on
+/// separate threads so a chatty program can't fill the pipe and stall.
+pub fn output_with_timeout(
+    mut c: Command,
+    limit: std::time::Duration,
+) -> Result<std::process::Output, String> {
+    use std::io::Read;
+    use std::process::Stdio;
+    let mut child = c
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .spawn()
+        .map_err(|e| e.to_string())?;
+    let mut out = child.stdout.take();
+    let mut err = child.stderr.take();
+    let t_out = std::thread::spawn(move || {
+        let mut v = Vec::new();
+        if let Some(o) = out.as_mut() {
+            let _ = o.read_to_end(&mut v);
+        }
+        v
+    });
+    let t_err = std::thread::spawn(move || {
+        let mut v = Vec::new();
+        if let Some(e) = err.as_mut() {
+            let _ = e.read_to_end(&mut v);
+        }
+        v
+    });
+    let started = std::time::Instant::now();
+    let status = loop {
+        match child.try_wait() {
+            Ok(Some(s)) => break s,
+            Ok(None) if started.elapsed() > limit => {
+                let _ = child.kill();
+                let _ = child.wait();
+                return Err("timed out".into());
+            }
+            Ok(None) => std::thread::sleep(std::time::Duration::from_millis(50)),
+            Err(e) => return Err(e.to_string()),
+        }
+    };
+    Ok(std::process::Output {
+        status,
+        stdout: t_out.join().unwrap_or_default(),
+        stderr: t_err.join().unwrap_or_default(),
+    })
+}

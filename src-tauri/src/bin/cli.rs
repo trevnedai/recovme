@@ -1,8 +1,10 @@
 //! Headless runner that uses exactly the same scan code as the app.
 //! Usage: recovme-cli <device-or-image> <save-folder> [smart|quick|deep] [categories,comma,separated] [--whole] [--mount DIR]
-//!        recovme-cli --drives
+//!        recovme-cli adb:<serial> <save-folder> - [categories] [--places trash,thumbnails,apps,all]
+//!        recovme-cli iosbackup:<backup folder> <save-folder> - [categories] [--password PW]
+//!        recovme-cli --drives | --phones
 
-use recovme_lib::core::{drives, engines, job, types::*};
+use recovme_lib::core::{devices, drives, engines, job, types::*};
 use std::sync::mpsc;
 use std::sync::Arc;
 
@@ -12,6 +14,11 @@ fn main() {
         println!("{}", serde_json::to_string_pretty(&drives::list_drives()).unwrap());
         return;
     }
+    if args.first().map(|s| s.as_str()) == Some("--phones") {
+        println!("{}", serde_json::to_string_pretty(&devices::list(&engines::locate(None))).unwrap());
+        return;
+    }
+    let flag = |name: &str| args.iter().position(|a| a == name).and_then(|i| args.get(i + 1).cloned());
     if args.len() < 2 {
         eprintln!("usage: recovme-cli <device-or-image> <save-folder> [smart|quick|deep] [photos,videos,...] [--whole]");
         std::process::exit(2);
@@ -26,20 +33,29 @@ fn main() {
         .filter(|s| !s.starts_with("--"))
         .map(|s| s.split(',').map(|x| x.to_string()).collect())
         .unwrap_or_else(|| vec!["everything".into()]);
-    let image = drives::image_drive(&args[0]).ok();
+    let image = devices::picked(std::path::Path::new(&args[0]))
+        .or_else(|| {
+            devices::is_device(&args[0])
+                .then(|| devices::list(&engines::locate(None)).into_iter().find(|d| d.device == args[0]))
+                .flatten()
+        })
+        .or_else(|| drives::image_drive(&args[0]).ok());
+    // A backup folder given by path is read as a backup.
+    let device = image
+        .as_ref()
+        .filter(|d| d.kind == "ios-backup")
+        .map(|d| d.device.clone())
+        .unwrap_or_else(|| args[0].clone());
     let opts = ScanOptions {
-        device: args[0].clone(),
-        device_label: image.map(|d| d.label).unwrap_or_else(|| args[0].clone()),
+        device,
+        device_label: image.as_ref().map(|d| d.label.clone()).unwrap_or_else(|| args[0].clone()),
         bsd_name: None,
         filesystem: None,
         is_whole_disk: true,
         // --mount DIR: pretend the drive is mounted there (to test "still on the drive").
-        source_mounts: args
-            .iter()
-            .position(|a| a == "--mount")
-            .and_then(|i| args.get(i + 1).cloned())
-            .into_iter()
-            .collect(),
+        source_mounts: flag("--mount")
+            .map(|m| vec![m])
+            .unwrap_or_else(|| image.as_ref().map(|d| d.mount_points.clone()).unwrap_or_default()),
         mode,
         whole_area: args.iter().any(|a| a == "--whole"),
         categories,
@@ -48,6 +64,8 @@ fn main() {
         dedupe: true,
         rename_photos: true,
         unmount: false,
+        places: flag("--places").map(|p| p.split(',').map(|x| x.to_string()).collect()).unwrap_or_default(),
+        password: flag("--password"),
     };
     let eng = engines::locate(None);
     eprintln!("engines: {eng:?}");

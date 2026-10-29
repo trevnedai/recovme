@@ -43,7 +43,7 @@
     "category": "Utility",
     "shortDescription": "Free file and photo recovery",
     "longDescription": "Bring back deleted photos, videos and documents from SD cards, USB sticks, external drives and hard disks. Free and open source.",
-    "copyright": "GPL-3.0-or-later. Uses PhotoRec (CGSecurity) and The Sleuth Kit.",
+    "copyright": "© 2026 Dhan Denvert Asuncion. GPL-3.0-or-later. Uses PhotoRec (CGSecurity) and The Sleuth Kit.",
     "resources": [
       "resources/engines/**/*"
     ],

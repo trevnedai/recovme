@@ -94,3 +94,7 @@ RecovMe is GPL-3.0-or-later. It bundles, unmodified and as separate programs:
 PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit © Brian Carrier
 and contributors (IBM Public License / Common Public License and others — see `licenses/`
 in the engine folder).
+
+## Author
+
+RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) by Christophe Grenier and [The Sleuth Kit](https://www.sleuthkit.org) by Brian Carrier and contributors.

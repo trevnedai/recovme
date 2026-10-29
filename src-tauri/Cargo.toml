@@ -2,7 +2,7 @@
 name = "recovme"
 version = "0.1.0"
 description = "Free file and photo recovery for Mac and Windows"
-authors = ["Trevned"]
+authors = ["Dhan Denvert Asuncion"]
 license = "GPL-3.0-or-later"
 edition = "2021"
 default-run = "recovme"

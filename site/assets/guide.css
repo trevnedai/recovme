@@ -70,6 +70,7 @@ kbd, .ui { font: 600 0.92em/1 var(--text); background: var(--tint); border: 1px 
 .donts ul { list-style: none; padding: 0; }
 .donts li { position: relative; padding-left: 30px; }
 .donts li::before { content: "✕"; position: absolute; left: 4px; top: 0.1em; font-size: 14px; font-weight: 800; color: var(--low); }
+.donts li.do::before { content: "✓"; color: var(--good); }
 
 /* Steps */
 ol.steps { list-style: none; padding: 0; margin-top: 18px; counter-reset: s; }
@@ -130,6 +131,12 @@ figure.shot figcaption { margin-top: 10px; font-size: 14px; color: var(--ink-2);
 .cards b { display: block; font: 800 20px/1.2 var(--display); letter-spacing: -0.01em; }
 .cards span { display: block; margin-top: 6px; color: var(--ink-2); font-size: 15px; }
 .cards .tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--accent); }
+
+/* Press kit */
+.kv tbody th { width: 30%; }
+.press-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.press-grid img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: var(--tint); border-radius: 10px; margin-bottom: 12px; }
+@media (max-width: 640px) { .press-grid { grid-template-columns: 1fr; } }
 
 /* Footer */
 .foot { background: var(--teal); color: var(--teal-ink-2); padding: 34px 0 40px; font-size: 14px; }

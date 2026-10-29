@@ -1,0 +1,80 @@
+<div class="chance" data-level="mid">
+  <p class="label">Your chances: it depends on the drive</p>
+  <p>On a <strong>hard drive</strong>, deleted files usually stay until the space is reused, so the chances are good. On an <strong>SSD</strong>, which most laptops and newer PCs have, Windows tells the drive to wipe deleted files, usually within minutes. There, the free built-in options below are your best chance.</p>
+</div>
+
+<h2>Check these free places first</h2>
+<ul>
+  <li><strong>Recycle Bin.</strong> Open it on the desktop, right-click the file and choose Restore.</li>
+  <li><strong>OneDrive’s recycle bin.</strong> If the folder syncs to OneDrive, sign in at onedrive.com and open Recycle bin. With a personal Microsoft account, deleted files stay there for 30 days.</li>
+  <li><strong>Previous Versions.</strong> Right-click the folder the file was in, choose Properties, then the Previous Versions tab. It shows copies if File History or restore points were turned on.</li>
+  <li><strong>File History.</strong> If you set it up with a backup drive, open Control Panel › File History › Restore personal files.</li>
+</ul>
+
+<h2>Hard drive or SSD?</h2>
+<p>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> to open Task Manager, choose Performance, then click your disk. The type, <strong>SSD</strong> or <strong>HDD</strong>, is shown on the right.</p>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Your drive</th><th scope="col">Your chances</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">HDD (hard drive)</th><td><span class="lvl good">Good</span>, as long as you stop using the PC for anything else. A running PC keeps writing to its own drive.</td></tr>
+      <tr><th scope="row">SSD</th><td><span class="lvl low">Low.</span> File names can survive, but the contents rarely do. RecovMe can still try, and it tells you which recovered files are empty.</td></tr>
+      <tr><th scope="row">Files were on a USB stick, SD card or external drive</th><td><span class="lvl good">Usually good.</span> See the <a href="/guides/recover-deleted-photos-sd-card/">SD card guide</a> or the <a href="/guides/recover-deleted-files-external-hard-drive/">external drive guide</a>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Before you scan</h2>
+  <ul>
+    <li><strong>Stop using the PC</strong> for anything else: no downloads, no updates, no new files.</li>
+    <li class="do"><strong>Have a USB stick or external drive ready.</strong> RecovMe won’t save onto the drive it’s scanning, so on a PC with one drive you need somewhere else to put the files.</li>
+    <li class="do"><strong>For files that really matter</strong>, the safest way is to take the hard drive out, connect it to another computer with a USB adapter, and scan it there.</li>
+  </ul>
+</section>
+
+<h2>Recover the files in 6 steps</h2>
+<p>RecovMe is free to the end: no trial, no size limit, nothing to pay before you can save.</p>
+
+<ol class="steps">
+  <li><b>Download and open RecovMe</b>
+    <p>It works on Windows 10 and 11 (64-bit). If a blue SmartScreen window appears, choose <span class="ui">More info</span> and then <span class="ui">Run anyway</span>. Allow it to make changes when Windows asks: it needs administrator rights to read the drive directly.</p></li>
+  <li><b>Pick the drive</b>
+    <p>Choose the drive where the files were, usually <span class="ui">C:</span>, in the list on the left.</p></li>
+  <li><b>Choose what to look for</b>
+    <p>Photos, Videos and Documents are on by default. Add <span class="ui">Music &amp; Audio</span> or <span class="ui">Archives</span> if you need them. Fewer types make the scan faster.</p></li>
+  <li><b>Keep Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> first reads the drive’s file table, which on Windows drives (NTFS) brings back recently deleted files with their original names and folders. Then it searches every block for the rest.</p>
+    <figure class="shot">
+      <img src="/assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="RecovMe with a drive picked, file types chosen and Smart Scan recommended.">
+      <figcaption>Pick the drive, the file types and where to save.</figcaption>
+    </figure></li>
+  <li><b>Save to your USB stick or external drive</b>
+    <p>Under <span class="ui">Save Recovered Files To</span>, choose a folder on the other drive. Avoid a OneDrive folder; RecovMe warns you if you pick one.</p></li>
+  <li><b>Start the scan and open your files</b>
+    <p>Press <span class="ui">Start Scan</span>, then <span class="ui">Open Recovered Files</span> when it’s done. Files that kept their names are in <span class="ui">Original names</span>; the rest are sorted by type.</p></li>
+</ol>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>I used Shift + Delete. Can the files come back?</summary>
+    <p>Shift + Delete skips the Recycle Bin, so the result is the same as emptying it. On a hard drive the files usually stay until the space is reused. On an SSD they are usually wiped soon after.</p>
+  </details>
+  <details>
+    <summary>My PC won’t start. Can I still get my files?</summary>
+    <p>If the PC has a drive you can take out, connect it to another computer with a USB adapter and scan it there. Many thin laptops have the SSD built in, and then a repair shop is the way to go.</p>
+  </details>
+  <details>
+    <summary>Why does it need administrator rights?</summary>
+    <p>Reading deleted space means reading the drive directly, below the files and folders Windows shows. Windows only allows that for apps running as administrator. RecovMe only reads; it never writes to the drive it scans.</p>
+  </details>
+  <details>
+    <summary>Is RecovMe really free?</summary>
+    <p>Yes, 100%. There’s no trial, no size limit and nothing to unlock after the scan. It’s open source, and donations are optional.</p>
+  </details>
+  <details>
+    <summary>Does it send my files anywhere?</summary>
+    <p>No. Everything happens on your computer. RecovMe has no account, no cloud and no tracking.</p>
+  </details>
+</div>

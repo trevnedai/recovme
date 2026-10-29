@@ -27,7 +27,7 @@ const write = (file, html) => { mkdirSync(dirname(file), { recursive: true }); w
 
 const L = {
   en: {
-    hub: "/guides/", hubName: "Guides", locale: "en_US", other: "it", otherName: "Italiano",
+    root: "/", hub: "/guides/", hubName: "Guides", locale: "en_US", other: "it", otherName: "Italiano",
     home: "Home", questions: "Questions", download: "Download",
     by: "By Dhan Denvert Asuncion", updated: "Updated", platforms: "Mac and Windows",
     date: (d) => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }),
@@ -37,7 +37,7 @@ const L = {
     req: "Mac with Apple silicon, macOS 11 or later · Windows 10 or 11, 64-bit",
     more: "More guides", moreLink: "All guides",
     foot: "© 2026 Dhan Denvert Asuncion. Free and open source under GPL-3.0.",
-    signing: "Code Signing Policy", source: "Source Code on GitHub",
+    signing: "Code Signing Policy", source: "Source Code on GitHub", press: "Press",
     hubTitle: "File Recovery Guides | RecovMe",
     hubH1: "File Recovery Guides",
     hubLede: "Step-by-step help for the most common ways files get lost, with an honest answer about your chances first. Every guide uses RecovMe, which is free with no limits.",
@@ -45,7 +45,7 @@ const L = {
     read: "Read the guide",
   },
   it: {
-    hub: "/it/guide/", hubName: "Guide", locale: "it_IT", other: "en", otherName: "English",
+    root: "/it/", hub: "/it/guide/", hubName: "Guide", locale: "it_IT", other: "en", otherName: "English",
     home: "Home", questions: "Domande", download: "Scarica",
     by: "Di Dhan Denvert Asuncion", updated: "Aggiornata il", platforms: "Mac e Windows",
     date: (d) => new Date(d + "T12:00:00Z").toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" }),
@@ -55,7 +55,7 @@ const L = {
     req: "Mac con Apple silicon, macOS 11 o successivo · Windows 10 o 11, 64 bit",
     more: "Altre guide", moreLink: "Tutte le guide",
     foot: "© 2026 Dhan Denvert Asuncion. Gratis e open source con licenza GPL-3.0.",
-    signing: "Firma del codice", source: "Codice sorgente su GitHub",
+    signing: "Firma del codice", source: "Codice sorgente su GitHub", press: "Stampa",
     hubTitle: "Guide al recupero dati gratis | RecovMe",
     hubH1: "Guide al recupero dei file",
     hubLede: "Aiuto passo passo per i modi più comuni in cui si perdono i file, con prima una risposta onesta sulle probabilità di recupero. Ogni guida usa RecovMe, gratis e senza limiti.",
@@ -110,7 +110,7 @@ function topbar(lang, otherUrl, current) {
   const t = L[lang];
   return `<header class="top">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/icon-256.png" width="36" height="36" alt="">RecovMe</a>
+    <a class="brand" href="${t.root}"><img src="/assets/icon-256.png" width="36" height="36" alt="">RecovMe</a>
     <nav aria-label="Site">
       <a href="${t.hub}"${current ? ' aria-current="page"' : ""}>${t.hubName}</a>
       <a href="/#questions">${t.questions}</a>
@@ -141,7 +141,7 @@ function footer(lang) {
   return `<footer class="foot">
   <div class="wrap">
     <p>${t.foot}</p>
-    <p><a href="/">${t.home}</a> · <a href="${t.hub}">${t.hubName}</a> · <a href="/code-signing.html">${t.signing}</a> · <a href="https://github.com/trevnedai/recovme" rel="noopener">${t.source}</a></p>
+    <p><a href="${t.root}">${t.home}</a> · <a href="${t.hub}">${t.hubName}</a> · <a href="/press/">${t.press}</a> · <a href="/code-signing.html">${t.signing}</a> · <a href="https://github.com/trevnedai/recovme" rel="noopener">${t.source}</a></p>
   </div>
 </footer>
 <script src="/assets/guide.js" defer></script>
@@ -178,7 +178,7 @@ for (const g of guides) {
         },
         {
           "@type": "BreadcrumbList", itemListElement: [
-            { "@type": "ListItem", position: 1, name: "RecovMe", item: SITE + "/" },
+            { "@type": "ListItem", position: 1, name: "RecovMe", item: SITE + t.root },
             { "@type": "ListItem", position: 2, name: t.hubName, item: url(lang) },
             { "@type": "ListItem", position: 3, name: p.short, item: canonical },
           ],
@@ -193,7 +193,7 @@ for (const g of guides) {
     }) + topbar(lang, path(other, g[other].slug), false) + `
 <main>
   <div class="wrap">
-    <ol class="crumbs"><li><a href="/">RecovMe</a></li><li><a href="${t.hub}">${t.hubName}</a></li><li aria-current="page">${esc(p.short)}</li></ol>
+    <ol class="crumbs"><li><a href="${t.root}">RecovMe</a></li><li><a href="${t.hub}">${t.hubName}</a></li><li aria-current="page">${esc(p.short)}</li></ol>
     <div class="head">
       <h1>${esc(p.h1)}</h1>
       <p class="lede">${p.lede}</p>
@@ -233,7 +233,7 @@ for (const lang of ["en", "it"]) {
   }) + topbar(lang, L[t.other].hub, true) + `
 <main>
   <div class="wrap">
-    <ol class="crumbs"><li><a href="/">RecovMe</a></li><li aria-current="page">${t.hubName}</li></ol>
+    <ol class="crumbs"><li><a href="${t.root}">RecovMe</a></li><li aria-current="page">${t.hubName}</li></ol>
     <div class="head">
       <h1>${t.hubH1}</h1>
       <p class="lede">${t.hubLede}</p>
@@ -248,17 +248,60 @@ ${getBox(lang)}
   write(out(...t.hub.split("/").filter(Boolean), "index.html"), html);
 }
 
-// Home page structured data: the app, its maker and the Questions section,
-// rebuilt from the page itself so it never drifts from what visitors see.
+// Press kit (English only; journalists in Italy read it too, and it has an Italian paragraph)
 {
-  const file = out("index.html");
+  const body = readFileSync(src("press.html"), "utf8").trim();
+  const canonical = SITE + "/press/";
+  const desc = "RecovMe press kit: a short description, key facts, the app icon, a banner and screenshots to use in articles, reviews and videos.";
+  const ld = { "@context": "https://schema.org", "@type": "WebPage", name: "RecovMe Press Kit", description: desc, url: canonical, inLanguage: "en", about: app };
+  const html = head({ lang: "en", title: "Press Kit | RecovMe", desc, canonical, type: "website", ld }) + topbar("en", "/it/", false) + `
+<main>
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/">RecovMe</a></li><li aria-current="page">Press Kit</li></ol>
+    <div class="head"><h1>Press Kit</h1></div>
+    <article>
+${body}
+    </article>
+${getBox("en")}
+  </div>
+</main>
+` + footer("en");
+  write(out("press", "index.html"), html);
+}
+
+// Italian home page: built from the English one with the snippets in
+// site-src/home.it.json. Snippets that no longer match are listed, so a change
+// to the English page never slips through untranslated without a warning.
+{
+  const en = readFileSync(out("index.html"), "utf8");
+  const { pairs } = JSON.parse(readFileSync(src("home.it.json"), "utf8"));
+  let it = en;
+  const missing = [];
+  for (const [from, to] of [...pairs].sort((a, b) => b[0].length - a[0].length)) {
+    if (!it.includes(from)) { missing.push(from); continue; }
+    it = it.split(from).join(to);
+  }
+  it = it
+    .replace(/(src|href)="assets\//g, '$1="/assets/')
+    .replace(/url\(assets\//g, "url(/assets/")
+    .replace(/href="code-signing\.html"/g, 'href="/code-signing.html"');
+  if (missing.length) {
+    console.warn(`\nItalian home page: ${missing.length} English snippet(s) not found. Update site-src/home.it.json:`);
+    for (const m of missing) console.warn("  - " + m.slice(0, 110));
+  }
+  write(out("it", "index.html"), it);
+}
+
+// Home page structured data: the app, its maker and the Questions section,
+// rebuilt from each page itself so it never drifts from what visitors see.
+for (const [file, lang, pageUrl] of [[out("index.html"), "en", SITE + "/"], [out("it", "index.html"), "it", SITE + "/it/"]]) {
   const page = readFileSync(file, "utf8");
   const questions = (page.split('id="questions"')[1] || "").split("</section>")[0];
   const person = { "@type": "Person", "@id": SITE + "/#maker", name: "Dhan Denvert Asuncion", url: SITE + "/#about" };
   const ld = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "WebSite", "@id": SITE + "/#site", name: "RecovMe", url: SITE + "/", inLanguage: "en", publisher: { "@id": person["@id"] } },
+      { "@type": "WebSite", "@id": SITE + "/#site", name: "RecovMe", url: SITE + "/", inLanguage: ["en", "it"], publisher: { "@id": person["@id"] } },
       person,
       {
         "@type": "SoftwareApplication", "@id": app["@id"], name: "RecovMe", url: SITE + "/",
@@ -274,11 +317,11 @@ ${getBox(lang)}
         author: { "@id": person["@id"] },
         codeRepository: "https://github.com/trevnedai/recovme",
       },
-      { "@type": "FAQPage", "@id": SITE + "/#questions", mainEntity: faqs('class="faq"' + questions) },
+      { "@type": "FAQPage", "@id": pageUrl + "#questions", inLanguage: lang, mainEntity: faqs('class="faq"' + questions) },
     ],
   };
   const tag = /<script type="application\/ld\+json" id="ld">[\s\S]*?<\/script>/;
-  if (!tag.test(page)) throw new Error("site/index.html is missing <script type=\"application/ld+json\" id=\"ld\">");
+  if (!tag.test(page)) throw new Error(file + " is missing <script type=\"application/ld+json\" id=\"ld\">");
   writeFileSync(file, page.replace(tag, `<script type="application/ld+json" id="ld">\n${JSON.stringify(ld, null, 1)}\n</script>`));
 }
 
@@ -287,11 +330,11 @@ const entry = (loc, alts) => `  <url>
     <loc>${loc}</loc>
     <lastmod>${updated}</lastmod>${alts ? "\n" + Object.entries(alts).map(([l, u]) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${u}"/>`).join("\n") : ""}
   </url>`;
-const pairs = [[url("en"), url("it")], ...guides.map((g) => [url("en", g.en.slug), url("it", g.it.slug)])];
+const pairs = [[SITE + "/", SITE + "/it/"], [url("en"), url("it")], ...guides.map((g) => [url("en", g.en.slug), url("it", g.it.slug)])];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${entry(SITE + "/")}
 ${pairs.flatMap(([en, it]) => { const a = { en, it, "x-default": en }; return [entry(en, a), entry(it, a)]; }).join("\n")}
+${entry(SITE + "/press/")}
 ${entry(SITE + "/code-signing.html")}
 </urlset>
 `;

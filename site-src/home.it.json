@@ -1,0 +1,745 @@
+{
+ "_note": "Italian home page (site/it/index.html) is built from site/index.html by replacing each English snippet with its Italian version. When the English page changes, npm run site lists any snippet it can no longer find: update it here.",
+ "pairs": [
+  [
+   "<html lang=\"en\">",
+   "<html lang=\"it\">"
+  ],
+  [
+   "<title>RecovMe — Free File &amp; Photo Recovery for Mac and Windows</title>",
+   "<title>RecovMe — Recupero file e foto gratis per Mac e Windows</title>"
+  ],
+  [
+   "<meta name=\"description\" content=\"RecovMe brings back deleted and formatted photos, videos, CCTV footage and documents from SD cards, USB sticks and hard drives. 100% free for Mac and Windows.\">",
+   "<meta name=\"description\" content=\"RecovMe recupera foto, video, riprese di telecamere e documenti cancellati o formattati da schede SD, chiavette USB e hard disk. Gratis al 100% per Mac e Windows.\">"
+  ],
+  [
+   "<link rel=\"canonical\" href=\"https://recovme.app/\">",
+   "<link rel=\"canonical\" href=\"https://recovme.app/it/\">"
+  ],
+  [
+   "<meta property=\"og:title\" content=\"RecovMe — Get your files back. Free.\">",
+   "<meta property=\"og:title\" content=\"RecovMe — Recupera i tuoi file. Gratis.\">"
+  ],
+  [
+   "<meta property=\"og:description\" content=\"Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV footage and documents. No paywall after the scan.\">",
+   "<meta property=\"og:description\" content=\"Recupero file gratuito e open source per Mac e Windows: foto, video, musica, registrazioni, riprese di telecamere e documenti. Niente da pagare dopo la scansione.\">"
+  ],
+  [
+   "<meta property=\"og:url\" content=\"https://recovme.app/\">",
+   "<meta property=\"og:url\" content=\"https://recovme.app/it/\">"
+  ],
+  [
+   "<meta property=\"og:type\" content=\"website\">",
+   "<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:locale\" content=\"it_IT\">"
+  ],
+  [
+   "aria-label=\"RecovMe home\"",
+   "aria-label=\"RecovMe, pagina iniziale\""
+  ],
+  [
+   "aria-label=\"Sections\"",
+   "aria-label=\"Sezioni\""
+  ],
+  [
+   ">Really Free</a>",
+   ">Davvero gratis</a>"
+  ],
+  [
+   ">Why RecovMe</a>",
+   ">Perché RecovMe</a>"
+  ],
+  [
+   ">What It Finds</a>",
+   ">Cosa trova</a>"
+  ],
+  [
+   ">Your Chances</a>",
+   ">Le tue probabilità</a>"
+  ],
+  [
+   "<a href=\"/guides/\">Guides</a>",
+   "<a href=\"/it/guide/\">Guide</a>"
+  ],
+  [
+   ">Support</a>",
+   ">Sostieni</a>"
+  ],
+  [
+   ">Questions</a>",
+   ">Domande</a>"
+  ],
+  [
+   ">Get Your Files Back. Free.</h1>",
+   ">Recupera i tuoi file. Gratis.</h1>"
+  ],
+  [
+   "RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards, and hard drives. 100% free and open source: no trial, no limits, no paywall after the scan.",
+   "RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione."
+  ],
+  [
+   "aria-label=\"What it recovers\"",
+   "aria-label=\"Cosa recupera\""
+  ],
+  [
+   "<li>Photos</li><li>Videos</li><li>Music</li><li>Voice Recordings</li><li>CCTV &amp; Dashcam Footage</li><li>Documents</li><li>Archives</li>",
+   "<li>Foto</li><li>Video</li><li>Musica</li><li>Registrazioni vocali</li><li>Riprese di telecamere e dashcam</li><li>Documenti</li><li>Archivi</li>"
+  ],
+  [
+   "Download for Mac",
+   "Scarica per Mac"
+  ],
+  [
+   "Download for Windows",
+   "Scarica per Windows"
+  ],
+  [
+   "Mac with Apple silicon, macOS 11 or later · Windows 10 or 11, 64-bit",
+   "Mac con Apple silicon, macOS 11 o successivo · Windows 10 o 11, 64 bit"
+  ],
+  [
+   "aria-label=\"RecovMe in short\"",
+   "aria-label=\"RecovMe in breve\""
+  ],
+  [
+   "<b>100% Free</b><span>Every file it finds is yours to save. No size cap, no paywall at the end.</span>",
+   "<b>Gratis al 100%</b><span>Ogni file che trova puoi salvarlo. Nessun limite di dimensione, niente da pagare alla fine.</span>"
+  ],
+  [
+   "<b>480+ File Types</b><span>Photos, RAW, videos, music, recordings, documents, archives.</span>",
+   "<b>480+ tipi di file</b><span>Foto, RAW, video, musica, registrazioni, documenti, archivi.</span>"
+  ],
+  [
+   "<b>Read-Only</b><span>The drive you scan is never written to.</span>",
+   "<b>Sola lettura</b><span>Sul disco che analizzi non viene mai scritto nulla.</span>"
+  ],
+  [
+   "<b>Open Source</b><span>Every line of code is public (GPL-3.0).</span>",
+   "<b>Open source</b><span>Ogni riga di codice è pubblica (GPL-3.0).</span>"
+  ],
+  [
+   ">Free Means Free</h2>",
+   ">Gratis vuol dire gratis</h2>"
+  ],
+  [
+   "Many \"free\" recovery apps let you scan for free, show you your lost files, and then ask you to pay before you can save them. RecovMe doesn't. What it finds, you keep.",
+   "Molti programmi di recupero \"gratuiti\" ti fanno fare la scansione gratis, ti mostrano i file persi e poi ti chiedono di pagare prima di poterli salvare. RecovMe no. Quello che trova, lo tieni."
+  ],
+  [
+   "<span class=\"sr\">Feature</span>",
+   "<span class=\"sr\">Funzione</span>"
+  ],
+  [
+   ">Typical \"Free\" Recovery App</th>",
+   ">Tipico programma \"gratuito\"</th>"
+  ],
+  [
+   ">Saving the files it finds</th>",
+   ">Salvare i file trovati</th>"
+  ],
+  [
+   ">Pay first, usually for a license or yearly subscription</td>",
+   ">Prima paghi, di solito una licenza o un abbonamento annuale</td>"
+  ],
+  [
+   ">Free, always</td>",
+   ">Gratis, sempre</td>"
+  ],
+  [
+   ">How much you can recover</th>",
+   ">Quanto puoi recuperare</th>"
+  ],
+  [
+   ">Free limit of a few hundred MB to 2 GB</td>",
+   ">Limite gratuito da poche centinaia di MB a 2 GB</td>"
+  ],
+  [
+   ">No limit</td>",
+   ">Nessun limite</td>"
+  ],
+  [
+   ">Account or sign-up</th>",
+   ">Account o registrazione</th>"
+  ],
+  [
+   ">Often required</td>",
+   ">Spesso obbligatori</td>"
+  ],
+  [
+   ">None</td>",
+   ">Nessuno</td>"
+  ],
+  [
+   ">Your files</th>",
+   ">I tuoi file</th>"
+  ],
+  [
+   ">Varies; many collect usage data</td>",
+   ">Dipende; molti raccolgono dati d’uso</td>"
+  ],
+  [
+   ">Never leave your computer</td>",
+   ">Non lasciano mai il computer</td>"
+  ],
+  [
+   ">Can you check the code?</th>",
+   ">Puoi controllare il codice?</th>"
+  ],
+  [
+   ">No, closed source</td>",
+   ">No, codice chiuso</td>"
+  ],
+  [
+   ">Yes, open source on GitHub</td>",
+   ">Sì, open source su GitHub</td>"
+  ],
+  [
+   ">Ads, upsells, bundled software</th>",
+   ">Pubblicità, offerte a pagamento, software aggiuntivo</th>"
+  ],
+  [
+   ">Common</td>",
+   ">Frequenti</td>"
+  ],
+  [
+   "Donations are optional and change nothing in the app.",
+   "Le donazioni sono facoltative e non cambiano nulla nell’app."
+  ],
+  [
+   ">Why RecovMe Is Different</h2>",
+   ">Perché RecovMe è diverso</h2>"
+  ],
+  [
+   "It uses the same proven engines that data recovery professionals rely on, then does the tidy-up work that usually takes hours by hand.",
+   "Usa gli stessi motori collaudati a cui si affidano i professionisti del recupero dati, poi fa da solo il lavoro di riordino che di solito richiede ore."
+  ],
+  [
+   "<h3>Two Engines in One Scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognized by what is inside them, so they come back even after a format.</p>",
+   "<h3>Due motori in una scansione</h3><p>The Sleuth Kit recupera i file cancellati di recente con il nome e le cartelle originali. Poi PhotoRec cerca in ogni blocco del disco i file riconosciuti dal loro contenuto, così tornano anche dopo una formattazione.</p>"
+  ],
+  [
+   "<h3>Sorted for You</h3><p>Results are filed by type. Photos and videos are named and sorted by the date they were taken, and keep that date on your computer. Duplicates are removed and tiny thumbnails are set aside.</p>",
+   "<h3>Già in ordine</h3><p>I risultati sono divisi per tipo. Foto e video vengono rinominati e ordinati per data di scatto, e mantengono quella data sul computer. I duplicati vengono rimossi e le miniature minuscole messe da parte.</p>"
+  ],
+  [
+   "<h3>Made for Camera Cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe searches the whole card by default, then leaves out files that were never deleted, so you only get what was lost.</p>",
+   "<h3>Pensato per le schede delle telecamere</h3><p>Telecamere di sorveglianza e dashcam riempiono le schede di file di registrazione. RecovMe cerca in tutta la scheda di default, poi esclude i file mai cancellati, così ottieni solo ciò che avevi perso.</p>"
+  ],
+  [
+   "<h3>Safe for Your Drive</h3><p>It only reads the drive you scan and won't save onto it. On a Mac it can unmount the drive during the scan so nothing else writes to it.</p>",
+   "<h3>Sicuro per il tuo disco</h3><p>Legge soltanto il disco che analizzi e non ci salva sopra. Su Mac può smontare il disco durante la scansione, così nient’altro può scriverci.</p>"
+  ],
+  [
+   "<h3>Honest About Your Chances</h3><p>SSDs and modern Macs wipe deleted files by themselves. RecovMe tells you up front, and points out files the drive already erased, instead of selling you false hope.</p>",
+   "<h3>Onesto sulle probabilità</h3><p>Gli SSD e i Mac moderni cancellano da soli i file eliminati. RecovMe te lo dice subito e segnala i file che il disco ha già cancellato, invece di venderti false speranze.</p>"
+  ],
+  [
+   "<h3>Private and Transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p>",
+   "<h3>Privato e trasparente</h3><p>Nessun account, nessun cloud, nessun tracciamento. L’app per Mac è firmata e verificata da Apple, e tutto il codice sorgente è pubblico e consultabile da chiunque.</p>"
+  ],
+  [
+   ">What Are Your Chances?</h2>",
+   ">Quali sono le tue probabilità?</h2>"
+  ],
+  [
+   "The kind of drive matters more than any software. Pick yours and what happened, and you get an honest answer before you download anything.",
+   "Il tipo di disco conta più di qualsiasi programma. Scegli il tuo e cosa è successo, e avrai una risposta onesta prima di scaricare qualsiasi cosa."
+  ],
+  [
+   "<legend>Where were the files?</legend>",
+   "<legend>Dove si trovavano i file?</legend>"
+  ],
+  [
+   ">SD or camera card</label>",
+   ">Scheda SD o della fotocamera</label>"
+  ],
+  [
+   ">USB stick</label>",
+   ">Chiavetta USB</label>"
+  ],
+  [
+   ">External hard drive</label>",
+   ">Hard disk esterno</label>"
+  ],
+  [
+   ">External SSD</label>",
+   ">SSD esterno</label>"
+  ],
+  [
+   ">Hard drive inside a PC</label>",
+   ">Hard disk interno di un PC</label>"
+  ],
+  [
+   ">SSD inside a Windows PC</label>",
+   ">SSD interno di un PC Windows</label>"
+  ],
+  [
+   ">The Mac's own drive</label>",
+   ">Il disco interno del Mac</label>"
+  ],
+  [
+   "<legend>What happened?</legend>",
+   "<legend>Cosa è successo?</legend>"
+  ],
+  [
+   ">Deleted, or emptied the Trash</label>",
+   ">Cancellati, o Cestino svuotato</label>"
+  ],
+  [
+   ">Formatted it</label>",
+   ">Formattato</label>"
+  ],
+  [
+   ">Shows as empty or asks to format</label>",
+   ">Risulta vuoto o chiede di formattare</label>"
+  ],
+  [
+   ">Clicks, isn't detected or keeps disconnecting</label>",
+   ">Fa clic, non viene rilevato o si scollega</label>"
+  ],
+  [
+   ">Good Chance</p>",
+   ">Buone probabilità</p>"
+  ],
+  [
+   "Cameras and card readers don't wipe deleted files, so they stay on the card until something new is saved over them.",
+   "Fotocamere e lettori di schede non cancellano davvero i file eliminati, quindi restano sulla scheda finché non viene salvato qualcosa di nuovo sopra."
+  ],
+  [
+   "Stop taking photos with that card. Run a Smart Scan and save the results to your computer.",
+   "Smetti di scattare foto con quella scheda. Esegui una Smart Scan e salva i risultati sul computer."
+  ],
+  [
+   "label: \"Good Chance\"",
+   "label: \"Buone probabilità\""
+  ],
+  [
+   "label: \"It Depends\"",
+   "label: \"Dipende\""
+  ],
+  [
+   "label: \"Low Chance\"",
+   "label: \"Probabilità basse\""
+  ],
+  [
+   "label: \"Stop. Don't Scan It.\"",
+   "label: \"Fermati. Non analizzarlo.\""
+  ],
+  [
+   "A drive that clicks, disappears or isn't detected is failing physically. Running any software on it can make it worse.",
+   "Un disco che fa clic, scompare o non viene rilevato si sta guastando fisicamente. Usare qualsiasi programma può peggiorare le cose."
+  ],
+  [
+   "Unplug it and keep it off. A data recovery lab is the safe option for files that really matter.",
+   "Scollegalo e lascialo spento. Per i file davvero importanti, la scelta sicura è un laboratorio di recupero dati."
+  ],
+  [
+   "A quick format only clears the index. The photos and files themselves usually stay until new ones are saved over them.",
+   "Una formattazione veloce cancella solo l’indice. Foto e file di solito restano finché non ne vengono salvati di nuovi sopra."
+  ],
+  [
+   "Stop using the ${what}. Run a Deep Scan, which searches the whole drive by default. Names may be lost, but photos and videos come back named by date.",
+   "Smetti di usare ${what}. Esegui una Deep Scan, che di default cerca in tutto il disco. I nomi possono andare persi, ma foto e video tornano rinominati per data."
+  ],
+  [
+   "When a drive shows as empty or asks to be formatted, its index is damaged but the files are usually still there.",
+   "Quando un disco risulta vuoto o chiede di essere formattato, il suo indice è danneggiato ma di solito i file sono ancora lì."
+  ],
+  [
+   "Don't format the ${what}. Run a Deep Scan, which searches the whole drive by default.",
+   "Non formattare ${what}. Esegui una Deep Scan, che di default cerca in tutto il disco."
+  ],
+  [
+   "FORMAT_OK(\"card\")",
+   "FORMAT_OK(\"la scheda\")"
+  ],
+  [
+   "RAW_OK(\"card\")",
+   "RAW_OK(\"la scheda\")"
+  ],
+  [
+   "FORMAT_OK(\"stick\")",
+   "FORMAT_OK(\"la chiavetta\")"
+  ],
+  [
+   "RAW_OK(\"stick\")",
+   "RAW_OK(\"la chiavetta\")"
+  ],
+  [
+   "FORMAT_OK(\"drive\")",
+   "FORMAT_OK(\"il disco\")"
+  ],
+  [
+   "RAW_OK(\"drive\")",
+   "RAW_OK(\"il disco\")"
+  ],
+  [
+   "RAW_OK(\"SSD\")",
+   "RAW_OK(\"l’SSD\")"
+  ],
+  [
+   "USB sticks keep deleted files until new data is written over them.",
+   "Le chiavette USB conservano i file cancellati finché non vengono scritti nuovi dati sopra."
+  ],
+  [
+   "Don't copy anything onto the stick. Run a Smart Scan and save the results to your computer.",
+   "Non copiare nulla sulla chiavetta. Esegui una Smart Scan e salva i risultati sul computer."
+  ],
+  [
+   "Hard drives leave deleted files in place until the space is reused.",
+   "Gli hard disk lasciano al loro posto i file cancellati finché lo spazio non viene riusato."
+  ],
+  [
+   "Stop saving to the drive. Run a Smart Scan and save the results to another drive.",
+   "Smetti di salvare sul disco. Esegui una Smart Scan e salva i risultati su un altro disco."
+  ],
+  [
+   "Hard drives leave deleted files in place, but a running computer keeps writing to its own drive.",
+   "Gli hard disk lasciano al loro posto i file cancellati, ma un computer acceso continua a scrivere sul proprio disco."
+  ],
+  [
+   "Check the Recycle Bin first. Then connect the drive to another computer, or scan right away and save the results to a USB drive.",
+   "Controlla prima il Cestino. Poi collega il disco a un altro computer, oppure avvia subito la scansione e salva i risultati su un disco USB."
+  ],
+  [
+   "Some external SSDs wipe deleted files within minutes, others keep them. It depends on the format and the enclosure: drives formatted as exFAT usually keep them.",
+   "Alcuni SSD esterni cancellano i file eliminati in pochi minuti, altri li conservano. Dipende dal formato e dal box: quelli formattati in exFAT di solito li conservano."
+  ],
+  [
+   "Unplug it now and don't open it again before scanning. Then run a Smart Scan.",
+   "Scollegalo subito e non aprirlo più prima della scansione. Poi esegui una Smart Scan."
+  ],
+  [
+   "A format on an external SSD may also tell it to wipe the old data. Drives formatted as exFAT often keep it.",
+   "Formattare un SSD esterno può anche dirgli di cancellare i vecchi dati. Quelli formattati in exFAT spesso li conservano."
+  ],
+  [
+   "Scan it before using it again.",
+   "Analizzalo prima di usarlo di nuovo."
+  ],
+  [
+   "Windows tells internal SSDs to wipe deleted files, usually within seconds to minutes. Names can survive, but the contents rarely do.",
+   "Windows dice agli SSD interni di cancellare i file eliminati, di solito nel giro di secondi o minuti. I nomi possono sopravvivere, ma il contenuto raramente."
+  ],
+  [
+   "Check the Recycle Bin, Previous Versions (right-click the folder) and OneDrive first. RecovMe can still try, and will tell you which files are empty.",
+   "Controlla prima il Cestino, Versioni precedenti (clic destro sulla cartella) e OneDrive. RecovMe può comunque provare e ti dirà quali file sono vuoti."
+  ],
+  [
+   "Formatting an internal SSD usually wipes its contents straight away.",
+   "Formattare un SSD interno di solito ne cancella subito il contenuto."
+  ],
+  [
+   "Backups and cloud copies are the realistic way back.",
+   "I backup e le copie nel cloud sono l’unica strada realistica."
+  ],
+  [
+   "If the SSD lost its partition, the data itself may be untouched because nothing told the drive to wipe it.",
+   "Se l’SSD ha perso la partizione, i dati potrebbero essere intatti perché niente ha detto al disco di cancellarli."
+  ],
+  [
+   "Don't initialize or format it. Run a Deep Scan.",
+   "Non inizializzarlo e non formattarlo. Esegui una Deep Scan."
+  ],
+  [
+   "Every Mac with Apple silicon encrypts its drive and wipes deleted files on its own, so no app can scan them back.",
+   "Ogni Mac con Apple silicon cifra il proprio disco e cancella da solo i file eliminati, quindi nessuna app può recuperarli con una scansione."
+  ],
+  [
+   "Check Recently Deleted, the Trash, Time Machine and iCloud. If Time Machine is turned on, the Mac also keeps local snapshots of about the last 24 hours, even when the backup drive is not connected.",
+   "Controlla Eliminati di recente, il Cestino, Time Machine e iCloud. Se Time Machine è attivo, il Mac conserva anche istantanee locali delle ultime 24 ore circa, anche quando il disco di backup non è collegato."
+  ],
+  [
+   "Erasing a Mac destroys its encryption key, so the old data can't be read by anyone.",
+   "Inizializzare un Mac distrugge la sua chiave di cifratura, quindi nessuno può più leggere i vecchi dati."
+  ],
+  [
+   "Only a backup can bring those files back: Time Machine or iCloud.",
+   "Solo un backup può riportare indietro quei file: Time Machine o iCloud."
+  ],
+  [
+   "The Mac's own drive is encrypted, so scanning it can't find deleted files.",
+   "Il disco interno del Mac è cifrato, quindi la scansione non può trovare i file cancellati."
+  ],
+  [
+   "Use Time Machine or iCloud. If the Mac won't start, an Apple Store can help before anything is erased.",
+   "Usa Time Machine o iCloud. Se il Mac non si avvia, un Apple Store può aiutarti prima che venga cancellato qualcosa."
+  ],
+  [
+   "${name}: Coming Soon",
+   "${name}: in arrivo"
+  ],
+  [
+   "`Version ${ver} · ",
+   "`Versione ${ver} · "
+  ],
+  [
+   ">Three Screens, Start to Finish</h2>",
+   ">Tre schermate, dall’inizio alla fine</h2>"
+  ],
+  [
+   "Pick the drive, let it search, open your files. It takes care of the rest: sorting, naming and removing duplicates.",
+   "Scegli il disco, lascialo cercare, apri i tuoi file. Al resto pensa lui: ordina, rinomina e rimuove i duplicati."
+  ],
+  [
+   "alt=\"Choosing the CAMERA card, with Photos, Videos and Documents selected and Smart Scan recommended.\"",
+   "alt=\"Scelta della scheda CAMERA, con foto, video e documenti selezionati e Smart Scan consigliato.\""
+  ],
+  [
+   "<h3>Pick the Drive</h3><p>Choose the card or disk, what to look for, and where to save. Saving to a different drive keeps your files safe.</p>",
+   "<h3>Scegli il disco</h3><p>Scegli la scheda o il disco, cosa cercare e dove salvare. Salvare su un altro disco tiene al sicuro i tuoi file.</p>"
+  ],
+  [
+   "alt=\"The scan in progress with percentage, time left and photos appearing as they are found.\"",
+   "alt=\"La scansione in corso con la percentuale, il tempo rimanente e le foto che compaiono man mano.\""
+  ],
+  [
+   "<h3>Watch It Search</h3><p>Original names first, then a deep search of every block. Photos appear as soon as they are found. Stop at any time and keep what it has found.</p>",
+   "<h3>Guardalo cercare</h3><p>Prima i nomi originali, poi una ricerca approfondita in ogni blocco. Le foto compaiono appena vengono trovate. Puoi fermarlo quando vuoi e tenere ciò che ha trovato.</p>"
+  ],
+  [
+   "alt=\"Results: 412 files recovered, 58 with original names, 287 photos, 21 videos, 46 documents.\"",
+   "alt=\"Risultati: 412 file recuperati, 58 con il nome originale, 287 foto, 21 video, 46 documenti.\""
+  ],
+  [
+   "<h3>Open Your Files</h3><p>Everything is sorted by type, with a button to open each folder and a short report of what was found.</p>",
+   "<h3>Apri i tuoi file</h3><p>Tutto è ordinato per tipo, con un pulsante per aprire ogni cartella e un breve resoconto di ciò che è stato trovato.</p>"
+  ],
+  [
+   "<h3>Photos and Videos Keep Their Dates</h3>",
+   "<h3>Foto e video mantengono la data</h3>"
+  ],
+  [
+   "Files found by a deep search lose their names, so RecovMe reads the date each photo or video was taken from inside the file, names it by that date and files it by month. Location data inside photos is kept too.",
+   "I file trovati con la ricerca approfondita perdono il nome, quindi RecovMe legge dall’interno di ogni foto o video la data in cui è stato scattato, lo rinomina con quella data e lo archivia per mese. Anche i dati di posizione nelle foto vengono mantenuti."
+  ],
+  [
+   "aria-label=\"Example of a recovery folder\"",
+   "aria-label=\"Esempio di cartella di recupero (l’app usa nomi di cartella in inglese)\""
+  ],
+  [
+   ">What It Finds</h2>",
+   ">Cosa trova</h2>"
+  ],
+  [
+   "More than 480 file types, recognized by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.",
+   "Oltre 480 tipi di file, riconosciuti dal loro contenuto, così tornano anche dopo una formattazione. Non solo foto: tutto ciò che di solito si perde."
+  ],
+  [
+   "<h3>Photos</h3>",
+   "<h3>Foto</h3>"
+  ],
+  [
+   "<h3>Videos</h3>",
+   "<h3>Video</h3>"
+  ],
+  [
+   "<h3>Music</h3>",
+   "<h3>Musica</h3>"
+  ],
+  [
+   "<h3>Recordings &amp; Footage</h3>",
+   "<h3>Registrazioni e riprese</h3>"
+  ],
+  [
+   "<h3>Documents</h3>",
+   "<h3>Documenti</h3>"
+  ],
+  [
+   "<h3>Archives</h3>",
+   "<h3>Archivi</h3>"
+  ],
+  [
+   "<li>Voice memos and recorders: M4A, AMR, WAV</li>",
+   "<li>Memo vocali e registratori: M4A, AMR, WAV</li>"
+  ],
+  [
+   "<li>CCTV and dashcams: Tapo, Ezviz, Reolink, Xiaomi, Eufy and other MP4 cameras</li>",
+   "<li>Telecamere e dashcam: Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre telecamere MP4</li>"
+  ],
+  [
+   "<li>Camcorders: MTS, M2TS</li>",
+   "<li>Videocamere: MTS, M2TS</li>"
+  ],
+  [
+   "<li>TXT, RTF, PST (Outlook mail)</li>",
+   "<li>TXT, RTF, PST (posta di Outlook)</li>"
+  ],
+  [
+   "<h3>Works Best On</h3><p>SD and camera cards, USB sticks, external hard drives and the hard drive inside an older PC.</p>",
+   "<h3>Funziona meglio su</h3><p>Schede SD e delle fotocamere, chiavette USB, hard disk esterni e l’hard disk interno dei PC meno recenti.</p>"
+  ],
+  [
+   "<h3>Hard for Any App</h3><p>SSDs inside laptops wipe deleted files on their own within minutes. Every Mac with Apple silicon also encrypts its drive. Use the Trash, Time Machine or OneDrive first.</p>",
+   "<h3>Difficile per qualsiasi app</h3><p>Gli SSD dei portatili cancellano da soli i file eliminati nel giro di pochi minuti. Ogni Mac con Apple silicon inoltre cifra il proprio disco. Usa prima il Cestino, Time Machine o OneDrive.</p>"
+  ],
+  [
+   "<h3>Not for Phones</h3><p>iPhones and iPads don't let any app read deleted space. Recently Deleted, iCloud and computer backups are the way to get them back.</p>",
+   "<h3>Non per i telefoni</h3><p>iPhone e iPad non permettono a nessuna app di leggere lo spazio cancellato. Per recuperare i file servono Eliminati di recente, iCloud o i backup sul computer.</p>"
+  ],
+  [
+   ">Step-by-Step Guides</h2>",
+   ">Guide passo passo</h2>"
+  ],
+  [
+   "Clear help for the most common ways files get lost, with an honest answer about your chances first.",
+   "Aiuto chiaro per i modi più comuni in cui si perdono i file, con prima una risposta onesta sulle tue probabilità."
+  ],
+  [
+   "<a href=\"/guides/recover-deleted-photos-sd-card/\"><h3>Deleted Photos on an SD Card</h3><p>Camera, phone and drone cards keep deleted photos until new ones are saved over them.</p><span class=\"go\">Read the guide →</span></a>",
+   "<a href=\"/it/guide/recuperare-foto-cancellate-scheda-sd/\"><h3>Foto cancellate da una scheda SD</h3><p>Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra.</p><span class=\"go\">Leggi la guida →</span></a>"
+  ],
+  [
+   "<a href=\"/guides/recover-formatted-sd-card-usb-stick/\"><h3>Formatted SD Card or USB Stick</h3><p>A normal format only clears the index. Which formats can be undone, and how.</p><span class=\"go\">Read the guide →</span></a>",
+   "<a href=\"/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/\"><h3>Scheda SD o chiavetta USB formattata</h3><p>Una formattazione normale cancella solo l’indice. Quali formattazioni si possono annullare, e come.</p><span class=\"go\">Leggi la guida →</span></a>"
+  ],
+  [
+   "<a href=\"/guides/recover-deleted-files-external-hard-drive/\"><h3>Deleted Files on an External Drive</h3><p>Hard drives leave deleted files in place. External SSDs are a different story.</p><span class=\"go\">Read the guide →</span></a>",
+   "<a href=\"/it/guide/recuperare-file-cancellati-hard-disk-esterno/\"><h3>File cancellati da un disco esterno</h3><p>Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia.</p><span class=\"go\">Leggi la guida →</span></a>"
+  ],
+  [
+   "<p class=\"more\"><a href=\"/guides/\">All guides →</a><a href=\"/it/guide/\" hreflang=\"it\" lang=\"it\">Guide in italiano →</a></p>",
+   "<p class=\"more\"><a href=\"/it/guide/\">Tutte le guide →</a><a href=\"/guides/\" hreflang=\"en\" lang=\"en\">Guides in English →</a></p>"
+  ],
+  [
+   ">Got Your Files Back?<br>Buy Me a Coffee</h2>",
+   ">Hai recuperato i tuoi file?<br>Offrimi un caffè</h2>"
+  ],
+  [
+   "RecovMe is free for everyone and stays free. If it brought your files back and saved you paying for a recovery app, a coffee helps keep it going. It’s completely optional.",
+   "RecovMe è gratis per tutti e rimarrà gratis. Se ti ha restituito i file e ti ha evitato di pagare un programma di recupero, un caffè aiuta a portarlo avanti. È del tutto facoltativo."
+  ],
+  [
+   "alt=\"QR code that opens the PayPal page to buy me a coffee\"",
+   "alt=\"Codice QR che apre la pagina PayPal per offrirmi un caffè\""
+  ],
+  [
+   ">Scan with your phone camera</figcaption>",
+   ">Inquadralo con la fotocamera del telefono</figcaption>"
+  ],
+  [
+   "Buy Me a Coffee with PayPal",
+   "Offrimi un caffè con PayPal"
+  ],
+  [
+   "<small>Any amount, once. The app stays the same either way.</small>",
+   "<small>Qualsiasi cifra, una volta sola. L’app resta uguale in ogni caso.</small>"
+  ],
+  [
+   "Prefer to help another way? <a href=\"https://github.com/trevnedai/recovme\" target=\"_blank\" rel=\"noopener\">Star it on GitHub</a> or tell a friend who lost their files.",
+   "Preferisci aiutare in un altro modo? <a href=\"https://github.com/trevnedai/recovme\" target=\"_blank\" rel=\"noopener\">Metti una stella su GitHub</a> o parlane a un amico che ha perso i suoi file."
+  ],
+  [
+   ">Questions</h2>",
+   ">Domande</h2>"
+  ],
+  [
+   "<summary>Is it really free?</summary>",
+   "<summary>È davvero gratis?</summary>"
+  ],
+  [
+   "Yes, 100%. There is no trial, no file limit, no paid version and nothing to unlock after the scan. RecovMe is open source, so anyone can check how it works.",
+   "Sì, al 100%. Nessuna prova, nessun limite di file, nessuna versione a pagamento e niente da sbloccare dopo la scansione. RecovMe è open source, quindi chiunque può verificare come funziona."
+  ],
+  [
+   "<summary>Can it damage my drive?</summary>",
+   "<summary>Può danneggiare il mio disco?</summary>"
+  ],
+  [
+   "RecovMe only reads the drive you scan and refuses to save recovered files onto it, because writing there could overwrite what you want back. On a Mac it can also unmount the drive during the scan, so the system can't write to it either.",
+   "RecovMe legge soltanto il disco che analizzi e si rifiuta di salvarci sopra i file recuperati, perché scrivere lì potrebbe sovrascrivere ciò che vuoi recuperare. Su Mac può anche smontare il disco durante la scansione, così nemmeno il sistema può scriverci."
+  ],
+  [
+   "<summary>Why does my Mac ask for my password?</summary>",
+   "<summary>Perché il Mac mi chiede la password?</summary>"
+  ],
+  [
+   "Reading deleted space needs direct access to the drive, which macOS only allows with your password. If a scan says it can't read the drive, allow RecovMe in System Settings › Privacy &amp; Security › Full Disk Access.",
+   "Leggere lo spazio cancellato richiede l’accesso diretto al disco, che macOS permette solo con la tua password. Se una scansione dice che non riesce a leggere il disco, consenti RecovMe in Impostazioni di Sistema › Privacy e sicurezza › Accesso completo al disco."
+  ],
+  [
+   "<summary>Is it safe to install?</summary>",
+   "<summary>È sicuro da installare?</summary>"
+  ],
+  [
+   "The Mac app is signed with an Apple Developer ID and checked by Apple (notarized), so it opens without warnings. The Windows version isn't signed yet, so Windows may show a blue SmartScreen window: choose More info and then Run anyway. Windows code signing is provided free by SignPath.io, with a certificate by SignPath Foundation. The full source code is public on GitHub. See the <a href=\"code-signing.html\">code signing policy</a>.",
+   "L’app per Mac è firmata con un Apple Developer ID e verificata da Apple (notarizzata), quindi si apre senza avvisi. La versione per Windows non è ancora firmata, quindi Windows potrebbe mostrare una finestra blu di SmartScreen: scegli Ulteriori informazioni e poi Esegui comunque. La firma del codice per Windows è offerta gratuitamente da SignPath.io, con un certificato di SignPath Foundation. Tutto il codice sorgente è pubblico su GitHub. Vedi la <a href=\"code-signing.html\">politica di firma del codice</a> (in inglese)."
+  ],
+  [
+   "<summary>The card was formatted. Is it too late?</summary>",
+   "<summary>La scheda è stata formattata. È troppo tardi?</summary>"
+  ],
+  [
+   "Usually not. A quick format only clears the card's index. Run a Deep Scan. RecovMe searches the whole drive by default, so it finds files even after a format. File names are lost after a format, but photos and videos come back named by the date they were taken.",
+   "Di solito no. Una formattazione veloce cancella solo l’indice della scheda. Esegui una Deep Scan. RecovMe cerca in tutto il disco di default, quindi trova i file anche dopo una formattazione. Dopo una formattazione i nomi dei file vanno persi, ma foto e video tornano rinominati con la data di scatto."
+  ],
+  [
+   "<summary>Some recovered files won't open.</summary>",
+   "<summary>Alcuni file recuperati non si aprono.</summary>"
+  ],
+  [
+   "Parts of them were overwritten by newer files, or the file was stored in pieces. That is why it matters to stop using a drive straight away. Open the important files first and copy the good ones to a safe place.",
+   "Alcune parti sono state sovrascritte da file più recenti, oppure il file era salvato a pezzi. Per questo è importante smettere subito di usare il disco. Apri prima i file importanti e copia quelli buoni in un posto sicuro."
+  ],
+  [
+   "<summary>Can it recover from a CCTV camera or dashcam card?</summary>",
+   "<summary>Può recuperare dalla scheda di una telecamera o di una dashcam?</summary>"
+  ],
+  [
+   "Yes, for cameras that record MP4 video, which is most home cameras and dashcams (Tapo, Ezviz, Reolink, Xiaomi, Eufy and others). Take the card out of the camera straight away, because it records over old footage, and scan it with a card reader.",
+   "Sì, per le telecamere che registrano video MP4, cioè la maggior parte delle telecamere da casa e delle dashcam (Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre). Togli subito la scheda dalla telecamera, perché registra sopra le riprese vecchie, e analizzala con un lettore di schede."
+  ],
+  [
+   "<summary>Does it send my files anywhere?</summary>",
+   "<summary>Invia i miei file da qualche parte?</summary>"
+  ],
+  [
+   "No. Everything happens on your computer. RecovMe has no account, no cloud and no tracking.",
+   "No. Tutto avviene sul tuo computer. RecovMe non ha account, cloud né tracciamento."
+  ],
+  [
+   ">Who Makes It</h2>",
+   ">Chi lo crea</h2>"
+  ],
+  [
+   ">Creator and Developer of RecovMe</p>",
+   ">Creatore e sviluppatore di RecovMe</p>"
+  ],
+  [
+   "I built RecovMe because losing photos and files is stressful enough without being asked to pay just to get them back. Recovery should be simple, honest and free for everyone.",
+   "Ho creato RecovMe perché perdere foto e file è già abbastanza stressante senza che ti chiedano di pagare solo per riaverli. Il recupero dovrebbe essere semplice, onesto e gratuito per tutti."
+  ],
+  [
+   "RecovMe stands on the shoulders of two respected open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe brings them together in one simple app and sorts what they find.",
+   "RecovMe si basa su due progetti open source molto apprezzati: PhotoRec di Christophe Grenier (CGSecurity) e The Sleuth Kit di Brian Carrier e collaboratori. RecovMe li riunisce in un’unica app semplice e ordina ciò che trovano."
+  ],
+  [
+   ">Source Code on GitHub</a>",
+   ">Codice sorgente su GitHub</a>"
+  ],
+  [
+   ">Report a Problem</a>",
+   ">Segnala un problema</a>"
+  ],
+  [
+   "© 2026 Dhan Denvert Asuncion. Free and open source under GPL-3.0. Recovery engines:",
+   "© 2026 Dhan Denvert Asuncion. Gratis e open source con licenza GPL-3.0. Motori di recupero:"
+  ],
+  [
+   "</a> by CGSecurity and <a",
+   "</a> di CGSecurity e <a"
+  ],
+  [
+   ". Free code signing for Windows provided by <a",
+   ". Firma del codice per Windows offerta gratuitamente da <a"
+  ],
+  [
+   "</a>, certificate by <a",
+   "</a>, certificato di <a"
+  ],
+  [
+   "<p><a href=\"/guides/\">Guides</a> · <a href=\"/it/\" hreflang=\"it\" lang=\"it\">Italiano</a> · <a href=\"/press/\">Press</a> · <a href=\"code-signing.html\">Code Signing Policy</a>",
+   "<p><a href=\"/it/guide/\">Guide</a> · <a href=\"/\" hreflang=\"en\" lang=\"en\">English</a> · <a href=\"/press/\">Stampa</a> · <a href=\"code-signing.html\">Politica di firma del codice</a>"
+  ]
+ ]
+}

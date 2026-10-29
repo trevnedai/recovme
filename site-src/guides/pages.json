@@ -66,6 +66,50 @@
         "lede": "Hai cancellato file da un disco esterno, svuotato il Cestino o formattato il disco per sbaglio? Su un hard disk i file di solito restano finché lo spazio non viene usato di nuovo. Ecco come recuperarli gratis su Mac o PC Windows.",
         "card": "Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia."
       }
+    },
+    {
+      "id": "cctv-dashcam",
+      "published": "2026-10-29",
+      "en": {
+        "slug": "recover-cctv-dashcam-footage-sd-card",
+        "short": "CCTV and dashcam footage",
+        "title": "Recover Deleted CCTV & Dashcam Footage for Free | RecovMe",
+        "description": "Lost footage from a CCTV camera or dashcam card? Act fast: loop recording overwrites it. How to recover deleted video from the SD card, free on Mac or Windows.",
+        "h1": "How to Recover Deleted CCTV and Dashcam Footage",
+        "lede": "Need footage from a home camera or dashcam that was deleted, formatted or recorded over? It may still be on the memory card, but these cameras overwrite old video all the time. Here’s what to do right now, and how to get it back for free.",
+        "card": "Loop recording overwrites old video fast. Take the card out first, then scan it."
+      },
+      "it": {
+        "slug": "recuperare-video-telecamera-dashcam-scheda-sd",
+        "short": "Video di telecamere e dashcam",
+        "title": "Recuperare video cancellati da telecamera o dashcam | RecovMe",
+        "description": "Hai perso i video di una telecamera di sorveglianza o di una dashcam? Fai presto: la registrazione continua li sovrascrive. Ecco come recuperarli gratis dalla scheda SD.",
+        "h1": "Come recuperare i video cancellati di telecamere e dashcam",
+        "lede": "Ti servono le riprese di una telecamera di casa o di una dashcam che sono state cancellate, formattate o registrate sopra? Potrebbero essere ancora sulla scheda di memoria, ma questi dispositivi sovrascrivono di continuo i video vecchi. Ecco cosa fare subito e come recuperarli gratis.",
+        "card": "La registrazione continua sovrascrive presto i video vecchi. Togli subito la scheda, poi analizzala."
+      }
+    },
+    {
+      "id": "windows",
+      "published": "2026-10-29",
+      "en": {
+        "slug": "recover-deleted-files-windows",
+        "short": "Deleted files on Windows",
+        "title": "Recover Deleted Files on Windows 10 and 11 for Free | RecovMe",
+        "description": "Emptied the Recycle Bin or used Shift + Delete on Windows 10 or 11? Where to look first, whether your drive can still give files back, and how to recover them free.",
+        "h1": "How to Recover Deleted Files on Windows 10 and 11",
+        "lede": "Emptied the Recycle Bin, used Shift + Delete, or lost a folder on your PC? Whether the files can come back depends mostly on the kind of drive inside your computer. Here’s where to look first, and how to recover them for free.",
+        "card": "Check the free built-in options first. Then whether your PC has a hard drive or an SSD decides the rest."
+      },
+      "it": {
+        "slug": "recuperare-file-cancellati-windows",
+        "short": "File cancellati su Windows",
+        "title": "Recuperare file cancellati su Windows 10 e 11 gratis | RecovMe",
+        "description": "Hai svuotato il Cestino o usato Maiusc + Canc su Windows 10 o 11? Dove guardare prima, se il tuo disco può ancora restituire i file e come recuperarli gratis.",
+        "h1": "Come recuperare i file cancellati su Windows 10 e 11",
+        "lede": "Hai svuotato il Cestino, usato Maiusc + Canc o perso una cartella sul PC? Se i file possono tornare dipende soprattutto dal tipo di disco del computer. Ecco dove guardare prima e come recuperarli gratis.",
+        "card": "Controlla prima le opzioni gratuite di Windows. Poi tutto dipende se il PC ha un hard disk o un SSD."
+      }
     }
   ]
 }

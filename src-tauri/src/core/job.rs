@@ -104,7 +104,12 @@ so RecovMe searched the whole drive instead of only its free space."
     }
 
     // ── Output folder checks ──
-    let out_root = PathBuf::from(&opts.output_dir);
+    let mut out_root = PathBuf::from(&opts.output_dir);
+    if out_root.is_relative() {
+        if let Ok(abs) = fs::canonicalize(&out_root) {
+            out_root = abs;
+        }
+    }
     if !out_root.is_dir() {
         return Err("The save folder doesn't exist. Please pick another one.".into());
     }

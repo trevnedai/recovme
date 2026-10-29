@@ -10,6 +10,7 @@
 use super::categories::{category_of, folder_name, has_exif, is_structure, previewable, ORDER};
 use super::progress::is_engine_report;
 use super::types::{CategoryCount, Summary};
+use chrono::{Datelike, NaiveDateTime};
 use std::collections::HashMap;
 use std::fs;
 use std::io::{BufReader, Read};
@@ -166,8 +167,25 @@ fn ext_of(p: &Path) -> String {
         .unwrap_or_default()
 }
 
-/// "2024:07:12 14:33:02" from EXIF → ("2024-07", "2024-07-12 14.33.02")
-fn photo_date(p: &Path) -> Option<(String, String)> {
+/// When a photo or video was taken, read from inside the file itself (the
+/// drive's own dates are lost once a file is deleted or the drive formatted):
+/// EXIF for photos, the movie header for MP4/MOV-style videos.
+fn content_date(p: &Path, ext: &str) -> Option<NaiveDateTime> {
+    if has_exif(ext) {
+        photo_date(p)
+    } else if matches!(ext, "mp4" | "mov" | "m4v" | "3gp" | "3g2" | "mj2") {
+        video_date(p)
+    } else {
+        None
+    }
+}
+
+fn plausible(dt: NaiveDateTime) -> Option<NaiveDateTime> {
+    (1990..=2100).contains(&dt.year()).then_some(dt)
+}
+
+/// "2024:07:12 14:33:02" from EXIF (already local camera time).
+fn photo_date(p: &Path) -> Option<NaiveDateTime> {
     let f = fs::File::open(p).ok()?;
     let mut r = BufReader::new(f);
     let exif = exif::Reader::new().read_from_container(&mut r).ok()?;
@@ -179,20 +197,89 @@ fn photo_date(p: &Path) -> Option<(String, String)> {
         exif::Value::Ascii(v) => String::from_utf8_lossy(v.first()?).to_string(),
         _ => return None,
     };
-    let b = raw.as_bytes();
-    if b.len() < 19 {
-        return None;
+    let raw = raw.get(0..19)?;
+    plausible(NaiveDateTime::parse_from_str(raw, "%Y:%m:%d %H:%M:%S").ok()?)
+}
+
+/// Creation time from the MP4/MOV movie header (moov → mvhd), stored as
+/// seconds since 1904 in UTC; returned in this computer's local time.
+fn video_date(p: &Path) -> Option<NaiveDateTime> {
+    use std::io::{Seek, SeekFrom};
+    let mut f = fs::File::open(p).ok()?;
+    let len = f.metadata().ok()?.len();
+    let mut find = |start: u64, end: u64, name: &[u8; 4]| -> Option<(u64, u64)> {
+        let mut pos = start;
+        for _ in 0..4096 {
+            if pos + 8 > end {
+                return None;
+            }
+            f.seek(SeekFrom::Start(pos)).ok()?;
+            let mut h = [0u8; 8];
+            f.read_exact(&mut h).ok()?;
+            let size32 = u32::from_be_bytes([h[0], h[1], h[2], h[3]]) as u64;
+            let (hdr, size) = match size32 {
+                1 => {
+                    let mut b = [0u8; 8];
+                    f.read_exact(&mut b).ok()?;
+                    (16, u64::from_be_bytes(b))
+                }
+                0 => (8, end - pos),
+                n => (8, n),
+            };
+            if size < hdr || pos + size > end {
+                return None;
+            }
+            if &h[4..8] == name {
+                return Some((pos + hdr, pos + size));
+            }
+            pos += size;
+        }
+        None
+    };
+    let moov = find(0, len, b"moov")?;
+    let mvhd = find(moov.0, moov.1, b"mvhd")?;
+    f.seek(SeekFrom::Start(mvhd.0)).ok()?;
+    let mut b = [0u8; 12];
+    f.read_exact(&mut b).ok()?;
+    let secs_1904 = if b[0] == 1 {
+        u64::from_be_bytes([b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11]])
+    } else {
+        u32::from_be_bytes([b[4], b[5], b[6], b[7]]) as u64
+    };
+    let unix = secs_1904.checked_sub(2_082_844_800)? as i64;
+    let utc = chrono::DateTime::from_timestamp(unix, 0)?;
+    plausible(utc.with_timezone(&chrono::Local).naive_local())
+}
+
+fn month_folder(dt: NaiveDateTime) -> String {
+    dt.format("%Y-%m").to_string()
+}
+
+fn date_name(dt: NaiveDateTime) -> String {
+    dt.format("%Y-%m-%d %H.%M.%S").to_string()
+}
+
+/// Gives the recovered file its original "created" and "modified" dates, so
+/// Finder, Explorer and photo apps sort it by when it was taken, not by today.
+fn set_file_dates(p: &Path, dt: NaiveDateTime) {
+    use chrono::TimeZone;
+    let Some(local) = chrono::Local.from_local_datetime(&dt).earliest() else { return };
+    let Ok(secs) = u64::try_from(local.timestamp()) else { return };
+    let when = std::time::UNIX_EPOCH + std::time::Duration::from_secs(secs);
+    let times = fs::FileTimes::new().set_accessed(when).set_modified(when);
+    #[cfg(target_os = "macos")]
+    let times = {
+        use std::os::macos::fs::FileTimesExt;
+        times.set_created(when)
+    };
+    #[cfg(windows)]
+    let times = {
+        use std::os::windows::fs::FileTimesExt;
+        times.set_created(when)
+    };
+    if let Ok(f) = fs::OpenOptions::new().write(true).open(p) {
+        let _ = f.set_times(times);
     }
-    let digits = |r: std::ops::Range<usize>| -> Option<u32> { raw.get(r)?.parse().ok() };
-    let (y, mo, d) = (digits(0..4)?, digits(5..7)?, digits(8..10)?);
-    let (h, mi, s) = (digits(11..13)?, digits(14..16)?, digits(17..19)?);
-    if !(1990..=2100).contains(&y) || !(1..=12).contains(&mo) || !(1..=31).contains(&d) || h > 23 || mi > 59 || s > 60 {
-        return None;
-    }
-    Some((
-        format!("{y:04}-{mo:02}"),
-        format!("{y:04}-{mo:02}-{d:02} {h:02}.{mi:02}.{s:02}"),
-    ))
 }
 
 fn unique(dest: PathBuf) -> PathBuf {
@@ -282,6 +369,9 @@ pub fn organize(
         }
         let dest = unique(orig_root.join(rel));
         if move_file(&src, &dest).is_ok() {
+            if let Some(dt) = content_date(&dest, &ext_of(&dest)) {
+                set_file_dates(&dest, dt);
+            }
             if opts.dedupe {
                 // Hashed lazily, only if a Deep Scan file turns up with the same size.
                 dedupe.add(dest.clone(), size, None);
@@ -329,13 +419,13 @@ pub fn organize(
             && cat == "photos"
             && size < SMALL_IMAGE_BYTES
             && matches!(ext.as_str(), "jpg" | "jpeg" | "png" | "gif" | "bmp" | "ico");
+        let dated = if matches!(cat, "photos" | "videos") { content_date(&src, &ext) } else { None };
         let dest = if small {
             summary.small_set_aside += 1;
             cat_dir.join(SMALL_FOLDER).join(&name)
-        } else if cat == "photos" {
-            let dated = if opts.rename_photos && has_exif(&ext) { photo_date(&src) } else { None };
-            match dated {
-                Some((month, stamp)) => cat_dir.join(month).join(format!("{stamp}.{ext}")),
+        } else if cat == "photos" || (cat == "videos" && opts.rename_photos && dated.is_some()) {
+            match dated.filter(|_| opts.rename_photos) {
+                Some(dt) => cat_dir.join(month_folder(dt)).join(format!("{}.{ext}", date_name(dt))),
                 None => cat_dir.join("No date").join(&name),
             }
         } else {
@@ -344,6 +434,9 @@ pub fn organize(
         };
         let dest = unique(dest);
         if move_file(&src, &dest).is_ok() {
+            if let Some(dt) = dated {
+                set_file_dates(&dest, dt);
+            }
             if opts.dedupe {
                 dedupe.add(dest.clone(), size, hash);
             }

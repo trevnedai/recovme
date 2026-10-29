@@ -54,6 +54,7 @@ const PLACES: &[(&str, &str, &str)] = &[
     ("thumbnails", "DCIM/.thumbnails", "Thumbnails/DCIM"),
     ("thumbnails", "Pictures/.thumbnails", "Thumbnails/Pictures"),
     ("thumbnails", "Movies/.thumbnails", "Thumbnails/Movies"),
+    ("thumbnails", "Music/.thumbnails", "Thumbnails/Music"),
     ("thumbnails", "Android/data/com.sec.android.gallery3d/cache", "Thumbnails/Samsung Gallery"),
     // Chat and social apps (new Android/media places first, then the old ones).
     ("apps", "Android/media/com.whatsapp/WhatsApp/Media", "WhatsApp"),
@@ -62,6 +63,12 @@ const PLACES: &[(&str, &str, &str)] = &[
     ("apps", "WhatsApp Business/Media", "WhatsApp Business"),
     ("apps", "Android/data/org.telegram.messenger/files/Telegram", "Telegram"),
     ("apps", "Android/data/org.telegram.messenger.web/files/Telegram", "Telegram"),
+    ("apps", "Android/data/org.telegram.messenger.beta/files/Telegram", "Telegram"),
+    ("apps", "Android/media/org.telegram.messenger/Telegram", "Telegram"),
+    ("apps", "Android/media/org.telegram.messenger.web/Telegram", "Telegram"),
+    // Telegram keeps everything that was viewed, even if never saved, in its cache.
+    ("apps", "Android/data/org.telegram.messenger/cache", "Telegram/Viewed in Chats"),
+    ("apps", "Android/data/org.telegram.messenger.web/cache", "Telegram/Viewed in Chats"),
     ("apps", "Telegram", "Telegram"),
     ("apps", "Pictures/Telegram", "Telegram/Pictures"),
     ("apps", "Movies/Telegram", "Telegram/Movies"),
@@ -81,6 +88,7 @@ const PLACES: &[(&str, &str, &str)] = &[
     ("all", "Movies", "Phone Storage/Movies"),
     ("all", "Music", "Phone Storage/Music"),
     ("all", "Recordings", "Phone Storage/Recordings"),
+    ("all", "Screenshots", "Phone Storage/Screenshots"),
     ("all", "Download", "Phone Storage/Download"),
     ("all", "Documents", "Phone Storage/Documents"),
     ("all", "Audiobooks", "Phone Storage/Audiobooks"),
@@ -219,8 +227,9 @@ fn listing_script(places: &[String]) -> String {
 for r in /storage/emulated/0 /storage/*-*; do\n[ -d \"$r\" ] || continue\n",
     );
     if places.iter().any(|p| p == "trash") {
+        // The system trash, and unfinished photos and downloads (they can be the only copy).
         s.push_str(
-            "find \"$r\" -name '.trashed-*' -type f 2>/dev/null | while IFS= read -r f; do printf 'T\\t%s\\t%s\\t%s\\n' \"$r\" \"$r\" \"$f\"; done\n",
+            "find \"$r\" \\( -iname '.trashed-*' -o -iname '.pending-*' \\) -type f 2>/dev/null | while IFS= read -r f; do printf 'T\\t%s\\t%s\\t%s\\n' \"$r\" \"$r\" \"$f\"; done\n",
         );
     }
     for (i, (place, dir, _)) in PLACES.iter().enumerate() {
@@ -228,7 +237,10 @@ for r in /storage/emulated/0 /storage/*-*; do\n[ -d \"$r\" ] || continue\n",
             s.push_str(&format!("L {i} \"$r\" \"$r\"/{}\n", shq(dir)));
         }
     }
-    s.push_str("done\necho RECOVME-LIST-END\n");
+    s.push_str("done\n");
+    // Some phones don't let a computer into app folders (Android/data).
+    s.push_str("ls /storage/emulated/0/Android/data >/dev/null 2>&1 || echo RECOVME-NO-APP-DATA\n");
+    s.push_str("echo RECOVME-LIST-END\n");
     s
 }
 
@@ -260,12 +272,24 @@ fn plan(listing: &str, ctx: &Ctx) -> (Vec<Planned>, u64) {
             continue;
         }
         let Some(rel) = file.strip_prefix(base).map(|r| r.trim_start_matches('/')) else { continue };
-        let rel_dir = rel.rsplit_once('/').map(|(d, _)| d).unwrap_or("");
+        let mut rel_dir = rel.rsplit_once('/').map(|(d, _)| d).unwrap_or("").to_string();
+        // Samsung My Files keeps "<id>/<deleted at>/<original folder>/.!%#@$/<name>":
+        // put the file back under its original folder.
+        if let Some((before, _)) = rel.split_once("/.!%#@$/") {
+            let orig = before.splitn(3, '/').nth(2).unwrap_or("");
+            let orig = orig.trim_start_matches('/');
+            let orig = orig.strip_prefix("storage/emulated/0").unwrap_or(orig).trim_start_matches('/');
+            rel_dir = orig.to_string();
+        }
+        let rel_dir = rel_dir.as_str();
         let on_card = !root.ends_with("/emulated/0");
         let mut dest = PathBuf::new();
         if tag == "T" {
             // A trashed file goes back under the folder it was deleted from.
             dest.push(TRASH_FOLDER);
+            if name.to_ascii_lowercase().starts_with(".pending-") {
+                dest.push("Unfinished Photos and Downloads");
+            }
             if on_card {
                 dest.push("Memory card");
             }
@@ -301,6 +325,7 @@ pub fn run(adb_path: &Path, serial: &str, places: &[String], ctx: &mut Ctx) -> R
         return Err("The phone stopped answering while its files were listed. Keep it unlocked and connected, then try again.".into());
     }
     let (planned, _skipped) = plan(&listing, ctx);
+    let no_app_data = listing.contains("RECOVME-NO-APP-DATA");
     let total = planned.len() as u64;
 
     // One `adb pull` per folder (and per batch of files): far faster than one
@@ -370,7 +395,7 @@ pub fn run(adb_path: &Path, serial: &str, places: &[String], ctx: &mut Ctx) -> R
                 let name = local.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
                 // Names Windows or macOS can't show are made safe.
                 let safe = clean_part(&name);
-                if safe != name && !name.starts_with(".trashed-") {
+                if safe != name && untrash_name(&name).is_none() {
                     let to = super::organize::unique(dest.join(&safe));
                     if fs::rename(&local, &to).is_ok() {
                         local = to;
@@ -392,6 +417,12 @@ pub fn run(adb_path: &Path, serial: &str, places: &[String], ctx: &mut Ctx) -> R
 RecovMe copied the places where deleted and forgotten files survive: trash folders, thumbnail previews and chat app media."
             .into(),
     );
+    if no_app_data {
+        ctx.notes.push(
+            "This phone doesn't let a computer into its app folders (Android/data), so some gallery trash and Telegram's cache couldn't be checked."
+                .into(),
+        );
+    }
     if failed > 0 {
         ctx.notes.push(format!(
             "{failed} file{} couldn't be copied: the phone didn't allow it, or it was locked or disconnected during the copy.",

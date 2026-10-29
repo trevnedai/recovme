@@ -137,8 +137,9 @@
       can: [
         "Photos and videos deleted in about the last 30 days, while they are still in the phone's trash",
         "Files in the trash of Samsung, Xiaomi, Huawei, OPPO, vivo and other gallery and file apps",
-        "Small preview pictures (thumbnails) of some older deleted photos, in low quality",
-        "Photos, videos and voice notes from WhatsApp, Telegram and other chat apps that are still on the phone",
+        "Photos and videos you viewed in Telegram, and media WhatsApp and other chat apps still keep on the phone",
+        "Photos and downloads that were never finished saving",
+        "Small, low-quality previews (thumbnails) of some deleted photos, mostly on phones older than Android 10",
       ],
       cant: [
         "Files removed from the trash, or deleted more than about 30 days ago",
@@ -154,16 +155,18 @@
       can: [
         "Everything that was on the iPhone or iPad when this backup was made, even if you deleted it later",
         "Photos and videos, including those that were in Recently Deleted at that time",
-        "Photos and videos sent in Messages and WhatsApp, voice memos, Notes attachments and app documents",
+        "Messages that were in Messages → Recently Deleted (iOS 16 and later), as a text file, with their photos",
+        "Photos and videos sent in Messages and WhatsApp, the Hidden album, voice memos with their titles, Notes attachments and app documents",
       ],
       cant: [
         "Anything taken or saved after this backup was made",
         "Anything that was already deleted before this backup was made",
         "Backups that are only in iCloud (they live on Apple's servers)",
-        "The text of messages and chats",
+        "Full-size photos kept only in iCloud (“Optimize iPhone Storage”): at most a small preview",
+        "Other deleted messages, and the text of WhatsApp and other app chats",
       ],
       why: "<b>Why:</b> a backup is a copy of the device at one moment. RecovMe reads that copy, so it can only give back what was in it.",
-      first: "<b>Important:</b> don't make a new backup of this device yet. A new backup replaces this one. Check icloud.com → Photos → Recently Deleted too (kept 30 days).",
+      first: "<b>Important:</b> don't make a new backup of this device yet: it replaces this one. To keep this one safe, open Manage Backups in Finder, iTunes or Apple Devices, right-click it and choose Archive. Check icloud.com → Photos → Recently Deleted too (kept 30 days).",
     },
   };
   const acknowledged = new Set();

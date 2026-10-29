@@ -345,9 +345,12 @@ pub fn clean_rel(rel: &str) -> PathBuf {
         .collect()
 }
 
-/// Android's trash renames "IMG_1.jpg" to ".trashed-1712345678-IMG_1.jpg".
+/// Android's trash renames "IMG_1.jpg" to ".trashed-1712345678-IMG_1.jpg"
+/// (the number is when it will be erased). Unfinished photos and downloads are
+/// ".pending-<number>-<name>".
 pub fn untrash_name(name: &str) -> Option<&str> {
-    let rest = name.strip_prefix(".trashed-")?;
+    let low = name.get(..9).map(|p| p.to_ascii_lowercase()).unwrap_or_default();
+    let rest = if low == ".trashed-" || low == ".pending-" { &name[9..] } else { return None };
     let (stamp, original) = rest.split_once('-')?;
     (stamp.chars().all(|c| c.is_ascii_digit()) && !original.is_empty()).then_some(original)
 }
@@ -425,6 +428,8 @@ mod tests {
         assert_eq!(untrash_name(".trashed-1712345678-IMG_1.jpg"), Some("IMG_1.jpg"));
         assert_eq!(untrash_name(".trashed-x-IMG.jpg"), None);
         assert_eq!(untrash_name("IMG.jpg"), None);
+        assert_eq!(untrash_name(".pending-1712345678-VID_1.mp4"), Some("VID_1.mp4"));
+        assert_eq!(untrash_name(".Trashed-1712345678-a.jpg"), Some("a.jpg"));
         assert_eq!(clean_part(".thumbnails"), "thumbnails");
         assert_eq!(clean_part("a:b?"), "a-b-");
         assert_eq!(clean_rel("../.Statuses/x.jpg"), PathBuf::from("Statuses").join("x.jpg"));

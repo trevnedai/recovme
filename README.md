@@ -29,8 +29,11 @@ where deleted files really survive, and lists them under **Phones & Tablets**:
 
 | Device | How | What it brings back |
 |---|---|---|
-| **Android** | USB debugging, through Google's `adb` (bundled) | The system trash (Android 11+ keeps deleted photos and videos 30 days as hidden `.trashed-…` files; names are restored), gallery and file manager trash folders (Samsung, Xiaomi, Huawei, OPPO, OnePlus, vivo, Files by Google), thumbnail caches, and WhatsApp, Telegram, Viber and other chat media. Optionally a copy of everything in the phone's own folders. Files with no extension are identified by their content. |
-| **iPhone / iPad** | The backups Finder, iTunes or Apple Devices made on this computer, found automatically (or open one from another drive with *Open a Disk Image or Backup…*) | Camera Roll (photos that were in Recently Deleted go to their own folder, read from the Photos library), edited versions, Messages attachments, voice memos, Notes, Files and app documents (WhatsApp, Telegram…), with their real names and dates. **Encrypted backups** are opened with their password, which is never saved. |
+| **Android** | USB debugging, through Google's `adb` (bundled) | The system trash (Android 11+ keeps deleted photos and videos 30 days as hidden `.trashed-…` files; names are restored) and unfinished `.pending-…` files, gallery and file manager trash (Samsung Gallery and My Files, restored to their original folder; Xiaomi, Huawei, OPPO, OnePlus, vivo, Files by Google), Telegram's cache of viewed media, WhatsApp (statuses included), Telegram, Viber and other chat media, thumbnail caches (mostly useful before Android 10, which deletes thumbnails with the photo). Optionally a copy of everything in the phone's own folders. Files with no extension are identified by their content. |
+| **iPhone / iPad** | The backups Finder, iTunes or Apple Devices made on this computer, found automatically (or open one from another drive with *Open a Disk Image or Backup…*) | Camera Roll with original names (Recently Deleted and the Hidden album in their own folders, read from the Photos library), previews of iCloud-only photos, messages in Messages → Recently Deleted (iOS 16+) as a text file with their photos, Messages and WhatsApp attachments, voice memos with their titles, Notes, Files and app documents. **Encrypted backups** are opened with their password, which is never saved. |
+
+**What it can't do:** bring back files that are fully deleted from a phone. Nothing can:
+the data no longer exists on the phone. The app says so before the first phone scan.
 
 Memory cards from cameras, drones, dashcams and consoles are drives: put them in a card
 reader. If an Android phone has a memory card, scanning the card in a reader finds more.

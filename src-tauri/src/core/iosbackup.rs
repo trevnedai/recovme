@@ -11,7 +11,7 @@
 //! Encrypted backups are opened with the backup password (Apple's keybag:
 //! PBKDF2, then AES key wrap per protection class, then AES-256-CBC per file).
 
-use super::devices::{clean_rel, Ctx};
+use super::devices::{clean_part, clean_rel, Ctx};
 use super::types::Drive;
 use std::collections::{HashMap, HashSet};
 use std::fs;
@@ -231,6 +231,13 @@ impl Keybag {
         use pbkdf2::pbkdf2_hmac;
         let salt = self.attrs.get("SALT").ok_or("The backup's keys are damaged.")?.clone();
         let iter = be32(self.attrs.get("ITER").ok_or("The backup's keys are damaged.")?);
+        // Real backups use 10 million rounds at most; a damaged or doctored file
+        // must not keep the app busy for hours.
+        const MAX_ROUNDS: u32 = 50_000_000;
+        let dpic_ok = self.attrs.get("DPIC").map(|d| be32(d) <= MAX_ROUNDS).unwrap_or(true);
+        if iter == 0 || iter > MAX_ROUNDS || !dpic_ok {
+            return Err("The backup's keys are damaged.".into());
+        }
         let mut pass: Vec<u8> = password.as_bytes().to_vec();
         // iOS 10.2 and later add a SHA-256 round before the SHA-1 one.
         if let (Some(dpsl), Some(dpic)) = (self.attrs.get("DPSL"), self.attrs.get("DPIC")) {
@@ -270,9 +277,10 @@ fn aes_unwrap(kek: &Key, wrapped: &[u8]) -> Option<Key> {
 }
 
 /// AES-256-CBC with a zero IV, the way backups store files. Streams, so big
-/// videos don't have to fit in memory. Removes the padding and, when the real
-/// size is known, cuts the file to it.
-fn decrypt_file(src: &Path, dst: &Path, key: &Key, size: Option<u64>) -> std::io::Result<u64> {
+/// videos don't have to fit in memory. Removes the padding. The size in
+/// Manifest.db is not used: it is often wrong for databases and other files
+/// that were changing while the backup ran, and cutting to it damages them.
+fn decrypt_file(src: &Path, dst: &Path, key: &Key) -> std::io::Result<u64> {
     use aes::cipher::{generic_array::GenericArray, BlockDecryptMut, KeyIvInit};
     let mut dec = cbc::Decryptor::<aes::Aes256>::new(key.into(), &[0u8; 16].into());
     let mut r = BufReader::with_capacity(1 << 20, fs::File::open(src)?);
@@ -316,13 +324,6 @@ fn decrypt_file(src: &Path, dst: &Path, key: &Key, size: Option<u64>) -> std::io
         written += keep as u64;
     }
     w.flush()?;
-    drop(w);
-    if let Some(s) = size {
-        if s < written {
-            fs::OpenOptions::new().write(true).open(dst)?.set_len(s)?;
-            written = s;
-        }
-    }
     Ok(written)
 }
 
@@ -462,25 +463,170 @@ fn destination(domain: &str, rel: &str, everything: bool) -> Option<PathBuf> {
     }
 }
 
-/// Paths (as in the backup) of the photos that were in Recently Deleted,
-/// read from the Photos library database inside the backup.
-fn trashed_photos(db: &Path) -> HashSet<String> {
+/// What the Photos library says about one photo or video.
+#[derive(Default, Clone)]
+struct PhotoInfo {
+    trashed: bool,
+    hidden: bool,
+    /// The name it had when it was imported or saved (photos saved from apps
+    /// get a new name in DCIM).
+    original: Option<String>,
+}
+
+fn columns(conn: &rusqlite::Connection, table: &str) -> HashSet<String> {
     let mut set = HashSet::new();
-    let Ok(conn) = rusqlite::Connection::open(db) else { return set };
-    for table in ["ZASSET", "ZGENERICASSET"] {
-        let sql = format!("SELECT ZDIRECTORY, ZFILENAME FROM {table} WHERE ZTRASHEDSTATE = 1");
-        let Ok(mut st) = conn.prepare(&sql) else { continue };
-        let rows = st.query_map([], |r| Ok((r.get::<_, Option<String>>(0)?, r.get::<_, Option<String>>(1)?)));
-        if let Ok(rows) = rows {
-            for (dir, file) in rows.flatten().filter_map(|(d, f)| Some((d?, f?))) {
-                set.insert(format!("Media/{dir}/{file}"));
-            }
-        }
-        if !set.is_empty() {
-            break;
+    if let Ok(mut st) = conn.prepare(&format!("PRAGMA table_info({table})")) {
+        if let Ok(rows) = st.query_map([], |r| r.get::<_, String>(1)) {
+            set.extend(rows.flatten().map(|c| c.to_ascii_uppercase()));
         }
     }
     set
+}
+
+/// Every photo and video in the Photos library (Photos.sqlite), by its path in
+/// the backup ("Media/DCIM/100APPLE/IMG_0001.HEIC"). Columns differ between iOS
+/// versions, so only the ones that exist are asked for.
+fn photo_library(db: &Path) -> HashMap<String, PhotoInfo> {
+    let mut map = HashMap::new();
+    let Ok(conn) = rusqlite::Connection::open(db) else { return map };
+    // ZASSET since iOS 14, ZGENERICASSET before.
+    for table in ["ZASSET", "ZGENERICASSET"] {
+        let cols = columns(&conn, table);
+        if !cols.contains("ZDIRECTORY") || !cols.contains("ZFILENAME") {
+            continue;
+        }
+        let col = |c: &str| if cols.contains(c) { format!("a.{c}") } else { "0".to_string() };
+        let extra = columns(&conn, "ZADDITIONALASSETATTRIBUTES");
+        let (orig, join) = if cols.contains("ZADDITIONALATTRIBUTES") && extra.contains("ZORIGINALFILENAME") {
+            ("aa.ZORIGINALFILENAME", " LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON aa.Z_PK = a.ZADDITIONALATTRIBUTES")
+        } else {
+            ("NULL", "")
+        };
+        let sql = format!(
+            "SELECT a.ZDIRECTORY, a.ZFILENAME, {}, {}, {orig} FROM {table} a{join}",
+            col("ZTRASHEDSTATE"),
+            col("ZHIDDEN")
+        );
+        let Ok(mut st) = conn.prepare(&sql) else { continue };
+        let rows = st.query_map([], |r| {
+            Ok((
+                r.get::<_, Option<String>>(0)?,
+                r.get::<_, Option<String>>(1)?,
+                r.get::<_, Option<i64>>(2)?.unwrap_or(0),
+                r.get::<_, Option<i64>>(3)?.unwrap_or(0),
+                r.get::<_, Option<String>>(4)?,
+            ))
+        });
+        if let Ok(rows) = rows {
+            for (dir, file, trashed, hidden, original) in rows.flatten() {
+                let (Some(dir), Some(file)) = (dir, file) else { continue };
+                map.insert(
+                    format!("Media/{dir}/{file}"),
+                    PhotoInfo { trashed: trashed == 1, hidden: hidden == 1, original: original.filter(|o| !o.trim().is_empty()) },
+                );
+            }
+        }
+        if !map.is_empty() {
+            break;
+        }
+    }
+    map
+}
+
+/// Messages → Recently Deleted (iOS 16 and later): the deleted messages as
+/// readable lines, and the backup paths of their attachments.
+fn deleted_messages(db: &Path) -> (Vec<String>, HashSet<String>) {
+    let mut lines = Vec::new();
+    let mut attachments = HashSet::new();
+    let Ok(conn) = rusqlite::Connection::open(db) else { return (lines, attachments) };
+    if columns(&conn, "chat_recoverable_message_join").is_empty() {
+        return (lines, attachments);
+    }
+    let sql = "SELECT m.text, m.attributedBody, m.date, m.is_from_me, h.id \
+FROM chat_recoverable_message_join j JOIN message m ON m.ROWID = j.message_id \
+LEFT JOIN handle h ON h.ROWID = m.handle_id ORDER BY m.date";
+    if let Ok(mut st) = conn.prepare(sql) {
+        let rows = st.query_map([], |r| {
+            Ok((
+                r.get::<_, Option<String>>(0)?,
+                r.get::<_, Option<Vec<u8>>>(1)?,
+                r.get::<_, Option<i64>>(2)?.unwrap_or(0),
+                r.get::<_, Option<i64>>(3)?.unwrap_or(0),
+                r.get::<_, Option<String>>(4)?,
+            ))
+        });
+        if let Ok(rows) = rows {
+            for (text, body, date, from_me, who) in rows.flatten() {
+                let text = text
+                    .filter(|t| !t.trim().is_empty())
+                    .or_else(|| body.as_deref().and_then(typedstream_text))
+                    .unwrap_or_else(|| "(photo, video or other attachment)".into());
+                let who = if from_me == 1 { "Me".to_string() } else { who.unwrap_or_else(|| "Unknown".into()) };
+                lines.push(format!("{} · {who}: {}", apple_time(date), text.replace('\u{fffc}', "").trim()));
+            }
+        }
+    }
+    let sql = "SELECT a.filename FROM chat_recoverable_message_join j \
+JOIN message_attachment_join maj ON maj.message_id = j.message_id \
+JOIN attachment a ON a.ROWID = maj.attachment_id";
+    if let Ok(mut st) = conn.prepare(sql) {
+        if let Ok(rows) = st.query_map([], |r| r.get::<_, Option<String>>(0)) {
+            for f in rows.flatten().flatten() {
+                let rel = f.trim_start_matches("~/").trim_start_matches("/var/mobile/");
+                attachments.insert(rel.to_string());
+            }
+        }
+    }
+    (lines, attachments)
+}
+
+/// Message dates count from 2001, in nanoseconds since iOS 11 (seconds before).
+fn apple_time(t: i64) -> String {
+    let secs = if t.abs() > 100_000_000_000 { t / 1_000_000_000 } else { t };
+    chrono::DateTime::from_timestamp(secs + 978_307_200, 0)
+        .map(|d| d.with_timezone(&chrono::Local).format("%Y-%m-%d %H:%M").to_string())
+        .unwrap_or_else(|| "Unknown date".into())
+}
+
+/// The text inside a message's attributedBody (an Apple "typedstream"): the
+/// string that follows the NSString class name.
+fn typedstream_text(b: &[u8]) -> Option<String> {
+    let at = b.windows(8).position(|w| w == b"NSString")? + 8;
+    let rest = b.get(at..)?;
+    let plus = rest.iter().take(16).position(|&x| x == b'+')? + 1;
+    let rest = rest.get(plus..)?;
+    let (len, skip) = match *rest.first()? {
+        0x81 => (u16::from_le_bytes([*rest.get(1)?, *rest.get(2)?]) as usize, 3),
+        0x82 => (u32::from_le_bytes([*rest.get(1)?, *rest.get(2)?, *rest.get(3)?, *rest.get(4)?]) as usize, 5),
+        n => (n as usize, 1),
+    };
+    let text = String::from_utf8_lossy(rest.get(skip..skip + len)?).to_string();
+    (!text.trim().is_empty()).then_some(text)
+}
+
+/// Voice memo titles (CloudRecordings.db), by recording file name.
+fn voice_memo_titles(db: &Path) -> HashMap<String, String> {
+    let mut map = HashMap::new();
+    let Ok(conn) = rusqlite::Connection::open(db) else { return map };
+    for (table, label) in [("ZCLOUDRECORDING", "ZCUSTOMLABELFORSORTING"), ("ZCLOUDRECORDING", "ZCUSTOMLABEL"), ("ZRECORDING", "ZCUSTOMLABEL")] {
+        let cols = columns(&conn, table);
+        if !cols.contains("ZPATH") || !cols.contains(label) {
+            continue;
+        }
+        let Ok(mut st) = conn.prepare(&format!("SELECT ZPATH, {label} FROM {table}")) else { continue };
+        if let Ok(rows) = st.query_map([], |r| Ok((r.get::<_, Option<String>>(0)?, r.get::<_, Option<String>>(1)?))) {
+            for (path, title) in rows.flatten() {
+                if let (Some(p), Some(t)) = (path, title.filter(|t| !t.trim().is_empty())) {
+                    let name = p.rsplit('/').next().unwrap_or(&p).to_string();
+                    map.insert(name, t.trim().to_string());
+                }
+            }
+        }
+        if !map.is_empty() {
+            break;
+        }
+    }
+    map
 }
 
 // ───────────── reading a backup ─────────────
@@ -491,13 +637,16 @@ struct Backup {
 }
 
 impl Backup {
-    fn source(&self, file_id: &str) -> PathBuf {
-        self.dir.join(file_id.get(..2).unwrap_or("")).join(file_id)
+    /// Where a file is stored in the backup. File ids are 40 hex digits; anything
+    /// else (a damaged or doctored Manifest.db) could point outside the backup.
+    fn source(&self, file_id: &str) -> Option<PathBuf> {
+        (file_id.len() == 40 && file_id.bytes().all(|b| b.is_ascii_hexdigit()))
+            .then(|| self.dir.join(&file_id[..2]).join(file_id))
     }
 
     /// Copies (or decrypts) one file. Never touches the backup itself.
     fn extract(&self, file_id: &str, rec: &Record, dst: &Path) -> Result<u64, &'static str> {
-        let src = self.source(file_id);
+        let src = self.source(file_id).ok_or("missing")?;
         if !src.is_file() {
             return Err("missing");
         }
@@ -507,9 +656,13 @@ impl Backup {
         let n = match &self.keybag {
             None => fs::copy(&src, dst).map_err(|_| "write")?,
             Some(kb) => {
+                // An empty file has no key: there is nothing to decrypt.
+                if rec.key.is_none() && rec.size == Some(0) {
+                    return Err("empty");
+                }
                 let wrapped = rec.key.as_deref().filter(|k| k.len() >= 4).ok_or("locked")?;
                 let key = kb.unwrap(rec.class, &wrapped[4..]).ok_or("locked")?;
-                decrypt_file(&src, dst, &key, rec.size).map_err(|_| "write")?
+                decrypt_file(&src, dst, &key).map_err(|_| "write")?
             }
         };
         if let Some(t) = rec.modified.filter(|t| *t > 0) {
@@ -549,7 +702,7 @@ fn open_manifest(dir: &Path, password: Option<&str>, ctx: &mut Ctx) -> Result<(B
     }
     let class = u32::from_le_bytes([mk[0], mk[1], mk[2], mk[3]]);
     let key = kb.unwrap(class, &mk[4..]).ok_or("The backup's keys are damaged.")?;
-    decrypt_file(&dir.join("Manifest.db"), &db, &key, None).map_err(|e| format!("The backup can't be read ({e})."))?;
+    decrypt_file(&dir.join("Manifest.db"), &db, &key).map_err(|e| format!("The backup can't be read ({e})."))?;
     Ok((Backup { dir: dir.to_path_buf(), keybag: Some(kb) }, db))
 }
 
@@ -558,6 +711,10 @@ struct Row {
     domain: String,
     rel: String,
     blob: Vec<u8>,
+}
+
+fn ext_lower(name: &str) -> String {
+    Path::new(name).extension().map(|e| e.to_string_lossy().to_ascii_lowercase()).unwrap_or_default()
 }
 
 pub fn run(dir: &Path, password: Option<&str>, ctx: &mut Ctx) -> Result<(), String> {
@@ -582,42 +739,120 @@ pub fn run(dir: &Path, password: Option<&str>, ctx: &mut Ctx) -> Result<(), Stri
     };
     let _ = fs::remove_file(&db_path);
 
-    // Which Camera Roll photos were in Recently Deleted.
-    let mut trashed = HashSet::new();
-    let lib = rows
-        .iter()
-        .find(|r| r.domain == "CameraRollDomain" && r.rel == "Media/PhotoData/Photos.sqlite");
-    if let Some(lib) = lib {
-        let tmp = ctx.work.join("photos");
-        let db = tmp.join("Photos.sqlite");
-        if backup.extract(&lib.file_id, &record(&lib.blob), &db).is_ok() {
-            for suffix in ["-wal", "-shm"] {
-                let rel = format!("Media/PhotoData/Photos.sqlite{suffix}");
-                if let Some(r) = rows.iter().find(|r| r.domain == "CameraRollDomain" && r.rel == rel) {
-                    let _ = backup.extract(&r.file_id, &record(&r.blob), &tmp.join(format!("Photos.sqlite{suffix}")));
-                }
+    let by_path: HashMap<(&str, &str), &Row> = rows.iter().map(|r| ((r.domain.as_str(), r.rel.as_str()), r)).collect();
+    // A database is read from a private copy, with its "-wal" and "-shm"
+    // companions: recent changes (like a fresh deletion) are often only there.
+    let work = ctx.work.clone();
+    let mut db_n = 0;
+    let mut copy_db = |row: &Row| -> Option<PathBuf> {
+        db_n += 1;
+        let dir = work.join(format!("db{db_n}"));
+        let name = row.rel.rsplit('/').next().unwrap_or("db").to_string();
+        let db = dir.join(&name);
+        backup.extract(&row.file_id, &record(&row.blob), &db).ok()?;
+        for suffix in ["-wal", "-shm"] {
+            let rel = format!("{}{suffix}", row.rel);
+            if let Some(r) = by_path.get(&(row.domain.as_str(), rel.as_str())) {
+                let _ = backup.extract(&r.file_id, &record(&r.blob), &dir.join(format!("{name}{suffix}")));
             }
-            trashed = trashed_photos(&db);
         }
-        let _ = fs::remove_dir_all(&tmp);
+        Some(db)
+    };
+
+    ctx.status("Reading the Photos library, Messages and Voice Memos…");
+    let library = by_path
+        .get(&("CameraRollDomain", "Media/PhotoData/Photos.sqlite"))
+        .and_then(|r| copy_db(r))
+        .map(|db| photo_library(&db))
+        .unwrap_or_default();
+    let sms = rows
+        .iter()
+        .find(|r| r.domain == "HomeDomain" && r.rel == "Library/SMS/sms.db")
+        .and_then(&mut copy_db)
+        .map(|db| deleted_messages(&db))
+        .unwrap_or_default();
+    let titles = rows
+        .iter()
+        .find(|r| r.rel.ends_with("Recordings/CloudRecordings.db") || r.rel.ends_with("Recordings/Recordings.db"))
+        .and_then(&mut copy_db)
+        .map(|db| voice_memo_titles(&db))
+        .unwrap_or_default();
+    for i in 1..=db_n {
+        let _ = fs::remove_dir_all(work.join(format!("db{i}")));
+    }
+    let (deleted_lines, deleted_attachments) = sms;
+
+    // Deleted messages, as a text file anyone can open.
+    let mut deleted_texts = 0;
+    if !deleted_lines.is_empty() && ctx.wants("Deleted messages.txt") {
+        let file = ctx.out.join("Messages").join("Recently Deleted").join("Deleted messages.txt");
+        let mut text = String::from(
+            "Messages that were in Messages → Recently Deleted when the backup was made.\n\
+Dates are in this computer's time zone.\n\n",
+        );
+        for l in &deleted_lines {
+            text.push_str(l);
+            text.push('\n');
+        }
+        if fs::create_dir_all(file.parent().unwrap_or(&ctx.out)).is_ok() && fs::write(&file, text).is_ok() {
+            deleted_texts = deleted_lines.len();
+            ctx.found(&file, 0);
+        }
     }
 
     let everything = ctx.everything();
-    let planned: Vec<(&Row, PathBuf)> = rows
-        .iter()
-        .filter_map(|r| {
-            let name = r.rel.rsplit('/').next().unwrap_or(&r.rel);
-            if !ctx.wants(name) {
-                return None;
+    let mut planned: Vec<(&Row, PathBuf)> = Vec::new();
+    for r in &rows {
+        let name = r.rel.rsplit('/').next().unwrap_or(&r.rel);
+        let photo = (r.domain == "CameraRollDomain").then(|| library.get(&r.rel)).flatten();
+        // A saved or imported photo gets its old name back, if the type matches.
+        let shown = photo
+            .and_then(|p| p.original.as_deref())
+            .filter(|o| ext_lower(o) == ext_lower(name))
+            .unwrap_or(name);
+        let shown = match titles.get(name) {
+            Some(t) if r.rel.contains("Recordings/") => format!("{t}.{}", ext_lower(name)),
+            _ => shown.to_string(),
+        };
+        if !ctx.wants(&shown) {
+            continue;
+        }
+        let dest = if photo.is_some_and(|p| p.trashed) {
+            PathBuf::from(CAMERA_ROLL).join("Recently Deleted").join(clean_part(&shown))
+        } else if photo.is_some_and(|p| p.hidden) {
+            PathBuf::from(CAMERA_ROLL).join("Hidden").join(clean_part(&shown))
+        } else if deleted_attachments.contains(&r.rel) {
+            PathBuf::from("Messages").join("Recently Deleted").join(clean_part(&shown))
+        } else {
+            match destination(&r.domain, &r.rel, everything) {
+                Some(d) => d.with_file_name(clean_part(&shown)),
+                None => continue,
             }
-            let dest = if r.domain == "CameraRollDomain" && trashed.contains(&r.rel) {
-                PathBuf::from(CAMERA_ROLL).join("Recently Deleted").join(super::devices::clean_part(name))
-            } else {
-                destination(&r.domain, &r.rel, everything)?
-            };
-            Some((r, dest))
-        })
-        .collect();
+        };
+        planned.push((r, dest));
+    }
+
+    // Photos whose original is only in iCloud ("Optimize iPhone Storage"): the
+    // backup may still hold a preview of them, which is better than nothing.
+    let mut cloud_only = 0u64;
+    let mut previews = 0u64;
+    if ctx.wants("preview.jpg") {
+        for (path, info) in &library {
+            if by_path.contains_key(&("CameraRollDomain", path.as_str())) {
+                continue;
+            }
+            cloud_only += 1;
+            let rest = path.trim_start_matches("Media/");
+            let thumb = format!("Media/PhotoData/Thumbnails/V2/{rest}/5005.JPG");
+            if let Some(r) = by_path.get(&("CameraRollDomain", thumb.as_str())) {
+                let stem = Path::new(rest).file_stem().map(|s| s.to_string_lossy().to_string()).unwrap_or_default();
+                let folder = if info.trashed { "Previews of Recently Deleted (Original in iCloud)" } else { "Previews Only (Original in iCloud)" };
+                planned.push((r, PathBuf::from(CAMERA_ROLL).join(folder).join(clean_part(&format!("{stem}.jpg")))));
+                previews += 1;
+            }
+        }
+    }
+    let trashed: HashSet<&str> = library.iter().filter(|(_, i)| i.trashed).map(|(p, _)| p.as_str()).collect();
     let total = planned.len() as u64;
     let camera_roll = rows.iter().filter(|r| r.domain == "CameraRollDomain" && r.rel.starts_with("Media/DCIM/")).count();
     let (mut done, mut bytes, mut locked, mut missing, mut write_err, mut recently_deleted) = (0u64, 0u64, 0u64, 0u64, 0u64, 0u64);
@@ -632,12 +867,13 @@ pub fn run(dir: &Path, password: Option<&str>, ctx: &mut Ctx) -> Result<(), Stri
             Ok(n) => {
                 let dst = super::devices::fix_name(&dst);
                 bytes += n;
-                if trashed.contains(&row.rel) {
+                if row.domain == "CameraRollDomain" && trashed.contains(row.rel.as_str()) {
                     recently_deleted += 1;
                 }
                 ctx.found(&dst, n);
             }
             Err("locked") => locked += 1,
+            Err("empty") => {}
             Err("missing") => missing += 1,
             Err(_) => {
                 write_err += 1;
@@ -662,6 +898,25 @@ Everything that was on the device when the backup was made is here, even if it w
             if recently_deleted == 1 { "" } else { "s" },
             if recently_deleted == 1 { "was" } else { "were" },
             if recently_deleted == 1 { "It is" } else { "They are" },
+        ));
+    }
+    if deleted_texts > 0 {
+        ctx.notes.push(format!(
+            "{deleted_texts} message{} {} in Messages → Recently Deleted when the backup was made. They are in Messages → Recently Deleted → “Deleted messages.txt”, with any photos they had.",
+            if deleted_texts == 1 { "" } else { "s" },
+            if deleted_texts == 1 { "was" } else { "were" },
+        ));
+    }
+    if cloud_only > 0 {
+        ctx.notes.push(format!(
+            "{cloud_only} item{} in the Photos library {} only in iCloud, not in this backup (“Optimize iPhone Storage” was on). {}Get the originals from icloud.com → Photos.",
+            if cloud_only == 1 { "" } else { "s" },
+            if cloud_only == 1 { "is" } else { "are" },
+            if previews > 0 {
+                format!("For {previews} of them the backup had a small preview, which is in Camera Roll. ")
+            } else {
+                String::new()
+            }
         ));
     }
     if camera_roll == 0 {
@@ -703,5 +958,13 @@ mod tests {
         assert_eq!(d("AppDomain-com.example.app", "Documents/a.pdf").as_deref(), Some("Apps/com.example.app/Documents/a.pdf"));
         assert_eq!(d("AppDomain-com.example.app", "Library/Caches/a.jpg"), None);
         assert_eq!(d("KeychainDomain", "keychain-backup.plist"), None);
+    }
+
+    #[test]
+    fn message_text() {
+        let body = b"\x04\x0bstreamtyped\x81\xe8\x03\x84\x01@\x84\x84\x84\x12NSAttributedString\x00\x84\x84\x08NSObject\x00\x85\x92\x84\x84\x84\x08NSString\x01\x94\x84\x01+\x0cSee you soon\x86";
+        assert_eq!(typedstream_text(body).as_deref(), Some("See you soon"));
+        assert_eq!(typedstream_text(b"nothing here"), None);
+        assert!(apple_time(700_000_000_000_000_000).starts_with("2023-03-0"));
     }
 }

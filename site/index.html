@@ -7,6 +7,12 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="RecovMe brings back deleted and formatted files — photos, videos, music, recordings, CCTV footage and documents — from SD cards, USB sticks and hard drives. 100% free and open source for Mac and Windows. No paywall after the scan.">
 <link rel="icon" href="assets/favicon.png">
+<meta property="og:title" content="RecovMe — Get your files back. Free.">
+<meta property="og:description" content="Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV footage and documents. No paywall after the scan.">
+<meta property="og:image" content="https://recovme.app/assets/og.png">
+<meta property="og:url" content="https://recovme.app/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
@@ -78,8 +84,14 @@ p { margin: 0; }
 .top nav a:hover { color: var(--teal-ink); }
 
 /* ── hero ── */
-.hero { background: var(--teal); color: var(--teal-ink); overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 7fr); gap: 56px; align-items: center; padding-block: 72px 0; }
+.hero {
+  color: var(--teal-ink); overflow: hidden;
+  background:
+    linear-gradient(90deg, #0d3634 0%, rgba(13,54,52,.94) 40%, rgba(13,54,52,0) 66%),
+    url(assets/banner.webp) right center / cover no-repeat, #0d3634;
+}
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; min-height: min(78vh, 760px); padding-block: 72px; }
+.hero .wrap > div:not(.hero-art) { max-width: 560px; }
 .hero h1 { font-size: clamp(44px, 5.6vw, 80px); }
 .hero .lede { font-size: 20px; color: var(--teal-ink-2); margin-top: 28px; max-width: 30ch; }
 .downloads { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
@@ -96,8 +108,9 @@ p { margin: 0; }
 .btn-ghost:hover { background: rgba(255,255,255,.18); }
 .btn[aria-disabled="true"] { opacity: .55; cursor: default; pointer-events: none; }
 .req { margin-top: 16px; font-size: 14px; color: var(--teal-ink-2); }
-.shot-hero { align-self: end; margin-right: -12vw; }
-.shot-hero img { width: 100%; max-width: 920px; border-radius: 14px 14px 0 0; animation: rise .9s cubic-bezier(.2,.7,.2,1) both .1s; }
+.hero-art { display: none; }
+.sig { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 800 34px/1 var(--display); letter-spacing: -0.02em; color: var(--teal-ink); }
+.sig img { width: 58px; height: 58px; }
 @keyframes rise { from { transform: translateY(40px); opacity: .001; } to { transform: none; opacity: 1; } }
 .facts { background: var(--teal); color: var(--teal-ink); }
 .facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-block: 44px 56px; }
@@ -236,8 +249,10 @@ p { margin: 0; }
   .hero .wrap, .check .wrap, .coffee .wrap, .faq .wrap, .result-name, .free .wrap, .maker .wrap { grid-template-columns: minmax(0, 1fr); }
   .cards { grid-template-columns: minmax(0, 1fr); }
   .finds .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero .wrap { gap: 48px; padding-top: 48px; }
-  .shot-hero { margin-right: -24px; }
+  .hero { background: #0d3634; }
+  .hero .wrap { min-height: 0; padding-top: 8px; }
+  .hero-art { display: block; margin: 0 -24px; }
+  .hero-art img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 80% center; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
   .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trio { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .finds .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -285,7 +300,9 @@ p { margin: 0; }
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
+      <div class="hero-art"><img src="assets/banner.webp" width="1672" height="941" alt=""></div>
       <div>
+        <p class="sig"><img src="assets/icon-256.png" alt="" width="58" height="58">RecovMe</p>
         <h1 id="hero-title">Get your files back. Free.</h1>
         <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards, and hard drives. 100% free and open source: no trial, no limits, no paywall after the scan.</p>
         <ul class="types" aria-label="What it recovers">
@@ -302,9 +319,6 @@ p { margin: 0; }
           </a>
         </div>
         <p class="req">Mac with Apple silicon, macOS 11 or later · Windows 10 or 11, 64-bit</p>
-      </div>
-      <div class="shot-hero">
-        <img src="assets/app-scan.webp" width="2240" height="1560" alt="RecovMe scanning an SD card named CAMERA, with its progress, files found so far and recovered photos appearing below.">
       </div>
     </div>
   </section>

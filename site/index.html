@@ -365,7 +365,7 @@ p { margin: 0; }
       <div class="cards">
         <article><p class="n">01</p><h3>Two Engines in One Scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognized by what is inside them, so they come back even after a format.</p></article>
         <article><p class="n">02</p><h3>Sorted for You</h3><p>Results are filed by type. Photos and videos are named and sorted by the date they were taken, and keep that date on your computer. Duplicates are removed and tiny thumbnails are set aside.</p></article>
-        <article><p class="n">03</p><h3>Made for Camera Cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe notices and searches the whole card automatically, then leaves out files that were never deleted.</p></article>
+        <article><p class="n">03</p><h3>Made for Camera Cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe searches the whole card by default, then leaves out files that were never deleted, so you only get what was lost.</p></article>
         <article><p class="n">04</p><h3>Safe for Your Drive</h3><p>It only reads the drive you scan and won't save onto it. On a Mac it can unmount the drive during the scan so nothing else writes to it.</p></article>
         <article><p class="n">05</p><h3>Honest About Your Chances</h3><p>SSDs and modern Macs wipe deleted files by themselves. RecovMe tells you up front, and points out files the drive already erased, instead of selling you false hope.</p></article>
         <article><p class="n">06</p><h3>Private and Transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p></article>
@@ -516,7 +516,7 @@ p { margin: 0; }
         </details>
         <details>
           <summary>The card was formatted. Is it too late?</summary>
-          <p>Usually not. A quick format only clears the card's index. Run a Deep Scan with “Search the whole drive” turned on (RecovMe does this by itself on CCTV and dashcam cards). File names are lost after a format, but photos and videos come back named by the date they were taken.</p>
+          <p>Usually not. A quick format only clears the card's index. Run a Deep Scan. RecovMe searches the whole drive by default, so it finds files even after a format. File names are lost after a format, but photos and videos come back named by the date they were taken.</p>
         </details>
         <details>
           <summary>Some recovered files won't open.</summary>
@@ -618,11 +618,11 @@ p { margin: 0; }
   );
   const FORMAT_OK = (what) => V.good(
     "A quick format only clears the index. The photos and files themselves usually stay until new ones are saved over them.",
-    `Stop using the ${what}. Run a Deep Scan with “Search the whole drive” turned on. Names may be lost, but photos and videos come back named by date.`
+    `Stop using the ${what}. Run a Deep Scan, which searches the whole drive by default. Names may be lost, but photos and videos come back named by date.`
   );
   const RAW_OK = (what) => V.good(
     "When a drive shows as empty or asks to be formatted, its index is damaged but the files are usually still there.",
-    `Don't format the ${what}. Run a Deep Scan with “Search the whole drive” turned on.`
+    `Don't format the ${what}. Run a Deep Scan, which searches the whole drive by default.`
   );
   const table = {
     sd: {
@@ -643,13 +643,13 @@ p { margin: 0; }
     },
     essd: {
       del: V.mid("Some external SSDs wipe deleted files within minutes, others keep them. It depends on the format and the enclosure: drives formatted as exFAT usually keep them.", "Unplug it now and don't open it again before scanning. Then run a Smart Scan."),
-      fmt: V.mid("A format on an external SSD may also tell it to wipe the old data. Drives formatted as exFAT often keep it.", "Scan it before using it again, with “Search the whole drive” turned on."),
+      fmt: V.mid("A format on an external SSD may also tell it to wipe the old data. Drives formatted as exFAT often keep it.", "Scan it before using it again."),
       raw: RAW_OK("SSD"),
     },
     pcssd: {
       del: V.low("Windows tells internal SSDs to wipe deleted files, usually within seconds to minutes. Names can survive, but the contents rarely do.", "Check the Recycle Bin, Previous Versions (right-click the folder) and OneDrive first. RecovMe can still try, and will tell you which files are empty."),
       fmt: V.low("Formatting an internal SSD usually wipes its contents straight away.", "Backups and cloud copies are the realistic way back."),
-      raw: V.mid("If the SSD lost its partition, the data itself may be untouched because nothing told the drive to wipe it.", "Don't initialize or format it. Run a Deep Scan with “Search the whole drive” turned on."),
+      raw: V.mid("If the SSD lost its partition, the data itself may be untouched because nothing told the drive to wipe it.", "Don't initialize or format it. Run a Deep Scan."),
     },
     mac: {
       del: V.low("Every Mac with Apple silicon encrypts its drive and wipes deleted files on its own, so no app can scan them back.", "Check Recently Deleted, the Trash, Time Machine and iCloud. If Time Machine is turned on, the Mac also keeps local snapshots of about the last 24 hours, even when the backup drive is not connected."),

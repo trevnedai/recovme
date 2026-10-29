@@ -453,12 +453,14 @@
     clearInterval(tick);
     state.sessionDir = s.sessionDir;
     $("doneTotal").textContent = fmtNum(s.total);
+    $("doneWord").textContent = s.total === 1 ? "File" : "Files";
     $("doneEyebrow").textContent = s.stopped ? "Stopped early. Here is everything found until then." : `Finished in ${fmtDur(s.elapsedSecs)}`;
     const bits = [`${fmtBytes(s.totalBytes)} restored from ${state.selected ? state.selected.label : "the drive"}`];
-    if (s.duplicatesRemoved) bits.push(`${fmtNum(s.duplicatesRemoved)} duplicates removed`);
-    if (s.smallSetAside) bits.push(`${fmtNum(s.smallSetAside)} tiny thumbnails set aside`);
-    if (s.erased) bits.push(`${fmtNum(s.erased)} empty files set aside`);
-    if (s.stillOnDrive) bits.push(`${fmtNum(s.stillOnDrive)} files left out because they're still on the drive (copy those from it directly)`);
+    const count = (n, one, many) => `${fmtNum(n)} ${n === 1 ? one : many}`;
+    if (s.duplicatesRemoved) bits.push(`${count(s.duplicatesRemoved, "duplicate", "duplicates")} removed`);
+    if (s.smallSetAside) bits.push(`${count(s.smallSetAside, "tiny thumbnail", "tiny thumbnails")} set aside`);
+    if (s.erased) bits.push(`${count(s.erased, "empty file", "empty files")} set aside`);
+    if (s.stillOnDrive) bits.push(`${count(s.stillOnDrive, "file", "files")} still on the drive left out`);
     $("doneSub").textContent = bits.join(" · ");
     $("doneNotes").innerHTML = (s.notes || []).map((n) => `<div class="note info">${esc(n)}</div>`).join("");
 

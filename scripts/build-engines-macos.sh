@@ -80,7 +80,9 @@ chmod 755 "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover" "$OUT/adb/adb"
 echo "── Checking the engines are self-contained ──"
 for b in "$OUT/photorec/photorec" "$OUT/tsk/tsk_recover" "$OUT/adb/adb"; do
   otool -L "$b"
-  if otool -L "$b" | tail -n +2 | grep -vE "^[[:space:]]*/(usr/lib|System)/" | grep -q .; then
+  # Only the indented lines are libraries: a universal binary (like adb) also
+  # prints an "(architecture ...):" heading for each architecture.
+  if otool -L "$b" | grep -E "^[[:space:]]" | grep -vE "^[[:space:]]*/(usr/lib|System)/" | grep -q .; then
     echo "ERROR: $b links a library that won't exist on users' Macs" >&2
     exit 1
   fi

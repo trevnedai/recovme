@@ -545,7 +545,7 @@
       if (!eng.tskRecover) missing.push("quick scan");
       $("engineBadge").innerHTML = missing.length
         ? `<span class="bad">Engine missing: ${missing.join(", ")}</span>`
-        : "Free and open source · by Dhan Denvert Asuncion";
+        : "Free and open source software";
     } catch (_) {}
     try {
       state.output = await call("default_output_dir");

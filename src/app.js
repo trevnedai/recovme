@@ -151,7 +151,7 @@
     const ico = isVol ? ICON.volume : ICON[d.kind] || ICON.external;
     const sel = state.selected && state.selected.id === d.id ? " sel" : "";
     const sub = isVol ? d.detail : `${fmtBytes(d.size)} · ${KIND_LABEL[d.kind] || "Drive"}`;
-    const flag = !isVol && d.warning ? '<span class="flag">Low chance</span>' : "";
+    const flag = !isVol && d.warning ? '<span class="flag">Low Chance</span>' : "";
     return `<button class="drv${isVol ? " vol" : ""}${sel}" data-id="${esc(d.id)}" aria-current="${sel ? "true" : "false"}">
       <span class="ico">${ico}</span>
       <span class="txt"><span class="name">${esc(d.label)}</span><span class="sub">${esc(sub)}</span></span>
@@ -184,7 +184,7 @@
     const d = findDrive(id);
     if (!d) return;
     if (d.warning && d.isSystem) {
-      const ok = await dialog("Scan this drive anyway?", `${d.warning} A scan of this drive can take a long time.`, "Scan anyway");
+      const ok = await dialog("Scan This Drive Anyway?", `${d.warning} A scan of this drive can take a long time.`, "Scan Anyway");
       if (!ok) return;
     }
     state.selected = d;
@@ -216,10 +216,10 @@
     const warning = d.warning || (parent && parent.disk.warning);
     const chance = $("driveChance");
     if (warning) {
-      chance.textContent = "Low chance";
+      chance.textContent = "Low Chance";
       chance.className = "chance low";
     } else if (["removable", "external", "image"].includes(kind)) {
-      chance.textContent = "Good chance";
+      chance.textContent = "Good Chance";
       chance.className = "chance";
     } else {
       chance.textContent = "";
@@ -311,7 +311,7 @@
     else if (!state.output) text = "Choose where to save the recovered files.";
     if (d && state.mode === "quick" && !d.quickSupported) {
       ok = false;
-      text = "Quick scan can't read deleted names here — pick a volume under the drive, or use Smart scan.";
+      text = "Quick Scan can't read deleted names here. Pick a volume under the drive, or use Smart Scan.";
     }
     if (ok) {
       try {
@@ -329,7 +329,7 @@
       const what = state.categories.has("everything")
         ? "all file types"
         : [...state.categories].map((c) => ({ photos: "photos", videos: "videos", audio: "music", documents: "documents", archives: "archives" }[c])).join(", ");
-      const modeName = { smart: "Smart scan", quick: "Quick scan", deep: "Deep scan" }[state.mode];
+      const modeName = { smart: "Smart Scan", quick: "Quick Scan", deep: "Deep Scan" }[state.mode];
       text = `${modeName} for ${what}.`;
     }
     $("barText").textContent = text;
@@ -371,7 +371,7 @@
     } catch (e) {
       show("setup");
       validate();
-      dialog("Couldn't start the scan", String(e), "OK", true);
+      dialog("Couldn't Start the Scan", String(e), "OK", true);
       return;
     }
     state.scanning = true;
@@ -382,8 +382,8 @@
 
   function renderPhases(current) {
     const list = [];
-    if (state.mode !== "deep") list.push(["quick", "Quick scan"]);
-    if (state.mode !== "quick") list.push(["deep", "Deep scan"]);
+    if (state.mode !== "deep") list.push(["quick", "Quick Scan"]);
+    if (state.mode !== "quick") list.push(["deep", "Deep Scan"]);
     list.push(["organize", "Organize"]);
     const order = list.map((x) => x[0]);
     const curIdx = order.indexOf(current);
@@ -424,7 +424,7 @@
       clearInterval(tick);
       show("setup");
       validate();
-      dialog("The scan stopped", ev.message, "OK", true);
+      dialog("The Scan Stopped", ev.message, "OK", true);
     }
   }
 
@@ -453,7 +453,7 @@
     clearInterval(tick);
     state.sessionDir = s.sessionDir;
     $("doneTotal").textContent = fmtNum(s.total);
-    $("doneEyebrow").textContent = s.stopped ? "Stopped early — here is everything found until then" : `Finished in ${fmtDur(s.elapsedSecs)}`;
+    $("doneEyebrow").textContent = s.stopped ? "Stopped early. Here is everything found until then." : `Finished in ${fmtDur(s.elapsedSecs)}`;
     const bits = [`${fmtBytes(s.totalBytes)} restored from ${state.selected ? state.selected.label : "the drive"}`];
     if (s.duplicatesRemoved) bits.push(`${fmtNum(s.duplicatesRemoved)} duplicates removed`);
     if (s.smallSetAside) bits.push(`${fmtNum(s.smallSetAside)} tiny thumbnails set aside`);
@@ -464,7 +464,7 @@
 
     const rows = [];
     if (s.originalNames) {
-      rows.push({ icon: "names", label: "With original names", sub: "Real names and folders", count: s.originalNames, path: s.originalNamesPath });
+      rows.push({ icon: "names", label: "With Original Names", sub: "Real names and folders", count: s.originalNames, path: s.originalNamesPath });
     }
     for (const c of s.categories || []) {
       rows.push({ icon: c.key, label: c.label, sub: fmtBytes(c.bytes), count: c.count, path: c.path });
@@ -586,7 +586,7 @@
     $("btnSupport").onclick = openDonate;
     $("btnSupport").classList.toggle("hidden", !DONATE_URL);
     $("btnStop").onclick = async () => {
-      const ok = await dialog("Stop the scan?", "Everything found so far is kept and organized.", "Stop scan", false, true);
+      const ok = await dialog("Stop the Scan?", "Everything found so far is kept and organized.", "Stop Scan", false, true);
       if (!ok) return;
       $("btnStop").disabled = true;
       $("btnStop").textContent = "Stopping…";

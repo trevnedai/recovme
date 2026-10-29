@@ -236,7 +236,7 @@ p { margin: 0; }
 
 /* ── the maker ── */
 .maker .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
-.maker .body .who { font: 800 clamp(30px, 3.4vw, 44px)/1.05 var(--display); letter-spacing: -0.02em; }
+.maker .body .who { font: 800 clamp(30px, 3.4vw, 44px)/1.05 var(--display); letter-spacing: -0.02em; color: var(--ink); max-width: none; }
 .maker .body .role { margin-top: 10px; color: var(--accent); font-weight: 600; }
 .maker .body p { color: var(--ink-2); font-size: 18px; max-width: 58ch; }
 .maker .body p + p { margin-top: 16px; }
@@ -272,8 +272,13 @@ p { margin: 0; }
   .facts b { font-size: 26px; }
   .tree { font-size: 14px; line-height: 1.7; }
   .tree div { padding-left: calc(var(--d, 0) * 14px); }
-  .compare th, .compare td { padding: 12px 14px; font-size: 15px; }
-  .compare tbody th { width: 30%; }
+  .compare, .compare thead, .compare tbody { display: block; }
+  .compare tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .compare thead th:first-child { display: none; }
+  .compare th, .compare td { padding: 12px 16px; font-size: 15px; }
+  .compare tbody th { grid-column: 1 / -1; width: auto; padding-bottom: 2px; border-bottom: 0; }
+  .compare tbody td { padding-top: 4px; }
+  .sig { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -287,10 +292,10 @@ p { margin: 0; }
   <div class="wrap">
     <a class="brand" href="#top" aria-label="RecovMe home"><img src="assets/icon-256.png" alt="">RecovMe</a>
     <nav aria-label="Sections">
-      <a href="#free">Really free</a>
+      <a href="#free">Really Free</a>
       <a href="#different">Why RecovMe</a>
-      <a href="#finds">What it finds</a>
-      <a href="#chances">Your chances</a>
+      <a href="#finds">What It Finds</a>
+      <a href="#chances">Your Chances</a>
       <a href="#coffee">Support</a>
       <a href="#questions">Questions</a>
     </nav>
@@ -303,10 +308,10 @@ p { margin: 0; }
       <div class="hero-art"><img src="assets/banner.webp" width="1672" height="941" alt=""></div>
       <div>
         <p class="sig"><img src="assets/icon-256.png" alt="" width="58" height="58">RecovMe</p>
-        <h1 id="hero-title">Get your files back. Free.</h1>
+        <h1 id="hero-title">Get Your Files Back. Free.</h1>
         <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards, and hard drives. 100% free and open source: no trial, no limits, no paywall after the scan.</p>
         <ul class="types" aria-label="What it recovers">
-          <li>Photos</li><li>Videos</li><li>Music</li><li>Voice recordings</li><li>CCTV &amp; dashcam footage</li><li>Documents</li><li>Archives</li>
+          <li>Photos</li><li>Videos</li><li>Music</li><li>Voice Recordings</li><li>CCTV &amp; Dashcam Footage</li><li>Documents</li><li>Archives</li>
         </ul>
         <div class="downloads">
           <a class="btn btn-amber" id="dl-mac" href="https://github.com/trevnedai/recovme/releases/latest">
@@ -324,24 +329,24 @@ p { margin: 0; }
   </section>
   <section class="facts" aria-label="RecovMe in short">
     <div class="wrap">
-      <div><b>100% free</b><span>Every file it finds is yours to save. No size cap, no paywall at the end.</span></div>
-      <div><b>480+ file types</b><span>Photos, RAW, videos, music, recordings, documents, archives.</span></div>
-      <div><b>Read-only</b><span>The drive you scan is never written to.</span></div>
-      <div><b>Open source</b><span>Every line of code is public. GPL-3.0.</span></div>
+      <div><b>100% Free</b><span>Every file it finds is yours to save. No size cap, no paywall at the end.</span></div>
+      <div><b>480+ File Types</b><span>Photos, RAW, videos, music, recordings, documents, archives.</span></div>
+      <div><b>Read-Only</b><span>The drive you scan is never written to.</span></div>
+      <div><b>Open Source</b><span>Every line of code is public (GPL-3.0).</span></div>
     </div>
   </section>
 
   <section class="free band" id="free" aria-labelledby="free-title">
     <div class="wrap">
       <div class="intro">
-        <h2 id="free-title">Free means free.</h2>
+        <h2 id="free-title">Free Means Free</h2>
         <p>Many "free" recovery apps let you scan for free, show you your lost files, and then ask you to pay before you can save them. RecovMe doesn't. What it finds, you keep.</p>
       </div>
       <div>
         <table class="compare">
-          <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Typical "free" recovery app</th><th scope="col">RecovMe</th></tr></thead>
+          <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Typical "Free" Recovery App</th><th scope="col">RecovMe</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Saving the files it finds</th><td class="them">Pay first, usually a licence or yearly subscription</td><td class="us">Free, always</td></tr>
+            <tr><th scope="row">Saving the files it finds</th><td class="them">Pay first, usually for a license or yearly subscription</td><td class="us">Free, always</td></tr>
             <tr><th scope="row">How much you can recover</th><td class="them">Free limit of a few hundred MB to 2 GB</td><td class="us">No limit</td></tr>
             <tr><th scope="row">Account or sign-up</th><td class="them">Often required</td><td class="us">None</td></tr>
             <tr><th scope="row">Your files</th><td class="them">Varies; many collect usage data</td><td class="us">Never leave your computer</td></tr>
@@ -356,15 +361,15 @@ p { margin: 0; }
 
   <section class="diff band" id="different" aria-labelledby="diff-title">
     <div class="wrap">
-      <h2 id="diff-title">Why RecovMe is different.</h2>
+      <h2 id="diff-title">Why RecovMe Is Different</h2>
       <p class="lead2">It uses the same proven engines that data recovery professionals rely on, then does the tidy-up work that usually takes hours by hand.</p>
       <div class="cards">
-        <article><p class="n">01</p><h3>Two engines in one scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognised by what is inside them, so they come back even after a format.</p></article>
-        <article><p class="n">02</p><h3>Sorted for you</h3><p>Results are filed by type. Photos and videos are named and sorted by the date they were taken, and keep that date on your computer. Duplicates are removed and tiny thumbnails are set aside.</p></article>
-        <article><p class="n">03</p><h3>Made for camera cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe notices and searches the whole card automatically, then leaves out files that were never deleted.</p></article>
-        <article><p class="n">04</p><h3>Safe for your drive</h3><p>It only reads the drive you scan and won't save onto it. On a Mac it can unmount the drive during the scan so nothing else writes to it.</p></article>
-        <article><p class="n">05</p><h3>Honest about your chances</h3><p>SSDs and modern Macs wipe deleted files by themselves. RecovMe tells you up front, and points out files the drive already erased, instead of selling you false hope.</p></article>
-        <article><p class="n">06</p><h3>Private and transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p></article>
+        <article><p class="n">01</p><h3>Two Engines in One Scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognized by what is inside them, so they come back even after a format.</p></article>
+        <article><p class="n">02</p><h3>Sorted for You</h3><p>Results are filed by type. Photos and videos are named and sorted by the date they were taken, and keep that date on your computer. Duplicates are removed and tiny thumbnails are set aside.</p></article>
+        <article><p class="n">03</p><h3>Made for Camera Cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe notices and searches the whole card automatically, then leaves out files that were never deleted.</p></article>
+        <article><p class="n">04</p><h3>Safe for Your Drive</h3><p>It only reads the drive you scan and won't save onto it. On a Mac it can unmount the drive during the scan so nothing else writes to it.</p></article>
+        <article><p class="n">05</p><h3>Honest About Your Chances</h3><p>SSDs and modern Macs wipe deleted files by themselves. RecovMe tells you up front, and points out files the drive already erased, instead of selling you false hope.</p></article>
+        <article><p class="n">06</p><h3>Private and Transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p></article>
       </div>
     </div>
   </section>
@@ -372,7 +377,7 @@ p { margin: 0; }
   <section class="check band" id="chances" aria-labelledby="chances-title">
     <div class="wrap">
       <div class="intro">
-        <h2 id="chances-title">What are your chances?</h2>
+        <h2 id="chances-title">What Are Your Chances?</h2>
         <p>The kind of drive matters more than any software. Pick yours and what happened, and you get an honest answer before you download anything.</p>
       </div>
       <form class="panel" id="checker" aria-describedby="verdict">
@@ -398,9 +403,9 @@ p { margin: 0; }
           </div>
         </fieldset>
         <div class="verdict" id="verdict" aria-live="polite" data-level="high">
-          <p class="level" id="v-level">Good chance</p>
+          <p class="level" id="v-level">Good Chance</p>
           <p class="why" id="v-why">Cameras and card readers don't wipe deleted files, so they stay on the card until something new is saved over them.</p>
-          <p class="todo" id="v-todo">Stop taking photos with that card. Run a Smart scan and save the results to your computer.</p>
+          <p class="todo" id="v-todo">Stop taking photos with that card. Run a Smart Scan and save the results to your computer.</p>
         </div>
       </form>
     </div>
@@ -409,26 +414,26 @@ p { margin: 0; }
   <section class="steps band" id="how" aria-labelledby="how-title">
     <div class="wrap">
       <div class="head">
-        <h2 id="how-title">Three screens, start to finish.</h2>
+        <h2 id="how-title">Three Screens, Start to Finish</h2>
         <p>Pick the drive, let it search, open your files. It takes care of the rest: sorting, naming and removing duplicates.</p>
       </div>
       <div class="trio">
         <figure>
-          <img src="assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="Choosing the CAMERA card, with Photos, Videos and Documents selected and Smart scan recommended.">
-          <figcaption><h3>Pick the drive</h3><p>Choose the card or disk, what to look for, and where to save. A different drive keeps your files safe.</p></figcaption>
+          <img src="assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="Choosing the CAMERA card, with Photos, Videos and Documents selected and Smart Scan recommended.">
+          <figcaption><h3>Pick the Drive</h3><p>Choose the card or disk, what to look for, and where to save. Saving to a different drive keeps your files safe.</p></figcaption>
         </figure>
         <figure>
           <img src="assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="The scan in progress with percentage, time left and photos appearing as they are found.">
-          <figcaption><h3>Watch it search</h3><p>Original names first, then a deep search of every block. Photos appear as soon as they are found. Stop anytime and keep what it has.</p></figcaption>
+          <figcaption><h3>Watch It Search</h3><p>Original names first, then a deep search of every block. Photos appear as soon as they are found. Stop at any time and keep what it has found.</p></figcaption>
         </figure>
         <figure>
           <img src="assets/app-done.webp" width="2240" height="1560" loading="lazy" alt="Results: 412 files recovered, 58 with original names, 287 photos, 21 videos, 46 documents.">
-          <figcaption><h3>Open your files</h3><p>Everything is sorted by type, with a button to open each folder and a short report of what was found.</p></figcaption>
+          <figcaption><h3>Open Your Files</h3><p>Everything is sorted by type, with a button to open each folder and a short report of what was found.</p></figcaption>
         </figure>
       </div>
       <div class="result-name">
         <div>
-          <h3>Photos and videos keep their dates.</h3>
+          <h3>Photos and Videos Keep Their Dates</h3>
           <p>Files found by a deep search lose their names, so RecovMe reads the date each photo or video was taken from inside the file, names it by that date and files it by month. Location data inside photos is kept too.</p>
         </div>
         <div class="tree" aria-label="Example of a recovery folder">
@@ -449,20 +454,20 @@ p { margin: 0; }
 
   <section class="finds band" id="finds" aria-labelledby="finds-title">
     <div class="wrap">
-      <h2 id="finds-title">What it finds.</h2>
-      <p class="lead2">More than 480 file types, recognised by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.</p>
+      <h2 id="finds-title">What It Finds</h2>
+      <p class="lead2">More than 480 file types, recognized by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.</p>
       <div class="grid">
         <div><h3>Photos</h3><ul><li>JPG, HEIC, PNG, GIF</li><li>RAW: CR2, CR3, NEF, ARW, DNG, RAF, ORF</li><li>PSD, TIFF, WebP</li></ul></div>
         <div><h3>Videos</h3><ul><li>MP4, MOV, 3GP</li><li>AVI, MKV, MTS, M2TS</li><li>MPG, WMV, FLV</li></ul></div>
         <div><h3>Music</h3><ul><li>MP3, M4A, AAC</li><li>FLAC, WAV, AIFF</li><li>OGG, WMA, MIDI</li></ul></div>
-        <div><h3>Recordings &amp; footage</h3><ul><li>Voice memos and recorders: M4A, AMR, WAV</li><li>CCTV and dashcams: Tapo, Ezviz, Reolink, Xiaomi, Eufy and other MP4 cameras</li><li>Camcorders: MTS, M2TS</li></ul></div>
-        <div><h3>Documents</h3><ul><li>PDF, DOCX, XLSX, PPTX</li><li>DOC, XLS, PPT, ODT</li><li>TXT, RTF, PST mail</li></ul></div>
+        <div><h3>Recordings &amp; Footage</h3><ul><li>Voice memos and recorders: M4A, AMR, WAV</li><li>CCTV and dashcams: Tapo, Ezviz, Reolink, Xiaomi, Eufy and other MP4 cameras</li><li>Camcorders: MTS, M2TS</li></ul></div>
+        <div><h3>Documents</h3><ul><li>PDF, DOCX, XLSX, PPTX</li><li>DOC, XLS, PPT, ODT</li><li>TXT, RTF, PST (Outlook mail)</li></ul></div>
         <div><h3>Archives</h3><ul><li>ZIP, RAR, 7Z</li><li>GZ, BZ2, XZ, TAR</li><li>ISO, CAB</li></ul></div>
       </div>
       <div class="limits">
-        <div><h3>Works best on</h3><p>SD and camera cards, USB sticks, external hard drives and the hard drive inside an older PC.</p></div>
-        <div><h3>Hard for any app</h3><p>SSDs inside laptops wipe deleted files on their own within minutes. Every Mac with Apple silicon also encrypts its drive. Use the Trash, Time Machine or OneDrive first.</p></div>
-        <div><h3>Not for phones</h3><p>iPhones and iPads don't let any app read deleted space. Recently Deleted, iCloud and computer backups are the way there.</p></div>
+        <div><h3>Works Best On</h3><p>SD and camera cards, USB sticks, external hard drives and the hard drive inside an older PC.</p></div>
+        <div><h3>Hard for Any App</h3><p>SSDs inside laptops wipe deleted files on their own within minutes. Every Mac with Apple silicon also encrypts its drive. Use the Trash, Time Machine or OneDrive first.</p></div>
+        <div><h3>Not for Phones</h3><p>iPhones and iPads don't let any app read deleted space. Recently Deleted, iCloud and computer backups are the way to get them back.</p></div>
       </div>
     </div>
   </section>
@@ -470,8 +475,8 @@ p { margin: 0; }
   <section class="coffee band" id="coffee" aria-labelledby="coffee-title">
     <div class="wrap">
       <div>
-        <h2 id="coffee-title">Got your files back?<br>Buy me a coffee.</h2>
-        <p>RecovMe is free for everyone and stays free. If it brought your files back and saved you paying for a recovery app, a coffee helps keep it going. It is completely optional.</p>
+        <h2 id="coffee-title">Got Your Files Back?<br>Buy Me a Coffee</h2>
+        <p>RecovMe is free for everyone and stays free. If it brought your files back and saved you paying for a recovery app, a coffee helps keep it going. It’s completely optional.</p>
       </div>
       <div class="cup">
         <figure class="qr">
@@ -481,7 +486,7 @@ p { margin: 0; }
         <div class="cup-actions">
         <a class="btn btn-dark" id="coffee-btn" href="https://paypal.me/dhandenvert" rel="noopener" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1.5 1 2.5M12 3.5c0 1 1 1.5 1 2.5"/></svg>
-          Buy me a coffee with PayPal
+          Buy Me a Coffee with PayPal
         </a>
         <small>Any amount, once. The app stays the same either way.</small>
         <p class="alt">Prefer to help another way? <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Star it on GitHub</a> or tell a friend who lost their files.</p>
@@ -492,7 +497,7 @@ p { margin: 0; }
 
   <section class="faq band" id="questions" aria-labelledby="faq-title">
     <div class="wrap">
-      <h2 id="faq-title">Questions.</h2>
+      <h2 id="faq-title">Questions</h2>
       <div>
         <details open>
           <summary>Is it really free?</summary>
@@ -504,7 +509,7 @@ p { margin: 0; }
         </details>
         <details>
           <summary>Why does my Mac ask for my password?</summary>
-          <p>Reading deleted space needs direct access to the drive, which macOS only allows with your password. If a scan says it can't read the drive, allow RecovMe in System Settings, Privacy &amp; Security, Full Disk Access.</p>
+          <p>Reading deleted space needs direct access to the drive, which macOS only allows with your password. If a scan says it can't read the drive, allow RecovMe in System Settings › Privacy &amp; Security › Full Disk Access.</p>
         </details>
         <details>
           <summary>Is it safe to install?</summary>
@@ -512,7 +517,7 @@ p { margin: 0; }
         </details>
         <details>
           <summary>The card was formatted. Is it too late?</summary>
-          <p>Usually not. A quick format only clears the card's index. Run a Deep scan with Search the whole drive turned on (RecovMe does this by itself on CCTV and dashcam cards). File names are lost after a format, but photos and videos come back named by the date they were taken.</p>
+          <p>Usually not. A quick format only clears the card's index. Run a Deep Scan with “Search the whole drive” turned on (RecovMe does this by itself on CCTV and dashcam cards). File names are lost after a format, but photos and videos come back named by the date they were taken.</p>
         </details>
         <details>
           <summary>Some recovered files won't open.</summary>
@@ -533,16 +538,16 @@ p { margin: 0; }
   <section class="maker band" id="about" aria-labelledby="maker-title">
     <div class="wrap">
       <div>
-        <h2 id="maker-title">Who makes it.</h2>
+        <h2 id="maker-title">Who Makes It</h2>
       </div>
       <div class="body">
         <p class="who">Dhan Denvert Asuncion</p>
-        <p class="role">Creator and developer of RecovMe</p>
+        <p class="role">Creator and Developer of RecovMe</p>
         <p style="margin-top:22px">I built RecovMe because losing photos and files is stressful enough without being asked to pay just to get them back. Recovery should be simple, honest and free for everyone.</p>
         <p>RecovMe stands on the shoulders of two respected open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe brings them together in one simple app and sorts what they find.</p>
         <div class="links">
-          <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source code on GitHub</a>
-          <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Report a problem</a>
+          <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a>
+          <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Report a Problem</a>
         </div>
       </div>
     </div>
@@ -554,7 +559,7 @@ p { margin: 0; }
     <div class="big"><img src="assets/icon-256.png" alt="">RecovMe</div>
     <div class="row">
       <p class="credits">© 2026 Dhan Denvert Asuncion. Free and open source under GPL-3.0. Recovery engines: <a href="https://www.cgsecurity.org/wiki/PhotoRec" target="_blank" rel="noopener">PhotoRec</a> by CGSecurity and <a href="https://www.sleuthkit.org" target="_blank" rel="noopener">The Sleuth Kit</a>.</p>
-      <p><a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      <p><a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a></p>
     </div>
   </div>
 </footer>
@@ -581,7 +586,7 @@ p { margin: 0; }
         for (const [btn, name] of [[mac, "Mac"], [win, "Windows"]]) {
           btn.removeAttribute("href");
           btn.setAttribute("aria-disabled", "true");
-          label(btn, `${name}: coming soon`);
+          label(btn, `${name}: Coming Soon`);
         }
         return;
       }
@@ -591,7 +596,7 @@ p { margin: 0; }
       const soon = (btn, name) => {
         btn.removeAttribute("href");
         btn.setAttribute("aria-disabled", "true");
-        label(btn, `${name}: coming soon`);
+        label(btn, `${name}: Coming Soon`);
       };
       if (dmg) mac.href = dmg.browser_download_url; else soon(mac, "Mac");
       if (exe) win.href = exe.browser_download_url; else soon(win, "Windows");
@@ -603,10 +608,10 @@ p { margin: 0; }
 
   // Honest chance checker.
   const V = {
-    good: (why, todo) => ({ level: "high", label: "Good chance", why, todo }),
-    mid: (why, todo) => ({ level: "mid", label: "It depends", why, todo }),
-    low: (why, todo) => ({ level: "low", label: "Low chance", why, todo }),
-    stop: (why, todo) => ({ level: "stop", label: "Stop. Don't scan it.", why, todo }),
+    good: (why, todo) => ({ level: "high", label: "Good Chance", why, todo }),
+    mid: (why, todo) => ({ level: "mid", label: "It Depends", why, todo }),
+    low: (why, todo) => ({ level: "low", label: "Low Chance", why, todo }),
+    stop: (why, todo) => ({ level: "stop", label: "Stop. Don't Scan It.", why, todo }),
   };
   const STOP = V.stop(
     "A drive that clicks, disappears or isn't detected is failing physically. Running any software on it can make it worse.",
@@ -614,23 +619,23 @@ p { margin: 0; }
   );
   const FORMAT_OK = (what) => V.good(
     "A quick format only clears the index. The photos and files themselves usually stay until new ones are saved over them.",
-    `Stop using the ${what}. Run a Deep scan with Search the whole drive turned on. Names may be lost; photos come back named by date.`
+    `Stop using the ${what}. Run a Deep Scan with “Search the whole drive” turned on. Names may be lost, but photos and videos come back named by date.`
   );
   const RAW_OK = (what) => V.good(
     "When a drive shows as empty or asks to be formatted, its index is damaged but the files are usually still there.",
-    `Don't format the ${what}. Run a Deep scan with Search the whole drive turned on.`
+    `Don't format the ${what}. Run a Deep Scan with “Search the whole drive” turned on.`
   );
   const table = {
     sd: {
-      del: V.good("Cameras and card readers don't wipe deleted files, so they stay on the card until something new is saved over them.", "Stop taking photos with that card. Run a Smart scan and save the results to your computer."),
+      del: V.good("Cameras and card readers don't wipe deleted files, so they stay on the card until something new is saved over them.", "Stop taking photos with that card. Run a Smart Scan and save the results to your computer."),
       fmt: FORMAT_OK("card"), raw: RAW_OK("card"),
     },
     usb: {
-      del: V.good("USB sticks keep deleted files until new data is written over them.", "Don't copy anything onto the stick. Run a Smart scan and save the results to your computer."),
+      del: V.good("USB sticks keep deleted files until new data is written over them.", "Don't copy anything onto the stick. Run a Smart Scan and save the results to your computer."),
       fmt: FORMAT_OK("stick"), raw: RAW_OK("stick"),
     },
     hdd: {
-      del: V.good("Hard drives leave deleted files in place until the space is reused.", "Stop saving to the drive. Run a Smart scan and save the results to another drive."),
+      del: V.good("Hard drives leave deleted files in place until the space is reused.", "Stop saving to the drive. Run a Smart Scan and save the results to another drive."),
       fmt: FORMAT_OK("drive"), raw: RAW_OK("drive"),
     },
     pchdd: {
@@ -638,14 +643,14 @@ p { margin: 0; }
       fmt: FORMAT_OK("drive"), raw: RAW_OK("drive"),
     },
     essd: {
-      del: V.mid("Some external SSDs wipe deleted files within minutes, others keep them. It depends on the format and the enclosure: drives formatted as exFAT usually keep them.", "Unplug it now and don't open it again before scanning. Then run a Smart scan."),
-      fmt: V.mid("A format on an external SSD may also tell it to wipe the old data. Drives formatted as exFAT often keep it.", "Scan it before using it again, with Search the whole drive turned on."),
+      del: V.mid("Some external SSDs wipe deleted files within minutes, others keep them. It depends on the format and the enclosure: drives formatted as exFAT usually keep them.", "Unplug it now and don't open it again before scanning. Then run a Smart Scan."),
+      fmt: V.mid("A format on an external SSD may also tell it to wipe the old data. Drives formatted as exFAT often keep it.", "Scan it before using it again, with “Search the whole drive” turned on."),
       raw: RAW_OK("SSD"),
     },
     pcssd: {
       del: V.low("Windows tells internal SSDs to wipe deleted files, usually within seconds to minutes. Names can survive, but the contents rarely do.", "Check the Recycle Bin, Previous Versions (right-click the folder) and OneDrive first. RecovMe can still try, and will tell you which files are empty."),
       fmt: V.low("Formatting an internal SSD usually wipes its contents straight away.", "Backups and cloud copies are the realistic way back."),
-      raw: V.mid("If the SSD lost its partition, the data itself may be untouched because nothing told the drive to wipe it.", "Don't initialise or format it. Run a Deep scan with Search the whole drive turned on."),
+      raw: V.mid("If the SSD lost its partition, the data itself may be untouched because nothing told the drive to wipe it.", "Don't initialize or format it. Run a Deep Scan with “Search the whole drive” turned on."),
     },
     mac: {
       del: V.low("Every Mac with Apple silicon encrypts its drive and wipes deleted files on its own, so no app can scan them back.", "Check Recently Deleted, the Trash, Time Machine and iCloud. If Time Machine is turned on, the Mac also keeps local snapshots of about the last 24 hours, even when the backup drive is not connected."),

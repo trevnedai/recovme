@@ -100,6 +100,8 @@ pub struct Summary {
     pub small_set_aside: u64,
     /// Files whose content was already wiped (all zeros), set aside.
     pub erased: u64,
+    /// Files found by a whole-drive search that are still on the drive, left out.
+    pub still_on_drive: u64,
     pub stopped: bool,
     pub elapsed_secs: u64,
     pub sample_photos: Vec<String>,

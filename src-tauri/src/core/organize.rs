@@ -21,6 +21,9 @@ pub struct OrgOptions {
     pub rename_photos: bool,
     /// "photos", "videos", … or "everything".
     pub categories: Vec<String>,
+    /// Where the scanned drive is mounted. When set, recovered files that are
+    /// identical to a file still on the drive are left out (they were never lost).
+    pub existing_roots: Vec<PathBuf>,
 }
 
 impl OrgOptions {
@@ -120,6 +123,43 @@ impl Deduper {
     }
 }
 
+/// Sizes of the files still on the scanned drive (hashed later, only on a size match).
+/// Capped so a huge drive can't stall the end of a scan.
+fn index_existing(roots: &[PathBuf]) -> Deduper {
+    const SKIP: [&str; 6] = [
+        ".Spotlight-V100",
+        ".fseventsd",
+        ".DocumentRevisions-V100",
+        ".TemporaryItems",
+        "System Volume Information",
+        ".recovme",
+    ];
+    let mut idx = Deduper::default();
+    let started = std::time::Instant::now();
+    let mut n = 0u32;
+    for root in roots.iter().filter(|r| r.is_dir()) {
+        let walk = walkdir::WalkDir::new(root)
+            .same_file_system(true)
+            .into_iter()
+            .filter_entry(|e| !SKIP.iter().any(|s| e.file_name() == *s));
+        for e in walk.filter_map(|e| e.ok()) {
+            if !e.file_type().is_file() {
+                continue;
+            }
+            if let Ok(m) = e.metadata() {
+                if m.len() > 0 {
+                    idx.add(e.into_path(), m.len(), None);
+                }
+            }
+            n += 1;
+            if n >= 400_000 || started.elapsed().as_secs() > 60 {
+                return idx;
+            }
+        }
+    }
+    idx
+}
+
 fn ext_of(p: &Path) -> String {
     p.extension()
         .map(|e| e.to_string_lossy().to_ascii_lowercase())
@@ -210,6 +250,7 @@ pub fn organize(
     let total = (quick_files.len() + deep_files.len()) as u64;
 
     let mut dedupe = Deduper::default();
+    let mut existing = index_existing(&opts.existing_roots);
     let mut counts: HashMap<&'static str, (u64, u64)> = HashMap::new();
     let mut summary = Summary {
         session_dir: session.to_string_lossy().to_string(),
@@ -263,6 +304,11 @@ pub fn organize(
         let size = fs::metadata(&src).map(|m| m.len()).unwrap_or(0);
         if size == 0 || is_structure(&ext_of(&src)) || !opts.wants(category_of(&ext_of(&src))) {
             let _ = fs::remove_file(&src);
+            continue;
+        }
+        if !existing.by_size.is_empty() && existing.is_duplicate(&src, size).0 {
+            let _ = fs::remove_file(&src);
+            summary.still_on_drive += 1;
             continue;
         }
         let mut hash = None;
@@ -364,6 +410,9 @@ pub fn write_report(session: &Path, s: &Summary, device_label: &str) {
     }
     t.push_str(&format!("Duplicates removed: {}\n", s.duplicates_removed));
     t.push_str(&format!("Small thumbnails set aside: {}\n", s.small_set_aside));
+    if s.still_on_drive > 0 {
+        t.push_str(&format!("Left out because they are still on the drive: {}\n", s.still_on_drive));
+    }
     if s.erased > 0 {
         t.push_str(&format!("Empty files (already erased by the drive): {}\n", s.erased));
     }

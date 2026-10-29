@@ -1,5 +1,5 @@
 //! Headless runner that uses exactly the same scan code as the app.
-//! Usage: recovme-cli <device-or-image> <save-folder> [smart|quick|deep] [categories,comma,separated] [--whole]
+//! Usage: recovme-cli <device-or-image> <save-folder> [smart|quick|deep] [categories,comma,separated] [--whole] [--mount DIR]
 //!        recovme-cli --drives
 
 use recovme_lib::core::{drives, engines, job, types::*};
@@ -33,7 +33,13 @@ fn main() {
         bsd_name: None,
         filesystem: None,
         is_whole_disk: true,
-        source_mounts: vec![],
+        // --mount DIR: pretend the drive is mounted there (to test "still on the drive").
+        source_mounts: args
+            .iter()
+            .position(|a| a == "--mount")
+            .and_then(|i| args.get(i + 1).cloned())
+            .into_iter()
+            .collect(),
         mode,
         whole_area: args.iter().any(|a| a == "--whole"),
         categories,

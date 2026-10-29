@@ -458,6 +458,7 @@
     if (s.duplicatesRemoved) bits.push(`${fmtNum(s.duplicatesRemoved)} duplicates removed`);
     if (s.smallSetAside) bits.push(`${fmtNum(s.smallSetAside)} tiny thumbnails set aside`);
     if (s.erased) bits.push(`${fmtNum(s.erased)} empty files set aside`);
+    if (s.stillOnDrive) bits.push(`${fmtNum(s.stillOnDrive)} files still on the drive left out`);
     $("doneSub").textContent = bits.join(" · ");
     $("doneNotes").innerHTML = (s.notes || []).map((n) => `<div class="note info">${esc(n)}</div>`).join("");
 

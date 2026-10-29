@@ -84,6 +84,25 @@ pub fn start(opts: ScanOptions, engines: Engines, emit: Emit) -> Result<Job, Str
         }
     }
 
+    // A drive that is almost full (security cameras and dashcams fill their
+    // cards with pre-made recording files) has no free space worth searching:
+    // search all of it instead, or the Deep Scan finds nothing.
+    if do_deep && !opts.whole_area {
+        let (free, total) = opts
+            .source_mounts
+            .iter()
+            .filter_map(|m| disk_space(m))
+            .fold((0u64, 0u64), |(f, t), (f2, t2)| (f + f2, t + t2));
+        if total > 0 && free * 10 < total {
+            opts.whole_area = true;
+            notes.push(
+                "This drive is almost full (security cameras and dashcams fill their cards like this), \
+so RecovMe searched the whole drive instead of only its free space."
+                    .into(),
+            );
+        }
+    }
+
     // ── Output folder checks ──
     let out_root = PathBuf::from(&opts.output_dir);
     if !out_root.is_dir() {
@@ -179,6 +198,13 @@ pub fn start(opts: ScanOptions, engines: Engines, emit: Emit) -> Result<Job, Str
         dedupe: opts.dedupe,
         rename_photos: opts.rename_photos,
         categories: opts.categories.clone(),
+        // Searching the whole drive also finds files that were never deleted;
+        // leave those out by comparing with what is still on the drive.
+        existing_roots: if opts.whole_area {
+            opts.source_mounts.iter().map(PathBuf::from).collect()
+        } else {
+            Vec::new()
+        },
     };
     let label = opts.device_label.clone();
     let whole_disk = opts.is_whole_disk;
@@ -678,4 +704,29 @@ fn launch(
         append("DONE");
     });
     Ok(())
+}
+
+/// (free bytes, total bytes) of the volume mounted at `path`.
+#[cfg(unix)]
+fn disk_space(path: &str) -> Option<(u64, u64)> {
+    let c = std::ffi::CString::new(path).ok()?;
+    let mut st: libc::statvfs = unsafe { std::mem::zeroed() };
+    if unsafe { libc::statvfs(c.as_ptr(), &mut st) } != 0 {
+        return None;
+    }
+    let unit = st.f_frsize as u64;
+    Some((st.f_bfree as u64 * unit, st.f_blocks as u64 * unit))
+}
+
+#[cfg(windows)]
+fn disk_space(path: &str) -> Option<(u64, u64)> {
+    use std::os::windows::ffi::OsStrExt;
+    #[link(name = "kernel32")]
+    extern "system" {
+        fn GetDiskFreeSpaceExW(dir: *const u16, avail: *mut u64, total: *mut u64, free: *mut u64) -> i32;
+    }
+    let wide: Vec<u16> = std::ffi::OsStr::new(path).encode_wide().chain(Some(0)).collect();
+    let (mut avail, mut total, mut free) = (0u64, 0u64, 0u64);
+    let ok = unsafe { GetDiskFreeSpaceExW(wide.as_ptr(), &mut avail, &mut total, &mut free) };
+    (ok != 0).then_some((free, total))
 }

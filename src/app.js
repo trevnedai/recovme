@@ -526,6 +526,7 @@
       return;
     }
     state.scanning = true;
+    showUpdateBar();
     state.startedAt = Date.now();
     clearInterval(tick);
     tick = setInterval(() => ($("statElapsed").textContent = fmtDur((Date.now() - state.startedAt) / 1000)), 1000);
@@ -577,6 +578,7 @@
       finish(ev);
     } else if (ev.type === "error") {
       state.scanning = false;
+      showUpdateBar();
       clearInterval(tick);
       show("setup");
       validate();
@@ -606,6 +608,7 @@
   function finish(s) {
     if (closeOpenModal) closeOpenModal(false);
     state.scanning = false;
+    showUpdateBar();
     clearInterval(tick);
     state.sessionDir = s.sessionDir;
     $("doneTotal").textContent = fmtNum(s.total);
@@ -689,6 +692,76 @@
     };
   }
 
+  // ── updates ──
+  // A newer version is found through GitHub's latest release, then downloaded,
+  // checked against RecovMe's signing key, installed, and the app restarts.
+  const AUTO_UPDATE_KEY = "recovme.autoUpdate";
+  const autoUpdateOn = () => {
+    try { return localStorage.getItem(AUTO_UPDATE_KEY) !== "off"; } catch (_) { return true; }
+  };
+  let pendingUpdate = null;
+  let installing = false;
+
+  function showUpdateBar() {
+    const show = !!pendingUpdate && !state.scanning && !installing;
+    $("updateBar").classList.toggle("hidden", !show && !installing);
+    if (show) $("updateText").textContent = `RecovMe ${pendingUpdate.version} is available. You have ${pendingUpdate.current}.`;
+  }
+
+  async function checkUpdate(quiet) {
+    try {
+      pendingUpdate = await call("check_update");
+    } catch (e) {
+      if (!quiet) throw e;
+      return;
+    }
+    showUpdateBar();
+  }
+
+  async function installUpdate() {
+    if (state.scanning) return toast("A scan is running. Update when it has finished.");
+    installing = true;
+    $("updateBar").classList.remove("hidden");
+    $("updateNow").disabled = true;
+    $("updateLater").classList.add("hidden");
+    $("updateText").textContent = "Downloading the update…";
+    try {
+      await call("install_update");
+    } catch (e) {
+      installing = false;
+      $("updateNow").disabled = false;
+      $("updateLater").classList.remove("hidden");
+      showUpdateBar();
+      dialog("Couldn't Update", String(e), "OK", true);
+    }
+  }
+
+  function openUpdates() {
+    const m = $("updateModal");
+    $("optAutoUpdate").checked = autoUpdateOn();
+    $("updateModalText").textContent = "Checking for a newer version…";
+    $("updateModalInstall").classList.add("hidden");
+    const close = openModal(m, () => {}, $("updateModalClose"));
+    $("updateModalClose").onclick = () => close();
+    $("updateModalInstall").onclick = () => {
+      close();
+      installUpdate();
+    };
+    $("optAutoUpdate").onchange = () => {
+      try { localStorage.setItem(AUTO_UPDATE_KEY, $("optAutoUpdate").checked ? "on" : "off"); } catch (_) {}
+    };
+    checkUpdate(false)
+      .then(() => {
+        if (pendingUpdate) {
+          $("updateModalText").textContent = `RecovMe ${pendingUpdate.version} is available (you have ${pendingUpdate.current}). Updating takes a minute, then RecovMe opens again.`;
+          $("updateModalInstall").classList.remove("hidden");
+        } else {
+          $("updateModalText").textContent = "You have the latest version of RecovMe.";
+        }
+      })
+      .catch(() => ($("updateModalText").textContent = "Couldn't reach GitHub to check for updates. Check the internet connection and try again."));
+  }
+
   async function openPath(p) {
     try {
       await call("open_path", { path: p });
@@ -730,6 +803,26 @@
       Demo.listen(onEvent);
     }
     $("btnRefresh").onclick = loadDrives;
+    $("btnUpdates").onclick = openUpdates;
+    $("updateNow").onclick = installUpdate;
+    $("updateLater").onclick = () => {
+      pendingUpdate = null;
+      showUpdateBar();
+    };
+    try {
+      const v = DEMO ? "0.3.0" : await T.app.getVersion();
+      $("versionText").textContent = `Version ${v}`;
+    } catch (_) {}
+    if (!DEMO) {
+      await T.event.listen("update-progress", (e) => {
+        const [got, total] = e.payload;
+        $("updateText").textContent = total
+          ? `Downloading the update… ${Math.floor((got / total) * 100)}%`
+          : `Downloading the update… ${fmtBytes(got)}`;
+        if (total && got >= total) $("updateText").textContent = "Installing the update. RecovMe will open again by itself.";
+      });
+    }
+    if (autoUpdateOn()) setTimeout(() => checkUpdate(true), 2500);
     $("btnImage").onclick = async () => {
       if (state.scanning) return toast("A scan is running. Stop it first.");
       const d = await call("pick_image").catch((e) => toast(String(e)));
@@ -802,6 +895,8 @@
         case "check_output": return null;
         case "pick_folder": return "/Users/you/Desktop";
         case "pick_image": return null;
+        case "check_update": return /[?&]update\b/.test(location.search) ? { version: "0.3.1", current: "0.3.0" } : null;
+        case "install_update": return new Promise(() => {});
         case "list_phones":
           return [
             { id: "adb:R58N", label: "Galaxy S23", detail: "Android 14 · USB", device: "adb:R58N", kind: "android", isWholeDisk: true, mountPoints: [] },

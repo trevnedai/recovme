@@ -1,5 +1,19 @@
 # What's New in RecovMe
 
+## 0.3.0 — Automatic Updates
+
+RecovMe now keeps itself up to date. When a new version is out, a bar says
+so, and **Update and Restart** downloads it, installs it and opens RecovMe
+again. It never interrupts a scan.
+
+- Every update is signed, and RecovMe refuses any download that isn't signed
+  with its own key.
+- The check only asks GitHub whether a newer version exists. Your files never
+  leave your computer. Turn it off under **Check for Updates** at the bottom of
+  the sidebar.
+- If you have 0.1.0 or 0.2.0, install 0.3.0 by hand once: those versions can't
+  update themselves. From 0.3.0 on, updates are automatic.
+
 ## 0.2.0 — Phones and Tablets
 
 RecovMe can now help with Android phones and iPhone or iPad backups, in the

@@ -128,6 +128,25 @@ npx tauri build --bundles nsis
 Or push to GitHub and run **Actions → Build installers → Run workflow**: it produces a
 `.dmg` and a Windows installer. Pushing a tag like `v0.1.0` also publishes a GitHub Release.
 
+### Automatic updates
+
+From 0.3.0 the app updates itself (Tauri's updater). At start it fetches
+`https://github.com/trevnedai/recovme/releases/latest/download/latest.json`; when that names a
+newer version, **Update and Restart** downloads the Mac `.app.tar.gz` or the Windows installer,
+checks its signature against the public key in `src-tauri/tauri.conf.json`, installs it and
+restarts. Users can turn the check off; it never sends anything about their files.
+
+The release job signs the update files and writes `latest.json` once these repository secrets exist:
+
+| Secret | What it is |
+|---|---|
+| `TAURI_SIGNING_PRIVATE_KEY` | The private update key (text from `npx tauri signer generate`) |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | Its password |
+
+**Keep a backup of this key.** Without it, no installed copy can be updated again: they only
+accept updates signed with the matching key. Without the secrets, releases are published as
+before and installed apps simply see no update.
+
 ### Signing and notarizing the Mac app
 
 The macOS build signs and notarizes the app by itself once these repository secrets

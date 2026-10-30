@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "RecovMe",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "identifier": "app.recovme.recovery",
   "build": {
     "frontendDist": "../src"
@@ -87,5 +87,16 @@
       }
     },
     "publisher": "RecovMe"
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY1QjQ0OEFCMTlEOTJCQzMKUldUREs5a1pxMGkwOVlWMG9YUnVQdVVzTVNXUUNYWVVaeUw3d2NIUmhuUWRjY2x2enNUa01xY3oK",
+      "endpoints": [
+        "https://github.com/trevnedai/recovme/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
   }
 }

@@ -9,6 +9,7 @@ use std::sync::{Arc, Mutex};
 use tauri::{AppHandle, Emitter, Manager, State};
 use tauri_plugin_dialog::DialogExt;
 use tauri_plugin_opener::OpenerExt;
+use tauri_plugin_updater::UpdaterExt;
 
 #[derive(Default)]
 struct AppState {
@@ -137,6 +138,60 @@ fn open_path(app: AppHandle, path: String) -> Result<(), String> {
         .map_err(|e| e.to_string())
 }
 
+/// A newer version, as announced by the latest release on GitHub.
+#[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+struct UpdateInfo {
+    version: String,
+    current: String,
+}
+
+fn scan_running(state: &State<'_, AppState>) -> bool {
+    state.job.lock().unwrap().as_ref().is_some_and(|j| !j.is_finished())
+}
+
+/// Asks GitHub whether a newer RecovMe exists. Sends nothing but the request
+/// itself; files and scans never leave the computer.
+#[tauri::command]
+async fn check_update(app: AppHandle) -> Result<Option<UpdateInfo>, String> {
+    let update = app
+        .updater()
+        .map_err(|e| e.to_string())?
+        .check()
+        .await
+        .map_err(|e| e.to_string())?;
+    Ok(update.map(|u| UpdateInfo { version: u.version.clone(), current: u.current_version.clone() }))
+}
+
+/// Downloads the update, checks its signature, installs it and restarts.
+/// Refused while a scan runs, so a scan is never cut short.
+#[tauri::command]
+async fn install_update(app: AppHandle, state: State<'_, AppState>) -> Result<(), String> {
+    if scan_running(&state) {
+        return Err("A scan is running. Update when it has finished.".into());
+    }
+    let update = app
+        .updater()
+        .map_err(|e| e.to_string())?
+        .check()
+        .await
+        .map_err(|e| e.to_string())?
+        .ok_or("RecovMe is already up to date.")?;
+    let handle = app.clone();
+    let mut got: u64 = 0;
+    update
+        .download_and_install(
+            move |chunk, total| {
+                got += chunk as u64;
+                let _ = handle.emit("update-progress", (got, total));
+            },
+            || {},
+        )
+        .await
+        .map_err(|e| format!("The update couldn't be installed: {e}"))?;
+    app.restart();
+}
+
 /// Opens one of RecovMe's own web pages (donation, source code) in the browser.
 #[tauri::command]
 fn open_url(app: AppHandle, url: String) -> Result<(), String> {
@@ -174,6 +229,7 @@ pub fn run() {
     builder
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
             list_drives,
@@ -187,7 +243,9 @@ pub fn run() {
             start_scan,
             stop_scan,
             open_path,
-            open_url
+            open_url,
+            check_update,
+            install_update
         ])
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::CloseRequested { api, .. } = event {

@@ -726,6 +726,7 @@
     $("updateBar").classList.remove("hidden");
     $("updateNow").disabled = true;
     $("updateLater").classList.add("hidden");
+    $("updateNotes").classList.add("hidden");
     $("updateText").textContent = "Downloading the update…";
     try {
       await call("install_update");
@@ -733,6 +734,7 @@
       installing = false;
       $("updateNow").disabled = false;
       $("updateLater").classList.remove("hidden");
+      $("updateNotes").classList.remove("hidden");
       showUpdateBar();
       dialog("Couldn't Update", String(e), "OK", true);
     }
@@ -809,6 +811,8 @@
     // The official site, where genuine copies come from.
     if ($("btnOfficial")) $("btnOfficial").onclick = () => call("open_url", { url: "https://recovme.app/" }).catch((e) => toast(String(e)));
     $("updateNow").onclick = installUpdate;
+    $("updateNotes").onclick = () =>
+      call("open_url", { url: "https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md" }).catch((e) => toast(String(e)));
     $("updateLater").onclick = () => {
       pendingUpdate = null;
       showUpdateBar();

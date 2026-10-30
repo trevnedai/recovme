@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 // Builds the guide pages and sitemap for recovme.app.
 //
 //   node scripts/build-site.mjs      (or: npm run site)

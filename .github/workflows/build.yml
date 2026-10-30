@@ -117,6 +117,18 @@ jobs:
         with:
           name: RecovMe-macOS
           path: src-tauri/target/release/bundle/dmg/*.dmg
+      - name: Pack the app for automatic updates
+        run: |
+          set -euo pipefail
+          APP="$(ls -d src-tauri/target/release/bundle/macos/*.app | head -1)"
+          VERSION="$(jq -r .version src-tauri/tauri.conf.json)"
+          mkdir -p update
+          # The updater unpacks this over the installed app (signed and notarized as built).
+          COPYFILE_DISABLE=1 tar -czf "update/RecovMe_${VERSION}_aarch64.app.tar.gz" -C "$(dirname "$APP")" "$(basename "$APP")"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecovMe-macOS-update
+          path: update/*.app.tar.gz
 
   windows:
     name: Windows (64-bit)
@@ -194,6 +206,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ inputs.release_tag || github.ref_name }}
+      # Automatic updates switch on once these secrets exist (see README). Without
+      # them the release is published as before, and installed apps see no update.
+      HAS_UPDATER_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
       - name: Check the tag matches the app's version
@@ -208,6 +223,50 @@ jobs:
           path: dist
       - name: Leave out the unsigned Windows copy
         run: rm -rf dist/*-unsigned
+      - uses: actions/setup-node@v4
+        if: env.HAS_UPDATER_KEY == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - name: Sign the automatic update (latest.json)
+        if: env.HAS_UPDATER_KEY == 'true'
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          npm ci
+          # Signed here, on the exact files being published (after Windows code signing).
+          MAC="$(find dist -name '*.app.tar.gz' | head -1)"
+          WIN="$(find dist -name '*-setup.exe' | head -1)"
+          if [ -z "$MAC" ] || [ -z "$WIN" ]; then
+            echo "::error title=Update files missing::mac='$MAC' windows='$WIN'"
+            exit 1
+          fi
+          npx tauri signer sign "$MAC" >/dev/null
+          npx tauri signer sign "$WIN" >/dev/null
+          BASE="https://github.com/${{ github.repository }}/releases/download/$TAG"
+          jq -n \
+            --arg version "${TAG#v}" \
+            --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg macsig "$(cat "$MAC.sig")" --arg macurl "$BASE/$(basename "$MAC")" \
+            --arg winsig "$(cat "$WIN.sig")" --arg winurl "$BASE/$(basename "$WIN")" \
+            '{version: $version, pub_date: $date,
+              notes: "What is new: https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md",
+              platforms: {
+                "darwin-aarch64": {signature: $macsig, url: $macurl},
+                "windows-x86_64": {signature: $winsig, url: $winurl}
+              }}' > dist/latest.json
+          rm -f "$MAC.sig" "$WIN.sig"
+          jq . dist/latest.json
+      - name: Write checksums (SHA256SUMS.txt)
+        run: |
+          set -euo pipefail
+          # Lets anyone check a download is the official one, byte for byte.
+          cd dist
+          find . -type f \( -name '*.dmg' -o -name '*.exe' -o -name '*.app.tar.gz' \) -print0 \
+            | xargs -0 sha256sum | sed 's#  \./[^/]*/#  #' | sort -k2 > SHA256SUMS.txt
+          cat SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/**/*
@@ -220,7 +279,9 @@ jobs:
 
             See [what's new](https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md).
 
-            **Download:** [recovme.app](https://recovme.app)
+            **Download:** [recovme.app](https://recovme.app). Get RecovMe only from recovme.app or this page: it reads whole drives, so use the genuine, signed copy. Copies under other names are not made or checked by me.
+
+            **Check your download** against `SHA256SUMS.txt` below: on a Mac run `shasum -a 256 RecovMe_*.dmg`, on Windows `Get-FileHash RecovMe_*-setup.exe` in PowerShell. The Mac app is also signed with Developer ID "Dhan Denvert Asuncion (GH6TUBY83F)".
 
             - **Mac** (Apple silicon, macOS 11 or later): signed and notarized by Apple.
             - **Windows** (10 or 11, 64-bit): may show a SmartScreen notice; choose More info → Run anyway.

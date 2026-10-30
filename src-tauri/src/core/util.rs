@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 use std::process::Command;
 
 /// A Command that never flashes a console window on Windows.

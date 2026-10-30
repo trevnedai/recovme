@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Locates the bundled recovery engines:
 //!   - PhotoRec (CGSecurity) — Deep Scan, signature carving, 480+ file types
 //!   - tsk_recover (The Sleuth Kit) — Quick Scan, undelete with original names

@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Runs a scan: Quick Scan (tsk_recover, original names) then Deep Scan
 //! (PhotoRec carving), with live progress, Stop, and tidy results.
 //!

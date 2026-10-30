@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Android phones and tablets over USB, through adb (USB debugging).
 //!
 //! A phone's storage is encrypted and deleted space is wiped, so it can't be

@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- RecovMe — Copyright © 2026 Dhan Denvert Asuncion. SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md) -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -33,6 +34,7 @@
           Support RecovMe
         </button>
         <p class="engines" id="engineBadge"></p>
+        <p class="version"><span id="versionText">RecovMe</span> · <button class="link" id="btnUpdates">Check for Updates</button></p>
         <p class="copyright">© 2026 Dhan Denvert Asuncion</p>
       </div>
     </aside>
@@ -196,6 +198,14 @@
         </div>
       </section>
 
+      <!-- A newer version is out -->
+      <div class="update-bar hidden" id="updateBar" role="status">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v9.5M6 8.5l4 4 4-4M4 16.5h12"/></svg>
+        <p id="updateText"></p>
+        <button class="btn" id="updateLater">Later</button>
+        <button class="btn primary" id="updateNow">Update and Restart</button>
+      </div>
+
       <!-- Action bar -->
       <footer class="bar">
         <p class="bar-text" id="barText">Choose a drive on the left to begin.</p>
@@ -248,6 +258,17 @@
       <div class="modal-actions">
         <button class="btn" id="expectCancel">Cancel</button>
         <button class="btn primary" id="expectOk">I Understand</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="updateModal" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
+    <div class="modal-card">
+      <h3 id="updateTitle">Updates</h3>
+      <p id="updateModalText"></p>
+      <label class="toggle"><input type="checkbox" id="optAutoUpdate" checked /><span class="switch"></span><span><b>Check for updates when RecovMe opens</b>Only asks GitHub whether a newer version exists. Your files never leave this computer.</span></label>
+      <div class="modal-actions">
+        <button class="btn" id="updateModalClose">Close</button>
+        <button class="btn primary hidden" id="updateModalInstall">Update and Restart</button>
       </div>
     </div>
   </div>

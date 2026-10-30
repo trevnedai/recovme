@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 // RecovMe front end. Talks to the Rust core through Tauri commands/events.
 // Opened outside Tauri (or with ?demo), it runs a demo with sample data.
 (() => {
@@ -786,7 +788,7 @@
       if (!eng.tskRecover) missing.push("quick scan");
       $("engineBadge").innerHTML = missing.length
         ? `<span class="bad">Engine missing: ${missing.join(", ")}</span>`
-        : "Free and open source software";
+        : 'Free and open source · <button class="link" id="btnOfficial">recovme.app</button>';
     } catch (_) {}
     try {
       state.output = await call("default_output_dir");
@@ -804,6 +806,8 @@
     }
     $("btnRefresh").onclick = loadDrives;
     $("btnUpdates").onclick = openUpdates;
+    // The official site, where genuine copies come from.
+    if ($("btnOfficial")) $("btnOfficial").onclick = () => call("open_url", { url: "https://recovme.app/" }).catch((e) => toast(String(e)));
     $("updateNow").onclick = installUpdate;
     $("updateLater").onclick = () => {
       pendingUpdate = null;

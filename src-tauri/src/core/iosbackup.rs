@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! iPhone and iPad backups made by Finder, iTunes or Apple Devices on this computer.
 //!
 //! Apple never lets another program read an iPhone's storage directly, so a

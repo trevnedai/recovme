@@ -1,3 +1,5 @@
+# RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+# SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 # Downloads the official Windows builds of the two recovery engines into
 # src-tauri/resources/engines so the installer carries them.
 #   PhotoRec 7.2 (CGSecurity, 64-bit)   The Sleuth Kit (tsk_recover)

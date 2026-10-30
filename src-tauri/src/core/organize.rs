@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Turns raw engine output into a tidy folder:
 //!   Original names/…      Quick Scan results with their real names and folders
 //!   Photos/2024-07/2024-07-12 14.33.02.jpg   (renamed by the date the photo was taken)

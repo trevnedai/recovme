@@ -172,11 +172,26 @@ cargo run --bin recovme-cli -- /path/to/card.img /path/to/save smart photos,vide
 
 ## Licenses
 
-RecovMe is GPL-3.0-or-later. It bundles, unmodified and as separate programs:
+RecovMe is GPL-3.0-or-later, with the additional terms in [NOTICE.md](NOTICE.md). It bundles, unmodified and as separate programs:
 PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit © Brian Carrier
 and contributors (IBM Public License / Common Public License and others — see `licenses/`
 in the engine folder), and Android's adb from the Android SDK Platform-Tools © Google
 (Apache-2.0, from the Android Open Source Project; see `NOTICE.txt` in the `adb` engine folder).
+
+## Name, trademark and official downloads
+
+The code is GPL-3.0-or-later: anyone may use, change and share it. The **name "RecovMe", its
+logo and icon** are not covered by that license. Under the GPL's section 7 additional terms in
+[NOTICE.md](NOTICE.md), copies must keep the author credit, and modified versions must use
+their own name and icon and say they are not the official RecovMe. See
+[TRADEMARKS.md](TRADEMARKS.md).
+
+Genuine RecovMe comes only from [recovme.app](https://recovme.app) and this repository's
+[Releases](https://github.com/trevnedai/recovme/releases):
+
+- the Mac app is signed with Developer ID "Dhan Denvert Asuncion (GH6TUBY83F)" and notarized by Apple
+- every release lists `SHA256SUMS.txt`, the fingerprint of each download
+- automatic updates only install files signed with RecovMe's own update key
 
 ## Signing the Windows installer
 
@@ -194,6 +209,10 @@ Optional repository variables: `SIGNPATH_PROJECT_SLUG` (default `recovme`) and `
 Bug reports and test results are very welcome, especially from unusual cameras, dashcams,
 CCTV recorders and file systems: [open an issue](https://github.com/trevnedai/recovme/issues)
 with the device, the file system and what was (or wasn't) recovered.
+
+By sending a pull request you agree that your contribution is licensed under
+GPL-3.0-or-later with the additional terms in [NOTICE.md](NOTICE.md), and that
+Dhan Denvert Asuncion may also distribute it under other license terms in future versions.
 
 ## Author
 

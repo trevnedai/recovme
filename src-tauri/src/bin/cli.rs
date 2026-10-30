@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Headless runner that uses exactly the same scan code as the app.
 //! Usage: recovme-cli <device-or-image> <save-folder> [smart|quick|deep] [categories,comma,separated] [--whole] [--mount DIR]
 //!        recovme-cli adb:<serial> <save-folder> - [categories] [--places trash,thumbnails,apps,all]

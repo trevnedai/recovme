@@ -1,3 +1,5 @@
+// RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+// SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 //! Phones and tablets. Their storage can't be searched block by block like a
 //! memory card: iPhones never allow it, and Android phones encrypt their storage
 //! and wipe deleted space. So instead RecovMe copies the places where deleted

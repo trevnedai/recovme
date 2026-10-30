@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# RecovMe — Copyright © 2026 Dhan Denvert Asuncion
+# SPDX-License-Identifier: GPL-3.0-or-later (with additional terms: see NOTICE.md)
 # Builds the two recovery engines for macOS (Apple Silicon) from source and
 # drops them into src-tauri/resources/engines so the app bundle carries them.
 #   PhotoRec   – CGSecurity testdisk repo, pinned commit (7.3-WIP, newest file signatures)

@@ -15,29 +15,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
   </url>
   <url>
-    <loc>https://recovme.app/guides/</loc>
-    <lastmod>2026-10-29</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
-  </url>
-  <url>
-    <loc>https://recovme.app/it/guide/</loc>
-    <lastmod>2026-10-29</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
-  </url>
-  <url>
     <loc>https://recovme.app/guides/recover-deleted-photos-sd-card/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
   </url>
   <url>
     <loc>https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
@@ -97,6 +83,146 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-windows/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-deleted-photos-android/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-android/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-android/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-android/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-foto-cancellate-android/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-android/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-android/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-android/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-photos-iphone-backup/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-photos-iphone-backup/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-backup-iphone/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-photos-iphone-backup/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-foto-backup-iphone/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-photos-iphone-backup/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-backup-iphone/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-photos-iphone-backup/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/photorec-gui-mac-windows/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/photorec-gui-mac-windows/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/photorec-interfaccia-grafica-mac-windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/photorec-gui-mac-windows/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/photorec-interfaccia-grafica-mac-windows/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/photorec-gui-mac-windows/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/photorec-interfaccia-grafica-mac-windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/photorec-gui-mac-windows/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recuva-for-mac/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recuva-for-mac/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuva-per-mac/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recuva-for-mac/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuva-per-mac/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recuva-for-mac/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuva-per-mac/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recuva-for-mac/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/disk-drill-free-alternative/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/disk-drill-free-alternative/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/alternativa-gratuita-disk-drill/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/disk-drill-free-alternative/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/alternativa-gratuita-disk-drill/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/disk-drill-free-alternative/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/alternativa-gratuita-disk-drill/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/disk-drill-free-alternative/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/best-free-data-recovery-software/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/best-free-data-recovery-software/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/migliori-programmi-recupero-dati-gratis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/best-free-data-recovery-software/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/migliori-programmi-recupero-dati-gratis/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/best-free-data-recovery-software/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/migliori-programmi-recupero-dati-gratis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/best-free-data-recovery-software/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/about/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/about/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/chi-sono/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/about/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/chi-sono/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/about/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/chi-sono/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/about/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/privacy/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/privacy/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/terms/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/terms/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/termini/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/terms/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/termini/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/terms/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/termini/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/terms/"/>
   </url>
   <url>
     <loc>https://recovme.app/press/</loc>

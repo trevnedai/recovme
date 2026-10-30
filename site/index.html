@@ -10,7 +10,11 @@
 <link rel="alternate" hreflang="en" href="https://recovme.app/">
 <link rel="alternate" hreflang="it" href="https://recovme.app/it/">
 <link rel="alternate" hreflang="x-default" href="https://recovme.app/">
-<link rel="icon" href="assets/favicon.png">
+<link rel="icon" href="/assets/favicon.png" sizes="64x64" type="image/png">
+<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0e3b39">
 <meta property="og:site_name" content="RecovMe">
 <meta property="og:title" content="RecovMe — Get your files back. Free.">
 <meta property="og:description" content="Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV footage and documents. No paywall after the scan.">
@@ -32,6 +36,24 @@
     "it"
    ],
    "publisher": {
+    "@id": "https://recovme.app/#org"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://recovme.app/#org",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://recovme.app/assets/icon-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/trevnedai/recovme"
+   ],
+   "founder": {
     "@id": "https://recovme.app/#maker"
    }
   },
@@ -39,7 +61,10 @@
    "@type": "Person",
    "@id": "https://recovme.app/#maker",
    "name": "Dhan Denvert Asuncion",
-   "url": "https://recovme.app/#about"
+   "url": "https://recovme.app/about/",
+   "sameAs": [
+    "https://github.com/trevnedai"
+   ]
   },
   {
    "@type": "SoftwareApplication",
@@ -58,14 +83,18 @@
    "isAccessibleForFree": true,
    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
    "downloadUrl": "https://github.com/trevnedai/recovme/releases/latest",
+   "releaseNotes": "https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md",
    "screenshot": [
     "https://recovme.app/assets/app-setup.webp",
     "https://recovme.app/assets/app-scan.webp",
     "https://recovme.app/assets/app-done.webp"
    ],
-   "image": "https://recovme.app/assets/icon-256.png",
+   "image": "https://recovme.app/assets/og.png",
    "author": {
     "@id": "https://recovme.app/#maker"
+   },
+   "publisher": {
+    "@id": "https://recovme.app/#org"
    },
    "codeRepository": "https://github.com/trevnedai/recovme"
   },
@@ -132,6 +161,14 @@
     },
     {
      "@type": "Question",
+     "name": "Can it recover photos from my phone?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Partly. Phones can't be searched block by block like a memory card, so RecovMe copies what still exists: on Android, the trash, gallery trash, chat apps and previews, over USB debugging; on iPhone and iPad, the backups on your computer, encrypted ones too. Files fully deleted from a phone can't be brought back by any app. If an Android phone has a memory card, scan the card in a card reader."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Does it send my files anywhere?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -143,9 +180,7 @@
  ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 /* Layout: a deep-teal opening field holding the real app, then alternating
    light fields: the chance checker, the three screens, the file types, the
@@ -451,7 +486,7 @@ p { margin: 0; }
       <div class="hero-art"><img src="assets/banner.webp" width="1672" height="941" alt=""></div>
       <div>
         <h1 id="hero-title">Get Your Files Back. Free.</h1>
-        <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards, and hard drives. 100% free and open source: no trial, no limits, no paywall after the scan.</p>
+        <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards and hard drives, and copies what survives on Android phones and in iPhone backups. 100% free and open source: no trial, no limits, no paywall after the scan.</p>
         <ul class="types" aria-label="What it recovers">
           <li>Photos</li><li>Videos</li><li>Music</li><li>Voice Recordings</li><li>CCTV &amp; Dashcam Footage</li><li>Documents</li><li>Archives</li>
         </ul>
@@ -489,7 +524,7 @@ p { margin: 0; }
           <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Typical "Free" Recovery App</th><th scope="col">RecovMe</th></tr></thead>
           <tbody>
             <tr><th scope="row">Saving the files it finds</th><td class="them">Pay first, usually for a license or yearly subscription</td><td class="us">Free, always</td></tr>
-            <tr><th scope="row">How much you can recover</th><td class="them">Free limit of a few hundred MB to 2 GB</td><td class="us">No limit</td></tr>
+            <tr><th scope="row">How much you can recover</th><td class="them">Free limit of 100 MB to 2 GB</td><td class="us">No limit</td></tr>
             <tr><th scope="row">Account or sign-up</th><td class="them">Often required</td><td class="us">None</td></tr>
             <tr><th scope="row">Your files</th><td class="them">Varies; many collect usage data</td><td class="us">Never leave your computer</td></tr>
             <tr><th scope="row">Can you check the code?</th><td class="them">No, closed source</td><td class="us">Yes, open source on GitHub</td></tr>
@@ -609,7 +644,7 @@ p { margin: 0; }
       <div class="limits">
         <div><h3>Works Best On</h3><p>SD and camera cards, USB sticks, external hard drives and the hard drive inside an older PC.</p></div>
         <div><h3>Hard for Any App</h3><p>SSDs inside laptops wipe deleted files on their own within minutes. Every Mac with Apple silicon also encrypts its drive. Use the Trash, Time Machine or OneDrive first.</p></div>
-        <div><h3>Not for Phones</h3><p>iPhones and iPads don't let any app read deleted space. Recently Deleted, iCloud and computer backups are the way to get them back.</p></div>
+        <div><h3>Phones: What Survives</h3><p>Phones can't be searched block by block. RecovMe copies what still survives: trash folders, chat apps and previews on Android, and iPhone or iPad backups on your computer.</p></div>
       </div>
     </div>
   </section>
@@ -622,8 +657,11 @@ p { margin: 0; }
         <li><a href="/guides/recover-deleted-photos-sd-card/"><h3>Deleted Photos on an SD Card</h3><p>Camera, phone and drone cards keep deleted photos until new ones are saved over them.</p><span class="go">Read the guide →</span></a></li>
         <li><a href="/guides/recover-formatted-sd-card-usb-stick/"><h3>Formatted SD Card or USB Stick</h3><p>A normal format only clears the index. Which formats can be undone, and how.</p><span class="go">Read the guide →</span></a></li>
         <li><a href="/guides/recover-deleted-files-external-hard-drive/"><h3>Deleted Files on an External Drive</h3><p>Hard drives leave deleted files in place. External SSDs are a different story.</p><span class="go">Read the guide →</span></a></li>
+        <li><a href="/guides/recover-deleted-photos-android/"><h3>Deleted Photos on Android</h3><p>Trash folders, chat apps and previews often still hold them. No root needed.</p><span class="go">Read the guide →</span></a></li>
+        <li><a href="/guides/recover-photos-iphone-backup/"><h3>iPhone Photos From a Backup</h3><p>A Finder or iTunes backup from before the deletion still has them.</p><span class="go">Read the guide →</span></a></li>
+        <li><a href="/guides/best-free-data-recovery-software/"><h3>Free Recovery Software Compared</h3><p>Every app’s free limit, checked on its maker’s site: from 100 MB to no limit at all.</p><span class="go">Read the comparison →</span></a></li>
       </ul>
-      <p class="more"><a href="/guides/">All guides →</a><a href="/it/guide/" hreflang="it" lang="it">Guide in italiano →</a></p>
+      <p class="more"><a href="/guides/">All guides and comparisons →</a><a href="/it/guide/" hreflang="it" lang="it">Guide in italiano →</a></p>
     </div>
   </section>
 
@@ -683,6 +721,10 @@ p { margin: 0; }
           <p>Yes, for cameras that record MP4 video, which is most home cameras and dashcams (Tapo, Ezviz, Reolink, Xiaomi, Eufy and others). Take the card out of the camera straight away, because it records over old footage, and scan it with a card reader.</p>
         </details>
         <details>
+          <summary>Can it recover photos from my phone?</summary>
+          <p>Partly. Phones can't be searched block by block like a memory card, so RecovMe copies what still exists: on Android, the trash, gallery trash, chat apps and previews, over USB debugging; on iPhone and iPad, the backups on your computer, encrypted ones too. Files fully deleted from a phone can't be brought back by any app. If an Android phone has a memory card, scan the card in a card reader.</p>
+        </details>
+        <details>
           <summary>Does it send my files anywhere?</summary>
           <p>No. Everything happens on your computer. RecovMe has no account, no cloud and no tracking.</p>
         </details>
@@ -703,6 +745,7 @@ p { margin: 0; }
         <div class="links">
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a>
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Report a Problem</a>
+          <a class="btn btn-line" href="/about/">About RecovMe</a>
         </div>
       </div>
     </div>
@@ -714,7 +757,7 @@ p { margin: 0; }
     <div class="big"><img src="assets/icon-256.png" alt="">RecovMe</div>
     <div class="row">
       <p class="credits">© 2026 Dhan Denvert Asuncion. Free and open source under GPL-3.0. Recovery engines: <a href="https://www.cgsecurity.org/wiki/PhotoRec" target="_blank" rel="noopener">PhotoRec</a> by CGSecurity and <a href="https://www.sleuthkit.org" target="_blank" rel="noopener">The Sleuth Kit</a>. Free code signing for Windows provided by <a href="https://signpath.io" target="_blank" rel="noopener">SignPath.io</a>, certificate by <a href="https://signpath.org" target="_blank" rel="noopener">SignPath Foundation</a>.</p>
-      <p><a href="/guides/">Guides</a> · <a href="/it/" hreflang="it" lang="it">Italiano</a> · <a href="/press/">Press</a> · <a href="code-signing.html">Code Signing Policy</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a></p>
+      <p><a href="/guides/">Guides</a> · <a href="/it/" hreflang="it" lang="it">Italiano</a> · <a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/press/">Press</a> · <a href="code-signing.html">Code Signing Policy</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a></p>
     </div>
   </div>
 </footer>

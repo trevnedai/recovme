@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Recovery guides
+    url: https://recovme.app/guides/
+    about: Step-by-step help for SD cards, formatted drives, external drives, Windows, Android and iPhone backups.
+  - name: Guide in italiano
+    url: https://recovme.app/it/guide/
+    about: Guide passo passo in italiano.

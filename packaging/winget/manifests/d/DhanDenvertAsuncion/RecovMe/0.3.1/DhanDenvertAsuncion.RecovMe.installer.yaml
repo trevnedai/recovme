@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.12.0.schema.json
+PackageIdentifier: DhanDenvertAsuncion.RecovMe
+PackageVersion: 0.3.1
+MinimumOSVersion: 10.0.17763.0
+InstallerType: nullsoft
+Scope: machine
+ElevationRequirement: elevatesSelf
+UpgradeBehavior: install
+ReleaseDate: 2026-10-30
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/trevnedai/recovme/releases/download/v0.3.1/RecovMe_0.3.1_x64-setup.exe
+    InstallerSha256: 51E1C9F2596B4C0F4746616D2DE41AB62AF66184D0DF1DF9B7D8C9055AD001A2
+ManifestType: installer
+ManifestVersion: 1.12.0

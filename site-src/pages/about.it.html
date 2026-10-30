@@ -1,0 +1,28 @@
+<h2>Chi sviluppa RecovMe</h2>
+<p>RecovMe è sviluppato da <strong>Dhan Denvert Asuncion</strong>, uno sviluppatore indipendente. Scrivo io l’app, il sito e le guide, e firmo ogni versione per Mac con il mio Apple Developer ID: “Dhan Denvert Asuncion (GH6TUBY83F)”.</p>
+<p>Ho creato RecovMe perché perdere foto e file è già abbastanza stressante, senza che ti chiedano di pagare solo per riaverli. La maggior parte delle app di recupero “gratuite” fa la scansione gratis e poi si fa pagare per salvare quello che ha trovato. Io ne volevo una semplice, onesta su cosa può e non può fare, e gratis fino in fondo.</p>
+
+<h2>Come funziona RecovMe</h2>
+<p>RecovMe non si inventa un proprio metodo di recupero. Usa due motori open source molto apprezzati e fa tutto il lavoro di riordino intorno a loro:</p>
+<ul>
+  <li><a href="https://www.sleuthkit.org" rel="noopener">The Sleuth Kit</a>, di Brian Carrier e collaboratori, recupera i file cancellati di recente con il nome e le cartelle originali.</li>
+  <li><a href="https://www.cgsecurity.org/wiki/PhotoRec" rel="noopener">PhotoRec</a>, di Christophe Grenier (CGSecurity), riconosce più di 480 tipi di file dal loro contenuto, anche dopo una formattazione.</li>
+  <li>Per i telefoni Android usa adb, lo strumento di Google; per iPhone e iPad legge i backup sul tuo computer.</li>
+</ul>
+<p>Poi RecovMe ordina i risultati, rinomina foto e video con la data di scatto e rimuove i duplicati. Legge soltanto l’unità che analizzi e non ci salva mai sopra.</p>
+
+<h2>Come puoi fidarti della tua copia</h2>
+<ul>
+  <li><strong>Open source.</strong> Ogni riga di codice è pubblica su <a href="https://github.com/trevnedai/recovme" rel="noopener">GitHub</a>, con licenza GPL-3.0.</li>
+  <li><strong>Compilato alla luce del sole.</strong> Le versioni vengono compilate da GitHub Actions a partire da quel codice sorgente.</li>
+  <li><strong>Firmato.</strong> L’app per Mac è firmata e notarizzata da Apple. La firma per Windows tramite il programma della SignPath Foundation è in fase di attivazione; vedi la <a href="/code-signing.html">politica di firma del codice</a> (in inglese).</li>
+  <li><strong>Checksum.</strong> Ogni versione elenca i checksum SHA-256 in <code>SHA256SUMS.txt</code>, così puoi verificare che un download sia quello ufficiale.</li>
+  <li><strong>Aggiornamenti firmati.</strong> RecovMe rifiuta qualsiasi aggiornamento che non sia firmato con la sua chiave.</li>
+  <li><strong>Una sola fonte ufficiale.</strong> Scarica RecovMe solo da recovme.app o dalla sua <a href="https://github.com/trevnedai/recovme/releases" rel="noopener">pagina GitHub Releases</a>. Il nome e il logo sono protetti, così le copie non possono spacciarsi per RecovMe (<a href="https://github.com/trevnedai/recovme/blob/main/TRADEMARKS.md" rel="noopener">regole su nome e logo</a>).</li>
+</ul>
+
+<h2>Contatti</h2>
+<p>Per domande, bug e risultati di recupero (buoni o cattivi), apri una segnalazione (issue) su <a href="https://github.com/trevnedai/recovme/issues" rel="noopener">GitHub</a>. Lì puoi anche segnalare una copia che si spaccia per RecovMe. Per i problemi di sicurezza, leggi la <a href="https://github.com/trevnedai/recovme/security/policy" rel="noopener">politica di sicurezza</a>.</p>
+
+<h2>Riconoscimenti</h2>
+<p>PhotoRec © Christophe Grenier, CGSecurity (GPL). The Sleuth Kit © Brian Carrier e collaboratori. Android Debug Bridge (adb) © Google. Font: Bricolage Grotesque e Instrument Sans (SIL Open Font License). Firma del codice per Windows offerta gratuitamente da SignPath.io, certificato di SignPath Foundation.</p>

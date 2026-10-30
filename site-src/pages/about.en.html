@@ -1,0 +1,28 @@
+<h2>Who makes RecovMe</h2>
+<p>RecovMe is made by <strong>Dhan Denvert Asuncion</strong>, an independent developer. I write the app, the website and the guides, and I sign every Mac release with my own Apple Developer ID: “Dhan Denvert Asuncion (GH6TUBY83F)”.</p>
+<p>I built RecovMe because losing photos and files is stressful enough without being asked to pay just to get them back. Most “free” recovery apps scan for free and then charge to save what they found. I wanted one that is simple, honest about what it can and can’t do, and free all the way.</p>
+
+<h2>How RecovMe works</h2>
+<p>RecovMe doesn’t invent its own recovery method. It runs two respected open-source engines and does the tidy-up work around them:</p>
+<ul>
+  <li><a href="https://www.sleuthkit.org" rel="noopener">The Sleuth Kit</a>, by Brian Carrier and contributors, brings back recently deleted files with their original names and folders.</li>
+  <li><a href="https://www.cgsecurity.org/wiki/PhotoRec" rel="noopener">PhotoRec</a>, by Christophe Grenier (CGSecurity), finds more than 480 file types by their content, even after a format.</li>
+  <li>For Android phones it uses Google’s own adb tool; for iPhones and iPads it reads the backups on your computer.</li>
+</ul>
+<p>RecovMe then sorts the results, names photos and videos by the date they were taken and removes duplicates. It only reads the drive you scan and never saves onto it.</p>
+
+<h2>How you can trust your copy</h2>
+<ul>
+  <li><strong>Open source.</strong> Every line of code is public on <a href="https://github.com/trevnedai/recovme" rel="noopener">GitHub</a>, under the GPL-3.0 license.</li>
+  <li><strong>Built in public.</strong> Releases are built by GitHub Actions from that source code.</li>
+  <li><strong>Signed.</strong> The Mac app is signed and notarized by Apple. Windows signing through the SignPath Foundation program is being set up; see the <a href="/code-signing.html">code signing policy</a>.</li>
+  <li><strong>Checksums.</strong> Each release lists SHA-256 checksums in <code>SHA256SUMS.txt</code>, so you can check that a download is the official one.</li>
+  <li><strong>Signed updates.</strong> RecovMe refuses any update that isn’t signed with its own key.</li>
+  <li><strong>One official source.</strong> Get RecovMe only from recovme.app or its <a href="https://github.com/trevnedai/recovme/releases" rel="noopener">GitHub Releases page</a>. The name and logo are protected so that copies can’t pretend to be it (<a href="https://github.com/trevnedai/recovme/blob/main/TRADEMARKS.md" rel="noopener">name and logo policy</a>).</li>
+</ul>
+
+<h2>Contact</h2>
+<p>For questions, bug reports and recovery results (good or bad), open an issue on <a href="https://github.com/trevnedai/recovme/issues" rel="noopener">GitHub</a>. You can also report a copy that pretends to be RecovMe there. Security problems: see the <a href="https://github.com/trevnedai/recovme/security/policy" rel="noopener">security policy</a>.</p>
+
+<h2>Credits</h2>
+<p>PhotoRec © Christophe Grenier, CGSecurity (GPL). The Sleuth Kit © Brian Carrier and contributors. Android Debug Bridge (adb) © Google. Fonts: Bricolage Grotesque and Instrument Sans (SIL Open Font License). Windows code signing provided free by SignPath.io, certificate by SignPath Foundation.</p>

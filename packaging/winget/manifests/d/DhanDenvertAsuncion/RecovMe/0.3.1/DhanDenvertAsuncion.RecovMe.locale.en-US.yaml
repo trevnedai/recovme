@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.12.0.schema.json
+PackageIdentifier: DhanDenvertAsuncion.RecovMe
+PackageVersion: 0.3.1
+PackageLocale: en-US
+Publisher: Dhan Denvert Asuncion
+PublisherUrl: https://recovme.app/about/
+PublisherSupportUrl: https://github.com/trevnedai/recovme/issues
+PrivacyUrl: https://recovme.app/privacy/
+Author: Dhan Denvert Asuncion
+PackageName: RecovMe
+PackageUrl: https://recovme.app/
+License: GPL-3.0-or-later
+LicenseUrl: https://github.com/trevnedai/recovme/blob/main/LICENSE
+Copyright: Copyright © 2026 Dhan Denvert Asuncion
+ShortDescription: Free, open-source file and photo recovery for SD cards, USB sticks and drives, with no limit.
+Description: |-
+  RecovMe recovers deleted and formatted photos, videos, music, recordings, CCTV and dashcam footage and documents from SD cards, USB sticks, external drives and hard drives, and copies what survives on Android phones and in iPhone or iPad backups.
+  It runs The Sleuth Kit and PhotoRec in one scan, then sorts the results by type and names photos by the date they were taken. It only reads the drive it scans. No trial, no size limit, no account.
+Moniker: recovme
+Tags:
+  - data-recovery
+  - file-recovery
+  - photo-recovery
+  - undelete
+  - sd-card
+  - photorec
+  - sleuthkit
+  - recovery
+  - open-source
+ReleaseNotesUrl: https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md
+ManifestType: defaultLocale
+ManifestVersion: 1.12.0

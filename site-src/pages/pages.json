@@ -1,0 +1,63 @@
+{
+ "pages": [
+  {
+   "id": "about",
+   "type": "AboutPage",
+   "updated": "2026-10-30",
+   "en": {
+    "path": "/about/",
+    "short": "About",
+    "title": "About RecovMe and Its Maker | RecovMe",
+    "h1": "About RecovMe",
+    "description": "Who makes RecovMe, how it recovers files with PhotoRec and The Sleuth Kit, and how to check you have the genuine, signed app.",
+    "lede": "RecovMe is a free, open-source recovery app made by one independent developer, built on two respected open-source engines."
+   },
+   "it": {
+    "path": "/it/chi-sono/",
+    "short": "Chi sono",
+    "title": "Chi crea RecovMe | RecovMe",
+    "h1": "Chi crea RecovMe",
+    "description": "Chi crea RecovMe, come recupera i file con PhotoRec e The Sleuth Kit, e come verificare di avere l’app originale e firmata.",
+    "lede": "RecovMe è un’app di recupero gratuita e open source creata da uno sviluppatore indipendente, basata su due motori open source molto apprezzati."
+   }
+  },
+  {
+   "id": "privacy",
+   "type": "WebPage",
+   "updated": "2026-10-30",
+   "en": {
+    "path": "/privacy/",
+    "short": "Privacy",
+    "title": "Privacy Policy | RecovMe",
+    "h1": "Privacy Policy",
+    "description": "RecovMe collects nothing: no account, no analytics, no tracking, and your files never leave your computer. This website has no cookies or analytics."
+   },
+   "it": {
+    "path": "/it/privacy/",
+    "short": "Privacy",
+    "title": "Informativa sulla privacy | RecovMe",
+    "h1": "Informativa sulla privacy",
+    "description": "RecovMe non raccoglie nulla: niente account, statistiche o tracciamento, e i tuoi file non lasciano mai il computer. Questo sito non usa cookie né statistiche."
+   }
+  },
+  {
+   "id": "terms",
+   "type": "WebPage",
+   "updated": "2026-10-30",
+   "en": {
+    "path": "/terms/",
+    "short": "Terms",
+    "title": "Terms of Use | RecovMe",
+    "h1": "Terms of Use",
+    "description": "RecovMe’s license (GPL-3.0 with additional terms), name and logo policy, no-warranty notice, official downloads and website content terms."
+   },
+   "it": {
+    "path": "/it/termini/",
+    "short": "Termini",
+    "title": "Termini d’uso | RecovMe",
+    "h1": "Termini d’uso",
+    "description": "La licenza di RecovMe (GPL-3.0 con termini aggiuntivi), la politica su nome e logo, l’assenza di garanzia, i download ufficiali e i termini del sito."
+   }
+  }
+ ]
+}

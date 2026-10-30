@@ -41,7 +41,7 @@ you can save them. RecovMe doesn't.
 | | Typical "free" recovery app | RecovMe |
 |---|---|---|
 | Saving the files it finds | Pay first (license or subscription) | Free, always |
-| How much you can recover | A free limit of a few hundred MB to 2 GB | No limit |
+| How much you can recover | A free limit of 100 MB to 2 GB | No limit |
 | Account or sign-up | Often required | None |
 | Your files | Varies; many collect usage data | Never leave your computer |
 | Source code | Closed | Open (GPL-3.0) |

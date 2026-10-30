@@ -1,0 +1,71 @@
+<div class="chance" data-level="mid">
+  <p class="label">Probabilità di recupero: dipende da dove esistono ancora le foto</p>
+  <p>Un telefono Android non si può analizzare blocco per blocco come una scheda di memoria. La sua memoria è cifrata e lo spazio dei file cancellati viene ripulito. Quindi nessuna app può riportare indietro una foto che non c’è più da nessuna parte. Ma spesso le foto cancellate sopravvivono da qualche parte: in un cestino, in un’app di chat o come anteprima. RecovMe le ricopia tutte in una volta sola.</p>
+</div>
+
+<h2>Controlla prima questi posti</h2>
+<ul>
+  <li><strong>Google Foto.</strong> Apri l’app, poi Raccolte › Cestino (oppure Libreria › Cestino). Le foto salvate nel backup restano lì per un po’ dopo che le hai cancellate.</li>
+  <li><strong>Il cestino della galleria.</strong> Sui telefoni Samsung, apri Galleria › Menu › Cestino. Le gallerie di Xiaomi, OPPO, OnePlus, vivo e Huawei hanno un album Eliminati di recente.</li>
+  <li><strong>Una scheda di memoria.</strong> Se il telefono ha una scheda microSD, toglila e segui la <a href="/it/guide/recuperare-foto-cancellate-scheda-sd/">guida per le schede SD</a>: una scheda si può analizzare blocco per blocco, quindi di solito restituisce di più.</li>
+</ul>
+
+<h2>Cosa RecovMe può e non può recuperare</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Dove cerca</th><th scope="col">Cosa recupera</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Il cestino nascosto di Android (Android 11 e successivi)</th><td>Foto e video cancellati più o meno negli ultimi 30 giorni, con il loro nome originale.</td></tr>
+      <tr><th scope="row">Cestino della galleria e del gestore file</th><td>Galleria e Archivio di Samsung (rimessi nella loro cartella originale), Xiaomi, Huawei, OPPO, OnePlus, vivo e Files by Google.</td></tr>
+      <tr><th scope="row">App di chat</th><td>I file multimediali di WhatsApp (stati compresi), Telegram, Viber e altre chat, più la cache di Telegram con tutto quello che hai visto nelle chat, anche se non l’hai mai salvato.</td></tr>
+      <tr><th scope="row">File incompleti e anteprime</th><td>Foto e download che non sono mai stati salvati del tutto, e le miniature di anteprima (utili soprattutto sui telefoni precedenti ad Android 10).</td></tr>
+      <tr><th scope="row">Foto cancellate ovunque</th><td><span class="lvl low">Impossibile</span>, con RecovMe come con qualsiasi altra app: i dati non esistono più sul telefono.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Recupera le foto in 6 passaggi</h2>
+<p>RecovMe ricopia soltanto i file dal telefono e non modifica nulla. È gratis fino alla fine: nessuna prova, nessun limite, niente da pagare prima di salvare. Per ora l’app è in inglese, quindi qui trovi il nome esatto di ogni pulsante.</p>
+
+<ol class="steps">
+  <li><b>Attiva il debug USB sul telefono</b>
+    <p>Apri Impostazioni › Info telefono e tocca sette volte <strong>Numero build</strong>. Poi apri Impostazioni › Opzioni sviluppatore (su alcuni telefoni si trova in Sistema) e attiva <span class="ui">Debug USB</span>.</p></li>
+  <li><b>Collega il telefono</b>
+    <p>Usa un cavo USB, sblocca il telefono e tocca <span class="ui">Consenti</span> quando compare “Consentire il debug USB?”. Su Windows, alcuni telefoni hanno bisogno anche del driver USB del produttore.</p></li>
+  <li><b>Apri RecovMe e scegli il telefono</b>
+    <p>Scarica RecovMe gratis per Mac o Windows e aprilo. Il telefono compare in <span class="ui">Phones &amp; Tablets</span> (Telefoni e tablet) nell’elenco a sinistra. Se non c’è, premi il pulsante per aggiornare. Prima della prima scansione, RecovMe ti mostra cosa può e non può recuperare.</p></li>
+  <li><b>Scegli dove cercare e cosa trovare</b>
+    <p>In <span class="ui">Look In</span> (Cerca in), <span class="ui">Recently Deleted &amp; Trash</span> (Eliminati di recente e cestino), <span class="ui">Photo Thumbnails</span> (Miniature delle foto) e <span class="ui">WhatsApp, Telegram &amp; Other Chats</span> sono attivi di default. Attiva <span class="ui">Everything in the Phone’s Folders</span> (Tutto nelle cartelle del telefono) per ricopiare anche tutte le cartelle del telefono. In <span class="ui">Look For</span> (Cerca), lascia attivi Photos e Videos.</p></li>
+  <li><b>Salva sul computer</b>
+    <p>In <span class="ui">Save Recovered Files To</span> (Salva i file recuperati in), scegli una cartella sul computer con abbastanza spazio libero.</p></li>
+  <li><b>Avvia la scansione e apri le foto</b>
+    <p>Premi <span class="ui">Start Scan</span>, poi <span class="ui">Open Recovered Files</span> quando ha finito. I file senza estensione, frequenti nelle cache delle chat, vengono riconosciuti dal contenuto e ricevono l’estensione giusta.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Quando hai finito,</strong> puoi disattivare di nuovo il debug USB in Opzioni sviluppatore.</p>
+</div>
+
+<h2>Domande</h2>
+<div class="faq">
+  <details>
+    <summary>Un’app può recuperare le foto cancellate dalla memoria di un telefono Android?</summary>
+    <p>Solo se ne esiste ancora una copia da qualche parte, per esempio in un cestino, in un’app di chat o in un’anteprima. I telefoni Android moderni cifrano la memoria e ripuliscono lo spazio cancellato. Per questo le app che promettono di analizzare la memoria del telefono blocco per blocco non possono farlo senza il root, e anche con il root di solito i dati non ci sono più.</p>
+  </details>
+  <details>
+    <summary>Devo fare il root del telefono?</summary>
+    <p>No. RecovMe usa il debug USB, un’impostazione standard di Android, tramite adb, lo strumento di Google, che è già incluso in RecovMe.</p>
+  </details>
+  <details>
+    <summary>Modifica qualcosa sul telefono?</summary>
+    <p>No. Ricopia soltanto i file sul computer. Sul telefono non viene cancellato, spostato o installato nulla.</p>
+  </details>
+  <details>
+    <summary>Può recuperare le foto di WhatsApp?</summary>
+    <p>Ricopia i file multimediali di WhatsApp ancora presenti sul telefono, stati compresi. Le foto cancellate dalla cartella di WhatsApp e dal cestino possono tornare solo da un backup, come il backup di WhatsApp su Google Drive.</p>
+  </details>
+  <details>
+    <summary>RecovMe è davvero gratis?</summary>
+    <p>Sì, al 100%. Nessuna prova, nessun limite di dimensione e niente da sbloccare dopo la scansione. È open source e le donazioni sono facoltative.</p>
+  </details>
+</div>

@@ -1,0 +1,71 @@
+<div class="chance" data-level="mid">
+  <p class="label">Your chances: it depends where the photos still exist</p>
+  <p>An Android phone can’t be searched block by block like a memory card. Its storage is encrypted and the space of deleted files is wiped. So no app can bring back a photo that is gone from everywhere. But deleted photos often survive somewhere: in a trash folder, in a chat app, or as a preview. RecovMe copies all of those in one go.</p>
+</div>
+
+<h2>Check these places first</h2>
+<ul>
+  <li><strong>Google Photos.</strong> Open the app, then Collections › Trash (or Library › Trash). Backed-up photos stay there for a while after you delete them.</li>
+  <li><strong>The gallery’s own trash.</strong> On Samsung phones, open Gallery › Menu › Recycle bin. Xiaomi, OPPO, OnePlus, vivo and Huawei galleries have a Recently deleted album.</li>
+  <li><strong>A memory card.</strong> If the phone has a microSD card, take it out and follow the <a href="/guides/recover-deleted-photos-sd-card/">SD card guide</a>: a card can be searched block by block, so it usually gives back more.</li>
+</ul>
+
+<h2>What RecovMe can and can’t bring back</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Where it looks</th><th scope="col">What comes back</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Android’s hidden trash (Android 11 and later)</th><td>Photos and videos deleted in about the last 30 days, with their original names put back.</td></tr>
+      <tr><th scope="row">Gallery and file manager trash</th><td>Samsung Gallery and My Files (back in their original folder), Xiaomi, Huawei, OPPO, OnePlus, vivo and Files by Google.</td></tr>
+      <tr><th scope="row">Chat apps</th><td>Media from WhatsApp (statuses included), Telegram, Viber and other chats, and Telegram’s cache of everything viewed in chats, even if never saved.</td></tr>
+      <tr><th scope="row">Unfinished files and previews</th><td>Photos and downloads that never finished saving, and thumbnail previews (mostly useful on phones older than Android 10).</td></tr>
+      <tr><th scope="row">Photos deleted from everywhere</th><td><span class="lvl low">Not possible</span>, with RecovMe or any other app: the data no longer exists on the phone.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Recover the photos in 6 steps</h2>
+<p>RecovMe only copies files from the phone; it changes nothing on it. It’s free to the end: no trial, no limit, nothing to pay before you can save.</p>
+
+<ol class="steps">
+  <li><b>Turn on USB debugging on the phone</b>
+    <p>Open Settings › About phone and tap <strong>Build number</strong> seven times. Then open Settings › Developer options (on some phones under System) and turn on <span class="ui">USB debugging</span>.</p></li>
+  <li><b>Connect the phone</b>
+    <p>Use a USB cable, unlock the phone and tap <span class="ui">Allow</span> when it asks “Allow USB debugging?”. On Windows, some phones also need their maker’s USB driver.</p></li>
+  <li><b>Open RecovMe and pick the phone</b>
+    <p>Download RecovMe free for Mac or Windows and open it. The phone appears under <span class="ui">Phones &amp; Tablets</span> in the list on the left. If it doesn’t, press refresh. RecovMe shows what it can and can’t bring back before the first scan.</p></li>
+  <li><b>Choose where to look and what to find</b>
+    <p>Under <span class="ui">Look In</span>, <span class="ui">Recently Deleted &amp; Trash</span>, <span class="ui">Photo Thumbnails</span> and <span class="ui">WhatsApp, Telegram &amp; Other Chats</span> are on by default. Turn on <span class="ui">Everything in the Phone’s Folders</span> to also copy all the phone’s own folders. Under <span class="ui">Look For</span>, keep Photos and Videos on.</p></li>
+  <li><b>Save to your computer</b>
+    <p>Under <span class="ui">Save Recovered Files To</span>, pick a folder on your computer with enough free space.</p></li>
+  <li><b>Start and open your photos</b>
+    <p>Press <span class="ui">Start Scan</span>, then <span class="ui">Open Recovered Files</span> when it’s done. Files without an extension, common in chat caches, are recognized by their content and given the right one.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>When you’re done,</strong> you can turn USB debugging off again in Developer options.</p>
+</div>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>Can any app recover photos deleted from an Android phone’s memory?</summary>
+    <p>Only if a copy still exists somewhere, such as a trash folder, a chat app or a preview. Modern Android phones encrypt their storage and wipe deleted space, so apps that promise to scan the phone’s memory block by block can’t do it without rooting the phone, and even then the data is usually gone.</p>
+  </details>
+  <details>
+    <summary>Do I need to root the phone?</summary>
+    <p>No. RecovMe uses USB debugging, a standard Android setting, through Google’s own adb tool, which comes with RecovMe.</p>
+  </details>
+  <details>
+    <summary>Does it change anything on the phone?</summary>
+    <p>No. It only copies files to your computer. Nothing is deleted, moved or installed on the phone.</p>
+  </details>
+  <details>
+    <summary>Can it recover WhatsApp photos?</summary>
+    <p>It copies WhatsApp media still on the phone, statuses included. Photos that were deleted from WhatsApp’s folder and from the trash can only come back from a backup, such as WhatsApp’s own Google Drive backup.</p>
+  </details>
+  <details>
+    <summary>Is RecovMe really free?</summary>
+    <p>Yes, 100%. There’s no trial, no size limit and nothing to unlock after the scan. It’s open source, and donations are optional.</p>
+  </details>
+</div>

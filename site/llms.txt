@@ -1,0 +1,51 @@
+# RecovMe
+
+> RecovMe is a free, open-source (GPL-3.0) file and photo recovery app for Mac (Apple silicon, macOS 11 or later) and Windows 10/11. It recovers deleted and formatted photos, videos, music, recordings, CCTV and dashcam footage and documents from SD cards, USB sticks, external drives and PC hard drives, and copies what still survives on Android phones and in iPhone or iPad backups. It has no trial, no size limit and no paywall after the scan, needs no account, and nothing leaves the computer.
+
+Made by Dhan Denvert Asuncion. It runs two open-source recovery engines in one scan: The Sleuth Kit (recently deleted files with their original names) and PhotoRec (480+ file types found by content, even after a format), then sorts the results by type, names photos and videos by the date they were taken and removes duplicates. It only reads the drive it scans and refuses to save onto it.
+
+Honest limits: no app can recover files deleted from internal SSDs with TRIM or from an Apple silicon Mac's internal drive (encrypted, wiped by the Mac); on phones only copies that still exist (trash folders, chat apps, previews, backups) can come back; Intel Macs are not supported.
+
+## Download
+
+- [Download for Mac and Windows](https://recovme.app/): official site; installers also on [GitHub Releases](https://github.com/trevnedai/recovme/releases/latest) with SHA256SUMS.txt
+- [What's new](https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md)
+- [Source code](https://github.com/trevnedai/recovme)
+
+## Guides
+
+- [How to Recover Deleted Photos from an SD Card](https://recovme.app/guides/recover-deleted-photos-sd-card/): Camera, phone and drone cards keep deleted photos until new ones are saved over them.
+- [How to Recover Files from a Formatted SD Card or USB Stick](https://recovme.app/guides/recover-formatted-sd-card-usb-stick/): A normal format only clears the index. Here’s which formats can be undone, and how.
+- [How to Recover Deleted Files from an External Hard Drive](https://recovme.app/guides/recover-deleted-files-external-hard-drive/): Hard drives leave deleted files in place. External SSDs are a different story.
+- [How to Recover Deleted CCTV and Dashcam Footage](https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/): Loop recording overwrites old video fast. Take the card out first, then scan it.
+- [How to Recover Deleted Files on Windows 10 and 11](https://recovme.app/guides/recover-deleted-files-windows/): Check the free built-in options first. Then whether your PC has a hard drive or an SSD decides the rest.
+- [How to Recover Deleted Photos From an Android Phone](https://recovme.app/guides/recover-deleted-photos-android/): Trash folders, chat apps and previews often still hold them. No root needed.
+- [How to Recover Deleted iPhone Photos From a Computer Backup](https://recovme.app/guides/recover-photos-iphone-backup/): A Finder or iTunes backup from before the deletion still has them. No restore needed.
+
+## Comparisons
+
+- [PhotoRec With a Real Interface, for Mac and Windows](https://recovme.app/guides/photorec-gui-mac-windows/): The same open-source engine, without Terminal, with file names kept and results sorted.
+- [Looking for Recuva for Mac? Here’s a Free Alternative](https://recovme.app/guides/recuva-for-mac/): Recuva is Windows-only. The real Mac options and their free limits, checked October 2026.
+- [A Free Alternative to Disk Drill, With No Recovery Limit](https://recovme.app/guides/disk-drill-free-alternative/): Disk Drill free stops at 100 MB on Windows and previews only on Mac. What to use instead.
+- [Free Data Recovery Software in 2026: How Free Is Each One?](https://recovme.app/guides/best-free-data-recovery-software/): Every app’s free limit, checked on its maker’s site: from 100 MB to no limit at all.
+
+## About
+
+- [About RecovMe and its maker](https://recovme.app/about/)
+- [Privacy](https://recovme.app/privacy/): no analytics, no tracking, files never leave the computer
+- [Press kit](https://recovme.app/press/)
+
+## Italiano
+
+- [RecovMe in italiano](https://recovme.app/it/)
+- [Come recuperare le foto cancellate da una scheda SD](https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/)
+- [Come recuperare i file da una scheda SD o chiavetta USB formattata](https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/)
+- [Come recuperare i file cancellati da un hard disk esterno](https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/)
+- [Come recuperare i video cancellati di telecamere e dashcam](https://recovme.app/it/guide/recuperare-video-telecamera-dashcam-scheda-sd/)
+- [Come recuperare i file cancellati su Windows 10 e 11](https://recovme.app/it/guide/recuperare-file-cancellati-windows/)
+- [Come recuperare le foto cancellate da un telefono Android](https://recovme.app/it/guide/recuperare-foto-cancellate-android/)
+- [Come recuperare le foto cancellate di iPhone da un backup sul computer](https://recovme.app/it/guide/recuperare-foto-backup-iphone/)
+- [PhotoRec con una vera interfaccia, per Mac e Windows](https://recovme.app/it/guide/photorec-interfaccia-grafica-mac-windows/)
+- [Cerchi Recuva per Mac? Ecco un’alternativa gratuita](https://recovme.app/it/guide/recuva-per-mac/)
+- [Un’alternativa gratuita a Disk Drill, senza limiti di recupero](https://recovme.app/it/guide/alternativa-gratuita-disk-drill/)
+- [Programmi di recupero dati gratis nel 2026: quanto sono gratis davvero?](https://recovme.app/it/guide/migliori-programmi-recupero-dati-gratis/)

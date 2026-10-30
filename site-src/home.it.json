@@ -74,8 +74,8 @@
    ">Recupera i tuoi file. Gratis.</h1>"
   ],
   [
-   "RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards, and hard drives. 100% free and open source: no trial, no limits, no paywall after the scan.",
-   "RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione."
+   "RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards and hard drives, and copies what survives on Android phones and in iPhone backups. 100% free and open source: no trial, no limits, no paywall after the scan.",
+   "RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk, e ricopia ciò che sopravvive sui telefoni Android e nei backup di iPhone. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione."
   ],
   [
    "aria-label=\"What it recovers\"",
@@ -150,8 +150,8 @@
    ">Quanto puoi recuperare</th>"
   ],
   [
-   ">Free limit of a few hundred MB to 2 GB</td>",
-   ">Limite gratuito da poche centinaia di MB a 2 GB</td>"
+   ">Free limit of 100 MB to 2 GB</td>",
+   ">Limite gratuito da 100 MB a 2 GB</td>"
   ],
   [
    ">No limit</td>",
@@ -574,8 +574,8 @@
    "<h3>Difficile per qualsiasi app</h3><p>Gli SSD dei portatili cancellano da soli i file eliminati nel giro di pochi minuti. Ogni Mac con Apple silicon inoltre cifra il proprio disco. Usa prima il Cestino, Time Machine o OneDrive.</p>"
   ],
   [
-   "<h3>Not for Phones</h3><p>iPhones and iPads don't let any app read deleted space. Recently Deleted, iCloud and computer backups are the way to get them back.</p>",
-   "<h3>Non per i telefoni</h3><p>iPhone e iPad non permettono a nessuna app di leggere lo spazio cancellato. Per recuperare i file servono Eliminati di recente, iCloud o i backup sul computer.</p>"
+   "<h3>Phones: What Survives</h3><p>Phones can't be searched block by block. RecovMe copies what still survives: trash folders, chat apps and previews on Android, and iPhone or iPad backups on your computer.</p>",
+   "<h3>Telefoni: cosa sopravvive</h3><p>I telefoni non si possono analizzare blocco per blocco. RecovMe ricopia ciò che sopravvive ancora: cestini, app di chat e anteprime su Android, e i backup di iPhone o iPad sul computer.</p>"
   ],
   [
    ">Step-by-Step Guides</h2>",
@@ -598,8 +598,8 @@
    "<a href=\"/it/guide/recuperare-file-cancellati-hard-disk-esterno/\"><h3>File cancellati da un disco esterno</h3><p>Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia.</p><span class=\"go\">Leggi la guida →</span></a>"
   ],
   [
-   "<p class=\"more\"><a href=\"/guides/\">All guides →</a><a href=\"/it/guide/\" hreflang=\"it\" lang=\"it\">Guide in italiano →</a></p>",
-   "<p class=\"more\"><a href=\"/it/guide/\">Tutte le guide →</a><a href=\"/guides/\" hreflang=\"en\" lang=\"en\">Guides in English →</a></p>"
+   "<p class=\"more\"><a href=\"/guides/\">All guides and comparisons →</a><a href=\"/it/guide/\" hreflang=\"it\" lang=\"it\">Guide in italiano →</a></p>",
+   "<p class=\"more\"><a href=\"/it/guide/\">Tutte le guide e i confronti →</a><a href=\"/guides/\" hreflang=\"en\" lang=\"en\">Guides in English →</a></p>"
   ],
   [
    ">Got Your Files Back?<br>Buy Me a Coffee</h2>",
@@ -738,8 +738,32 @@
    "</a>, certificato di <a"
   ],
   [
-   "<p><a href=\"/guides/\">Guides</a> · <a href=\"/it/\" hreflang=\"it\" lang=\"it\">Italiano</a> · <a href=\"/press/\">Press</a> · <a href=\"code-signing.html\">Code Signing Policy</a>",
-   "<p><a href=\"/it/guide/\">Guide</a> · <a href=\"/\" hreflang=\"en\" lang=\"en\">English</a> · <a href=\"/press/\">Stampa</a> · <a href=\"code-signing.html\">Politica di firma del codice</a>"
+   "<p><a href=\"/guides/\">Guides</a> · <a href=\"/it/\" hreflang=\"it\" lang=\"it\">Italiano</a> · <a href=\"/about/\">About</a> · <a href=\"/privacy/\">Privacy</a> · <a href=\"/terms/\">Terms</a> · <a href=\"/press/\">Press</a> · <a href=\"code-signing.html\">Code Signing Policy</a>",
+   "<p><a href=\"/it/guide/\">Guide</a> · <a href=\"/\" hreflang=\"en\" lang=\"en\">English</a> · <a href=\"/it/chi-sono/\">Chi sono</a> · <a href=\"/it/privacy/\">Privacy</a> · <a href=\"/it/termini/\">Termini</a> · <a href=\"/press/\">Stampa</a> · <a href=\"code-signing.html\">Politica di firma del codice</a>"
+  ],
+  [
+   "<a href=\"/guides/recover-deleted-photos-android/\"><h3>Deleted Photos on Android</h3><p>Trash folders, chat apps and previews often still hold them. No root needed.</p><span class=\"go\">Read the guide →</span></a>",
+   "<a href=\"/it/guide/recuperare-foto-cancellate-android/\"><h3>Foto cancellate su Android</h3><p>Cestini, app di chat e anteprime spesso le conservano ancora. Senza root.</p><span class=\"go\">Leggi la guida →</span></a>"
+  ],
+  [
+   "<a href=\"/guides/recover-photos-iphone-backup/\"><h3>iPhone Photos From a Backup</h3><p>A Finder or iTunes backup from before the deletion still has them.</p><span class=\"go\">Read the guide →</span></a>",
+   "<a href=\"/it/guide/recuperare-foto-backup-iphone/\"><h3>Foto di iPhone da un backup</h3><p>Un backup di Finder o iTunes fatto prima della cancellazione le contiene ancora.</p><span class=\"go\">Leggi la guida →</span></a>"
+  ],
+  [
+   "<a href=\"/guides/best-free-data-recovery-software/\"><h3>Free Recovery Software Compared</h3><p>Every app’s free limit, checked on its maker’s site: from 100 MB to no limit at all.</p><span class=\"go\">Read the comparison →</span></a>",
+   "<a href=\"/it/guide/migliori-programmi-recupero-dati-gratis/\"><h3>Programmi di recupero gratis a confronto</h3><p>Il limite gratuito di ogni app, verificato sul sito del produttore: da 100 MB a nessun limite.</p><span class=\"go\">Leggi il confronto →</span></a>"
+  ],
+  [
+   "<summary>Can it recover photos from my phone?</summary>",
+   "<summary>Può recuperare le foto dal mio telefono?</summary>"
+  ],
+  [
+   "Partly. Phones can't be searched block by block like a memory card, so RecovMe copies what still exists: on Android, the trash, gallery trash, chat apps and previews, over USB debugging; on iPhone and iPad, the backups on your computer, encrypted ones too. Files fully deleted from a phone can't be brought back by any app. If an Android phone has a memory card, scan the card in a card reader.",
+   "In parte. I telefoni non si possono analizzare blocco per blocco come una scheda di memoria, quindi RecovMe ricopia ciò che esiste ancora: su Android, il cestino, i cestini delle gallerie, le app di chat e le anteprime, tramite il debug USB; su iPhone e iPad, i backup sul computer, anche quelli codificati. I file cancellati del tutto da un telefono non possono essere recuperati da nessuna app. Se un telefono Android ha una scheda di memoria, analizza la scheda con un lettore."
+  ],
+  [
+   "<a class=\"btn btn-line\" href=\"/about/\">About RecovMe</a>",
+   "<a class=\"btn btn-line\" href=\"/it/chi-sono/\">Chi crea RecovMe</a>"
   ]
  ]
 }

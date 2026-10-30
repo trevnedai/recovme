@@ -10,7 +10,11 @@
 <link rel="alternate" hreflang="en" href="https://recovme.app/">
 <link rel="alternate" hreflang="it" href="https://recovme.app/it/">
 <link rel="alternate" hreflang="x-default" href="https://recovme.app/">
-<link rel="icon" href="/assets/favicon.png">
+<link rel="icon" href="/assets/favicon.png" sizes="64x64" type="image/png">
+<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0e3b39">
 <meta property="og:site_name" content="RecovMe">
 <meta property="og:title" content="RecovMe — Recupera i tuoi file. Gratis.">
 <meta property="og:description" content="Recupero file gratuito e open source per Mac e Windows: foto, video, musica, registrazioni, riprese di telecamere e documenti. Niente da pagare dopo la scansione.">
@@ -33,6 +37,24 @@
     "it"
    ],
    "publisher": {
+    "@id": "https://recovme.app/#org"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://recovme.app/#org",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://recovme.app/assets/icon-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/trevnedai/recovme"
+   ],
+   "founder": {
     "@id": "https://recovme.app/#maker"
    }
   },
@@ -40,7 +62,10 @@
    "@type": "Person",
    "@id": "https://recovme.app/#maker",
    "name": "Dhan Denvert Asuncion",
-   "url": "https://recovme.app/#about"
+   "url": "https://recovme.app/about/",
+   "sameAs": [
+    "https://github.com/trevnedai"
+   ]
   },
   {
    "@type": "SoftwareApplication",
@@ -59,14 +84,18 @@
    "isAccessibleForFree": true,
    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
    "downloadUrl": "https://github.com/trevnedai/recovme/releases/latest",
+   "releaseNotes": "https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md",
    "screenshot": [
     "https://recovme.app/assets/app-setup.webp",
     "https://recovme.app/assets/app-scan.webp",
     "https://recovme.app/assets/app-done.webp"
    ],
-   "image": "https://recovme.app/assets/icon-256.png",
+   "image": "https://recovme.app/assets/og.png",
    "author": {
     "@id": "https://recovme.app/#maker"
+   },
+   "publisher": {
+    "@id": "https://recovme.app/#org"
    },
    "codeRepository": "https://github.com/trevnedai/recovme"
   },
@@ -133,6 +162,14 @@
     },
     {
      "@type": "Question",
+     "name": "Può recuperare le foto dal mio telefono?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "In parte. I telefoni non si possono analizzare blocco per blocco come una scheda di memoria, quindi RecovMe ricopia ciò che esiste ancora: su Android, il cestino, i cestini delle gallerie, le app di chat e le anteprime, tramite il debug USB; su iPhone e iPad, i backup sul computer, anche quelli codificati. I file cancellati del tutto da un telefono non possono essere recuperati da nessuna app. Se un telefono Android ha una scheda di memoria, analizza la scheda con un lettore."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Invia i miei file da qualche parte?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -144,9 +181,7 @@
  ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 /* Layout: a deep-teal opening field holding the real app, then alternating
    light fields: the chance checker, the three screens, the file types, the
@@ -452,7 +487,7 @@ p { margin: 0; }
       <div class="hero-art"><img src="/assets/banner.webp" width="1672" height="941" alt=""></div>
       <div>
         <h1 id="hero-title">Recupera i tuoi file. Gratis.</h1>
-        <p class="lede">RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione.</p>
+        <p class="lede">RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk, e ricopia ciò che sopravvive sui telefoni Android e nei backup di iPhone. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione.</p>
         <ul class="types" aria-label="Cosa recupera">
           <li>Foto</li><li>Video</li><li>Musica</li><li>Registrazioni vocali</li><li>Riprese di telecamere e dashcam</li><li>Documenti</li><li>Archivi</li>
         </ul>
@@ -490,7 +525,7 @@ p { margin: 0; }
           <thead><tr><th scope="col"><span class="sr">Funzione</span></th><th scope="col">Tipico programma "gratuito"</th><th scope="col">RecovMe</th></tr></thead>
           <tbody>
             <tr><th scope="row">Salvare i file trovati</th><td class="them">Prima paghi, di solito una licenza o un abbonamento annuale</td><td class="us">Gratis, sempre</td></tr>
-            <tr><th scope="row">Quanto puoi recuperare</th><td class="them">Limite gratuito da poche centinaia di MB a 2 GB</td><td class="us">Nessun limite</td></tr>
+            <tr><th scope="row">Quanto puoi recuperare</th><td class="them">Limite gratuito da 100 MB a 2 GB</td><td class="us">Nessun limite</td></tr>
             <tr><th scope="row">Account o registrazione</th><td class="them">Spesso obbligatori</td><td class="us">Nessuno</td></tr>
             <tr><th scope="row">I tuoi file</th><td class="them">Dipende; molti raccolgono dati d’uso</td><td class="us">Non lasciano mai il computer</td></tr>
             <tr><th scope="row">Puoi controllare il codice?</th><td class="them">No, codice chiuso</td><td class="us">Sì, open source su GitHub</td></tr>
@@ -610,7 +645,7 @@ p { margin: 0; }
       <div class="limits">
         <div><h3>Funziona meglio su</h3><p>Schede SD e delle fotocamere, chiavette USB, hard disk esterni e l’hard disk interno dei PC meno recenti.</p></div>
         <div><h3>Difficile per qualsiasi app</h3><p>Gli SSD dei portatili cancellano da soli i file eliminati nel giro di pochi minuti. Ogni Mac con Apple silicon inoltre cifra il proprio disco. Usa prima il Cestino, Time Machine o OneDrive.</p></div>
-        <div><h3>Non per i telefoni</h3><p>iPhone e iPad non permettono a nessuna app di leggere lo spazio cancellato. Per recuperare i file servono Eliminati di recente, iCloud o i backup sul computer.</p></div>
+        <div><h3>Telefoni: cosa sopravvive</h3><p>I telefoni non si possono analizzare blocco per blocco. RecovMe ricopia ciò che sopravvive ancora: cestini, app di chat e anteprime su Android, e i backup di iPhone o iPad sul computer.</p></div>
       </div>
     </div>
   </section>
@@ -623,8 +658,11 @@ p { margin: 0; }
         <li><a href="/it/guide/recuperare-foto-cancellate-scheda-sd/"><h3>Foto cancellate da una scheda SD</h3><p>Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra.</p><span class="go">Leggi la guida →</span></a></li>
         <li><a href="/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"><h3>Scheda SD o chiavetta USB formattata</h3><p>Una formattazione normale cancella solo l’indice. Quali formattazioni si possono annullare, e come.</p><span class="go">Leggi la guida →</span></a></li>
         <li><a href="/it/guide/recuperare-file-cancellati-hard-disk-esterno/"><h3>File cancellati da un disco esterno</h3><p>Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia.</p><span class="go">Leggi la guida →</span></a></li>
+        <li><a href="/it/guide/recuperare-foto-cancellate-android/"><h3>Foto cancellate su Android</h3><p>Cestini, app di chat e anteprime spesso le conservano ancora. Senza root.</p><span class="go">Leggi la guida →</span></a></li>
+        <li><a href="/it/guide/recuperare-foto-backup-iphone/"><h3>Foto di iPhone da un backup</h3><p>Un backup di Finder o iTunes fatto prima della cancellazione le contiene ancora.</p><span class="go">Leggi la guida →</span></a></li>
+        <li><a href="/it/guide/migliori-programmi-recupero-dati-gratis/"><h3>Programmi di recupero gratis a confronto</h3><p>Il limite gratuito di ogni app, verificato sul sito del produttore: da 100 MB a nessun limite.</p><span class="go">Leggi il confronto →</span></a></li>
       </ul>
-      <p class="more"><a href="/it/guide/">Tutte le guide →</a><a href="/guides/" hreflang="en" lang="en">Guides in English →</a></p>
+      <p class="more"><a href="/it/guide/">Tutte le guide e i confronti →</a><a href="/guides/" hreflang="en" lang="en">Guides in English →</a></p>
     </div>
   </section>
 
@@ -684,6 +722,10 @@ p { margin: 0; }
           <p>Sì, per le telecamere che registrano video MP4, cioè la maggior parte delle telecamere da casa e delle dashcam (Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre). Togli subito la scheda dalla telecamera, perché registra sopra le riprese vecchie, e analizzala con un lettore di schede.</p>
         </details>
         <details>
+          <summary>Può recuperare le foto dal mio telefono?</summary>
+          <p>In parte. I telefoni non si possono analizzare blocco per blocco come una scheda di memoria, quindi RecovMe ricopia ciò che esiste ancora: su Android, il cestino, i cestini delle gallerie, le app di chat e le anteprime, tramite il debug USB; su iPhone e iPad, i backup sul computer, anche quelli codificati. I file cancellati del tutto da un telefono non possono essere recuperati da nessuna app. Se un telefono Android ha una scheda di memoria, analizza la scheda con un lettore.</p>
+        </details>
+        <details>
           <summary>Invia i miei file da qualche parte?</summary>
           <p>No. Tutto avviene sul tuo computer. RecovMe non ha account, cloud né tracciamento.</p>
         </details>
@@ -704,6 +746,7 @@ p { margin: 0; }
         <div class="links">
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Segnala un problema</a>
+          <a class="btn btn-line" href="/it/chi-sono/">Chi crea RecovMe</a>
         </div>
       </div>
     </div>
@@ -715,7 +758,7 @@ p { margin: 0; }
     <div class="big"><img src="/assets/icon-256.png" alt="">RecovMe</div>
     <div class="row">
       <p class="credits">© 2026 Dhan Denvert Asuncion. Gratis e open source con licenza GPL-3.0. Motori di recupero: <a href="https://www.cgsecurity.org/wiki/PhotoRec" target="_blank" rel="noopener">PhotoRec</a> di CGSecurity e <a href="https://www.sleuthkit.org" target="_blank" rel="noopener">The Sleuth Kit</a>. Firma del codice per Windows offerta gratuitamente da <a href="https://signpath.io" target="_blank" rel="noopener">SignPath.io</a>, certificato di <a href="https://signpath.org" target="_blank" rel="noopener">SignPath Foundation</a>.</p>
-      <p><a href="/it/guide/">Guide</a> · <a href="/" hreflang="en" lang="en">English</a> · <a href="/press/">Stampa</a> · <a href="/code-signing.html">Politica di firma del codice</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Codice sorgente su GitHub</a></p>
+      <p><a href="/it/guide/">Guide</a> · <a href="/" hreflang="en" lang="en">English</a> · <a href="/it/chi-sono/">Chi sono</a> · <a href="/it/privacy/">Privacy</a> · <a href="/it/termini/">Termini</a> · <a href="/press/">Stampa</a> · <a href="/code-signing.html">Politica di firma del codice</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Codice sorgente su GitHub</a></p>
     </div>
   </div>
 </footer>

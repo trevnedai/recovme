@@ -1,0 +1,82 @@
+name: Recovery report
+description: Tell us how RecovMe did on your card, drive, phone or backup, whether it worked or not.
+title: "[Recovery] "
+labels: ["recovery report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Reports like this show what works on real devices. Please don't include personal file names or photos.
+  - type: input
+    id: version
+    attributes:
+      label: RecovMe version
+      description: Shown at the bottom of the sidebar.
+      placeholder: "0.3.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: Computer
+      options:
+        - Mac (Apple silicon)
+        - Windows 11
+        - Windows 10
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: What did you scan?
+      options:
+        - SD or microSD card
+        - USB stick
+        - External hard drive
+        - External SSD
+        - Hard drive inside a PC
+        - SSD inside a PC
+        - Android phone
+        - iPhone or iPad backup
+        - Disk image
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Device, brand and model
+      description: For example "Tapo C200 camera, 64 GB SanDisk card" or "Samsung Galaxy S21".
+  - type: input
+    id: filesystem
+    attributes:
+      label: File system, if you know it
+      placeholder: "exFAT, FAT32, NTFS, APFS..."
+  - type: dropdown
+    id: what
+    attributes:
+      label: What happened to the files?
+      options:
+        - Deleted, or the Trash was emptied
+        - Formatted
+        - The drive showed as empty or asked to be formatted
+        - Recorded over (camera or dashcam)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: scan
+    attributes:
+      label: Scan used
+      options:
+        - Smart Scan
+        - Quick Scan
+        - Deep Scan
+        - Phone or backup scan
+  - type: textarea
+    id: result
+    attributes:
+      label: What came back?
+      description: Roughly how many files, which types, and whether they open. Failed recoveries are just as useful.
+    validations:
+      required: true

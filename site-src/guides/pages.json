@@ -21,7 +21,8 @@
         "h1": "Come recuperare le foto cancellate da una scheda SD",
         "lede": "Hai cancellato le foto sbagliate dalla scheda della fotocamera, del telefono o del drone? Quasi sempre sono ancora sulla scheda. Ecco come recuperarle gratis su Mac o PC Windows.",
         "card": "Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra."
-      }
+      },
+      "updated": "2026-10-30"
     },
     {
       "id": "formatted",
@@ -109,6 +110,142 @@
         "h1": "Come recuperare i file cancellati su Windows 10 e 11",
         "lede": "Hai svuotato il Cestino, usato Maiusc + Canc o perso una cartella sul PC? Se i file possono tornare dipende soprattutto dal tipo di disco del computer. Ecco dove guardare prima e come recuperarli gratis.",
         "card": "Controlla prima le opzioni gratuite di Windows. Poi tutto dipende se il PC ha un hard disk o un SSD."
+      }
+    },
+    {
+      "id": "android",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "recover-deleted-photos-android",
+        "short": "Deleted photos on Android",
+        "title": "Recover Deleted Photos From an Android Phone for Free | RecovMe",
+        "description": "Deleted photos from an Android phone? Where they can still survive (trash, WhatsApp, Telegram, previews) and how to copy them all back for free, without root.",
+        "h1": "How to Recover Deleted Photos From an Android Phone",
+        "lede": "Deleted photos or videos from an Android phone? Android wipes deleted space, so the honest answer is: they come back only if a copy survives somewhere. Here’s where to look, and how to copy every surviving file back for free, without rooting the phone.",
+        "card": "Trash folders, chat apps and previews often still hold them. No root needed."
+      },
+      "it": {
+        "slug": "recuperare-foto-cancellate-android",
+        "short": "Foto cancellate su Android",
+        "title": "Recuperare foto cancellate da un telefono Android gratis | RecovMe",
+        "description": "Hai cancellato foto da un telefono Android? Dove possono ancora trovarsi (cestino, WhatsApp, Telegram, anteprime) e come ricopiarle tutte gratis, senza root.",
+        "h1": "Come recuperare le foto cancellate da un telefono Android",
+        "lede": "Hai cancellato foto o video da un telefono Android? Android cancella lo spazio dei file eliminati, quindi la risposta onesta è: tornano solo se ne sopravvive una copia da qualche parte. Ecco dove guardare e come ricopiare gratis ogni file sopravvissuto, senza fare il root del telefono.",
+        "card": "Cestini, app di chat e anteprime spesso le conservano ancora. Senza root."
+      }
+    },
+    {
+      "id": "iphone-backup",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "recover-photos-iphone-backup",
+        "short": "Photos from an iPhone backup",
+        "title": "Recover Deleted iPhone Photos From a Backup for Free | RecovMe",
+        "description": "Recover deleted iPhone or iPad photos, messages and voice memos from a Finder or iTunes backup on your Mac or PC, for free. Encrypted backups work too.",
+        "h1": "How to Recover Deleted iPhone Photos From a Computer Backup",
+        "lede": "No app can scan an iPhone for deleted photos, but a backup on your computer from before you deleted them still has them. Here’s how to get photos, messages, voice memos and attachments out of it for free, without restoring the iPhone.",
+        "card": "A Finder or iTunes backup from before the deletion still has them. No restore needed."
+      },
+      "it": {
+        "slug": "recuperare-foto-backup-iphone",
+        "short": "Foto da un backup di iPhone",
+        "title": "Recuperare foto cancellate di iPhone da un backup gratis | RecovMe",
+        "description": "Recupera gratis foto, messaggi e memo vocali cancellati da iPhone o iPad partendo da un backup di Finder o iTunes sul Mac o sul PC. Anche backup codificati.",
+        "h1": "Come recuperare le foto cancellate di iPhone da un backup sul computer",
+        "lede": "Nessuna app può analizzare un iPhone alla ricerca di foto cancellate, ma un backup sul computer fatto prima della cancellazione le contiene ancora. Ecco come estrarre gratis foto, messaggi, memo vocali e allegati, senza ripristinare l’iPhone.",
+        "card": "Un backup di Finder o iTunes fatto prima della cancellazione le contiene ancora. Senza ripristino."
+      }
+    },
+    {
+      "id": "photorec-gui",
+      "kind": "compare",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "photorec-gui-mac-windows",
+        "short": "PhotoRec GUI",
+        "title": "PhotoRec GUI for Mac (Apple Silicon) and Windows | RecovMe",
+        "description": "Want PhotoRec without Terminal? RecovMe runs PhotoRec and The Sleuth Kit in a free, open-source app for Apple silicon Macs and Windows, and keeps file names.",
+        "h1": "PhotoRec With a Real Interface, for Mac and Windows",
+        "lede": "PhotoRec is one of the best free recovery tools ever made, but it’s a text-mode program and its official Mac build is for Intel. RecovMe runs PhotoRec, together with The Sleuth Kit, inside a normal app for Apple silicon Macs and Windows. Here’s what that changes, and what it doesn’t.",
+        "card": "The same open-source engine, without Terminal, with file names kept and results sorted."
+      },
+      "it": {
+        "slug": "photorec-interfaccia-grafica-mac-windows",
+        "short": "PhotoRec con interfaccia grafica",
+        "title": "PhotoRec con interfaccia grafica per Mac e Windows | RecovMe",
+        "description": "Vuoi PhotoRec senza Terminale? RecovMe usa PhotoRec e The Sleuth Kit in un’app gratuita e open source per Mac con chip Apple e Windows, e mantiene i nomi dei file.",
+        "h1": "PhotoRec con una vera interfaccia, per Mac e Windows",
+        "lede": "PhotoRec è uno dei migliori programmi di recupero gratuiti mai creati, ma funziona in modalità testo e la versione ufficiale per Mac è per processori Intel. RecovMe usa PhotoRec, insieme a The Sleuth Kit, dentro una normale app per Mac con chip Apple e Windows. Ecco cosa cambia e cosa no.",
+        "card": "Lo stesso motore open source, senza Terminale, con i nomi dei file e i risultati in ordine."
+      }
+    },
+    {
+      "id": "recuva-mac",
+      "kind": "compare",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "recuva-for-mac",
+        "short": "Recuva for Mac",
+        "title": "Recuva for Mac? A Free Alternative With No Limit | RecovMe",
+        "description": "Recuva is Windows-only. Here are the real free options for Mac, with each app’s free limit checked on its own site, and a free, open-source one with no limit.",
+        "h1": "Looking for Recuva for Mac? Here’s a Free Alternative",
+        "lede": "Recuva doesn’t exist for Mac: it runs only on Windows. Most “Recuva for Mac” pages then recommend a paid app with a small free limit. Here are the honest options, with each limit checked on the maker’s own site.",
+        "card": "Recuva is Windows-only. The real Mac options and their free limits, checked October 2026."
+      },
+      "it": {
+        "slug": "recuva-per-mac",
+        "short": "Recuva per Mac",
+        "title": "Recuva per Mac? Un’alternativa gratuita senza limiti | RecovMe",
+        "description": "Recuva esiste solo per Windows. Ecco le vere opzioni gratuite per Mac, con il limite gratuito di ogni app verificato sul suo sito, e una open source senza limiti.",
+        "h1": "Cerchi Recuva per Mac? Ecco un’alternativa gratuita",
+        "lede": "Recuva non esiste per Mac: funziona solo su Windows. Quasi tutte le pagine “Recuva per Mac” poi consigliano un’app a pagamento con un piccolo limite gratuito. Ecco le opzioni oneste, con ogni limite verificato sul sito del produttore.",
+        "card": "Recuva è solo per Windows. Le vere opzioni per Mac e i loro limiti gratuiti, verificati a ottobre 2026."
+      }
+    },
+    {
+      "id": "diskdrill",
+      "kind": "compare",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "disk-drill-free-alternative",
+        "short": "Disk Drill alternative",
+        "title": "Free Disk Drill Alternative With No Recovery Limit | RecovMe",
+        "description": "Hit Disk Drill’s free limit (100 MB on Windows, preview only on Mac)? A free, open-source alternative with no limit, and when Disk Drill is still the better pick.",
+        "h1": "A Free Alternative to Disk Drill, With No Recovery Limit",
+        "lede": "Disk Drill is a polished app, but its free version only goes so far. If you’ve hit that wall, here’s what RecovMe does differently, and where Disk Drill is still the better choice.",
+        "card": "Disk Drill free stops at 100 MB on Windows and previews only on Mac. What to use instead."
+      },
+      "it": {
+        "slug": "alternativa-gratuita-disk-drill",
+        "short": "Alternativa a Disk Drill",
+        "title": "Alternativa gratuita a Disk Drill, senza limiti | RecovMe",
+        "description": "Hai raggiunto il limite gratuito di Disk Drill (100 MB su Windows, solo anteprima su Mac)? Un’alternativa gratuita e open source senza limiti, e quando Disk Drill resta meglio.",
+        "h1": "Un’alternativa gratuita a Disk Drill, senza limiti di recupero",
+        "lede": "Disk Drill è un’app curata, ma la sua versione gratuita arriva fino a un certo punto. Se ti sei fermato lì, ecco cosa fa di diverso RecovMe e in quali casi Disk Drill resta la scelta migliore.",
+        "card": "Disk Drill gratis si ferma a 100 MB su Windows e su Mac mostra solo l’anteprima. Cosa usare invece."
+      }
+    },
+    {
+      "id": "best-free",
+      "kind": "compare",
+      "published": "2026-10-30",
+      "en": {
+        "slug": "best-free-data-recovery-software",
+        "short": "Free recovery software compared",
+        "title": "Free Data Recovery Software 2026: The Real Limits | RecovMe",
+        "description": "Which data recovery software is really free? Every app’s free limit, checked on its own site in October 2026: Disk Drill, EaseUS, Recuva, PhotoRec, Stellar and more.",
+        "h1": "Free Data Recovery Software in 2026: How Free Is Each One?",
+        "lede": "Most “free” recovery apps let you scan for free, then cap what you can save. I checked each maker’s own page in October 2026. Here’s the full table, including the tools that are truly free, and RecovMe, which I make.",
+        "card": "Every app’s free limit, checked on its maker’s site: from 100 MB to no limit at all."
+      },
+      "it": {
+        "slug": "migliori-programmi-recupero-dati-gratis",
+        "short": "Programmi di recupero gratis a confronto",
+        "title": "Programmi recupero dati gratis 2026: i veri limiti | RecovMe",
+        "description": "Quale programma di recupero dati è davvero gratis? Il limite gratuito di ogni app, verificato sul suo sito a ottobre 2026: Disk Drill, EaseUS, Recuva, PhotoRec e altri.",
+        "h1": "Programmi di recupero dati gratis nel 2026: quanto sono gratis davvero?",
+        "lede": "Quasi tutti i programmi di recupero “gratuiti” ti fanno fare la scansione gratis e poi limitano quanto puoi salvare. Ho controllato la pagina di ogni produttore a ottobre 2026. Ecco la tabella completa, con i programmi davvero gratuiti e RecovMe, che creo io.",
+        "card": "Il limite gratuito di ogni app, verificato sul sito del produttore: da 100 MB a nessun limite."
       }
     }
   ]

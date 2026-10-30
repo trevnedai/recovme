@@ -1,0 +1,65 @@
+<div class="chance" data-level="high">
+  <p class="label">Short answer</p>
+  <p>PhotoRec has no official graphical app for Mac, and its Mac build is for Intel processors. RecovMe is a free, open-source app for Apple silicon Macs and Windows that runs PhotoRec for you, adds The Sleuth Kit to bring back original file names, and sorts the results. Same engine, no Terminal.</p>
+</div>
+
+<p class="disclosure">Written by Dhan Denvert Asuncion, who makes RecovMe. Facts about PhotoRec were checked on <a href="https://cgsecurity.org/wiki/TestDisk_Download" rel="noopener">its official download page</a> on 30 October 2026.</p>
+
+<h2>What PhotoRec is, and why people want a GUI</h2>
+<p>PhotoRec, by Christophe Grenier of CGSecurity, is one of the best free recovery tools ever made. It’s open source (GPL), has no recovery limit, and finds more than 480 file types by what’s inside them, even after a format. The latest stable version is 7.2, from 22 February 2024; 7.3 is in beta.</p>
+<p>It’s also a text-mode program: you move through menus with the arrow keys. On Windows, the download includes QPhotoRec, a simple graphical version. On a Mac, you run PhotoRec in Terminal, and the official build is “Mac OS X Intel 64-bit”, which Apple silicon Macs run through translation. PhotoRec’s own download page sends people who want a graphical interface to “our partner Disk Drill”, a paid app with a limited free version.</p>
+
+<h2>PhotoRec on its own vs RecovMe</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col"></th><th scope="col">PhotoRec (official download)</th><th scope="col">RecovMe</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Interface</th><td>Text menus; QPhotoRec on Windows</td><td>A normal app: pick the drive, scan, open your files</td></tr>
+      <tr><th scope="row">Mac</th><td>Intel build, runs in Terminal</td><td>Native Apple silicon app, signed and notarized by Apple</td></tr>
+      <tr><th scope="row">Original file names</th><td>Lost: files come back as f1234567.jpg in recup_dir folders</td><td>Kept for recently deleted files on FAT, exFAT and NTFS drives (via The Sleuth Kit)</td></tr>
+      <tr><th scope="row">Results</th><td>Unsorted folders</td><td>Sorted by type; photos and videos named by the date taken; duplicates removed</td></tr>
+      <tr><th scope="row">Phones</th><td>No</td><td>Copies what survives on Android phones and in iPhone or iPad backups</td></tr>
+      <tr><th scope="row">Price and license</th><td>Free, GPL</td><td>Free, GPL; no limit</td></tr>
+      <tr><th scope="row">Linux and Intel Macs</th><td>Yes</td><td>No</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>When to use PhotoRec itself</h2>
+<ul>
+  <li>On <strong>Linux</strong>, or on an <strong>Intel Mac</strong>: RecovMe needs an Apple silicon Mac or Windows.</li>
+  <li>When you need PhotoRec’s <strong>advanced options</strong>, such as choosing a file system type or running it from a bootable USB stick.</li>
+</ul>
+<p>RecovMe bundles PhotoRec unmodified, as a separate program under its own GPL license. All the credit for the recovery engine goes to Christophe Grenier and CGSecurity.</p>
+
+<h2>Use PhotoRec through RecovMe in 4 steps</h2>
+<ol class="steps">
+  <li><b>Download RecovMe</b>
+    <p>Free for Macs with Apple silicon (macOS 11 or later) and for Windows 10 and 11.</p></li>
+  <li><b>Pick the card or drive</b>
+    <p>Choose it in the list on the left, and choose what to look for: photos, videos, documents, or all 480+ file types.</p></li>
+  <li><b>Choose the scan</b>
+    <p><span class="ui">Deep Scan</span> is PhotoRec’s search of every block. <span class="ui">Smart Scan</span>, the default, first brings back files with their names using The Sleuth Kit, then runs PhotoRec for the rest.</p></li>
+  <li><b>Save to another drive and open your files</b>
+    <p>RecovMe won’t save onto the drive it’s scanning. When it’s done, press <span class="ui">Open Recovered Files</span>.</p></li>
+</ol>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>Is it the same PhotoRec?</summary>
+    <p>Yes. RecovMe includes PhotoRec unmodified and runs it for you, then organizes what it finds.</p>
+  </details>
+  <details>
+    <summary>Does RecovMe work on Intel Macs?</summary>
+    <p>No, only on Macs with Apple silicon (M1 and later) running macOS 11 or later. On an Intel Mac, use PhotoRec directly.</p>
+  </details>
+  <details>
+    <summary>Will my file names come back?</summary>
+    <p>For recently deleted files on FAT, exFAT and NTFS drives (most SD cards, USB sticks and Windows drives), usually yes. Files found by PhotoRec’s deep search lose their names, so RecovMe names photos and videos by the date they were taken.</p>
+  </details>
+  <details>
+    <summary>Is RecovMe really free?</summary>
+    <p>Yes, 100%. There’s no trial, no size limit and nothing to unlock after the scan, just like PhotoRec. Both are open source.</p>
+  </details>
+</div>

@@ -45,6 +45,12 @@ h1 { font: 800 clamp(34px, 5.4vw, 52px)/1.05 var(--display); letter-spacing: -0.
 .meta { margin: 16px 0 0; font-size: 14px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 14px; }
 .meta a { color: var(--ink-2); }
 
+/* Notes under the title */
+.meta a { color: var(--ink-2); }
+.disclosure { margin-top: 18px; font-size: 15px; color: var(--ink-2); border-left: 3px solid var(--line); padding-left: 14px; }
+.list-title { font: 800 clamp(24px, 3vw, 30px)/1.15 var(--display); letter-spacing: -0.018em; margin: 44px 0 0; }
+article code { font-size: 0.9em; background: var(--tint); border-radius: 5px; padding: 1px 5px; }
+
 /* Body */
 main { padding-bottom: 80px; }
 article h2 { font: 800 clamp(25px, 3.2vw, 31px)/1.15 var(--display); letter-spacing: -0.018em; margin: 52px 0 12px; text-wrap: balance; }
@@ -93,6 +99,7 @@ figure.shot figcaption { margin-top: 10px; font-size: 14px; color: var(--ink-2);
 .table thead th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); background: var(--tint); }
 .table tbody tr + tr td, .table tbody tr + tr th { border-top: 1px solid var(--line); }
 .table tbody th { font-weight: 600; width: 46%; }
+.table table:has(thead th:nth-child(3)) tbody th { width: 28%; }
 .lvl { font-weight: 700; white-space: nowrap; }
 .lvl.good { color: var(--good); } .lvl.mid { color: var(--mid); } .lvl.low { color: var(--low); }
 @media (max-width: 640px) {

@@ -29,9 +29,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # to see which pages changed, for IndexNow below
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+      # Tell Bing and other IndexNow engines which pages changed (Google uses
+      # sitemap.xml instead). Never fails the deploy.
+      - name: Notify search engines (IndexNow)
+        continue-on-error: true
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+            node scripts/indexnow.mjs $(git diff --name-only "$BEFORE" "$GITHUB_SHA" -- site)
+          else
+            node scripts/indexnow.mjs --all
+          fi

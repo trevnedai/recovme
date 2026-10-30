@@ -1,5 +1,12 @@
 # What's New in RecovMe
 
+## 0.3.1
+
+- The update bar has a **What's New** link, so you can read what changed before
+  updating.
+- The first release delivered by automatic update: if you have 0.3.0, RecovMe
+  offers this version by itself.
+
 ## 0.3.0 — Automatic Updates
 
 RecovMe now keeps itself up to date. When a new version is out, a bar says

@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RecovMe — Recupero file e foto gratis per Mac e Windows</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="RecovMe recupera foto, video, riprese di telecamere e documenti cancellati o formattati da schede SD, chiavette USB e hard disk. Gratis al 100% per Mac e Windows.">
+<link rel="canonical" href="https://recovme.app/it/">
+<link rel="alternate" hreflang="en" href="https://recovme.app/">
+<link rel="alternate" hreflang="it" href="https://recovme.app/it/">
+<link rel="alternate" hreflang="x-default" href="https://recovme.app/">
+<link rel="icon" href="/assets/favicon.png">
+<meta property="og:site_name" content="RecovMe">
+<meta property="og:title" content="RecovMe — Recupera i tuoi file. Gratis.">
+<meta property="og:description" content="Recupero file gratuito e open source per Mac e Windows: foto, video, musica, registrazioni, riprese di telecamere e documenti. Niente da pagare dopo la scansione.">
+<meta property="og:image" content="https://recovme.app/assets/og.png">
+<meta property="og:url" content="https://recovme.app/it/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" id="ld">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://recovme.app/#site",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "inLanguage": [
+    "en",
+    "it"
+   ],
+   "publisher": {
+    "@id": "https://recovme.app/#maker"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://recovme.app/#maker",
+   "name": "Dhan Denvert Asuncion",
+   "url": "https://recovme.app/#about"
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://recovme.app/#app",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "description": "RecovMe recupera foto, video, riprese di telecamere e documenti cancellati o formattati da schede SD, chiavette USB e hard disk. Gratis al 100% per Mac e Windows.",
+   "applicationCategory": "UtilitiesApplication",
+   "applicationSubCategory": "Data recovery",
+   "operatingSystem": "macOS 11 or later (Apple silicon), Windows 10, Windows 11",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+   },
+   "isAccessibleForFree": true,
+   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+   "downloadUrl": "https://github.com/trevnedai/recovme/releases/latest",
+   "screenshot": [
+    "https://recovme.app/assets/app-setup.webp",
+    "https://recovme.app/assets/app-scan.webp",
+    "https://recovme.app/assets/app-done.webp"
+   ],
+   "image": "https://recovme.app/assets/icon-256.png",
+   "author": {
+    "@id": "https://recovme.app/#maker"
+   },
+   "codeRepository": "https://github.com/trevnedai/recovme"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://recovme.app/it/#questions",
+   "inLanguage": "it",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "È davvero gratis?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sì, al 100%. Nessuna prova, nessun limite di file, nessuna versione a pagamento e niente da sbloccare dopo la scansione. RecovMe è open source, quindi chiunque può verificare come funziona. Le donazioni sono facoltative e non cambiano nulla nell’app."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Può danneggiare il mio disco?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "RecovMe legge soltanto il disco che analizzi e si rifiuta di salvarci sopra i file recuperati, perché scrivere lì potrebbe sovrascrivere ciò che vuoi recuperare. Su Mac può anche smontare il disco durante la scansione, così nemmeno il sistema può scriverci."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Perché il Mac mi chiede la password?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Leggere lo spazio cancellato richiede l’accesso diretto al disco, che macOS permette solo con la tua password. Se una scansione dice che non riesce a leggere il disco, consenti RecovMe in Impostazioni di Sistema › Privacy e sicurezza › Accesso completo al disco."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "È sicuro da installare?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "L’app per Mac è firmata con un Apple Developer ID e verificata da Apple (notarizzata), quindi si apre senza avvisi. La versione per Windows non è ancora firmata, quindi Windows potrebbe mostrare una finestra blu di SmartScreen: scegli Ulteriori informazioni e poi Esegui comunque. La firma del codice per Windows è offerta gratuitamente da SignPath.io, con un certificato di SignPath Foundation. Tutto il codice sorgente è pubblico su GitHub. Vedi la politica di firma del codice (in inglese)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "La scheda è stata formattata. È troppo tardi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Di solito no. Una formattazione veloce cancella solo l’indice della scheda. Esegui una Deep Scan. RecovMe cerca in tutto il disco di default, quindi trova i file anche dopo una formattazione. Dopo una formattazione i nomi dei file vanno persi, ma foto e video tornano rinominati con la data di scatto."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Alcuni file recuperati non si aprono.",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Alcune parti sono state sovrascritte da file più recenti, oppure il file era salvato a pezzi. Per questo è importante smettere subito di usare il disco. Apri prima i file importanti e copia quelli buoni in un posto sicuro."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Può recuperare dalla scheda di una telecamera o di una dashcam?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sì, per le telecamere che registrano video MP4, cioè la maggior parte delle telecamere da casa e delle dashcam (Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre). Togli subito la scheda dalla telecamera, perché registra sopra le riprese vecchie, e analizzala con un lettore di schede."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Invia i miei file da qualche parte?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Tutto avviene sul tuo computer. RecovMe non ha account, cloud né tracciamento."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a deep-teal opening field holding the real app, then alternating
+   light fields: the chance checker, the three screens, the file types, the
+   coffee field in amber, questions, and the name returning at full width. */
+:root {
+  --ground: #f3f6f5;       /* page */
+  --paper: #ffffff;        /* raised surfaces */
+  --tint: #e6eeec;         /* quiet fields */
+  --ink: #0f1a19;
+  --ink-2: #4a5957;
+  --teal: #0e3b39;         /* brand field */
+  --teal-ink: #f2f7f6;
+  --teal-ink-2: #a9cfc9;
+  --accent: #0b7a6b;       /* links, chips */
+  --amber: #f2a33a;        /* primary action + coffee field */
+  --amber-ink: #1d1404;
+  --good: #0b7a6b;
+  --mid: #a86400;
+  --low: #b5452f;
+  --display: "Bricolage Grotesque", "Avenir Next Condensed", "Arial Narrow", system-ui, sans-serif;
+  --text: "Instrument Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --max: 1180px;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0b1312; --paper: #121e1c; --tint: #182826; --ink: #e8f0ee; --ink-2: #a4b6b2;
+    --teal: #0a2e2c; --teal-ink: #eef6f4; --teal-ink-2: #8fc2bb; --accent: #3cc4ab;
+    --amber: #f2a93f; --amber-ink: #1d1404; --good: #3cc4ab; --mid: #f0b458; --low: #f2826f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0b1312; --paper: #121e1c; --tint: #182826; --ink: #e8f0ee; --ink-2: #a4b6b2;
+  --teal: #0a2e2c; --teal-ink: #eef6f4; --teal-ink-2: #8fc2bb; --accent: #3cc4ab;
+  --amber: #f2a93f; --amber-ink: #1d1404; --good: #3cc4ab; --mid: #f0b458; --low: #f2826f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ground); color: var(--ink);
+  font: 400 17px/1.55 var(--text); -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.025em; line-height: 1.02; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.band { padding-block: 120px; }
+
+/* ── top bar ── */
+.top { background: var(--teal); color: var(--teal-ink); }
+.top .wrap { display: flex; align-items: center; gap: 28px; padding-block: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; font: 800 22px/1 var(--display); letter-spacing: -0.02em; }
+.brand img { width: 40px; height: 40px; }
+.top nav { display: flex; gap: 26px; margin-left: auto; }
+.top nav a { color: var(--teal-ink-2); text-decoration: none; font-weight: 500; font-size: 15px; }
+.top nav a:hover { color: var(--teal-ink); }
+
+/* ── hero ── */
+.hero {
+  color: var(--teal-ink); overflow: hidden;
+  background:
+    linear-gradient(90deg, #0d3634 0%, rgba(13,54,52,.94) 40%, rgba(13,54,52,0) 66%),
+    url(/assets/banner.webp) right center / cover no-repeat, #0d3634;
+}
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; min-height: min(78vh, 760px); padding-block: 72px; }
+.hero .wrap > div:not(.hero-art) { max-width: 560px; }
+.hero h1 { font-size: clamp(44px, 5.6vw, 80px); }
+.hero .lede { font-size: 20px; color: var(--teal-ink-2); margin-top: 28px; max-width: 30ch; }
+.downloads { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 24px; border-radius: 999px;
+  font: 600 17px/1 var(--text); text-decoration: none; border: 0; cursor: pointer;
+  transition: transform .12s ease, background .15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn-amber { background: var(--amber); color: var(--amber-ink); }
+.btn-amber:hover { background: #ffb44f; }
+.btn-ghost { background: rgba(255,255,255,.1); color: var(--teal-ink); }
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+.btn[aria-disabled="true"] { opacity: .55; cursor: default; pointer-events: none; }
+.req { margin-top: 16px; font-size: 14px; color: var(--teal-ink-2); }
+.hero-art { display: none; }
+.sig { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; font: 800 34px/1 var(--display); letter-spacing: -0.02em; color: var(--teal-ink); }
+.sig img { width: 58px; height: 58px; }
+@keyframes rise { from { transform: translateY(40px); opacity: .001; } to { transform: none; opacity: 1; } }
+.facts { background: var(--teal); color: var(--teal-ink); }
+.facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-block: 44px 56px; }
+.facts b { display: block; font: 800 34px/1 var(--display); letter-spacing: -0.02em; }
+.facts span { display: block; margin-top: 8px; color: var(--teal-ink-2); font-size: 15px; }
+
+/* ── chance checker ── */
+.check .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.check h2, .steps h2, .finds h2, .faq h2 { font-size: clamp(38px, 4.6vw, 64px); }
+.check .intro p { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 34ch; }
+.panel { background: var(--paper); border-radius: 20px; padding: 32px; }
+.panel fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.panel legend { font-weight: 700; font-size: 16px; margin-bottom: 12px; padding: 0; }
+.panel fieldset + fieldset { margin-top: 26px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts input { position: absolute; opacity: 0; pointer-events: none; }
+.opts label {
+  display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 999px;
+  background: var(--tint); font-size: 15px; font-weight: 500; cursor: pointer; transition: background .15s, color .15s;
+}
+.opts label:hover { background: color-mix(in srgb, var(--accent) 16%, var(--tint)); }
+.opts input:checked + label { background: var(--accent); color: var(--paper); font-weight: 600; }
+.opts input:focus-visible + label { outline: 3px solid var(--amber); outline-offset: 2px; }
+.verdict { margin-top: 30px; padding: 26px 28px; border-radius: 16px; background: var(--tint); }
+.verdict .level { font: 800 40px/1 var(--display); letter-spacing: -0.02em; }
+.verdict[data-level="high"] .level { color: var(--good); }
+.verdict[data-level="mid"] .level { color: var(--mid); }
+.verdict[data-level="low"] .level, .verdict[data-level="stop"] .level { color: var(--low); }
+.verdict .why { margin-top: 12px; font-size: 17px; }
+.verdict .todo { margin-top: 10px; font-size: 16px; color: var(--ink-2); }
+
+/* ── how it works ── */
+.steps { background: var(--tint); }
+.steps .head { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; }
+.steps .head p { max-width: 42ch; color: var(--ink-2); font-size: 19px; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 56px; }
+.trio figure { margin: 0; }
+.trio img { border-radius: 12px; background: var(--paper); }
+.trio figcaption { margin-top: 20px; }
+.trio h3 { font-size: 28px; }
+.trio figcaption p { margin-top: 10px; color: var(--ink-2); }
+.result-name { margin-top: 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; background: var(--paper); border-radius: 20px; padding: 36px 40px; }
+.result-name h3 { font-size: 34px; }
+.result-name p { margin-top: 12px; color: var(--ink-2); }
+.tree { font-size: 16px; line-height: 1.9; font-variant-numeric: tabular-nums; }
+.tree div { padding-left: calc(var(--d, 0) * 22px); }
+.tree .dir { font-weight: 700; }
+.tree .dim { color: var(--ink-2); }
+
+/* ── what it finds ── */
+.finds .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 32px; margin-top: 56px; }
+.finds h3 { font-size: 24px; }
+.finds ul { list-style: none; padding: 0; margin: 14px 0 0; color: var(--ink-2); font-size: 16px; line-height: 1.8; }
+.finds .lead2 { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 52ch; }
+.limits { margin-top: 72px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.limits div { background: var(--paper); border-radius: 16px; padding: 26px; }
+.limits h3 { font-size: 22px; }
+.limits p { margin-top: 10px; color: var(--ink-2); font-size: 16px; }
+
+/* ── coffee ── */
+.coffee { background: var(--amber); color: var(--amber-ink); }
+.coffee .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.coffee h2 { font-size: clamp(36px, 3.8vw, 54px); }
+.coffee p { margin-top: 22px; font-size: 20px; max-width: 40ch; }
+.cup { display: grid; grid-template-columns: 176px minmax(0, 1fr); gap: 28px; align-items: center; }
+.cup-actions { display: grid; gap: 14px; justify-items: start; min-width: 0; }
+.qr { margin: 0; background: #ffffff; border-radius: 18px; padding: 12px 12px 10px; }
+.qr img { width: 100%; }
+.qr figcaption { margin-top: 4px; text-align: center; font-size: 13px; font-weight: 600; color: #1d1404; }
+.btn-dark { background: var(--amber-ink); color: #fff3df; white-space: nowrap; }
+.btn-dark:hover { background: #3a2a10; }
+.cup small { font-size: 15px; opacity: .8; }
+.coffee .cup .alt { font-size: 15px; margin-top: 0; }
+.cup .alt a { color: inherit; font-weight: 600; }
+
+/* ── faq ── */
+.faq .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; }
+.faq details { border-radius: 14px; background: var(--paper); padding: 0 24px; }
+.faq details + details { margin-top: 10px; }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 700; font-size: 18px; display: flex; justify-content: space-between; gap: 20px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 600 24px/1 var(--display); color: var(--accent); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: 22px; color: var(--ink-2); max-width: 64ch; }
+.faq details p + p { margin-top: -8px; }
+
+/* ── guides ── */
+.guides { background: var(--tint); }
+.guides h2 { font-size: clamp(38px, 4.6vw, 64px); }
+.guides .lead2 { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 56ch; }
+.guide-list { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.guide-list a { display: flex; flex-direction: column; height: 100%; background: var(--paper); border-radius: 18px; padding: 28px; color: var(--ink); text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+.guide-list a:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 2px var(--accent); }
+.guide-list h3 { font-size: 24px; }
+.guide-list p { margin-top: 10px; color: var(--ink-2); font-size: 16px; }
+.guide-list .go { margin-top: auto; padding-top: 18px; color: var(--accent); font-weight: 600; font-size: 15px; }
+.guides .more { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 600; }
+
+/* ── footer ── */
+.foot { background: var(--teal); color: var(--teal-ink); }
+.foot .wrap { padding-block: 96px 48px; }
+.foot .big { display: flex; align-items: center; gap: 22px; font: 800 clamp(64px, 13vw, 180px)/0.9 var(--display); letter-spacing: -0.04em; }
+.foot .big img { width: clamp(64px, 11vw, 150px); height: auto; }
+.foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; margin-top: 56px; color: var(--teal-ink-2); font-size: 15px; }
+.foot a { color: var(--teal-ink); }
+.foot .credits { max-width: 70ch; }
+
+/* ── type chips (hero) ── */
+.types { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; padding: 0; list-style: none; }
+.types li { padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.09); color: var(--teal-ink); font-size: 14px; font-weight: 500; }
+
+/* ── free means free ── */
+.free .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.free h2, .diff h2, .maker h2 { font-size: clamp(38px, 4.6vw, 64px); }
+.free .intro p { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 36ch; }
+.compare { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--paper); border-radius: 20px; overflow: hidden; font-size: 16px; }
+.compare th, .compare td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--tint); }
+.compare thead th { font-size: 14px; letter-spacing: .02em; color: var(--ink-2); font-weight: 600; background: var(--paper); }
+.compare thead th:last-child { color: var(--accent); }
+.compare tbody th { font-weight: 600; width: 34%; }
+.compare td.them { color: var(--ink-2); }
+.compare td.us { font-weight: 600; color: var(--ink); }
+.compare td.us::before { content: "✓ "; color: var(--accent); font-weight: 800; }
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: 0; }
+.free .fine { margin-top: 14px; font-size: 14px; color: var(--ink-2); }
+
+/* ── how it's different ── */
+.diff { background: var(--tint); }
+.diff .lead2 { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 56ch; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 56px; }
+.cards article { background: var(--paper); border-radius: 18px; padding: 28px; }
+.cards .n { font: 800 15px/1 var(--display); color: var(--accent); letter-spacing: .04em; }
+.cards h3 { font-size: 24px; margin-top: 14px; }
+.cards p { margin-top: 10px; color: var(--ink-2); font-size: 16px; }
+
+/* ── the maker ── */
+.maker .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.maker .body .who { font: 800 clamp(30px, 3.4vw, 44px)/1.05 var(--display); letter-spacing: -0.02em; color: var(--ink); max-width: none; }
+.maker .body .role { margin-top: 10px; color: var(--accent); font-weight: 600; }
+.maker .body p { color: var(--ink-2); font-size: 18px; max-width: 58ch; }
+.maker .body p + p { margin-top: 16px; }
+.maker .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn-line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ink) 25%, transparent); height: 48px; font-size: 16px; }
+.btn-line:hover { box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--accent); }
+
+@media (max-width: 960px) {
+  .band { padding-block: 88px; }
+  .hero .wrap, .check .wrap, .coffee .wrap, .faq .wrap, .result-name, .free .wrap, .maker .wrap { grid-template-columns: minmax(0, 1fr); }
+  .cards, .guide-list { grid-template-columns: minmax(0, 1fr); }
+  .finds .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero { background: #0d3634; }
+  .hero .wrap { min-height: 0; padding-top: 8px; }
+  .hero-art { display: block; margin: 0 -24px; }
+  .hero-art img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 80% center; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+  .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trio { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .finds .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .limits { grid-template-columns: minmax(0, 1fr); }
+  .top nav { display: none; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .band { padding-block: 72px; }
+  .panel { padding: 22px; }
+  .result-name { padding: 26px 22px; }
+  .finds .grid { grid-template-columns: minmax(0, 1fr); }
+  .btn { width: 100%; justify-content: center; }
+  .cup { grid-template-columns: minmax(0, 1fr); }
+  .cup-actions { order: -1; justify-items: stretch; }
+  .qr { width: 176px; }
+  .facts b { font-size: 26px; }
+  .tree { font-size: 14px; line-height: 1.7; }
+  .tree div { padding-left: calc(var(--d, 0) * 14px); }
+  .compare, .compare thead, .compare tbody { display: block; }
+  .compare tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .compare thead th:first-child { display: none; }
+  .compare th, .compare td { padding: 12px 16px; font-size: 15px; }
+  .compare tbody th { grid-column: 1 / -1; width: auto; padding-bottom: 2px; border-bottom: 0; }
+  .compare tbody td { padding-top: 4px; }
+  .sig { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="RecovMe, pagina iniziale"><img src="/assets/icon-256.png" alt="">RecovMe</a>
+    <nav aria-label="Sezioni">
+      <a href="#free">Davvero gratis</a>
+      <a href="#different">Perché RecovMe</a>
+      <a href="#finds">Cosa trova</a>
+      <a href="#chances">Le tue probabilità</a>
+      <a href="/it/guide/">Guide</a>
+      <a href="#coffee">Sostieni</a>
+      <a href="#questions">Domande</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-art"><img src="/assets/banner.webp" width="1672" height="941" alt=""></div>
+      <div>
+        <h1 id="hero-title">Recupera i tuoi file. Gratis.</h1>
+        <p class="lede">RecovMe recupera i file cancellati e formattati da schede SD, chiavette USB, schede di telecamere e dashcam e hard disk. Gratis al 100% e open source: nessuna prova, nessun limite, niente da pagare dopo la scansione.</p>
+        <ul class="types" aria-label="Cosa recupera">
+          <li>Foto</li><li>Video</li><li>Musica</li><li>Registrazioni vocali</li><li>Riprese di telecamere e dashcam</li><li>Documenti</li><li>Archivi</li>
+        </ul>
+        <div class="downloads">
+          <a class="btn btn-amber" id="dl-mac" href="https://github.com/trevnedai/recovme/releases/latest">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8ZM14.1 5.9c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3Z"/></svg>
+            Scarica per Mac
+          </a>
+          <a class="btn btn-ghost" id="dl-win" href="https://github.com/trevnedai/recovme/releases/latest">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zm8-1.1L21 3v8.5H11zM3 12.5h7v7L3 18.5zm8 0h10V21l-10-1.4z"/></svg>
+            Scarica per Windows
+          </a>
+        </div>
+        <p class="req">Mac con Apple silicon, macOS 11 o successivo · Windows 10 o 11, 64 bit</p>
+      </div>
+    </div>
+  </section>
+  <section class="facts" aria-label="RecovMe in breve">
+    <div class="wrap">
+      <div><b>Gratis al 100%</b><span>Ogni file che trova puoi salvarlo. Nessun limite di dimensione, niente da pagare alla fine.</span></div>
+      <div><b>480+ tipi di file</b><span>Foto, RAW, video, musica, registrazioni, documenti, archivi.</span></div>
+      <div><b>Sola lettura</b><span>Sul disco che analizzi non viene mai scritto nulla.</span></div>
+      <div><b>Open source</b><span>Ogni riga di codice è pubblica (GPL-3.0).</span></div>
+    </div>
+  </section>
+
+  <section class="free band" id="free" aria-labelledby="free-title">
+    <div class="wrap">
+      <div class="intro">
+        <h2 id="free-title">Gratis vuol dire gratis</h2>
+        <p>Molti programmi di recupero "gratuiti" ti fanno fare la scansione gratis, ti mostrano i file persi e poi ti chiedono di pagare prima di poterli salvare. RecovMe no. Quello che trova, lo tieni.</p>
+      </div>
+      <div>
+        <table class="compare">
+          <thead><tr><th scope="col"><span class="sr">Funzione</span></th><th scope="col">Tipico programma "gratuito"</th><th scope="col">RecovMe</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Salvare i file trovati</th><td class="them">Prima paghi, di solito una licenza o un abbonamento annuale</td><td class="us">Gratis, sempre</td></tr>
+            <tr><th scope="row">Quanto puoi recuperare</th><td class="them">Limite gratuito da poche centinaia di MB a 2 GB</td><td class="us">Nessun limite</td></tr>
+            <tr><th scope="row">Account o registrazione</th><td class="them">Spesso obbligatori</td><td class="us">Nessuno</td></tr>
+            <tr><th scope="row">I tuoi file</th><td class="them">Dipende; molti raccolgono dati d’uso</td><td class="us">Non lasciano mai il computer</td></tr>
+            <tr><th scope="row">Puoi controllare il codice?</th><td class="them">No, codice chiuso</td><td class="us">Sì, open source su GitHub</td></tr>
+            <tr><th scope="row">Pubblicità, offerte a pagamento, software aggiuntivo</th><td class="them">Frequenti</td><td class="us">Nessuno</td></tr>
+          </tbody>
+        </table>
+        <p class="fine">Le donazioni sono facoltative e non cambiano nulla nell’app.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="diff band" id="different" aria-labelledby="diff-title">
+    <div class="wrap">
+      <h2 id="diff-title">Perché RecovMe è diverso</h2>
+      <p class="lead2">Usa gli stessi motori collaudati a cui si affidano i professionisti del recupero dati, poi fa da solo il lavoro di riordino che di solito richiede ore.</p>
+      <div class="cards">
+        <article><p class="n">01</p><h3>Due motori in una scansione</h3><p>The Sleuth Kit recupera i file cancellati di recente con il nome e le cartelle originali. Poi PhotoRec cerca in ogni blocco del disco i file riconosciuti dal loro contenuto, così tornano anche dopo una formattazione.</p></article>
+        <article><p class="n">02</p><h3>Già in ordine</h3><p>I risultati sono divisi per tipo. Foto e video vengono rinominati e ordinati per data di scatto, e mantengono quella data sul computer. I duplicati vengono rimossi e le miniature minuscole messe da parte.</p></article>
+        <article><p class="n">03</p><h3>Pensato per le schede delle telecamere</h3><p>Telecamere di sorveglianza e dashcam riempiono le schede di file di registrazione. RecovMe cerca in tutta la scheda di default, poi esclude i file mai cancellati, così ottieni solo ciò che avevi perso.</p></article>
+        <article><p class="n">04</p><h3>Sicuro per il tuo disco</h3><p>Legge soltanto il disco che analizzi e non ci salva sopra. Su Mac può smontare il disco durante la scansione, così nient’altro può scriverci.</p></article>
+        <article><p class="n">05</p><h3>Onesto sulle probabilità</h3><p>Gli SSD e i Mac moderni cancellano da soli i file eliminati. RecovMe te lo dice subito e segnala i file che il disco ha già cancellato, invece di venderti false speranze.</p></article>
+        <article><p class="n">06</p><h3>Privato e trasparente</h3><p>Nessun account, nessun cloud, nessun tracciamento. L’app per Mac è firmata e verificata da Apple, e tutto il codice sorgente è pubblico e consultabile da chiunque.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="check band" id="chances" aria-labelledby="chances-title">
+    <div class="wrap">
+      <div class="intro">
+        <h2 id="chances-title">Quali sono le tue probabilità?</h2>
+        <p>Il tipo di disco conta più di qualsiasi programma. Scegli il tuo e cosa è successo, e avrai una risposta onesta prima di scaricare qualsiasi cosa.</p>
+      </div>
+      <form class="panel" id="checker" aria-describedby="verdict">
+        <fieldset>
+          <legend>Dove si trovavano i file?</legend>
+          <div class="opts" id="dev">
+            <input type="radio" name="dev" id="d-sd" value="sd" checked><label for="d-sd">Scheda SD o della fotocamera</label>
+            <input type="radio" name="dev" id="d-usb" value="usb"><label for="d-usb">Chiavetta USB</label>
+            <input type="radio" name="dev" id="d-hdd" value="hdd"><label for="d-hdd">Hard disk esterno</label>
+            <input type="radio" name="dev" id="d-essd" value="essd"><label for="d-essd">SSD esterno</label>
+            <input type="radio" name="dev" id="d-pchdd" value="pchdd"><label for="d-pchdd">Hard disk interno di un PC</label>
+            <input type="radio" name="dev" id="d-pcssd" value="pcssd"><label for="d-pcssd">SSD interno di un PC Windows</label>
+            <input type="radio" name="dev" id="d-mac" value="mac"><label for="d-mac">Il disco interno del Mac</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Cosa è successo?</legend>
+          <div class="opts" id="what">
+            <input type="radio" name="what" id="w-del" value="del" checked><label for="w-del">Cancellati, o Cestino svuotato</label>
+            <input type="radio" name="what" id="w-fmt" value="fmt"><label for="w-fmt">Formattato</label>
+            <input type="radio" name="what" id="w-raw" value="raw"><label for="w-raw">Risulta vuoto o chiede di formattare</label>
+            <input type="radio" name="what" id="w-dead" value="dead"><label for="w-dead">Fa clic, non viene rilevato o si scollega</label>
+          </div>
+        </fieldset>
+        <div class="verdict" id="verdict" aria-live="polite" data-level="high">
+          <p class="level" id="v-level">Buone probabilità</p>
+          <p class="why" id="v-why">Fotocamere e lettori di schede non cancellano davvero i file eliminati, quindi restano sulla scheda finché non viene salvato qualcosa di nuovo sopra.</p>
+          <p class="todo" id="v-todo">Smetti di scattare foto con quella scheda. Esegui una Smart Scan e salva i risultati sul computer.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="steps band" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="how-title">Tre schermate, dall’inizio alla fine</h2>
+        <p>Scegli il disco, lascialo cercare, apri i tuoi file. Al resto pensa lui: ordina, rinomina e rimuove i duplicati.</p>
+      </div>
+      <div class="trio">
+        <figure>
+          <img src="/assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="Scelta della scheda CAMERA, con foto, video e documenti selezionati e Smart Scan consigliato.">
+          <figcaption><h3>Scegli il disco</h3><p>Scegli la scheda o il disco, cosa cercare e dove salvare. Salvare su un altro disco tiene al sicuro i tuoi file.</p></figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="La scansione in corso con la percentuale, il tempo rimanente e le foto che compaiono man mano.">
+          <figcaption><h3>Guardalo cercare</h3><p>Prima i nomi originali, poi una ricerca approfondita in ogni blocco. Le foto compaiono appena vengono trovate. Puoi fermarlo quando vuoi e tenere ciò che ha trovato.</p></figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/app-done.webp" width="2240" height="1560" loading="lazy" alt="Risultati: 412 file recuperati, 58 con il nome originale, 287 foto, 21 video, 46 documenti.">
+          <figcaption><h3>Apri i tuoi file</h3><p>Tutto è ordinato per tipo, con un pulsante per aprire ogni cartella e un breve resoconto di ciò che è stato trovato.</p></figcaption>
+        </figure>
+      </div>
+      <div class="result-name">
+        <div>
+          <h3>Foto e video mantengono la data</h3>
+          <p>I file trovati con la ricerca approfondita perdono il nome, quindi RecovMe legge dall’interno di ogni foto o video la data in cui è stato scattato, lo rinomina con quella data e lo archivia per mese. Anche i dati di posizione nelle foto vengono mantenuti.</p>
+        </div>
+        <div class="tree" aria-label="Esempio di cartella di recupero (l’app usa nomi di cartella in inglese)">
+          <div class="dir">Recovered - CAMERA - 2026-10-28 23.42</div>
+          <div style="--d:1" class="dir">Original names <span class="dim">· 58 files</span></div>
+          <div style="--d:1" class="dir">Photos</div>
+          <div style="--d:2">2024-07 <span class="dim">· 2024-07-12 14.33.02.jpg</span></div>
+          <div style="--d:2">2023-12 <span class="dim">· 2023-12-25 09.05.44.heic</span></div>
+          <div style="--d:1" class="dir">Videos</div>
+          <div style="--d:2">2025-08 <span class="dim">· 2025-08-03 19.12.40.mp4</span></div>
+          <div style="--d:1" class="dir">Music <span class="dim">· MP3, M4A, FLAC</span></div>
+          <div style="--d:1" class="dir">Documents <span class="dim">· PDF, DOCX, XLSX</span></div>
+          <div style="--d:1">Recovery report.txt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finds band" id="finds" aria-labelledby="finds-title">
+    <div class="wrap">
+      <h2 id="finds-title">Cosa trova</h2>
+      <p class="lead2">Oltre 480 tipi di file, riconosciuti dal loro contenuto, così tornano anche dopo una formattazione. Non solo foto: tutto ciò che di solito si perde.</p>
+      <div class="grid">
+        <div><h3>Foto</h3><ul><li>JPG, HEIC, PNG, GIF</li><li>RAW: CR2, CR3, NEF, ARW, DNG, RAF, ORF</li><li>PSD, TIFF, WebP</li></ul></div>
+        <div><h3>Video</h3><ul><li>MP4, MOV, 3GP</li><li>AVI, MKV, MTS, M2TS</li><li>MPG, WMV, FLV</li></ul></div>
+        <div><h3>Musica</h3><ul><li>MP3, M4A, AAC</li><li>FLAC, WAV, AIFF</li><li>OGG, WMA, MIDI</li></ul></div>
+        <div><h3>Registrazioni e riprese</h3><ul><li>Memo vocali e registratori: M4A, AMR, WAV</li><li>Telecamere e dashcam: Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre telecamere MP4</li><li>Videocamere: MTS, M2TS</li></ul></div>
+        <div><h3>Documenti</h3><ul><li>PDF, DOCX, XLSX, PPTX</li><li>DOC, XLS, PPT, ODT</li><li>TXT, RTF, PST (posta di Outlook)</li></ul></div>
+        <div><h3>Archivi</h3><ul><li>ZIP, RAR, 7Z</li><li>GZ, BZ2, XZ, TAR</li><li>ISO, CAB</li></ul></div>
+      </div>
+      <div class="limits">
+        <div><h3>Funziona meglio su</h3><p>Schede SD e delle fotocamere, chiavette USB, hard disk esterni e l’hard disk interno dei PC meno recenti.</p></div>
+        <div><h3>Difficile per qualsiasi app</h3><p>Gli SSD dei portatili cancellano da soli i file eliminati nel giro di pochi minuti. Ogni Mac con Apple silicon inoltre cifra il proprio disco. Usa prima il Cestino, Time Machine o OneDrive.</p></div>
+        <div><h3>Non per i telefoni</h3><p>iPhone e iPad non permettono a nessuna app di leggere lo spazio cancellato. Per recuperare i file servono Eliminati di recente, iCloud o i backup sul computer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guides band" id="guides" aria-labelledby="guides-title">
+    <div class="wrap">
+      <h2 id="guides-title">Guide passo passo</h2>
+      <p class="lead2">Aiuto chiaro per i modi più comuni in cui si perdono i file, con prima una risposta onesta sulle tue probabilità.</p>
+      <ul class="guide-list">
+        <li><a href="/it/guide/recuperare-foto-cancellate-scheda-sd/"><h3>Foto cancellate da una scheda SD</h3><p>Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra.</p><span class="go">Leggi la guida →</span></a></li>
+        <li><a href="/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"><h3>Scheda SD o chiavetta USB formattata</h3><p>Una formattazione normale cancella solo l’indice. Quali formattazioni si possono annullare, e come.</p><span class="go">Leggi la guida →</span></a></li>
+        <li><a href="/it/guide/recuperare-file-cancellati-hard-disk-esterno/"><h3>File cancellati da un disco esterno</h3><p>Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia.</p><span class="go">Leggi la guida →</span></a></li>
+      </ul>
+      <p class="more"><a href="/it/guide/">Tutte le guide →</a><a href="/guides/" hreflang="en" lang="en">Guides in English →</a></p>
+    </div>
+  </section>
+
+  <section class="coffee band" id="coffee" aria-labelledby="coffee-title">
+    <div class="wrap">
+      <div>
+        <h2 id="coffee-title">Hai recuperato i tuoi file?<br>Offrimi un caffè</h2>
+        <p>RecovMe è gratis per tutti e rimarrà gratis. Se ti ha restituito i file e ti ha evitato di pagare un programma di recupero, un caffè aiuta a portarlo avanti. È del tutto facoltativo.</p>
+      </div>
+      <div class="cup">
+        <figure class="qr">
+          <img src="/assets/paypal-qr.png" width="480" height="480" alt="Codice QR che apre la pagina PayPal per offrirmi un caffè">
+          <figcaption>Inquadralo con la fotocamera del telefono</figcaption>
+        </figure>
+        <div class="cup-actions">
+        <a class="btn btn-dark" id="coffee-btn" href="https://paypal.me/dhandenvert" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1.5 1 2.5M12 3.5c0 1 1 1.5 1 2.5"/></svg>
+          Offrimi un caffè con PayPal
+        </a>
+        <small>Qualsiasi cifra, una volta sola. L’app resta uguale in ogni caso.</small>
+        <p class="alt">Preferisci aiutare in un altro modo? <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Metti una stella su GitHub</a> o parlane a un amico che ha perso i suoi file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq band" id="questions" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 id="faq-title">Domande</h2>
+      <div>
+        <details open>
+          <summary>È davvero gratis?</summary>
+          <p>Sì, al 100%. Nessuna prova, nessun limite di file, nessuna versione a pagamento e niente da sbloccare dopo la scansione. RecovMe è open source, quindi chiunque può verificare come funziona. Le donazioni sono facoltative e non cambiano nulla nell’app.</p>
+        </details>
+        <details>
+          <summary>Può danneggiare il mio disco?</summary>
+          <p>RecovMe legge soltanto il disco che analizzi e si rifiuta di salvarci sopra i file recuperati, perché scrivere lì potrebbe sovrascrivere ciò che vuoi recuperare. Su Mac può anche smontare il disco durante la scansione, così nemmeno il sistema può scriverci.</p>
+        </details>
+        <details>
+          <summary>Perché il Mac mi chiede la password?</summary>
+          <p>Leggere lo spazio cancellato richiede l’accesso diretto al disco, che macOS permette solo con la tua password. Se una scansione dice che non riesce a leggere il disco, consenti RecovMe in Impostazioni di Sistema › Privacy e sicurezza › Accesso completo al disco.</p>
+        </details>
+        <details>
+          <summary>È sicuro da installare?</summary>
+          <p>L’app per Mac è firmata con un Apple Developer ID e verificata da Apple (notarizzata), quindi si apre senza avvisi. La versione per Windows non è ancora firmata, quindi Windows potrebbe mostrare una finestra blu di SmartScreen: scegli Ulteriori informazioni e poi Esegui comunque. La firma del codice per Windows è offerta gratuitamente da SignPath.io, con un certificato di SignPath Foundation. Tutto il codice sorgente è pubblico su GitHub. Vedi la <a href="/code-signing.html">politica di firma del codice</a> (in inglese).</p>
+        </details>
+        <details>
+          <summary>La scheda è stata formattata. È troppo tardi?</summary>
+          <p>Di solito no. Una formattazione veloce cancella solo l’indice della scheda. Esegui una Deep Scan. RecovMe cerca in tutto il disco di default, quindi trova i file anche dopo una formattazione. Dopo una formattazione i nomi dei file vanno persi, ma foto e video tornano rinominati con la data di scatto.</p>
+        </details>
+        <details>
+          <summary>Alcuni file recuperati non si aprono.</summary>
+          <p>Alcune parti sono state sovrascritte da file più recenti, oppure il file era salvato a pezzi. Per questo è importante smettere subito di usare il disco. Apri prima i file importanti e copia quelli buoni in un posto sicuro.</p>
+        </details>
+        <details>
+          <summary>Può recuperare dalla scheda di una telecamera o di una dashcam?</summary>
+          <p>Sì, per le telecamere che registrano video MP4, cioè la maggior parte delle telecamere da casa e delle dashcam (Tapo, Ezviz, Reolink, Xiaomi, Eufy e altre). Togli subito la scheda dalla telecamera, perché registra sopra le riprese vecchie, e analizzala con un lettore di schede.</p>
+        </details>
+        <details>
+          <summary>Invia i miei file da qualche parte?</summary>
+          <p>No. Tutto avviene sul tuo computer. RecovMe non ha account, cloud né tracciamento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="maker band" id="about" aria-labelledby="maker-title">
+    <div class="wrap">
+      <div>
+        <h2 id="maker-title">Chi lo crea</h2>
+      </div>
+      <div class="body">
+        <p class="who">Dhan Denvert Asuncion</p>
+        <p class="role">Creatore e sviluppatore di RecovMe</p>
+        <p style="margin-top:22px">Ho creato RecovMe perché perdere foto e file è già abbastanza stressante senza che ti chiedano di pagare solo per riaverli. Il recupero dovrebbe essere semplice, onesto e gratuito per tutti.</p>
+        <p>RecovMe si basa su due progetti open source molto apprezzati: PhotoRec di Christophe Grenier (CGSecurity) e The Sleuth Kit di Brian Carrier e collaboratori. RecovMe li riunisce in un’unica app semplice e ordina ciò che trovano.</p>
+        <div class="links">
+          <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Codice sorgente su GitHub</a>
+          <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Segnala un problema</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="big"><img src="/assets/icon-256.png" alt="">RecovMe</div>
+    <div class="row">
+      <p class="credits">© 2026 Dhan Denvert Asuncion. Gratis e open source con licenza GPL-3.0. Motori di recupero: <a href="https://www.cgsecurity.org/wiki/PhotoRec" target="_blank" rel="noopener">PhotoRec</a> di CGSecurity e <a href="https://www.sleuthkit.org" target="_blank" rel="noopener">The Sleuth Kit</a>. Firma del codice per Windows offerta gratuitamente da <a href="https://signpath.io" target="_blank" rel="noopener">SignPath.io</a>, certificato di <a href="https://signpath.org" target="_blank" rel="noopener">SignPath Foundation</a>.</p>
+      <p><a href="/it/guide/">Guide</a> · <a href="/" hreflang="en" lang="en">English</a> · <a href="/press/">Stampa</a> · <a href="/code-signing.html">Politica di firma del codice</a> · <a href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Codice sorgente su GitHub</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Highlight the download that matches this computer.
+  const ua = navigator.userAgent || "";
+  const mac = document.getElementById("dl-mac"), win = document.getElementById("dl-win");
+  if (/Windows/i.test(ua)) {
+    mac.classList.replace("btn-amber", "btn-ghost");
+    win.classList.replace("btn-ghost", "btn-amber");
+    win.parentNode.insertBefore(win, mac);
+  }
+
+  // Point the buttons straight at the newest installers. If nothing has been
+  // released yet, say so instead of sending people to an empty page. On any
+  // other error the buttons keep linking to the releases page.
+  const label = (btn, text) => { btn.lastChild.textContent = " " + text; };
+  fetch("https://api.github.com/repos/trevnedai/recovme/releases/latest", { headers: { Accept: "application/vnd.github+json" } })
+    .then((r) => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(r.status)))
+    .then((rel) => {
+      if (!rel) {
+        for (const [btn, name] of [[mac, "Mac"], [win, "Windows"]]) {
+          btn.removeAttribute("href");
+          btn.setAttribute("aria-disabled", "true");
+          label(btn, `${name}: in arrivo`);
+        }
+        return;
+      }
+      const find = (re) => (rel.assets || []).find((a) => re.test(a.name));
+      const dmg = find(/\.dmg$/i);
+      const exe = find(/setup\.exe$/i) || find(/\.exe$/i);
+      const soon = (btn, name) => {
+        btn.removeAttribute("href");
+        btn.setAttribute("aria-disabled", "true");
+        label(btn, `${name}: in arrivo`);
+      };
+      if (dmg) mac.href = dmg.browser_download_url; else soon(mac, "Mac");
+      if (exe) win.href = exe.browser_download_url; else soon(win, "Windows");
+      const ver = (rel.tag_name || "").replace(/^v/, "");
+      const req = document.querySelector(".req");
+      if (ver && req) req.textContent = `Versione ${ver} · ${req.textContent}`;
+    })
+    .catch(() => {});
+
+  // Honest chance checker.
+  const V = {
+    good: (why, todo) => ({ level: "high", label: "Buone probabilità", why, todo }),
+    mid: (why, todo) => ({ level: "mid", label: "Dipende", why, todo }),
+    low: (why, todo) => ({ level: "low", label: "Probabilità basse", why, todo }),
+    stop: (why, todo) => ({ level: "stop", label: "Fermati. Non analizzarlo.", why, todo }),
+  };
+  const STOP = V.stop(
+    "Un disco che fa clic, scompare o non viene rilevato si sta guastando fisicamente. Usare qualsiasi programma può peggiorare le cose.",
+    "Scollegalo e lascialo spento. Per i file davvero importanti, la scelta sicura è un laboratorio di recupero dati."
+  );
+  const FORMAT_OK = (what) => V.good(
+    "Una formattazione veloce cancella solo l’indice. Foto e file di solito restano finché non ne vengono salvati di nuovi sopra.",
+    `Smetti di usare ${what}. Esegui una Deep Scan, che di default cerca in tutto il disco. I nomi possono andare persi, ma foto e video tornano rinominati per data.`
+  );
+  const RAW_OK = (what) => V.good(
+    "Quando un disco risulta vuoto o chiede di essere formattato, il suo indice è danneggiato ma di solito i file sono ancora lì.",
+    `Non formattare ${what}. Esegui una Deep Scan, che di default cerca in tutto il disco.`
+  );
+  const table = {
+    sd: {
+      del: V.good("Fotocamere e lettori di schede non cancellano davvero i file eliminati, quindi restano sulla scheda finché non viene salvato qualcosa di nuovo sopra.", "Smetti di scattare foto con quella scheda. Esegui una Smart Scan e salva i risultati sul computer."),
+      fmt: FORMAT_OK("la scheda"), raw: RAW_OK("la scheda"),
+    },
+    usb: {
+      del: V.good("Le chiavette USB conservano i file cancellati finché non vengono scritti nuovi dati sopra.", "Non copiare nulla sulla chiavetta. Esegui una Smart Scan e salva i risultati sul computer."),
+      fmt: FORMAT_OK("la chiavetta"), raw: RAW_OK("la chiavetta"),
+    },
+    hdd: {
+      del: V.good("Gli hard disk lasciano al loro posto i file cancellati finché lo spazio non viene riusato.", "Smetti di salvare sul disco. Esegui una Smart Scan e salva i risultati su un altro disco."),
+      fmt: FORMAT_OK("il disco"), raw: RAW_OK("il disco"),
+    },
+    pchdd: {
+      del: V.good("Gli hard disk lasciano al loro posto i file cancellati, ma un computer acceso continua a scrivere sul proprio disco.", "Controlla prima il Cestino. Poi collega il disco a un altro computer, oppure avvia subito la scansione e salva i risultati su un disco USB."),
+      fmt: FORMAT_OK("il disco"), raw: RAW_OK("il disco"),
+    },
+    essd: {
+      del: V.mid("Alcuni SSD esterni cancellano i file eliminati in pochi minuti, altri li conservano. Dipende dal formato e dal box: quelli formattati in exFAT di solito li conservano.", "Scollegalo subito e non aprirlo più prima della scansione. Poi esegui una Smart Scan."),
+      fmt: V.mid("Formattare un SSD esterno può anche dirgli di cancellare i vecchi dati. Quelli formattati in exFAT spesso li conservano.", "Analizzalo prima di usarlo di nuovo."),
+      raw: RAW_OK("l’SSD"),
+    },
+    pcssd: {
+      del: V.low("Windows dice agli SSD interni di cancellare i file eliminati, di solito nel giro di secondi o minuti. I nomi possono sopravvivere, ma il contenuto raramente.", "Controlla prima il Cestino, Versioni precedenti (clic destro sulla cartella) e OneDrive. RecovMe può comunque provare e ti dirà quali file sono vuoti."),
+      fmt: V.low("Formattare un SSD interno di solito ne cancella subito il contenuto.", "I backup e le copie nel cloud sono l’unica strada realistica."),
+      raw: V.mid("Se l’SSD ha perso la partizione, i dati potrebbero essere intatti perché niente ha detto al disco di cancellarli.", "Non inizializzarlo e non formattarlo. Esegui una Deep Scan."),
+    },
+    mac: {
+      del: V.low("Ogni Mac con Apple silicon cifra il proprio disco e cancella da solo i file eliminati, quindi nessuna app può recuperarli con una scansione.", "Controlla Eliminati di recente, il Cestino, Time Machine e iCloud. Se Time Machine è attivo, il Mac conserva anche istantanee locali delle ultime 24 ore circa, anche quando il disco di backup non è collegato."),
+      fmt: V.stop("Inizializzare un Mac distrugge la sua chiave di cifratura, quindi nessuno può più leggere i vecchi dati.", "Solo un backup può riportare indietro quei file: Time Machine o iCloud."),
+      raw: V.low("Il disco interno del Mac è cifrato, quindi la scansione non può trovare i file cancellati.", "Usa Time Machine o iCloud. Se il Mac non si avvia, un Apple Store può aiutarti prima che venga cancellato qualcosa."),
+    },
+  };
+
+  const level = document.getElementById("v-level"), why = document.getElementById("v-why"), todo = document.getElementById("v-todo");
+  const box = document.getElementById("verdict");
+  const form = document.getElementById("checker");
+  function update() {
+    const dev = form.querySelector('input[name="dev"]:checked').value;
+    const what = form.querySelector('input[name="what"]:checked').value;
+    const v = what === "dead" ? STOP : table[dev][what];
+    box.dataset.level = v.level;
+    level.textContent = v.label;
+    why.textContent = v.why;
+    todo.textContent = v.todo;
+  }
+  form.addEventListener("change", update);
+  form.addEventListener("submit", (e) => e.preventDefault());
+  update();
+})();
+</script>
+</body>
+</html>

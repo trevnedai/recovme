@@ -3,6 +3,16 @@
   <url>
     <loc>https://recovme.app/</loc>
     <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
   </url>
   <url>
     <loc>https://recovme.app/guides/</loc>
@@ -59,6 +69,38 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-external-hard-drive/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-video-telecamera-dashcam-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-video-telecamera-dashcam-scheda-sd/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-video-telecamera-dashcam-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-cctv-dashcam-footage-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/guides/recover-deleted-files-windows/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/it/guide/recuperare-file-cancellati-windows/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-file-cancellati-windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-files-windows/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/press/</loc>
+    <lastmod>2026-10-29</lastmod>
   </url>
   <url>
     <loc>https://recovme.app/code-signing.html</loc>

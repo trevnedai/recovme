@@ -1,12 +1,53 @@
-# RecovMe — free file & photo recovery
+<p align="center">
+  <img src="site/assets/icon-256.png" width="112" height="112" alt="RecovMe icon">
+</p>
 
-Bring back deleted photos, videos, music and documents from SD cards, USB sticks,
-external drives and hard disks, Android phones, and iPhone or iPad backups. Free, open source, private (nothing leaves your
-computer) and **read-only** on the drive you scan.
+<h1 align="center">RecovMe</h1>
 
-Runs on **macOS (Apple Silicon)** and **Windows 10/11 (64-bit)**.
+<p align="center">
+  <b>Free, open-source file and photo recovery for Mac and Windows. No paywall after the scan.</b>
+</p>
 
-**Website and downloads: [recovme.app](https://recovme.app)**
+<p align="center">
+  <a href="https://github.com/trevnedai/recovme/releases/latest"><img src="https://img.shields.io/github/v/release/trevnedai/recovme?label=download&color=f2a33a" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/macOS-11%2B%20(Apple%20silicon)-0e3b39" alt="macOS 11 or later, Apple silicon">
+  <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0e3b39" alt="Windows 10 and 11">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-0b7a6b" alt="GPL-3.0 license"></a>
+</p>
+
+<p align="center">
+  <a href="https://recovme.app"><b>Website</b></a> ·
+  <a href="https://github.com/trevnedai/recovme/releases/latest"><b>Download</b></a> ·
+  <a href="https://recovme.app/guides/"><b>Guides</b></a> ·
+  <a href="https://recovme.app/it/guide/">Guide in italiano</a>
+</p>
+
+<p align="center">
+  <img src="site/assets/app-scan.webp" width="820" alt="RecovMe scanning a camera card, with recovered photos appearing as they are found">
+</p>
+
+Bring back deleted and formatted photos, videos, music, recordings, CCTV and dashcam footage
+and documents from SD cards, USB sticks, external drives and hard disks, and copy what still
+survives on Android phones and in iPhone or iPad backups. Free, open source,
+private (nothing leaves your computer) and **read-only** on the drive you scan.
+
+Runs on **macOS 11 or later (Apple silicon)** and **Windows 10/11 (64-bit)**.
+
+## Why RecovMe
+
+Many "free" recovery apps scan for free, show you your lost files, then ask you to pay before
+you can save them. RecovMe doesn't.
+
+| | Typical "free" recovery app | RecovMe |
+|---|---|---|
+| Saving the files it finds | Pay first (license or subscription) | Free, always |
+| How much you can recover | A free limit of a few hundred MB to 2 GB | No limit |
+| Account or sign-up | Often required | None |
+| Your files | Varies; many collect usage data | Never leave your computer |
+| Source code | Closed | Open (GPL-3.0) |
+
+If RecovMe brought your files back, the best thanks is a ⭐ on this repo, or telling someone
+who just lost theirs. Donations are optional: [recovme.app/#coffee](https://recovme.app/#coffee).
 
 ## How it works
 
@@ -39,7 +80,7 @@ Memory cards from cameras, drones, dashcams and consoles are drives: put them in
 reader. If an Android phone has a memory card, scanning the card in a reader finds more.
 
 ### Speed
-- Deep Scan searches only **free space** by default (where deleted files live), not the files you still have. Turn on *Search the whole drive* after a format.
+- Deep Scan searches the **whole drive** by default, so it finds the most even after a format, and leaves out files that are still on the drive. Turn off *Search the whole drive* for a faster search of free space only.
 - Only the file types you choose are searched for — fewer signatures, faster scan.
 - macOS reads the raw device (`/dev/rdiskN`), which is much faster than the buffered one.
 - Live progress, time left and a preview of photos found; **Stop** keeps everything found so far.
@@ -115,7 +156,8 @@ cargo run --bin recovme-cli -- /path/to/card.img /path/to/save smart photos,vide
 RecovMe is GPL-3.0-or-later. It bundles, unmodified and as separate programs:
 PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit © Brian Carrier
 and contributors (IBM Public License / Common Public License and others — see `licenses/`
-in the engine folder).
+in the engine folder), and Android's adb from the Android SDK Platform-Tools © Google
+(Apache-2.0, from the Android Open Source Project; see `NOTICE.txt` in the `adb` engine folder).
 
 ## Signing the Windows installer
 
@@ -127,6 +169,12 @@ Windows installers are signed for free through the [SignPath Foundation](https:/
 | `SIGNPATH_ORGANIZATION_ID` | The SignPath organization ID |
 
 Optional repository variables: `SIGNPATH_PROJECT_SLUG` (default `recovme`) and `SIGNPATH_POLICY_SLUG` (default `release-signing`). Builds from version tags use the release policy; other builds use `test-signing`.
+
+## Contributing
+
+Bug reports and test results are very welcome, especially from unusual cameras, dashcams,
+CCTV recorders and file systems: [open an issue](https://github.com/trevnedai/recovme/issues)
+with the device, the file system and what was (or wasn't) recovered.
 
 ## Author
 

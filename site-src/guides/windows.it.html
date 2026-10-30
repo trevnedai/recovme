@@ -1,0 +1,80 @@
+<div class="chance" data-level="mid">
+  <p class="label">Probabilità di recupero: dipende dal disco</p>
+  <p>Su un <strong>hard disk</strong> i file cancellati di solito restano finché lo spazio non viene riusato, quindi le probabilità sono buone. Su un <strong>SSD</strong>, presente nella maggior parte dei portatili e dei PC recenti, Windows dice al disco di cancellare i file eliminati, di solito entro pochi minuti. In quel caso, le opzioni gratuite di Windows qui sotto sono la tua possibilità migliore.</p>
+</div>
+
+<h2>Controlla prima questi posti gratuiti</h2>
+<ul>
+  <li><strong>Cestino.</strong> Aprilo dal desktop, fai clic destro sul file e scegli Ripristina.</li>
+  <li><strong>Il cestino di OneDrive.</strong> Se la cartella è sincronizzata con OneDrive, accedi a onedrive.com e apri il Cestino. Con un account Microsoft personale, i file eliminati restano lì per 30 giorni.</li>
+  <li><strong>Versioni precedenti.</strong> Fai clic destro sulla cartella in cui si trovava il file, scegli Proprietà e poi la scheda Versioni precedenti. Mostra delle copie se Cronologia file o i punti di ripristino erano attivi.</li>
+  <li><strong>Cronologia file.</strong> Se l’avevi configurata con un disco di backup, apri Pannello di controllo › Cronologia file › Ripristina file personali.</li>
+</ul>
+
+<h2>Hard disk o SSD?</h2>
+<p>Premi <kbd>Ctrl</kbd> + <kbd>Maiusc</kbd> + <kbd>Esc</kbd> per aprire Gestione attività, scegli Prestazioni e poi fai clic sul disco. Il tipo, <strong>SSD</strong> o <strong>HDD</strong>, è indicato a destra.</p>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Il tuo disco</th><th scope="col">Probabilità</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">HDD (hard disk)</th><td><span class="lvl good">Buone</span>, purché smetti di usare il PC per altro. Un PC acceso continua a scrivere sul proprio disco.</td></tr>
+      <tr><th scope="row">SSD</th><td><span class="lvl low">Basse.</span> I nomi dei file possono sopravvivere, ma il contenuto raramente. RecovMe può comunque provare e ti dice quali file recuperati sono vuoti.</td></tr>
+      <tr><th scope="row">I file erano su una chiavetta USB, una scheda SD o un disco esterno</th><td><span class="lvl good">Di solito buone.</span> Leggi la <a href="/it/guide/recuperare-foto-cancellate-scheda-sd/">guida per le schede SD</a> o la <a href="/it/guide/recuperare-file-cancellati-hard-disk-esterno/">guida per i dischi esterni</a>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Prima della scansione</h2>
+  <ul>
+    <li><strong>Smetti di usare il PC</strong> per altro: niente download, niente aggiornamenti, niente file nuovi.</li>
+    <li class="do"><strong>Tieni pronta una chiavetta USB o un disco esterno.</strong> RecovMe non salva sul disco che sta analizzando, quindi su un PC con un solo disco ti serve un altro posto dove mettere i file.</li>
+    <li class="do"><strong>Per i file davvero importanti</strong>, il modo più sicuro è togliere l’hard disk, collegarlo a un altro computer con un adattatore USB e analizzarlo lì.</li>
+  </ul>
+</section>
+
+<h2>Recupera i file in 6 passaggi</h2>
+<p>RecovMe è gratis fino alla fine: nessuna prova, nessun limite di dimensione, niente da pagare prima di salvare. Per ora l’app è in inglese, quindi qui trovi il nome esatto di ogni pulsante.</p>
+
+<ol class="steps">
+  <li><b>Scarica e apri RecovMe</b>
+    <p>Funziona su Windows 10 e 11 (64 bit). Se compare una finestra blu di SmartScreen, scegli <span class="ui">Ulteriori informazioni</span> e poi <span class="ui">Esegui comunque</span>. Consenti le modifiche quando Windows lo chiede: servono i diritti di amministratore per leggere il disco direttamente.</p></li>
+  <li><b>Scegli il disco</b>
+    <p>Seleziona nell’elenco a sinistra il disco in cui si trovavano i file, di solito <span class="ui">C:</span>.</p></li>
+  <li><b>Scegli cosa cercare</b>
+    <p>Photos, Videos e Documents sono attivi di default. Aggiungi <span class="ui">Music &amp; Audio</span> o <span class="ui">Archives</span> se ti servono. Meno tipi rendono la scansione più veloce.</p></li>
+  <li><b>Lascia Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> prima legge la tabella dei file del disco, che sui dischi Windows (NTFS) restituisce i file cancellati di recente con il nome e le cartelle originali. Poi cerca il resto in ogni blocco.</p>
+    <figure class="shot">
+      <img src="/assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="RecovMe con un disco selezionato, i tipi di file scelti e Smart Scan consigliato.">
+      <figcaption>Scegli il disco, i tipi di file e dove salvare.</figcaption>
+    </figure></li>
+  <li><b>Salva sulla chiavetta USB o sul disco esterno</b>
+    <p>In <span class="ui">Save Recovered Files To</span> (Salva i file recuperati in), scegli una cartella sull’altro disco. Evita una cartella di OneDrive; RecovMe ti avvisa se la scegli.</p></li>
+  <li><b>Avvia la scansione e apri i file</b>
+    <p>Premi <span class="ui">Start Scan</span>, poi <span class="ui">Open Recovered Files</span> quando ha finito. I file che hanno mantenuto il nome sono in <span class="ui">Original names</span>; gli altri sono ordinati per tipo.</p></li>
+</ol>
+
+<h2>Domande</h2>
+<div class="faq">
+  <details>
+    <summary>Ho usato Maiusc + Canc. I file possono tornare?</summary>
+    <p>Maiusc + Canc salta il Cestino, quindi il risultato è lo stesso che svuotarlo. Su un hard disk i file di solito restano finché lo spazio non viene riusato. Su un SSD di solito vengono cancellati poco dopo.</p>
+  </details>
+  <details>
+    <summary>Il PC non si avvia. Posso recuperare i miei file?</summary>
+    <p>Se il PC ha un disco che si può togliere, collegalo a un altro computer con un adattatore USB e analizzalo lì. Molti portatili sottili hanno l’SSD saldato, e in quel caso conviene rivolgersi a un centro di assistenza.</p>
+  </details>
+  <details>
+    <summary>Perché servono i diritti di amministratore?</summary>
+    <p>Leggere lo spazio cancellato significa leggere il disco direttamente, sotto i file e le cartelle che mostra Windows. Windows lo permette solo alle app avviate come amministratore. RecovMe legge soltanto e non scrive mai sul disco che analizza.</p>
+  </details>
+  <details>
+    <summary>RecovMe è davvero gratis?</summary>
+    <p>Sì, al 100%. Nessuna prova, nessun limite di dimensione e niente da sbloccare dopo la scansione. È open source e le donazioni sono facoltative.</p>
+  </details>
+  <details>
+    <summary>Invia i miei file da qualche parte?</summary>
+    <p>No. Tutto avviene sul tuo computer. RecovMe non ha account, cloud né tracciamento.</p>
+  </details>
+</div>

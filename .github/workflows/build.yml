@@ -1,8 +1,14 @@
 name: Build installers
 
 # Runs when you press "Run workflow" on GitHub, or when a version tag (v0.1.0) is pushed.
+# "Run workflow" with a release tag (v0.2.0) also publishes that release and creates its tag.
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Publish a release with this tag, e.g. v0.2.0 (must match the app's version). Leave empty to only build."
+        required: false
+        default: ""
   push:
     tags: ["v*"]
 
@@ -162,7 +168,7 @@ jobs:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
           organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
           project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'recovme' }}
-          signing-policy-slug: ${{ startsWith(github.ref, 'refs/tags/v') && (vars.SIGNPATH_POLICY_SLUG || 'release-signing') || 'test-signing' }}
+          signing-policy-slug: ${{ (startsWith(github.ref, 'refs/tags/v') || startsWith(inputs.release_tag, 'v')) && (vars.SIGNPATH_POLICY_SLUG || 'release-signing') || 'test-signing' }}
           github-artifact-id: ${{ steps.upload-unsigned.outputs.artifact-id }}
           wait-for-completion: true
           output-artifact-directory: signed
@@ -183,10 +189,20 @@ jobs:
 
   release:
     name: Publish release
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || startsWith(inputs.release_tag, 'v')
     needs: [macos, windows]
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.release_tag || github.ref_name }}
     steps:
+      - uses: actions/checkout@v4
+      - name: Check the tag matches the app's version
+        run: |
+          VERSION="$(jq -r .version src-tauri/tauri.conf.json)"
+          if [ "$TAG" != "v$VERSION" ]; then
+            echo "::error title=Wrong release tag::$TAG doesn't match the app's version $VERSION (expected v$VERSION)."
+            exit 1
+          fi
       - uses: actions/download-artifact@v4
         with:
           path: dist
@@ -195,7 +211,10 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/**/*
-          name: RecovMe ${{ github.ref_name }}
+          # Creates the tag on this commit when it doesn't exist yet ("Run workflow").
+          tag_name: ${{ env.TAG }}
+          target_commitish: ${{ github.sha }}
+          name: RecovMe ${{ env.TAG }}
           body: |
             Free, open-source file recovery for Mac and Windows: photos, videos, music, recordings, CCTV and dashcam footage, documents and archives, from cards, drives, Android phones and iPhone or iPad backups.
 

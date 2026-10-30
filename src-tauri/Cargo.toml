@@ -1,6 +1,6 @@
 [package]
 name = "recovme"
-version = "0.1.0"
+version = "0.2.0"
 description = "Free file and photo recovery for Mac and Windows"
 authors = ["Dhan Denvert Asuncion"]
 license = "GPL-3.0-or-later"
@@ -34,12 +34,18 @@ blake3 = "1"
 kamadak-exif = "0.6"
 walkdir = "2"
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+# iPhone / iPad backups: Info.plist and file records, Manifest.db, encrypted backups.
+plist = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+aes = "0.8"
+aes-kw = { version = "0.2", features = ["alloc"] }
+cbc = "0.1"
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+sha1 = "0.10"
+sha2 = "0.10"
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
-
-[target.'cfg(target_os = "macos")'.dependencies]
-plist = "1"
 
 [profile.release]
 opt-level = 3

@@ -1,5 +1,6 @@
 pub mod core;
 
+use crate::core::devices;
 use crate::core::drives;
 use crate::core::engines::{self, Engines};
 use crate::core::job::{self, Job};
@@ -28,6 +29,15 @@ async fn list_drives() -> Result<Vec<DiskGroup>, String> {
     tauri::async_runtime::spawn_blocking(drives::list_drives)
         .await
         .map_err(|e| e.to_string())?
+}
+
+/// Android phones (USB debugging) and iPhone / iPad backups on this computer.
+#[tauri::command]
+async fn list_phones(app: AppHandle) -> Result<Vec<Drive>, String> {
+    let engines = engines_for(&app);
+    tauri::async_runtime::spawn_blocking(move || devices::list(&engines))
+        .await
+        .map_err(|e| e.to_string())
 }
 
 #[tauri::command]
@@ -66,11 +76,14 @@ async fn pick_image(app: AppHandle) -> Result<Option<Drive>, String> {
     let picked = app
         .dialog()
         .file()
-        .set_title("Choose a disk image to scan")
+        .set_title("Choose a disk image, or the Manifest.plist file of an iPhone backup")
         .blocking_pick_file()
         .and_then(|p| p.into_path().ok());
     match picked {
-        Some(p) => drives::image_drive(&p.to_string_lossy()).map(Some),
+        Some(p) => match devices::picked(&p) {
+            Some(backup) => Ok(Some(backup)),
+            None => drives::image_drive(&p.to_string_lossy()).map(Some),
+        },
         None => Ok(None),
     }
 }
@@ -164,6 +177,7 @@ pub fn run() {
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
             list_drives,
+            list_phones,
             engine_status,
             platform,
             default_output_dir,

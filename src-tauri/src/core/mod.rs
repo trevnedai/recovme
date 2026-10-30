@@ -1,6 +1,9 @@
+pub mod android;
 pub mod categories;
+pub mod devices;
 pub mod drives;
 pub mod engines;
+pub mod iosbackup;
 pub mod job;
 pub mod organize;
 pub mod progress;

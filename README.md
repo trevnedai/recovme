@@ -27,7 +27,8 @@
 </p>
 
 Bring back deleted and formatted photos, videos, music, recordings, CCTV and dashcam footage
-and documents from SD cards, USB sticks, external drives and hard disks. Free, open source,
+and documents from SD cards, USB sticks, external drives and hard disks, and copy what still
+survives on Android phones and in iPhone or iPad backups. Free, open source,
 private (nothing leaves your computer) and **read-only** on the drive you scan.
 
 Runs on **macOS 11 or later (Apple silicon)** and **Windows 10/11 (64-bit)**.
@@ -61,6 +62,23 @@ RecovMe runs two proven recovery engines and tidies up what they find:
 **Smart scan** (the default) runs Quick Scan first, then Deep Scan, and removes Deep Scan
 copies of files Quick Scan already found by name.
 
+### Phones and tablets
+
+Phones can't be searched block by block like a memory card: iPhones never allow it, and
+Android phones encrypt their storage and erase deleted space. So RecovMe copies the places
+where deleted files really survive, and lists them under **Phones & Tablets**:
+
+| Device | How | What it brings back |
+|---|---|---|
+| **Android** | USB debugging, through Google's `adb` (bundled) | The system trash (Android 11+ keeps deleted photos and videos 30 days as hidden `.trashed-…` files; names are restored) and unfinished `.pending-…` files, gallery and file manager trash (Samsung Gallery and My Files, restored to their original folder; Xiaomi, Huawei, OPPO, OnePlus, vivo, Files by Google), Telegram's cache of viewed media, WhatsApp (statuses included), Telegram, Viber and other chat media, thumbnail caches (mostly useful before Android 10, which deletes thumbnails with the photo). Optionally a copy of everything in the phone's own folders. Files with no extension are identified by their content. |
+| **iPhone / iPad** | The backups Finder, iTunes or Apple Devices made on this computer, found automatically (or open one from another drive with *Open a Disk Image or Backup…*) | Camera Roll with original names (Recently Deleted and the Hidden album in their own folders, read from the Photos library), previews of iCloud-only photos, messages in Messages → Recently Deleted (iOS 16+) as a text file with their photos, Messages and WhatsApp attachments, voice memos with their titles, Notes, Files and app documents. **Encrypted backups** are opened with their password, which is never saved. |
+
+**What it can't do:** bring back files that are fully deleted from a phone. Nothing can:
+the data no longer exists on the phone. The app says so before the first phone scan.
+
+Memory cards from cameras, drones, dashcams and consoles are drives: put them in a card
+reader. If an Android phone has a memory card, scanning the card in a reader finds more.
+
 ### Speed
 - Deep Scan searches the **whole drive** by default, so it finds the most even after a format, and leaves out files that are still on the drive. Turn off *Search the whole drive* for a faster search of free space only.
 - Only the file types you choose are searched for — fewer signatures, faster scan.
@@ -83,6 +101,11 @@ copies of files Quick Scan already found by name.
 
 - **macOS:** enter your password when asked — the engines need it to read the drive. If a scan says it can't read the drive, allow RecovMe in *System Settings → Privacy & Security → Full Disk Access*.
 - **Windows:** the app asks for administrator rights when it opens (needed for raw disk access).
+- **Android:** turn on *USB debugging* (Settings → About phone → tap *Build number* 7 times →
+  Developer options), connect the phone, and tap *Allow* on the phone. The app's
+  *Phone Not Listed?* link shows the steps.
+- **iPhone / iPad:** scan an existing backup *before* making a new one, since a new backup
+  replaces the old one. On macOS, reading backups needs *Full Disk Access* for RecovMe.
 
 ## Building
 
@@ -133,7 +156,8 @@ cargo run --bin recovme-cli -- /path/to/card.img /path/to/save smart photos,vide
 RecovMe is GPL-3.0-or-later. It bundles, unmodified and as separate programs:
 PhotoRec © Christophe Grenier, CGSecurity (GPL-2.0-or-later) and The Sleuth Kit © Brian Carrier
 and contributors (IBM Public License / Common Public License and others — see `licenses/`
-in the engine folder).
+in the engine folder), and Android's adb from the Android SDK Platform-Tools © Google
+(Apache-2.0, from the Android Open Source Project; see `NOTICE.txt` in the `adb` engine folder).
 
 ## Signing the Windows installer
 
@@ -154,7 +178,7 @@ with the device, the file system and what was (or wasn't) recovered.
 
 ## Author
 
-RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) by Christophe Grenier and [The Sleuth Kit](https://www.sleuthkit.org) by Brian Carrier and contributors.
+RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [PhotoRec](https://www.cgsecurity.org/wiki/PhotoRec) by Christophe Grenier, [The Sleuth Kit](https://www.sleuthkit.org) by Brian Carrier and contributors, and Android's [adb](https://developer.android.com/tools/adb) (Apache 2.0, from the Android Open Source Project).
 
 ## Website
 

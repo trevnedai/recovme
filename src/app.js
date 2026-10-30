@@ -8,7 +8,9 @@
 
   const state = {
     groups: [],
+    phones: [], // Android phones and iPhone / iPad backups
     selected: null, // Drive
+    places: new Set(["trash", "thumbnails", "apps"]),
     categories: new Set(["photos", "videos", "documents"]),
     mode: "smart",
     output: null,
@@ -118,15 +120,88 @@
     documents: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2.75h8.5l4 4v14.5H6Z"/><path d="M14.5 2.75v4h4M9 11.5h6.5M9 14.5h6.5M9 17.5h4"/></svg>',
     archives: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.25" y="4" width="17.5" height="4.5" rx="1.2"/><path d="M5 8.5v10.25a1.25 1.25 0 0 0 1.25 1.25h11.5A1.25 1.25 0 0 0 19 18.75V8.5M10 12h4"/></svg>',
     other: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2.75h8.5l4 4v14.5H6Z"/><path d="M14.5 2.75v4h4"/></svg>',
+    android: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="2.75" width="12" height="18.5" rx="2.5"/><path d="M10.5 18.25h3"/></svg>',
+    "ios-backup": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="6" y="2.75" width="12" height="18.5" rx="3"/><path d="M12 7.5v6.5M9.5 11.5 12 14l2.5-2.5"/><path d="M10.5 18.25h3"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="2.75" width="12" height="18.5" rx="2.5"/><path d="M10.5 18.25h3"/></svg>',
+    trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 6.5h16M9.5 6.5V4.25h5V6.5M6 6.5l1 13.25a1.25 1.25 0 0 0 1.25 1.25h7.5A1.25 1.25 0 0 0 17 19.75L18 6.5"/><path d="M12 10.5v6M9.5 13l2.5-2.5 2.5 2.5"/></svg>',
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 5.25h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-4.5 3.5v-3.5H4a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z"/><path d="M7.5 10.5h9M7.5 13.5h5.5"/></svg>',
     names: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2.75 6.5a1.25 1.25 0 0 1 1.25-1.25h5l2 2.25h9a1.25 1.25 0 0 1 1.25 1.25v9.75A1.25 1.25 0 0 1 20 19.75H4a1.25 1.25 0 0 1-1.25-1.25Z"/><path d="m8.5 13.5 2.4 2.4 4.6-4.9"/></svg>',
   };
 
-  const KIND_LABEL = { removable: "Card or USB stick", external: "External drive", internal: "Internal drive", image: "Disk image" };
+  const KIND_LABEL = { removable: "Card or USB stick", external: "External drive", internal: "Internal drive", image: "Disk image", android: "Android phone", "ios-backup": "iPhone or iPad backup" };
+  // What phone recovery can and can't do, said plainly. Shown before the first
+  // phone scan and on the setup screen, so nobody starts with false hopes.
+  const EXPECT = {
+    android: {
+      lead: "RecovMe can't search a phone block by block like a memory card. It can only copy files that still exist on the phone. Most fully deleted files are gone for good, and no app can bring them back.",
+      can: [
+        "Photos and videos deleted in about the last 30 days, while they are still in the phone's trash",
+        "Files in the trash of Samsung, Xiaomi, Huawei, OPPO, vivo and other gallery and file apps",
+        "Photos and videos you viewed in Telegram, and media WhatsApp and other chat apps still keep on the phone",
+        "Photos and downloads that were never finished saving",
+        "Small, low-quality previews (thumbnails) of some deleted photos, mostly on phones older than Android 10",
+      ],
+      cant: [
+        "Files removed from the trash, or deleted more than about 30 days ago",
+        "Anything after the phone was reset to factory settings",
+        "Text messages, contacts and call history",
+        "Photos that are only in the cloud (Google Photos, OneDrive…)",
+      ],
+      why: "<b>Why:</b> Android phones encrypt their storage, and the phone wipes the space of deleted files by itself. Once that happens, the data no longer exists anywhere on the phone.",
+      first: "<b>Check these first:</b> the Trash in your Gallery or Google Photos app, and photos.google.com → Trash (kept 60 days). If the phone has a memory card, take it out and scan it in a card reader: that is where recovery works best.",
+    },
+    "ios-backup": {
+      lead: "Apple doesn't let any app read an iPhone's storage directly, not even to look for deleted files. RecovMe can only read a backup that is already on this computer. Without one, nothing can be recovered.",
+      can: [
+        "Everything that was on the iPhone or iPad when this backup was made, even if you deleted it later",
+        "Photos and videos, including those that were in Recently Deleted at that time",
+        "Messages that were in Messages → Recently Deleted (iOS 16 and later), as a text file, with their photos",
+        "Photos and videos sent in Messages and WhatsApp, the Hidden album, voice memos with their titles, Notes attachments and app documents",
+      ],
+      cant: [
+        "Anything taken or saved after this backup was made",
+        "Anything that was already deleted before this backup was made",
+        "Backups that are only in iCloud (they live on Apple's servers)",
+        "Full-size photos kept only in iCloud (“Optimize iPhone Storage”): at most a small preview",
+        "Other deleted messages, and the text of WhatsApp and other app chats",
+      ],
+      why: "<b>Why:</b> a backup is a copy of the device at one moment. RecovMe reads that copy, so it can only give back what was in it.",
+      first: "<b>Important:</b> don't make a new backup of this device yet: it replaces this one. To keep this one safe, open Manage Backups in Finder, iTunes or Apple Devices, right-click it and choose Archive. Check icloud.com → Photos → Recently Deleted too (kept 30 days).",
+    },
+  };
+  const acknowledged = new Set();
+
+  function fillList(el, items) {
+    el.innerHTML = items.map((x) => `<li>${esc(x)}</li>`).join("");
+  }
+
+  // The first time a kind of phone is picked: say what to expect, and ask to confirm.
+  function confirmExpectations(kind) {
+    const e = EXPECT[kind];
+    if (!e || acknowledged.has(kind)) return Promise.resolve(true);
+    return new Promise((resolve) => {
+      $("expectTitle").textContent = kind === "android" ? "Before You Start: Android Phones" : "Before You Start: iPhone and iPad";
+      $("expectLead").textContent = e.lead;
+      fillList($("expectModalCan"), e.can);
+      fillList($("expectModalCant"), e.cant);
+      $("expectModalFirst").innerHTML = e.first;
+      const close = openModal($("expectModal"), (ok) => {
+        if (ok === true) acknowledged.add(kind);
+        resolve(ok === true);
+      }, $("expectOk"));
+      $("expectOk").onclick = () => close(true);
+      $("expectCancel").onclick = () => close(false);
+    });
+  }
+
+  const isPhone = (d) => !!d && (d.kind === "android" || d.kind === "ios-backup");
 
   // ── drives ──
   async function loadDrives() {
     const btn = $("btnRefresh");
     btn.classList.add("spin");
+    // Phones answer more slowly than drives: list them on their own.
+    const phones = call("list_phones").catch(() => []);
     try {
       state.groups = await call("list_drives");
     } catch (e) {
@@ -134,10 +209,19 @@
       btn.classList.remove("spin");
       return;
     }
-    btn.classList.remove("spin");
-    if (state.selected && state.selected.kind !== "image") {
-      const still = allDrives().find((d) => d.id === state.selected.id);
-      state.selected = still || null;
+    refreshSelection();
+    phones.then((p) => {
+      state.phones = p || [];
+      btn.classList.remove("spin");
+      refreshSelection();
+    });
+  }
+
+  function refreshSelection() {
+    if (!state.scanning && state.selected && state.selected.kind !== "image" && !state.selected.picked) {
+      const found = allDrives().find((d) => d.id === state.selected.id);
+      const still = found && !found.blocked ? found : null;
+      state.selected = still;
       if (!still && state.view === "setup") show("welcome");
     }
     renderDrives();
@@ -145,13 +229,13 @@
     validate();
   }
 
-  const allDrives = () => state.groups.flatMap((g) => [g.disk, ...g.volumes]);
+  const allDrives = () => [...state.groups.flatMap((g) => [g.disk, ...g.volumes]), ...state.phones];
 
   function driveRow(d, isVol) {
     const ico = isVol ? ICON.volume : ICON[d.kind] || ICON.external;
     const sel = state.selected && state.selected.id === d.id ? " sel" : "";
-    const sub = isVol ? d.detail : `${fmtBytes(d.size)} · ${KIND_LABEL[d.kind] || "Drive"}`;
-    const flag = !isVol && d.warning ? '<span class="flag">Low Chance</span>' : "";
+    const sub = isVol || isPhone(d) ? d.detail : `${fmtBytes(d.size)} · ${KIND_LABEL[d.kind] || "Drive"}`;
+    const flag = d.blocked ? '<span class="flag">Action Needed</span>' : !isVol && d.warning && !isPhone(d) ? '<span class="flag">Low Chance</span>' : "";
     return `<button class="drv${isVol ? " vol" : ""}${sel}" data-id="${esc(d.id)}" aria-current="${sel ? "true" : "false"}">
       <span class="ico">${ico}</span>
       <span class="txt"><span class="name">${esc(d.label)}</span><span class="sub">${esc(sub)}</span></span>
@@ -161,14 +245,22 @@
 
   function renderDrives() {
     const parts = [];
-    if (state.selected && state.selected.kind === "image") {
-      parts.push(`<div class="disk">${driveRow(state.selected, false)}</div>`);
+    const picked = state.selected && (state.selected.kind === "image" || state.selected.picked) ? state.selected : null;
+    if (picked && picked.kind === "image") {
+      parts.push(`<div class="disk">${driveRow(picked, false)}</div>`);
     }
     for (const g of state.groups) {
       parts.push(`<div class="disk">${driveRow(g.disk, false)}${g.volumes.map((v) => driveRow(v, true)).join("")}</div>`);
     }
-    $("drives").innerHTML = parts.length ? parts.join("") : '<p class="side-empty">No drives found. Plug one in and press refresh.</p>';
+    if (!parts.length) parts.push('<p class="side-empty">No drives found. Plug one in and press refresh.</p>');
+    parts.push('<h3 class="side-sub">Phones &amp; Tablets</h3>');
+    const phones = picked && isPhone(picked) && !state.phones.some((p) => p.id === picked.id) ? [picked, ...state.phones] : state.phones;
+    for (const p of phones) parts.push(`<div class="disk">${driveRow(p, false)}</div>`);
+    if (!phones.length) parts.push('<p class="side-empty">No phone or iPhone backup found.</p>');
+    parts.push('<button class="side-help" id="btnPhoneHelp">Phone Not Listed?</button>');
+    $("drives").innerHTML = parts.join("");
     $("drives").querySelectorAll(".drv").forEach((el) => el.addEventListener("click", () => selectDrive(el.dataset.id)));
+    $("btnPhoneHelp").onclick = openPhoneHelp;
   }
 
   function findDrive(id) {
@@ -183,6 +275,12 @@
     }
     const d = findDrive(id);
     if (!d) return;
+    if (d.blocked) {
+      await dialog(d.kind === "android" ? "Allow This Computer on the Phone" : "One More Step", d.blocked, "OK", true);
+      return;
+    }
+    if (isPhone(d) && !(await confirmExpectations(d.kind))) return;
+    if (state.selected && state.selected.id !== d.id) $("backupPassword").value = "";
     if (d.warning && d.isSystem) {
       const ok = await dialog("Scan This Drive Anyway?", `${d.warning} A scan of this drive can take a long time.`, "Scan Anyway");
       if (!ok) return;
@@ -201,6 +299,22 @@
   function renderSetup() {
     const d = state.selected;
     if (!d) return;
+    const phone = isPhone(d);
+    $("modesBlock").classList.toggle("hidden", phone);
+    $("moreBlock").classList.toggle("hidden", phone);
+    $("placesBlock").classList.toggle("hidden", d.kind !== "android");
+    $("passwordBlock").classList.toggle("hidden", !(d.kind === "ios-backup" && d.encrypted));
+    const e = EXPECT[d.kind];
+    $("expectBlock").classList.toggle("hidden", !e);
+    if (e) {
+      fillList($("expectCan"), e.can);
+      fillList($("expectCant"), e.cant);
+      $("expectWhy").innerHTML = e.why;
+      $("expectFirst").innerHTML = e.first;
+    }
+    $("driveInfo").textContent = d.kind === "android" ? "Nothing on the phone is changed: files are only copied off it." : d.kind === "ios-backup" ? "Nothing in the backup is changed: files are only copied out of it." : "";
+    $("driveInfo").classList.toggle("hidden", !phone);
+    $("btnStart").textContent = phone ? "Recover Files" : "Start Scan";
     const isVol = !d.isWholeDisk;
     const parent = isVol ? parentOf(d) : null;
     const kind = parent ? parent.disk.kind : d.kind;
@@ -215,7 +329,9 @@
     $("driveMeta").textContent = bits.join(" · ");
     const warning = d.warning || (parent && parent.disk.warning);
     const chance = $("driveChance");
-    if (warning) {
+    if (phone) {
+      chance.textContent = "";
+    } else if (warning) {
       chance.textContent = "Low Chance";
       chance.className = "chance low";
     } else if (["removable", "external", "image"].includes(kind)) {
@@ -259,6 +375,20 @@
         validate();
       })
     );
+    $("places").querySelectorAll(".chip").forEach((c) =>
+      c.addEventListener("click", () => {
+        const p = c.dataset.place;
+        state.places.has(p) ? state.places.delete(p) : state.places.add(p);
+        const on = state.places.has(p);
+        c.classList.toggle("on", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        validate();
+      })
+    );
+    $("backupPassword").addEventListener("input", validate);
+    $("backupPassword").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !$("btnStart").disabled) startScan();
+    });
     $("modes").querySelectorAll(".mode").forEach((m) =>
       m.addEventListener("click", () => {
         state.mode = m.dataset.mode;
@@ -271,8 +401,9 @@
     );
   }
 
-  function scanOptions() {
+  function scanOptions(withPassword) {
     const d = state.selected;
+    const encrypted = d.kind === "ios-backup" && d.encrypted;
     return {
       device: d.device,
       deviceLabel: d.label,
@@ -288,6 +419,8 @@
       dedupe: $("optDedupe").checked,
       renamePhotos: $("optRename").checked,
       unmount: state.platform === "macos" && $("optUnmount").checked,
+      places: [...state.places],
+      password: encrypted && withPassword ? $("backupPassword").value : null,
     };
   }
 
@@ -309,7 +442,15 @@
     if (!d) text = "Choose a drive on the left to begin.";
     else if (state.categories.size === 0) text = "Choose at least one kind of file to look for.";
     else if (!state.output) text = "Choose where to save the recovered files.";
-    if (d && state.mode === "quick" && !d.quickSupported) {
+    if (ok && d.kind === "android" && state.places.size === 0) {
+      ok = false;
+      text = "Choose at least one place to look in.";
+    }
+    if (ok && d.kind === "ios-backup" && d.encrypted && !$("backupPassword").value) {
+      ok = false;
+      text = "Enter the backup's password.";
+    }
+    if (d && !isPhone(d) && state.mode === "quick" && !d.quickSupported) {
       ok = false;
       text = "Quick Scan can't read deleted names here. Pick a volume under the drive, or use Smart Scan.";
     }
@@ -330,7 +471,10 @@
         ? "all file types"
         : [...state.categories].map((c) => ({ photos: "photos", videos: "videos", audio: "music", documents: "documents", archives: "archives" }[c])).join(", ");
       const modeName = { smart: "Smart Scan", quick: "Quick Scan", deep: "Deep Scan" }[state.mode];
-      text = `${modeName} for ${what}.`;
+      text =
+        d.kind === "android" ? `Copy deleted and forgotten ${what} from the phone.`
+        : d.kind === "ios-backup" ? `Get ${what} out of the backup.`
+        : `${modeName} for ${what}.`;
     }
     $("barText").textContent = text;
     $("btnStart").disabled = !ok;
@@ -345,17 +489,24 @@
     $("btnStop").classList.toggle("hidden", view !== "scan");
     $("btnOpen").classList.toggle("hidden", view !== "done");
     $("btnAgain").classList.toggle("hidden", view !== "done");
-    if (view === "scan") $("barText").textContent = "Keep the drive connected. Stopping keeps everything found so far.";
+    if (view === "scan") {
+      const d = state.selected;
+      $("barText").textContent =
+        d && d.kind === "android" ? "Keep the phone connected and unlocked. Stopping keeps everything copied so far."
+        : d && d.kind === "ios-backup" ? "Stopping keeps everything copied so far."
+        : "Keep the drive connected. Stopping keeps everything found so far.";
+    }
   }
 
   let tick;
   async function startScan() {
-    const opts = scanOptions();
+    const opts = scanOptions(true);
+    const phone = isPhone(state.selected);
     $("btnStart").disabled = true;
     $("liveGrid").innerHTML = '<p class="empty">Photos appear here as soon as they are found.</p>';
-    $("scanTitle").textContent = `Scanning ${state.selected.label}`;
+    $("scanTitle").textContent = phone ? `Recovering From ${state.selected.label}` : `Scanning ${state.selected.label}`;
     $("scanLabel").textContent = "Getting ready…";
-    $("scanDetail").textContent = state.platform === "macos" ? "Your Mac will ask for your password so RecovMe can read the drive." : "";
+    $("scanDetail").textContent = state.platform === "macos" && !phone ? "Your Mac will ask for your password so RecovMe can read the drive." : "";
     $("statFiles").textContent = "0";
     $("statPercent").textContent = "—";
     $("statEta").textContent = "—";
@@ -382,8 +533,13 @@
 
   function renderPhases(current) {
     const list = [];
-    if (state.mode !== "deep") list.push(["quick", "Quick Scan"]);
-    if (state.mode !== "quick") list.push(["deep", "Deep Scan"]);
+    const d = state.selected;
+    if (isPhone(d)) {
+      list.push(["copy", d.kind === "android" ? "Copy From Phone" : "Read Backup"]);
+    } else {
+      if (state.mode !== "deep") list.push(["quick", "Quick Scan"]);
+      if (state.mode !== "quick") list.push(["deep", "Deep Scan"]);
+    }
     list.push(["organize", "Organize"]);
     const order = list.map((x) => x[0]);
     const curIdx = order.indexOf(current);
@@ -424,7 +580,7 @@
       clearInterval(tick);
       show("setup");
       validate();
-      dialog("The Scan Stopped", ev.message, "OK", true);
+      dialog(isPhone(state.selected) ? "Couldn't Finish" : "The Scan Stopped", ev.message, "OK", true);
     }
   }
 
@@ -524,6 +680,15 @@
     };
   }
 
+  function openPhoneHelp() {
+    const m = $("phoneModal");
+    const close = openModal(m, () => {}, $("phoneClose"));
+    $("phoneClose").onclick = () => close();
+    m.onclick = (e) => {
+      if (e.target === m) close();
+    };
+  }
+
   async function openPath(p) {
     try {
       await call("open_path", { path: p });
@@ -540,6 +705,7 @@
     } catch (_) {}
     document.body.classList.toggle("mac", state.platform === "macos");
     document.querySelectorAll(".mac-only").forEach((el) => el.classList.toggle("hidden", state.platform !== "macos"));
+    document.querySelectorAll(".windows-only").forEach((el) => el.classList.toggle("hidden", state.platform !== "windows"));
     try {
       const eng = await call("engine_status");
       const missing = [];
@@ -568,6 +734,10 @@
       if (state.scanning) return toast("A scan is running. Stop it first.");
       const d = await call("pick_image").catch((e) => toast(String(e)));
       if (d) {
+        if (d.blocked) return dialog("Can't Read This Backup", d.blocked, "OK", true);
+        if (isPhone(d) && !(await confirmExpectations(d.kind))) return;
+        if (isPhone(d)) d.picked = true;
+        $("backupPassword").value = "";
         state.selected = d;
         renderDrives();
         renderSetup();
@@ -597,6 +767,8 @@
     $("btnOpen").onclick = () => state.sessionDir && openPath(state.sessionDir);
     $("btnAgain").onclick = () => {
       state.selected = null;
+      $("btnStart").textContent = "Start Scan";
+      $("backupPassword").value = "";
       show("welcome");
       validate();
       loadDrives();
@@ -630,6 +802,11 @@
         case "check_output": return null;
         case "pick_folder": return "/Users/you/Desktop";
         case "pick_image": return null;
+        case "list_phones":
+          return [
+            { id: "adb:R58N", label: "Galaxy S23", detail: "Android 14 · USB", device: "adb:R58N", kind: "android", isWholeDisk: true, mountPoints: [] },
+            { id: "iosbackup:/x", label: "Dhan's iPhone", detail: "iPhone backup · iOS 18.1 · 12 Mar 2026 · Encrypted", device: "iosbackup:/x", kind: "ios-backup", isWholeDisk: true, encrypted: true, mountPoints: ["/x"] },
+          ];
         case "open_path": return null;
         case "open_url": return null;
         case "stop_scan": return null;

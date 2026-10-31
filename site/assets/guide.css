@@ -153,8 +153,22 @@ figure.shot figcaption { margin-top: 10px; font-size: 14px; color: var(--ink-2);
 
 @media (max-width: 640px) {
   body { font-size: 16.5px; }
-  .top nav a:not(.get):not(.lang) { display: none; }
+  .top nav > a:not(.get) { display: none; }
   .get-box { grid-template-columns: 1fr; padding: 26px 22px; }
   .get-box img { width: 60px; height: 60px; }
   ol.steps > li { padding-left: 48px; }
+}
+
+/* Language menu */
+.langs { position: relative; }
+.langs summary { list-style: none; cursor: pointer; color: var(--teal-ink-2); font-weight: 600; font-size: 15px; padding: 8px 10px; border-radius: 10px; }
+.langs summary::-webkit-details-marker { display: none; }
+.langs summary::after { content: " ▾"; font-size: 12px; }
+.langs summary:hover, .langs[open] summary { color: var(--teal-ink); background: rgba(255,255,255,0.08); }
+.langs div { position: absolute; right: 0; top: calc(100% + 6px); z-index: 10; display: grid; min-width: 160px; padding: 6px; background: var(--paper); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.18), inset 0 0 0 1px var(--line); }
+.top nav .langs div a { color: var(--ink); display: block; }
+.top nav .langs div a:hover { background: var(--tint); color: var(--ink); }
+@media (max-width: 640px) {
+  .langs summary { font-size: 0; }
+  .langs summary::before { content: attr(data-short); font-size: 15px; }
 }

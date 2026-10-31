@@ -19,7 +19,13 @@
   <a href="https://recovme.app"><b>Website</b></a> ·
   <a href="https://github.com/trevnedai/recovme/releases/latest"><b>Download</b></a> ·
   <a href="https://recovme.app/guides/"><b>Guides</b></a> ·
-  <a href="https://recovme.app/it/guide/">Guide in italiano</a>
+  <a href="https://github.com/trevnedai/recovme/discussions"><b>Discussions</b></a>
+  <br>
+  <a href="https://recovme.app/it/">Italiano</a> ·
+  <a href="https://recovme.app/es/">Español</a> ·
+  <a href="https://recovme.app/pt/">Português</a> ·
+  <a href="https://recovme.app/de/">Deutsch</a> ·
+  <a href="https://recovme.app/fr/">Français</a>
 </p>
 
 <p align="center">
@@ -48,6 +54,9 @@ you can save them. RecovMe doesn't.
 
 If RecovMe brought your files back, the best thanks is a ⭐ on this repo, or telling someone
 who just lost theirs. Donations are optional: [recovme.app/#coffee](https://recovme.app/#coffee).
+
+Questions, results from your own recoveries and ideas are welcome in
+[Discussions](https://github.com/trevnedai/recovme/discussions).
 
 ## How it works
 
@@ -221,6 +230,8 @@ RecovMe is created and developed by **Dhan Denvert Asuncion**. It builds on [Pho
 ## Website
 
 The website in `site/` is published to [recovme.app](https://recovme.app) by GitHub Pages
-whenever it changes on `main`. The guide pages and `sitemap.xml` are generated: edit the
-text in `site-src/guides/` (one file per guide and language, plus `pages.json` for titles
-and addresses), then run `npm run site` and commit the result.
+whenever it changes on `main`, in English, Italian, Spanish, Portuguese, German and French.
+The guide pages, translated home pages and `sitemap.xml` are generated: edit the text in
+`site-src/guides/` (one file per guide and language, plus `pages.json` for titles and
+addresses) or `site-src/home.<lang>.json`, then run `npm run site` and commit the result.
+A guide is published only in the languages it has a file for.

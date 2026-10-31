@@ -5,6 +5,10 @@
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
   </url>
   <url>
@@ -12,6 +16,54 @@
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/es/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/pt/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/de/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/fr/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/"/>
   </url>
   <url>
@@ -19,6 +71,10 @@
     <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
   </url>
   <url>
@@ -26,6 +82,54 @@
     <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-sd-card/"/>
   </url>
   <url>
@@ -33,6 +137,10 @@
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
   </url>
   <url>
@@ -40,6 +148,54 @@
     <lastmod>2026-10-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-formatted-sd-card-usb-stick/"/>
   </url>
   <url>
@@ -173,6 +329,10 @@
     <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
   </url>
   <url>
@@ -180,6 +340,54 @@
     <lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/es/guias/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/pt/guias/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/de/anleitungen/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
+  </url>
+  <url>
+    <loc>https://recovme.app/fr/guides/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recovme.app/guides/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/"/>
   </url>
   <url>

@@ -22,7 +22,43 @@
         "lede": "Hai cancellato le foto sbagliate dalla scheda della fotocamera, del telefono o del drone? Quasi sempre sono ancora sulla scheda. Ecco come recuperarle gratis su Mac o PC Windows.",
         "card": "Le schede di fotocamere, telefoni e droni conservano le foto cancellate finché non ne salvi di nuove sopra."
       },
-      "updated": "2026-10-30"
+      "updated": "2026-10-30",
+      "es": {
+        "slug": "recuperar-fotos-borradas-tarjeta-sd",
+        "short": "Fotos borradas de una tarjeta SD",
+        "title": "Recuperar fotos borradas de una tarjeta SD gratis | RecovMe",
+        "description": "¿Borraste fotos de una tarjeta SD o de cámara? Normalmente siguen ahí. Recupéralas gratis en Mac o Windows, paso a paso y sin pagar después del escaneo.",
+        "h1": "Cómo recuperar fotos borradas de una tarjeta SD",
+        "lede": "¿Borraste las fotos equivocadas de la tarjeta de una cámara, un móvil o un dron? Casi siempre siguen en la tarjeta. Así puedes recuperarlas gratis en un Mac o un PC con Windows.",
+        "card": "Las tarjetas de cámaras, móviles y drones conservan las fotos borradas hasta que se guardan otras encima."
+      },
+      "pt": {
+        "slug": "recuperar-fotos-apagadas-cartao-sd",
+        "short": "Fotos apagadas de um cartão SD",
+        "title": "Recuperar fotos apagadas de um cartão SD grátis | RecovMe",
+        "description": "Apagou fotos de um cartão SD ou de câmera? Geralmente elas ainda estão lá. Recupere grátis no Mac ou no Windows, passo a passo, sem pagar nada depois da varredura.",
+        "h1": "Como recuperar fotos apagadas de um cartão SD",
+        "lede": "Apagou as fotos erradas do cartão da câmera, do celular ou do drone? Quase sempre elas ainda estão no cartão. Veja como recuperá-las grátis no Mac ou no PC com Windows.",
+        "card": "Cartões de câmeras, celulares e drones guardam as fotos apagadas até que outras sejam salvas por cima."
+      },
+      "de": {
+        "slug": "geloeschte-fotos-sd-karte-wiederherstellen",
+        "short": "Gelöschte Fotos auf einer SD-Karte",
+        "title": "Gelöschte Fotos von SD-Karte kostenlos wiederherstellen | RecovMe",
+        "description": "Fotos von einer SD- oder Kamerakarte gelöscht? Meist sind sie noch da. Hol sie kostenlos auf Mac oder Windows zurück, Schritt für Schritt, ohne Bezahlschranke nach dem Scan.",
+        "h1": "Gelöschte Fotos von einer SD-Karte wiederherstellen",
+        "lede": "Die falschen Fotos von der Karte einer Kamera, eines Handys oder einer Drohne gelöscht? Fast immer sind sie noch auf der Karte. So holst du sie kostenlos auf einem Mac oder Windows-PC zurück.",
+        "card": "Karten aus Kameras, Handys und Drohnen behalten gelöschte Fotos, bis neue darüber gespeichert werden."
+      },
+      "fr": {
+        "slug": "recuperer-photos-supprimees-carte-sd",
+        "short": "Photos supprimées d’une carte SD",
+        "title": "Récupérer des photos supprimées d’une carte SD gratuitement | RecovMe",
+        "description": "Photos supprimées d’une carte SD ou d’appareil photo ? Elles sont généralement encore là. Récupérez-les gratuitement sur Mac ou Windows, pas à pas, sans rien payer après l’analyse.",
+        "h1": "Comment récupérer des photos supprimées d’une carte SD",
+        "lede": "Vous avez supprimé les mauvaises photos de la carte d’un appareil photo, d’un téléphone ou d’un drone ? Elles sont presque toujours encore sur la carte. Voici comment les récupérer gratuitement sur Mac ou PC Windows.",
+        "card": "Les cartes d’appareils photo, de téléphones et de drones gardent les photos supprimées jusqu’à ce que d’autres soient enregistrées par-dessus."
+      }
     },
     {
       "id": "formatted",
@@ -44,6 +80,42 @@
         "h1": "Come recuperare i file da una scheda SD o chiavetta USB formattata",
         "lede": "Hai formattato la scheda sbagliata, o il computer continua a chiederti di formattarla? Nella maggior parte dei casi foto e file sono ancora lì. Ecco come capirlo e come recuperarli gratis su Mac o PC Windows.",
         "card": "Una formattazione normale cancella solo l’indice. Ecco quali formattazioni si possono annullare, e come."
+      },
+      "es": {
+        "slug": "recuperar-tarjeta-sd-usb-formateada",
+        "short": "Tarjeta SD o memoria USB formateada",
+        "title": "Recuperar una tarjeta SD o memoria USB formateada gratis | RecovMe",
+        "description": "¿Formateaste una tarjeta SD o una memoria USB por error, o te pide que la formatees? Tus archivos suelen seguir ahí. Recupéralos gratis en Mac o Windows.",
+        "h1": "Cómo recuperar archivos de una tarjeta SD o memoria USB formateada",
+        "lede": "¿Formateaste la tarjeta equivocada, o el ordenador no deja de pedirte que la formatees? En la mayoría de los casos las fotos y los archivos siguen ahí. Así puedes saberlo y recuperarlos gratis en un Mac o un PC con Windows.",
+        "card": "Un formateo normal solo borra el índice. Qué formateos se pueden deshacer y cómo."
+      },
+      "pt": {
+        "slug": "recuperar-cartao-sd-pen-drive-formatado",
+        "short": "Cartão SD ou pen drive formatado",
+        "title": "Recuperar um cartão SD ou pen drive formatado grátis | RecovMe",
+        "description": "Formatou um cartão SD ou pen drive por engano, ou ele pede para ser formatado? Seus arquivos geralmente ainda estão lá. Recupere grátis no Mac ou no Windows.",
+        "h1": "Como recuperar arquivos de um cartão SD ou pen drive formatado",
+        "lede": "Formatou o cartão errado, ou o computador não para de pedir para formatá-lo? Na maioria dos casos as fotos e os arquivos ainda estão lá. Veja como saber e como recuperá-los grátis no Mac ou no PC com Windows.",
+        "card": "Uma formatação normal só apaga o índice. Quais formatações dá para desfazer, e como."
+      },
+      "de": {
+        "slug": "formatierte-sd-karte-usb-stick-wiederherstellen",
+        "short": "Formatierte SD-Karte oder USB-Stick",
+        "title": "Formatierte SD-Karte oder USB-Stick kostenlos wiederherstellen | RecovMe",
+        "description": "Versehentlich eine SD-Karte oder einen USB-Stick formatiert, oder er will formatiert werden? Deine Dateien sind meist noch da. Stell sie kostenlos auf Mac oder Windows wieder her.",
+        "h1": "Dateien von einer formatierten SD-Karte oder einem USB-Stick wiederherstellen",
+        "lede": "Die falsche Karte formatiert, oder dein Computer will sie ständig formatieren? In den meisten Fällen sind die Fotos und Dateien noch da. So findest du es heraus und holst sie kostenlos auf einem Mac oder Windows-PC zurück.",
+        "card": "Eine normale Formatierung löscht nur das Verzeichnis. Welche Formatierungen sich rückgängig machen lassen, und wie."
+      },
+      "fr": {
+        "slug": "recuperer-carte-sd-cle-usb-formatee",
+        "short": "Carte SD ou clé USB formatée",
+        "title": "Récupérer une carte SD ou une clé USB formatée gratuitement | RecovMe",
+        "description": "Carte SD ou clé USB formatée par erreur, ou qui demande à être formatée ? Vos fichiers sont généralement encore là. Récupérez-les gratuitement sur Mac ou Windows.",
+        "h1": "Comment récupérer les fichiers d’une carte SD ou d’une clé USB formatée",
+        "lede": "Vous avez formaté la mauvaise carte, ou votre ordinateur vous demande sans cesse de la formater ? Dans la plupart des cas, les photos et les fichiers sont encore là. Voici comment le savoir et les récupérer gratuitement sur Mac ou PC Windows.",
+        "card": "Un formatage normal n’efface que l’index. Quels formatages peuvent être annulés, et comment."
       }
     },
     {

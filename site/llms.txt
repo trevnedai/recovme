@@ -37,7 +37,7 @@ Honest limits: no app can recover files deleted from internal SSDs with TRIM or 
 
 ## Italiano
 
-- [RecovMe in italiano](https://recovme.app/it/)
+- [RecovMe (Italiano)](https://recovme.app/it/)
 - [Come recuperare le foto cancellate da una scheda SD](https://recovme.app/it/guide/recuperare-foto-cancellate-scheda-sd/)
 - [Come recuperare i file da una scheda SD o chiavetta USB formattata](https://recovme.app/it/guide/recuperare-scheda-sd-chiavetta-usb-formattata/)
 - [Come recuperare i file cancellati da un hard disk esterno](https://recovme.app/it/guide/recuperare-file-cancellati-hard-disk-esterno/)
@@ -49,3 +49,27 @@ Honest limits: no app can recover files deleted from internal SSDs with TRIM or 
 - [Cerchi Recuva per Mac? Ecco un’alternativa gratuita](https://recovme.app/it/guide/recuva-per-mac/)
 - [Un’alternativa gratuita a Disk Drill, senza limiti di recupero](https://recovme.app/it/guide/alternativa-gratuita-disk-drill/)
 - [Programmi di recupero dati gratis nel 2026: quanto sono gratis davvero?](https://recovme.app/it/guide/migliori-programmi-recupero-dati-gratis/)
+
+## Español
+
+- [RecovMe (Español)](https://recovme.app/es/)
+- [Cómo recuperar fotos borradas de una tarjeta SD](https://recovme.app/es/guias/recuperar-fotos-borradas-tarjeta-sd/)
+- [Cómo recuperar archivos de una tarjeta SD o memoria USB formateada](https://recovme.app/es/guias/recuperar-tarjeta-sd-usb-formateada/)
+
+## Português
+
+- [RecovMe (Português)](https://recovme.app/pt/)
+- [Como recuperar fotos apagadas de um cartão SD](https://recovme.app/pt/guias/recuperar-fotos-apagadas-cartao-sd/)
+- [Como recuperar arquivos de um cartão SD ou pen drive formatado](https://recovme.app/pt/guias/recuperar-cartao-sd-pen-drive-formatado/)
+
+## Deutsch
+
+- [RecovMe (Deutsch)](https://recovme.app/de/)
+- [Gelöschte Fotos von einer SD-Karte wiederherstellen](https://recovme.app/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/)
+- [Dateien von einer formatierten SD-Karte oder einem USB-Stick wiederherstellen](https://recovme.app/de/anleitungen/formatierte-sd-karte-usb-stick-wiederherstellen/)
+
+## Français
+
+- [RecovMe (Français)](https://recovme.app/fr/)
+- [Comment récupérer des photos supprimées d’une carte SD](https://recovme.app/fr/guides/recuperer-photos-supprimees-carte-sd/)
+- [Comment récupérer les fichiers d’une carte SD ou d’une clé USB formatée](https://recovme.app/fr/guides/recuperer-carte-sd-cle-usb-formatee/)

@@ -1,0 +1,71 @@
+<div class="chance" data-level="mid">
+  <p class="label">Suas chances: depende de onde as fotos ainda existem</p>
+  <p>Um celular Android não pode ser vasculhado bloco a bloco como um cartão de memória. O armazenamento dele é criptografado e o espaço dos arquivos apagados é limpo. Então nenhum app consegue trazer de volta uma foto que sumiu de todos os lugares. Mas fotos apagadas muitas vezes sobrevivem em algum lugar: em uma lixeira, em um app de conversa ou como miniatura. O RecovMe copia tudo isso de uma vez.</p>
+</div>
+
+<h2>Confira primeiro estes lugares</h2>
+<ul>
+  <li><strong>Google Fotos.</strong> Abra o app e vá em Coleções › Lixeira (ou Biblioteca › Lixeira). Fotos com backup ficam lá por um tempo depois de apagadas.</li>
+  <li><strong>A lixeira da galeria.</strong> Nos celulares Samsung, abra Galeria › Menu › Lixeira. As galerias da Xiaomi, OPPO, OnePlus, vivo e Huawei têm um álbum de Excluídos recentemente.</li>
+  <li><strong>Um cartão de memória.</strong> Se o celular tem um cartão microSD, tire-o e siga o <a href="/pt/guias/recuperar-fotos-apagadas-cartao-sd/">guia de cartão SD</a>: um cartão pode ser vasculhado bloco a bloco, então geralmente devolve mais.</li>
+</ul>
+
+<h2>O que o RecovMe consegue e não consegue trazer de volta</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Onde ele procura</th><th scope="col">O que volta</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">A lixeira oculta do Android (Android 11 ou posterior)</th><td>Fotos e vídeos apagados mais ou menos nos últimos 30 dias, com o nome original de volta.</td></tr>
+      <tr><th scope="row">Lixeiras da galeria e do gerenciador de arquivos</th><td>Galeria e Meus Arquivos da Samsung (de volta à pasta original), Xiaomi, Huawei, OPPO, OnePlus, vivo e Files do Google.</td></tr>
+      <tr><th scope="row">Apps de conversa</th><td>Mídias do WhatsApp (status incluídos), Telegram, Viber e outras conversas, e o cache do Telegram com tudo o que foi visto nas conversas, mesmo que nunca tenha sido salvo.</td></tr>
+      <tr><th scope="row">Arquivos incompletos e miniaturas</th><td>Fotos e downloads que não terminaram de ser salvos, e miniaturas (úteis principalmente em celulares anteriores ao Android 10).</td></tr>
+      <tr><th scope="row">Fotos apagadas de todos os lugares</th><td><span class="lvl low">Não é possível</span>, nem com o RecovMe nem com nenhum outro app: os dados não existem mais no celular.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Recupere as fotos em 6 passos</h2>
+<p>O RecovMe só copia arquivos do celular; não muda nada nele. É grátis até o fim: sem teste, sem limite e nada a pagar antes de salvar. O app está em inglês, então os nomes dos botões aparecem do jeito que você vai vê-los.</p>
+
+<ol class="steps">
+  <li><b>Ative a depuração USB no celular</b>
+    <p>Abra Configurações › Sobre o telefone e toque em <strong>Número da versão</strong> sete vezes. Depois abra Configurações › Opções do desenvolvedor (em alguns celulares, dentro de Sistema) e ative <span class="ui">Depuração USB</span>.</p></li>
+  <li><b>Conecte o celular</b>
+    <p>Use um cabo USB, desbloqueie o celular e toque em <span class="ui">Permitir</span> quando ele perguntar “Permitir depuração USB?”. No Windows, alguns celulares também precisam do driver USB do fabricante.</p></li>
+  <li><b>Abra o RecovMe e escolha o celular</b>
+    <p>Baixe o RecovMe grátis para Mac ou Windows e abra. O celular aparece em <span class="ui">Phones &amp; Tablets</span> na lista à esquerda. Se não aparecer, clique em atualizar. O RecovMe mostra o que consegue e o que não consegue trazer de volta antes da primeira varredura.</p></li>
+  <li><b>Escolha onde procurar e o que encontrar</b>
+    <p>Em <span class="ui">Look In</span>, <span class="ui">Recently Deleted &amp; Trash</span>, <span class="ui">Photo Thumbnails</span> e <span class="ui">WhatsApp, Telegram &amp; Other Chats</span> vêm ativados. Ative <span class="ui">Everything in the Phone’s Folders</span> para copiar também todas as pastas do celular. Em <span class="ui">Look For</span>, deixe Photos e Videos ativados.</p></li>
+  <li><b>Salve no seu computador</b>
+    <p>Em <span class="ui">Save Recovered Files To</span>, escolha uma pasta no seu computador com espaço livre suficiente.</p></li>
+  <li><b>Comece e abra suas fotos</b>
+    <p>Clique em <span class="ui">Start Scan</span> e, quando terminar, em <span class="ui">Open Recovered Files</span>. Arquivos sem extensão, comuns nos caches de conversas, são reconhecidos pelo conteúdo e recebem a extensão certa.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Quando terminar,</strong> você pode desativar de novo a depuração USB nas Opções do desenvolvedor.</p>
+</div>
+
+<h2>Perguntas</h2>
+<div class="faq">
+  <details>
+    <summary>Algum app consegue recuperar fotos apagadas da memória de um celular Android?</summary>
+    <p>Só se ainda existir uma cópia em algum lugar, como uma lixeira, um app de conversa ou uma miniatura. Celulares Android modernos criptografam o armazenamento e limpam o espaço apagado, então apps que prometem vasculhar a memória do celular bloco a bloco não conseguem fazer isso sem fazer root no celular, e mesmo assim os dados geralmente já se foram.</p>
+  </details>
+  <details>
+    <summary>Preciso fazer root no celular?</summary>
+    <p>Não. O RecovMe usa a depuração USB, uma configuração padrão do Android, pela ferramenta adb do próprio Google, que vem junto com o RecovMe.</p>
+  </details>
+  <details>
+    <summary>Ele muda alguma coisa no celular?</summary>
+    <p>Não. Ele só copia arquivos para o seu computador. Nada é apagado, movido ou instalado no celular.</p>
+  </details>
+  <details>
+    <summary>Ele recupera fotos do WhatsApp?</summary>
+    <p>Ele copia as mídias do WhatsApp que ainda estão no celular, status incluídos. Fotos apagadas da pasta do WhatsApp e da lixeira só podem voltar de um backup, como o backup do próprio WhatsApp no Google Drive.</p>
+  </details>
+  <details>
+    <summary>O RecovMe é grátis mesmo?</summary>
+    <p>Sim, 100%. Não há teste, nem limite de tamanho, nem nada para desbloquear depois da varredura. Ele é de código aberto, e doações são opcionais.</p>
+  </details>
+</div>

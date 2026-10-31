@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PhotoRec avec interface graphique pour Mac (puce Apple) et Windows | RecovMe</title>
+<meta name="description" content="PhotoRec sans Terminal ? RecovMe lance PhotoRec et The Sleuth Kit dans une application gratuite et open source pour Mac à puce Apple et Windows, et garde les noms de fichiers.">
+<meta name="author" content="Dhan Denvert Asuncion">
+<link rel="canonical" href="https://recovme.app/fr/guides/photorec-interface-graphique-mac-windows/">
+<link rel="alternate" hreflang="en" href="https://recovme.app/guides/photorec-gui-mac-windows/">
+<link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/photorec-interfaccia-grafica-mac-windows/">
+<link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/photorec-interfaz-grafica-mac-windows/">
+<link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/photorec-interface-grafica-mac-windows/">
+<link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/photorec-grafische-oberflaeche-mac-windows/">
+<link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/photorec-interface-graphique-mac-windows/">
+<link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/photorec-gui-mac-windows/">
+<link rel="icon" href="/assets/favicon.png" sizes="64x64" type="image/png">
+<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0e3b39">
+<meta property="og:site_name" content="RecovMe">
+<meta property="og:title" content="PhotoRec avec interface graphique pour Mac (puce Apple) et Windows | RecovMe">
+<meta property="og:description" content="PhotoRec sans Terminal ? RecovMe lance PhotoRec et The Sleuth Kit dans une application gratuite et open source pour Mac à puce Apple et Windows, et garde les noms de fichiers.">
+<meta property="og:image" content="https://recovme.app/assets/og.png">
+<meta property="og:url" content="https://recovme.app/fr/guides/photorec-interface-graphique-mac-windows/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/guide.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "PhotoRec avec une vraie interface, pour Mac et Windows",
+   "description": "PhotoRec sans Terminal ? RecovMe lance PhotoRec et The Sleuth Kit dans une application gratuite et open source pour Mac à puce Apple et Windows, et garde les noms de fichiers.",
+   "inLanguage": "fr",
+   "datePublished": "2026-10-30",
+   "dateModified": "2026-10-30",
+   "author": {
+    "@id": "https://recovme.app/#maker"
+   },
+   "publisher": {
+    "@id": "https://recovme.app/#org"
+   },
+   "image": "https://recovme.app/assets/og.png",
+   "mainEntityOfPage": "https://recovme.app/fr/guides/photorec-interface-graphique-mac-windows/",
+   "about": {
+    "@type": "SoftwareApplication",
+    "@id": "https://recovme.app/#app",
+    "name": "RecovMe",
+    "url": "https://recovme.app/"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://recovme.app/#maker",
+   "name": "Dhan Denvert Asuncion",
+   "url": "https://recovme.app/about/",
+   "sameAs": [
+    "https://github.com/trevnedai"
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://recovme.app/#org",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://recovme.app/assets/icon-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/trevnedai/recovme"
+   ],
+   "founder": {
+    "@id": "https://recovme.app/#maker"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "RecovMe",
+     "item": "https://recovme.app/fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://recovme.app/fr/guides/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "PhotoRec avec interface graphique",
+     "item": "https://recovme.app/fr/guides/photorec-interface-graphique-mac-windows/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Est-ce le même PhotoRec ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui. RecovMe intègre PhotoRec sans modification, le lance pour vous, puis organise ce qu’il trouve."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "RecovMe fonctionne-t-il sur les Mac Intel ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non, seulement sur les Mac à puce Apple (M1 et ultérieurs) sous macOS 11 ou ultérieur. Sur un Mac Intel, utilisez PhotoRec directement."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Les noms de mes fichiers reviendront-ils ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pour les fichiers supprimés récemment sur les disques FAT, exFAT et NTFS (la plupart des cartes SD, clés USB et disques Windows), généralement oui. Les fichiers trouvés par la recherche approfondie de PhotoRec perdent leur nom : RecovMe nomme donc les photos et vidéos d’après leur date de prise de vue."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "RecovMe est-il vraiment gratuit ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse, comme PhotoRec. Les deux sont open source."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/fr/"><img src="/assets/icon-256.png" width="36" height="36" alt="">RecovMe</a>
+    <nav aria-label="Site">
+      <a href="/fr/guides/">Guides</a>
+      <a href="/fr/#questions">Questions</a>
+      <details class="langs"><summary aria-label="Français (Langue)" data-short="FR">Français</summary><div><a href="/guides/photorec-gui-mac-windows/" hreflang="en" lang="en">English</a><a href="/it/guide/photorec-interfaccia-grafica-mac-windows/" hreflang="it" lang="it">Italiano</a><a href="/es/guias/photorec-interfaz-grafica-mac-windows/" hreflang="es" lang="es">Español</a><a href="/pt/guias/photorec-interface-grafica-mac-windows/" hreflang="pt" lang="pt">Português</a><a href="/de/anleitungen/photorec-grafische-oberflaeche-mac-windows/" hreflang="de" lang="de">Deutsch</a></div></details>
+      <a class="get" href="#download">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/fr/">RecovMe</a></li><li><a href="/fr/guides/">Guides</a></li><li aria-current="page">PhotoRec avec interface graphique</li></ol>
+    <div class="head">
+      <h1>PhotoRec avec une vraie interface, pour Mac et Windows</h1>
+      <p class="lede">PhotoRec est l’un des meilleurs outils de récupération gratuits jamais créés, mais c’est un programme en mode texte et sa version Mac officielle est pour Intel. RecovMe lance PhotoRec, avec The Sleuth Kit, dans une application normale pour Mac à puce Apple et Windows. Voici ce que cela change, et ce que cela ne change pas.</p>
+      <p class="meta"><a href="/about/">Par Dhan Denvert Asuncion</a><span>Mis à jour le 30 octobre 2026</span><span>Mac et Windows</span></p>
+    </div>
+    <article>
+<div class="chance" data-level="high">
+  <p class="label">Réponse courte</p>
+  <p>PhotoRec n’a pas d’application graphique officielle pour Mac, et sa version Mac est conçue pour les processeurs Intel. RecovMe est une application gratuite et open source pour Mac à puce Apple et Windows qui lance PhotoRec pour vous, ajoute The Sleuth Kit pour retrouver les noms de fichiers d’origine et trie les résultats. Le même moteur, sans Terminal.</p>
+</div>
+
+<p class="disclosure">Rédigé par Dhan Denvert Asuncion, qui développe RecovMe. Les informations sur PhotoRec ont été vérifiées sur <a href="https://cgsecurity.org/wiki/TestDisk_Download" rel="noopener">sa page de téléchargement officielle</a> le 30 octobre 2026.</p>
+
+<h2>Ce qu’est PhotoRec, et pourquoi on veut une interface graphique</h2>
+<p>PhotoRec, de Christophe Grenier (CGSecurity), est l’un des meilleurs outils de récupération gratuits jamais créés. Il est open source (GPL), n’a aucune limite de récupération et retrouve plus de 480 types de fichiers grâce à leur contenu, même après un formatage. La dernière version stable est la 7.2, du 22 février 2024 ; la 7.3 est en bêta.</p>
+<p>C’est aussi un programme en mode texte : on se déplace dans les menus avec les flèches du clavier. Sous Windows, le téléchargement inclut QPhotoRec, une version graphique simple. Sur Mac, PhotoRec s’utilise dans le Terminal, et la version officielle est « Mac OS X Intel 64-bit », que les Mac à puce Apple exécutent par traduction. La page de téléchargement de PhotoRec renvoie ceux qui veulent une interface graphique vers « our partner Disk Drill », une application payante avec une version gratuite limitée.</p>
+
+<h2>PhotoRec seul ou RecovMe</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col"></th><th scope="col">PhotoRec (téléchargement officiel)</th><th scope="col">RecovMe</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Interface</th><td>Menus en mode texte ; QPhotoRec sous Windows</td><td>Une application normale : choisir le disque, analyser, ouvrir ses fichiers</td></tr>
+      <tr><th scope="row">Mac</th><td>Version Intel, dans le Terminal</td><td>Application native pour puce Apple, signée et notarisée par Apple</td></tr>
+      <tr><th scope="row">Noms d’origine</th><td>Perdus : les fichiers reviennent sous la forme f1234567.jpg dans des dossiers recup_dir</td><td>Conservés pour les fichiers supprimés récemment sur les disques FAT, exFAT et NTFS (grâce à The Sleuth Kit)</td></tr>
+      <tr><th scope="row">Résultats</th><td>Dossiers non triés</td><td>Triés par type ; photos et vidéos nommées d’après leur date de prise de vue ; doublons supprimés</td></tr>
+      <tr><th scope="row">Téléphones</th><td>Non</td><td>Copie ce qui subsiste sur les téléphones Android et dans les sauvegardes d’iPhone ou d’iPad</td></tr>
+      <tr><th scope="row">Prix et licence</th><td>Gratuit, GPL</td><td>Gratuit, GPL ; sans limite</td></tr>
+      <tr><th scope="row">Linux et Mac Intel</th><td>Oui</td><td>Non</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Quand utiliser PhotoRec directement</h2>
+<ul>
+  <li>Sous <strong>Linux</strong>, ou sur un <strong>Mac Intel</strong> : RecovMe nécessite un Mac à puce Apple ou Windows.</li>
+  <li>Quand vous avez besoin des <strong>options avancées</strong> de PhotoRec, comme choisir le type de système de fichiers ou le lancer depuis une clé USB amorçable.</li>
+</ul>
+<p>RecovMe intègre PhotoRec sans modification, comme un programme distinct sous sa propre licence GPL. Tout le mérite du moteur de récupération revient à Christophe Grenier et CGSecurity.</p>
+
+<h2>Utiliser PhotoRec via RecovMe en 4 étapes</h2>
+<ol class="steps">
+  <li><b>Téléchargez RecovMe</b>
+    <p>Gratuit pour les Mac à puce Apple (macOS 11 ou ultérieur) et pour Windows 10 et 11.</p></li>
+  <li><b>Choisissez la carte ou le disque</b>
+    <p>Sélectionnez-le dans la liste de gauche et choisissez quoi chercher : photos, vidéos, documents ou les plus de 480 types de fichiers.</p></li>
+  <li><b>Choisissez l’analyse</b>
+    <p><span class="ui">Deep Scan</span> est la recherche bloc par bloc de PhotoRec. <span class="ui">Smart Scan</span>, le choix par défaut, récupère d’abord les fichiers avec leurs noms grâce à The Sleuth Kit, puis lance PhotoRec pour le reste.</p></li>
+  <li><b>Enregistrez sur un autre disque et ouvrez vos fichiers</b>
+    <p>RecovMe n’enregistre rien sur le disque analysé. Une fois terminé, cliquez sur <span class="ui">Open Recovered Files</span>.</p></li>
+</ol>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>Est-ce le même PhotoRec ?</summary>
+    <p>Oui. RecovMe intègre PhotoRec sans modification, le lance pour vous, puis organise ce qu’il trouve.</p>
+  </details>
+  <details>
+    <summary>RecovMe fonctionne-t-il sur les Mac Intel ?</summary>
+    <p>Non, seulement sur les Mac à puce Apple (M1 et ultérieurs) sous macOS 11 ou ultérieur. Sur un Mac Intel, utilisez PhotoRec directement.</p>
+  </details>
+  <details>
+    <summary>Les noms de mes fichiers reviendront-ils ?</summary>
+    <p>Pour les fichiers supprimés récemment sur les disques FAT, exFAT et NTFS (la plupart des cartes SD, clés USB et disques Windows), généralement oui. Les fichiers trouvés par la recherche approfondie de PhotoRec perdent leur nom : RecovMe nomme donc les photos et vidéos d’après leur date de prise de vue.</p>
+  </details>
+  <details>
+    <summary>RecovMe est-il vraiment gratuit ?</summary>
+    <p>Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse, comme PhotoRec. Les deux sont open source.</p>
+  </details>
+</div>
+    </article>
+<section class="get-box" id="download" aria-labelledby="download-title">
+  <img src="/assets/icon-256.png" width="76" height="76" alt="">
+  <div><h2 id="download-title">Téléchargez RecovMe. C’est gratuit.</h2><p>Pas d’essai, pas de limite de taille, rien à payer après l’analyse. Vos fichiers ne quittent jamais votre ordinateur.</p></div>
+  <div class="btns">
+    <a class="btn btn-amber" data-dl="mac" href="https://github.com/trevnedai/recovme/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8ZM14.1 5.9c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3Z"/></svg>Télécharger pour Mac</a>
+    <a class="btn btn-ghost" data-dl="win" href="https://github.com/trevnedai/recovme/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zm8-1.1L21 3v8.5H11zM3 12.5h7v7L3 18.5zm8 0h10V21l-10-1.4z"/></svg>Télécharger pour Windows</a>
+  </div>
+  <p class="req">Mac avec puce Apple, macOS 11 ou ultérieur · Windows 10 ou 11, 64 bits</p>
+</section>
+
+    <section class="related" aria-labelledby="more-title">
+      <h2 id="more-title">Plus de comparatifs</h2>
+      <ul class="cards">
+<li><a href="/fr/guides/recuva-pour-mac/"><b>Vous cherchez Recuva pour Mac ? Voici une alternative gratuite</b><span>Recuva n’existe que pour Windows. Les vraies options Mac et leurs limites gratuites, vérifiées en octobre 2026.</span><span class="tag">Lire le comparatif →</span></a></li>
+<li><a href="/fr/guides/alternative-gratuite-disk-drill/"><b>Une alternative gratuite à Disk Drill, sans limite de récupération</b><span>Disk Drill gratuit s’arrête à 100 Mo sous Windows et n’offre qu’un aperçu sur Mac. Que choisir à la place.</span><span class="tag">Lire le comparatif →</span></a></li>
+<li><a href="/fr/guides/meilleurs-logiciels-recuperation-donnees-gratuits/"><b>Logiciels de récupération de données gratuits en 2026 : à quel point chacun est-il gratuit ?</b><span>La limite gratuite de chaque application, vérifiée sur le site de l’éditeur : de 100 Mo à aucune limite.</span><span class="tag">Lire le comparatif →</span></a></li>
+<li><a href="/fr/guides/recuperer-photos-supprimees-carte-sd/"><b>Comment récupérer des photos supprimées d’une carte SD</b><span>Les cartes d’appareils photo, de téléphones et de drones gardent les photos supprimées jusqu’à ce que d’autres soient enregistrées par-dessus.</span><span class="tag">Lire le guide →</span></a></li>
+<li><a href="/fr/guides/recuperer-carte-sd-cle-usb-formatee/"><b>Comment récupérer les fichiers d’une carte SD ou d’une clé USB formatée</b><span>Un formatage normal n’efface que l’index. Quels formatages peuvent être annulés, et comment.</span><span class="tag">Lire le guide →</span></a></li>
+      </ul>
+      <p><a href="/fr/guides/">Tous les guides →</a></p>
+    </section>
+  </div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>© 2026 Dhan Denvert Asuncion. Gratuit et open source sous licence GPL-3.0.</p>
+    <p><a href="/fr/">Accueil</a> · <a href="/fr/guides/">Guides</a> · <a href="/about/" hreflang="en">À propos</a> · <a href="/privacy/" hreflang="en">Confidentialité</a> · <a href="/terms/" hreflang="en">Conditions</a> · <a href="/press/">Presse</a> · <a href="/code-signing.html">Politique de signature du code</a> · <a href="https://github.com/trevnedai/recovme" rel="noopener">Code source sur GitHub</a></p>
+  </div>
+</footer>
+<script src="/assets/guide.js" defer></script>
+</body>
+</html>

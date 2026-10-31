@@ -1,0 +1,80 @@
+<div class="chance" data-level="high">
+  <p class="label">Deine Chancen: gut bei einer Festplatte</p>
+  <p>Festplatten löschen gelöschte Dateien nicht endgültig. Sie markieren den Platz als frei und lassen die Dateien liegen, bis dort etwas Neues gespeichert wird. Externe SSDs sind anders, also prüfe unten, welche Art du hast.</p>
+</div>
+
+<h2>Festplatte, SSD oder etwas Schlimmeres?</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Dein Laufwerk</th><th scope="col">Deine Chancen</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Externe Festplatte (drehende Scheibe, wie die meisten großen Laufwerke von Seagate, WD, Toshiba oder LaCie)</th><td><span class="lvl good">Gut</span>, egal ob Dateien gelöscht, der Papierkorb geleert oder das Laufwerk schnellformatiert wurde.</td></tr>
+      <tr><th scope="row">Externe SSD</th><td><span class="lvl mid">Kommt darauf an.</span> Manche löschen gelöschte Dateien innerhalb von Minuten endgültig, andere behalten sie. Als exFAT formatierte Laufwerke behalten sie meist. Steck sie jetzt ab und scanne sie, bevor du sie wieder benutzt.</td></tr>
+      <tr><th scope="row">Das Laufwerk klickt, wird nicht erkannt oder trennt sich ständig</th><td><span class="lvl low">Stopp.</span> Es ist physisch defekt, und jede Software kann es noch schlimmer machen. Ein Datenrettungslabor ist die sichere Wahl.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Bevor du irgendetwas tust</h2>
+  <ul>
+    <li><strong>Speichere nichts auf dem Laufwerk</strong> und installiere keine Apps darauf. Neue Dateien können dort landen, wo die gelöschten liegen.</li>
+    <li><strong>Starte keine Reparatur</strong> (Erste Hilfe oder chkdsk), bevor du gerettet hast, was du brauchst. Reparaturen schreiben auf das Laufwerk.</li>
+    <li><strong>Speichere wiederhergestellte Dateien nicht zurück auf dasselbe Laufwerk.</strong> Nutze das interne Laufwerk deines Computers oder ein anderes externes Laufwerk.</li>
+  </ul>
+</section>
+
+<h2>Schau zuerst in den Papierkorb</h2>
+<p>Auf dem Mac landen Dateien, die von einem externen Laufwerk gelöscht wurden, im Papierkorb, erscheinen dort aber nur, solange das Laufwerk angeschlossen ist. Schließe es an und öffne den Papierkorb. Unter Windows landen Dateien, die von einer externen Festplatte gelöscht wurden, meist im Papierkorb. Dateien von USB-Sticks oder mit Umschalt + Entf gelöschte Dateien überspringen ihn.</p>
+
+<h2>Dateien in 7 Schritten wiederherstellen</h2>
+<p>Es funktioniert auf Mac und Windows gleich. RecovMe ist bis zum Ende kostenlos: keine Testversion, keine Größengrenze, nichts zu bezahlen, bevor du speichern kannst. Die App ist auf Englisch, daher stehen die Tastennamen hier so, wie du sie sehen wirst.</p>
+
+<ol class="steps">
+  <li><b>Schließe das Laufwerk an und öffne RecovMe</b>
+    <p>Lade es kostenlos herunter und öffne es. Auf dem Mac gibst du auf Nachfrage dein Passwort ein, weil das Lesen gelöschter Bereiche direkten Zugriff auf das Laufwerk braucht. Wenn unter Windows SmartScreen erscheint, wähle <span class="ui">Weitere Informationen</span> und dann <span class="ui">Trotzdem ausführen</span>.</p></li>
+  <li><b>Wähle das Laufwerk</b>
+    <p>Wähle es in der Liste links. Wenn darunter mehr als ein Teil (Volume) aufgeführt ist, wähle den, auf dem die Dateien lagen.</p></li>
+  <li><b>Wähle, wonach gesucht wird</b>
+    <p>Photos, Videos und Documents sind standardmäßig an. Füge <span class="ui">Music &amp; Audio</span> oder <span class="ui">Archives</span> hinzu, oder wähle <span class="ui">All File Types</span>. Weniger Typen machen den Scan schneller und die Ergebnisse kleiner.</p></li>
+  <li><b>Behalte Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> holt zuerst gelöschte Dateien mit ihren ursprünglichen Namen und Ordnern zurück und durchsucht dann jeden Block nach dem Rest. Originalnamen kommen bei Laufwerken zurück, die für Windows formatiert sind (NTFS, exFAT oder FAT32), so wie die meisten externen Laufwerke ausgeliefert werden. Bei Laufwerken, die für Mac formatiert sind (APFS oder Mac OS Extended), kommen die Dateien aus der tiefen Suche zurück, nach Typ sortiert.</p></li>
+  <li><b>Auf einem anderen Laufwerk speichern</b>
+    <p>Wähle einen Ordner auf dem internen Laufwerk deines Computers oder auf einem zweiten externen Laufwerk, mit genug freiem Platz für das, was du zurückwillst. Wenn du einen OneDrive- oder iCloud-Ordner wählst, warnt dich RecovMe, dass die Dateien hochgeladen würden.</p></li>
+  <li><b>Starte den Scan und lass ihn laufen</b>
+    <p>Klicke auf <span class="ui">Start Scan</span>. Ein großes Laufwerk kann Stunden dauern, also lass den Computer am Strom und wach. Auf dem Mac wirft <span class="ui">Protect the drive while scanning</span> das Laufwerk aus, damit nichts darauf schreibt. Es kommt nach dem Scan zurück. Du kannst jederzeit <span class="ui">Stop</span> drücken und behalten, was gefunden wurde.</p>
+    <figure class="shot">
+      <img src="/assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="Ein laufender Scan mit Prozentanzeige, Restzeit und Dateien, die erscheinen, sobald sie gefunden werden.">
+      <figcaption>Fortschritt, Restzeit und bisher gefundene Fotos.</figcaption>
+    </figure></li>
+  <li><b>Öffne deine Dateien</b>
+    <p>Klicke auf <span class="ui">Open Recovered Files</span>. Dateien, die Namen und Ordner behalten haben, liegen in <span class="ui">Original names</span>. Alles andere ist in Photos, Videos, Music, Documents und Archives sortiert, Fotos und Videos nach Aufnahmedatum benannt.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Ist mein Laufwerk für Mac oder Windows formatiert?</strong> Auf dem Mac wählst du das Laufwerk im Finder aus, dann Ablage › Informationen und schaust bei Format. Unter Windows klickst du in „Dieser PC“ mit der rechten Maustaste auf das Laufwerk, wählst Eigenschaften und schaust bei Dateisystem.</p>
+</div>
+
+<h2>Fragen</h2>
+<div class="faq">
+  <details>
+    <summary>Wie viel freien Platz brauche ich zum Speichern?</summary>
+    <p>So viel, wie die Dateien belegen, die du zurückwillst. Wenn du nur die nötigen Typen wählst, etwa Photos, werden die Ergebnisse kleiner. Duplikate werden automatisch entfernt.</p>
+  </details>
+  <details>
+    <summary>Kann ich Dateien vom internen Laufwerk meines Computers wiederherstellen?</summary>
+    <p>Nur wenn es eine Festplatte ist, wie in vielen älteren PCs. Interne SSDs in Laptops löschen gelöschte Dateien selbst endgültig, und jeder Mac mit Apple silicon verschlüsselt sein Laufwerk, daher kann keine App sie per Scan zurückholen. Nutze zuerst den Papierkorb, Time Machine, den Dateiversionsverlauf oder OneDrive.</p>
+  </details>
+  <details>
+    <summary>Funktioniert es mit jeder Laufwerksmarke?</summary>
+    <p>Ja. Seagate, WD, Toshiba, LaCie, Samsung und jedes andere Laufwerk, das dein Computer als Datenträger erkennt.</p>
+  </details>
+  <details>
+    <summary>Ist RecovMe wirklich kostenlos?</summary>
+    <p>Ja, zu 100 %. Es gibt keine Testversion, keine Größengrenze und nichts, was nach dem Scan freigeschaltet werden muss. Es ist Open Source, und Spenden sind freiwillig.</p>
+  </details>
+  <details>
+    <summary>Kann es mein Laufwerk beschädigen?</summary>
+    <p>Nein. RecovMe liest das gescannte Laufwerk nur und weigert sich, wiederhergestellte Dateien darauf zu speichern, weil Schreiben dort genau das überschreiben könnte, was du zurückwillst.</p>
+  </details>
+</div>

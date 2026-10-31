@@ -138,6 +138,42 @@
         "h1": "Come recuperare i file cancellati da un hard disk esterno",
         "lede": "Hai cancellato file da un disco esterno, svuotato il Cestino o formattato il disco per sbaglio? Su un hard disk i file di solito restano finché lo spazio non viene usato di nuovo. Ecco come recuperarli gratis su Mac o PC Windows.",
         "card": "Gli hard disk lasciano al loro posto i file cancellati. Gli SSD esterni sono un’altra storia."
+      },
+      "es": {
+        "slug": "recuperar-archivos-borrados-disco-duro-externo",
+        "short": "Archivos borrados de un disco externo",
+        "title": "Recuperar archivos borrados de un disco duro externo | RecovMe",
+        "description": "¿Borraste archivos de un disco duro externo o vaciaste la papelera? En un disco duro suelen quedarse hasta que se reutiliza el espacio. Recupéralos gratis, paso a paso.",
+        "h1": "Cómo recuperar archivos borrados de un disco duro externo",
+        "lede": "¿Borraste archivos de un disco externo, vaciaste la Papelera o lo formateaste por error? En un disco duro, los archivos suelen quedarse hasta que se vuelve a usar el espacio. Así puedes recuperarlos gratis en un Mac o un PC con Windows.",
+        "card": "Los discos duros dejan los archivos borrados en su sitio. Los SSD externos son otra historia."
+      },
+      "pt": {
+        "slug": "recuperar-arquivos-apagados-hd-externo",
+        "short": "Arquivos apagados de um HD externo",
+        "title": "Recuperar arquivos apagados de um HD externo | RecovMe",
+        "description": "Apagou arquivos de um HD externo ou esvaziou a Lixeira? Em um HD eles geralmente ficam até o espaço ser reutilizado. Recupere grátis, passo a passo.",
+        "h1": "Como recuperar arquivos apagados de um HD externo",
+        "lede": "Apagou arquivos de um disco externo, esvaziou a Lixeira ou formatou por engano? Em um HD, os arquivos geralmente ficam até o espaço ser usado de novo. Veja como recuperá-los grátis no Mac ou no PC com Windows.",
+        "card": "HDs deixam os arquivos apagados no lugar. SSDs externos são outra história."
+      },
+      "de": {
+        "slug": "geloeschte-dateien-externe-festplatte-wiederherstellen",
+        "short": "Gelöschte Dateien auf einer externen Festplatte",
+        "title": "Gelöschte Dateien von externer Festplatte wiederherstellen | RecovMe",
+        "description": "Dateien von einer externen Festplatte gelöscht oder den Papierkorb geleert? Auf einer Festplatte bleiben sie meist, bis der Platz wiederverwendet wird. Kostenlos wiederherstellen, Schritt für Schritt.",
+        "h1": "Gelöschte Dateien von einer externen Festplatte wiederherstellen",
+        "lede": "Dateien von einem externen Laufwerk gelöscht, den Papierkorb geleert oder es versehentlich formatiert? Auf einer Festplatte bleiben die Dateien meist, bis der Platz wieder benutzt wird. So holst du sie kostenlos auf einem Mac oder Windows-PC zurück.",
+        "card": "Festplatten lassen gelöschte Dateien liegen. Bei externen SSDs ist es anders."
+      },
+      "fr": {
+        "slug": "recuperer-fichiers-supprimes-disque-dur-externe",
+        "short": "Fichiers supprimés d’un disque externe",
+        "title": "Récupérer des fichiers supprimés d’un disque dur externe | RecovMe",
+        "description": "Fichiers supprimés d’un disque dur externe ou corbeille vidée ? Sur un disque dur, ils restent généralement jusqu’à ce que l’espace soit réutilisé. Récupérez-les gratuitement, pas à pas.",
+        "h1": "Comment récupérer des fichiers supprimés d’un disque dur externe",
+        "lede": "Fichiers supprimés d’un disque externe, Corbeille vidée ou formatage par erreur ? Sur un disque dur, les fichiers restent généralement jusqu’à ce que l’espace soit réutilisé. Voici comment les récupérer gratuitement sur Mac ou PC Windows.",
+        "card": "Les disques durs laissent les fichiers supprimés en place. Les SSD externes, c’est une autre histoire."
       }
     },
     {
@@ -160,6 +196,42 @@
         "h1": "Come recuperare i video cancellati di telecamere e dashcam",
         "lede": "Ti servono le riprese di una telecamera di casa o di una dashcam che sono state cancellate, formattate o registrate sopra? Potrebbero essere ancora sulla scheda di memoria, ma questi dispositivi sovrascrivono di continuo i video vecchi. Ecco cosa fare subito e come recuperarli gratis.",
         "card": "La registrazione continua sovrascrive presto i video vecchi. Togli subito la scheda, poi analizzala."
+      },
+      "es": {
+        "slug": "recuperar-grabaciones-camara-vigilancia-dashcam",
+        "short": "Grabaciones de cámaras de vigilancia y dashcams",
+        "title": "Recuperar grabaciones borradas de cámaras de vigilancia y dashcams gratis | RecovMe",
+        "description": "¿Perdiste grabaciones de una cámara de vigilancia o una dashcam? Actúa rápido: la grabación en bucle las sobrescribe. Cómo recuperar vídeo borrado de la tarjeta SD, gratis en Mac o Windows.",
+        "h1": "Cómo recuperar grabaciones borradas de cámaras de vigilancia y dashcams",
+        "lede": "¿Necesitas un vídeo de una cámara doméstica o una dashcam que se borró, se formateó o se grabó encima? Puede que siga en la tarjeta de memoria, pero estas cámaras sobrescriben el vídeo antiguo constantemente. Esto es lo que debes hacer ahora mismo, y cómo recuperarlo gratis.",
+        "card": "La grabación en bucle sobrescribe el vídeo antiguo rápido. Saca primero la tarjeta y luego escanéala."
+      },
+      "pt": {
+        "slug": "recuperar-gravacoes-camera-seguranca-dashcam",
+        "short": "Gravações de câmeras de segurança e dashcams",
+        "title": "Recuperar gravações apagadas de câmeras de segurança e dashcams grátis | RecovMe",
+        "description": "Perdeu gravações de uma câmera de segurança ou dashcam? Aja rápido: a gravação em loop as sobrescreve. Como recuperar vídeo apagado do cartão SD, grátis no Mac ou no Windows.",
+        "h1": "Como recuperar gravações apagadas de câmeras de segurança e dashcams",
+        "lede": "Precisa de um vídeo de uma câmera doméstica ou dashcam que foi apagado, formatado ou gravado por cima? Ele pode ainda estar no cartão de memória, mas essas câmeras sobrescrevem vídeos antigos o tempo todo. Veja o que fazer agora mesmo e como recuperá-lo grátis.",
+        "card": "A gravação em loop sobrescreve vídeos antigos rápido. Tire o cartão primeiro, depois escaneie."
+      },
+      "de": {
+        "slug": "ueberwachungskamera-dashcam-videos-wiederherstellen",
+        "short": "Videos von Überwachungskameras und Dashcams",
+        "title": "Gelöschte Videos von Überwachungskamera und Dashcam kostenlos wiederherstellen | RecovMe",
+        "description": "Aufnahmen einer Überwachungskamera oder Dashcam verloren? Handle schnell: Die Endlosaufnahme überschreibt sie. So stellst du gelöschte Videos von der SD-Karte kostenlos auf Mac oder Windows wieder her.",
+        "h1": "Gelöschte Videos von Überwachungskameras und Dashcams wiederherstellen",
+        "lede": "Du brauchst ein Video von einer Heimkamera oder Dashcam, das gelöscht, formatiert oder überschrieben wurde? Es ist vielleicht noch auf der Speicherkarte, aber diese Kameras überschreiben alte Videos ständig. Das solltest du jetzt sofort tun, und so holst du es kostenlos zurück.",
+        "card": "Die Endlosaufnahme überschreibt alte Videos schnell. Erst die Karte herausnehmen, dann scannen."
+      },
+      "fr": {
+        "slug": "recuperer-videos-camera-surveillance-dashcam",
+        "short": "Vidéos de caméras de surveillance et de dashcams",
+        "title": "Récupérer des vidéos supprimées de caméra de surveillance et de dashcam gratuitement | RecovMe",
+        "description": "Vidéos perdues d’une caméra de surveillance ou d’une dashcam ? Agissez vite : l’enregistrement en boucle les écrase. Comment récupérer une vidéo supprimée de la carte SD, gratuitement sur Mac ou Windows.",
+        "h1": "Comment récupérer des vidéos supprimées de caméras de surveillance et de dashcams",
+        "lede": "Vous avez besoin d’une vidéo d’une caméra domestique ou d’une dashcam supprimée, formatée ou écrasée ? Elle est peut-être encore sur la carte mémoire, mais ces caméras écrasent sans cesse les anciennes vidéos. Voici ce qu’il faut faire tout de suite, et comment la récupérer gratuitement.",
+        "card": "L’enregistrement en boucle écrase vite les anciennes vidéos. Retirez d’abord la carte, puis analysez-la."
       }
     },
     {
@@ -182,6 +254,42 @@
         "h1": "Come recuperare i file cancellati su Windows 10 e 11",
         "lede": "Hai svuotato il Cestino, usato Maiusc + Canc o perso una cartella sul PC? Se i file possono tornare dipende soprattutto dal tipo di disco del computer. Ecco dove guardare prima e come recuperarli gratis.",
         "card": "Controlla prima le opzioni gratuite di Windows. Poi tutto dipende se il PC ha un hard disk o un SSD."
+      },
+      "es": {
+        "slug": "recuperar-archivos-borrados-windows",
+        "short": "Archivos borrados en Windows",
+        "title": "Recuperar archivos borrados en Windows 10 y 11 gratis | RecovMe",
+        "description": "¿Vaciaste la Papelera de reciclaje o usaste Mayús + Supr en Windows 10 u 11? Dónde mirar primero, si tu disco aún puede devolver los archivos y cómo recuperarlos gratis.",
+        "h1": "Cómo recuperar archivos borrados en Windows 10 y 11",
+        "lede": "¿Vaciaste la Papelera de reciclaje, usaste Mayús + Supr o perdiste una carpeta en tu PC? Que los archivos puedan volver depende sobre todo del tipo de disco de tu ordenador. Aquí tienes dónde mirar primero y cómo recuperarlos gratis.",
+        "card": "Prueba primero las opciones gratuitas de Windows. Después, si tu PC tiene un disco duro o un SSD decide el resto."
+      },
+      "pt": {
+        "slug": "recuperar-arquivos-apagados-windows",
+        "short": "Arquivos apagados no Windows",
+        "title": "Recuperar arquivos apagados no Windows 10 e 11 grátis | RecovMe",
+        "description": "Esvaziou a Lixeira ou usou Shift + Delete no Windows 10 ou 11? Onde procurar primeiro, se o seu disco ainda pode devolver os arquivos e como recuperá-los grátis.",
+        "h1": "Como recuperar arquivos apagados no Windows 10 e 11",
+        "lede": "Esvaziou a Lixeira, usou Shift + Delete ou perdeu uma pasta no PC? Se os arquivos podem voltar depende principalmente do tipo de disco do seu computador. Veja onde procurar primeiro e como recuperá-los grátis.",
+        "card": "Confira primeiro as opções gratuitas do Windows. Depois, se o PC tem HD ou SSD decide o resto."
+      },
+      "de": {
+        "slug": "geloeschte-dateien-windows-wiederherstellen",
+        "short": "Gelöschte Dateien unter Windows",
+        "title": "Gelöschte Dateien unter Windows 10 und 11 kostenlos wiederherstellen | RecovMe",
+        "description": "Papierkorb geleert oder Umschalt + Entf unter Windows 10 oder 11 benutzt? Wo du zuerst suchen solltest, ob dein Laufwerk die Dateien noch hergeben kann und wie du sie kostenlos zurückholst.",
+        "h1": "Gelöschte Dateien unter Windows 10 und 11 wiederherstellen",
+        "lede": "Papierkorb geleert, Umschalt + Entf benutzt oder einen Ordner auf dem PC verloren? Ob die Dateien zurückkommen können, hängt vor allem vom Laufwerk in deinem Computer ab. Hier erfährst du, wo du zuerst suchst und wie du sie kostenlos wiederherstellst.",
+        "card": "Prüfe zuerst die kostenlosen Windows-Funktionen. Dann entscheidet Festplatte oder SSD über den Rest."
+      },
+      "fr": {
+        "slug": "recuperer-fichiers-supprimes-windows",
+        "short": "Fichiers supprimés sous Windows",
+        "title": "Récupérer des fichiers supprimés sous Windows 10 et 11 gratuitement | RecovMe",
+        "description": "Corbeille vidée ou Maj + Suppr sous Windows 10 ou 11 ? Où chercher d’abord, si votre disque peut encore rendre les fichiers et comment les récupérer gratuitement.",
+        "h1": "Comment récupérer des fichiers supprimés sous Windows 10 et 11",
+        "lede": "Corbeille vidée, Maj + Suppr, ou dossier perdu sur votre PC ? Le retour des fichiers dépend surtout du type de disque de votre ordinateur. Voici où chercher d’abord, et comment les récupérer gratuitement.",
+        "card": "Essayez d’abord les options gratuites de Windows. Ensuite, disque dur ou SSD décide du reste."
       }
     },
     {
@@ -204,6 +312,42 @@
         "h1": "Come recuperare le foto cancellate da un telefono Android",
         "lede": "Hai cancellato foto o video da un telefono Android? Android cancella lo spazio dei file eliminati, quindi la risposta onesta è: tornano solo se ne sopravvive una copia da qualche parte. Ecco dove guardare e come ricopiare gratis ogni file sopravvissuto, senza fare il root del telefono.",
         "card": "Cestini, app di chat e anteprime spesso le conservano ancora. Senza root."
+      },
+      "es": {
+        "slug": "recuperar-fotos-borradas-android",
+        "short": "Fotos borradas en Android",
+        "title": "Recuperar fotos borradas de un móvil Android gratis | RecovMe",
+        "description": "¿Borraste fotos de un móvil Android? Dónde pueden seguir existiendo (papelera, WhatsApp, Telegram, miniaturas) y cómo copiarlas todas gratis, sin root.",
+        "h1": "Cómo recuperar fotos borradas de un móvil Android",
+        "lede": "¿Borraste fotos o vídeos de un móvil Android? Android limpia el espacio borrado, así que la respuesta honesta es: solo vuelven si sobrevive una copia en algún sitio. Aquí tienes dónde buscar y cómo copiar gratis todos los archivos que sobreviven, sin rootear el móvil.",
+        "card": "Las papeleras, las apps de chat y las miniaturas a menudo aún las guardan. Sin root."
+      },
+      "pt": {
+        "slug": "recuperar-fotos-apagadas-android",
+        "short": "Fotos apagadas no Android",
+        "title": "Recuperar fotos apagadas de um celular Android grátis | RecovMe",
+        "description": "Apagou fotos de um celular Android? Onde elas ainda podem existir (lixeira, WhatsApp, Telegram, miniaturas) e como copiar todas de volta grátis, sem root.",
+        "h1": "Como recuperar fotos apagadas de um celular Android",
+        "lede": "Apagou fotos ou vídeos de um celular Android? O Android limpa o espaço apagado, então a resposta honesta é: elas só voltam se uma cópia sobreviver em algum lugar. Veja onde procurar e como copiar de volta grátis todos os arquivos que sobreviveram, sem fazer root no celular.",
+        "card": "Lixeiras, apps de conversa e miniaturas muitas vezes ainda as guardam. Sem root."
+      },
+      "de": {
+        "slug": "geloeschte-fotos-android-wiederherstellen",
+        "short": "Gelöschte Fotos auf Android",
+        "title": "Gelöschte Fotos vom Android-Handy kostenlos wiederherstellen | RecovMe",
+        "description": "Fotos vom Android-Handy gelöscht? Wo sie noch überleben können (Papierkorb, WhatsApp, Telegram, Vorschaubilder) und wie du sie alle kostenlos zurückkopierst, ohne Root.",
+        "h1": "Gelöschte Fotos von einem Android-Handy wiederherstellen",
+        "lede": "Fotos oder Videos von einem Android-Handy gelöscht? Android bereinigt gelöschten Speicherplatz, die ehrliche Antwort lautet also: Sie kommen nur zurück, wenn irgendwo eine Kopie überlebt. Hier erfährst du, wo du suchst und wie du jede überlebende Datei kostenlos zurückkopierst, ohne das Handy zu rooten.",
+        "card": "Papierkörbe, Chat-Apps und Vorschaubilder haben sie oft noch. Ohne Root."
+      },
+      "fr": {
+        "slug": "recuperer-photos-supprimees-android",
+        "short": "Photos supprimées sur Android",
+        "title": "Récupérer des photos supprimées d’un téléphone Android gratuitement | RecovMe",
+        "description": "Photos supprimées d’un téléphone Android ? Où elles peuvent encore exister (corbeille, WhatsApp, Telegram, miniatures) et comment toutes les recopier gratuitement, sans root.",
+        "h1": "Comment récupérer des photos supprimées d’un téléphone Android",
+        "lede": "Photos ou vidéos supprimées d’un téléphone Android ? Android nettoie l’espace supprimé : la réponse honnête est qu’elles ne reviennent que si une copie subsiste quelque part. Voici où chercher, et comment recopier gratuitement chaque fichier qui subsiste, sans rooter le téléphone.",
+        "card": "Les corbeilles, les applications de messagerie et les miniatures les contiennent souvent encore. Sans root."
       }
     },
     {
@@ -226,6 +370,42 @@
         "h1": "Come recuperare le foto cancellate di iPhone da un backup sul computer",
         "lede": "Nessuna app può analizzare un iPhone alla ricerca di foto cancellate, ma un backup sul computer fatto prima della cancellazione le contiene ancora. Ecco come estrarre gratis foto, messaggi, memo vocali e allegati, senza ripristinare l’iPhone.",
         "card": "Un backup di Finder o iTunes fatto prima della cancellazione le contiene ancora. Senza ripristino."
+      },
+      "es": {
+        "slug": "recuperar-fotos-copia-seguridad-iphone",
+        "short": "Fotos de una copia de seguridad del iPhone",
+        "title": "Recuperar fotos borradas del iPhone desde una copia de seguridad gratis | RecovMe",
+        "description": "Recupera gratis fotos, mensajes y notas de voz borrados de un iPhone o iPad desde una copia del Finder o iTunes en tu Mac o PC. Las copias cifradas también funcionan.",
+        "h1": "Cómo recuperar fotos borradas del iPhone desde una copia en el ordenador",
+        "lede": "Ninguna app puede escanear un iPhone en busca de fotos borradas, pero una copia de seguridad en tu ordenador de antes de borrarlas todavía las tiene. Así puedes sacar gratis fotos, mensajes, notas de voz y archivos adjuntos, sin restaurar el iPhone.",
+        "card": "Una copia del Finder o iTunes de antes del borrado todavía las tiene. Sin restaurar."
+      },
+      "pt": {
+        "slug": "recuperar-fotos-backup-iphone",
+        "short": "Fotos de um backup do iPhone",
+        "title": "Recuperar fotos apagadas do iPhone a partir de um backup grátis | RecovMe",
+        "description": "Recupere grátis fotos, mensagens e gravações apagadas de um iPhone ou iPad a partir de um backup do Finder ou iTunes no Mac ou PC. Backups criptografados também funcionam.",
+        "h1": "Como recuperar fotos apagadas do iPhone a partir de um backup no computador",
+        "lede": "Nenhum app consegue vasculhar um iPhone atrás de fotos apagadas, mas um backup no seu computador feito antes da exclusão ainda as tem. Veja como tirar dele fotos, mensagens, gravações e anexos de graça, sem restaurar o iPhone.",
+        "card": "Um backup do Finder ou iTunes feito antes da exclusão ainda tem as fotos. Sem restaurar."
+      },
+      "de": {
+        "slug": "iphone-fotos-aus-backup-wiederherstellen",
+        "short": "Fotos aus einem iPhone-Backup",
+        "title": "Gelöschte iPhone-Fotos kostenlos aus einem Backup wiederherstellen | RecovMe",
+        "description": "Stelle gelöschte Fotos, Nachrichten und Sprachmemos von iPhone oder iPad kostenlos aus einem Finder- oder iTunes-Backup auf deinem Mac oder PC wieder her. Auch verschlüsselte Backups funktionieren.",
+        "h1": "Gelöschte iPhone-Fotos aus einem Computer-Backup wiederherstellen",
+        "lede": "Keine App kann ein iPhone nach gelöschten Fotos durchsuchen, aber ein Backup auf deinem Computer von vor dem Löschen enthält sie noch. So holst du Fotos, Nachrichten, Sprachmemos und Anhänge kostenlos heraus, ohne das iPhone wiederherzustellen.",
+        "card": "Ein Finder- oder iTunes-Backup von vor dem Löschen enthält sie noch. Ohne Wiederherstellen."
+      },
+      "fr": {
+        "slug": "recuperer-photos-sauvegarde-iphone",
+        "short": "Photos d’une sauvegarde d’iPhone",
+        "title": "Récupérer des photos d’iPhone supprimées depuis une sauvegarde gratuitement | RecovMe",
+        "description": "Récupérez gratuitement les photos, messages et mémos vocaux supprimés d’un iPhone ou d’un iPad depuis une sauvegarde Finder ou iTunes sur votre Mac ou PC. Les sauvegardes chiffrées fonctionnent aussi.",
+        "h1": "Comment récupérer des photos d’iPhone supprimées depuis une sauvegarde sur ordinateur",
+        "lede": "Aucune application ne peut analyser un iPhone pour retrouver des photos supprimées, mais une sauvegarde sur votre ordinateur antérieure à la suppression les contient encore. Voici comment en extraire gratuitement photos, messages, mémos vocaux et pièces jointes, sans restaurer l’iPhone.",
+        "card": "Une sauvegarde Finder ou iTunes antérieure à la suppression les contient encore. Sans restauration."
       }
     },
     {
@@ -249,6 +429,42 @@
         "h1": "PhotoRec con una vera interfaccia, per Mac e Windows",
         "lede": "PhotoRec è uno dei migliori programmi di recupero gratuiti mai creati, ma funziona in modalità testo e la versione ufficiale per Mac è per processori Intel. RecovMe usa PhotoRec, insieme a The Sleuth Kit, dentro una normale app per Mac con chip Apple e Windows. Ecco cosa cambia e cosa no.",
         "card": "Lo stesso motore open source, senza Terminale, con i nomi dei file e i risultati in ordine."
+      },
+      "es": {
+        "slug": "photorec-interfaz-grafica-mac-windows",
+        "short": "PhotoRec con interfaz gráfica",
+        "title": "PhotoRec con interfaz gráfica para Mac (Apple silicon) y Windows | RecovMe",
+        "description": "¿Quieres PhotoRec sin Terminal? RecovMe ejecuta PhotoRec y The Sleuth Kit en una app gratuita y de código abierto para Mac con Apple silicon y Windows, y conserva los nombres.",
+        "h1": "PhotoRec con una interfaz de verdad, para Mac y Windows",
+        "lede": "PhotoRec es una de las mejores herramientas de recuperación gratuitas que existen, pero funciona en modo texto y su versión oficial para Mac es para Intel. RecovMe ejecuta PhotoRec, junto con The Sleuth Kit, dentro de una app normal para Mac con Apple silicon y Windows. Esto es lo que cambia, y lo que no.",
+        "card": "El mismo motor de código abierto, sin Terminal, con los nombres conservados y los resultados ordenados."
+      },
+      "pt": {
+        "slug": "photorec-interface-grafica-mac-windows",
+        "short": "PhotoRec com interface gráfica",
+        "title": "PhotoRec com interface gráfica para Mac (Apple silicon) e Windows | RecovMe",
+        "description": "Quer o PhotoRec sem Terminal? O RecovMe roda o PhotoRec e o The Sleuth Kit em um app grátis e de código aberto para Macs com Apple silicon e Windows, e mantém os nomes dos arquivos.",
+        "h1": "PhotoRec com uma interface de verdade, para Mac e Windows",
+        "lede": "O PhotoRec é uma das melhores ferramentas de recuperação grátis já feitas, mas é um programa em modo texto e a versão oficial para Mac é para Intel. O RecovMe roda o PhotoRec, junto com o The Sleuth Kit, dentro de um app normal para Macs com Apple silicon e Windows. Veja o que isso muda, e o que não muda.",
+        "card": "O mesmo motor de código aberto, sem Terminal, com nomes mantidos e resultados organizados."
+      },
+      "de": {
+        "slug": "photorec-grafische-oberflaeche-mac-windows",
+        "short": "PhotoRec mit grafischer Oberfläche",
+        "title": "PhotoRec mit grafischer Oberfläche für Mac (Apple silicon) und Windows | RecovMe",
+        "description": "PhotoRec ohne Terminal? RecovMe führt PhotoRec und The Sleuth Kit in einer kostenlosen Open-Source-App für Macs mit Apple silicon und Windows aus und behält Dateinamen.",
+        "h1": "PhotoRec mit echter Oberfläche, für Mac und Windows",
+        "lede": "PhotoRec ist eines der besten kostenlosen Datenrettungs-Werkzeuge überhaupt, aber ein Programm im Textmodus, und die offizielle Mac-Version ist für Intel. RecovMe führt PhotoRec zusammen mit The Sleuth Kit in einer normalen App für Macs mit Apple silicon und Windows aus. Das ändert sich dadurch, und das nicht.",
+        "card": "Dieselbe Open-Source-Engine, ohne Terminal, mit erhaltenen Dateinamen und sortierten Ergebnissen."
+      },
+      "fr": {
+        "slug": "photorec-interface-graphique-mac-windows",
+        "short": "PhotoRec avec interface graphique",
+        "title": "PhotoRec avec interface graphique pour Mac (puce Apple) et Windows | RecovMe",
+        "description": "PhotoRec sans Terminal ? RecovMe lance PhotoRec et The Sleuth Kit dans une application gratuite et open source pour Mac à puce Apple et Windows, et garde les noms de fichiers.",
+        "h1": "PhotoRec avec une vraie interface, pour Mac et Windows",
+        "lede": "PhotoRec est l’un des meilleurs outils de récupération gratuits jamais créés, mais c’est un programme en mode texte et sa version Mac officielle est pour Intel. RecovMe lance PhotoRec, avec The Sleuth Kit, dans une application normale pour Mac à puce Apple et Windows. Voici ce que cela change, et ce que cela ne change pas.",
+        "card": "Le même moteur open source, sans Terminal, avec les noms conservés et les résultats triés."
       }
     },
     {
@@ -272,6 +488,42 @@
         "h1": "Cerchi Recuva per Mac? Ecco un’alternativa gratuita",
         "lede": "Recuva non esiste per Mac: funziona solo su Windows. Quasi tutte le pagine “Recuva per Mac” poi consigliano un’app a pagamento con un piccolo limite gratuito. Ecco le opzioni oneste, con ogni limite verificato sul sito del produttore.",
         "card": "Recuva è solo per Windows. Le vere opzioni per Mac e i loro limiti gratuiti, verificati a ottobre 2026."
+      },
+      "es": {
+        "slug": "recuva-para-mac",
+        "short": "Recuva para Mac",
+        "title": "¿Recuva para Mac? Una alternativa gratis y sin límite | RecovMe",
+        "description": "Recuva solo existe para Windows. Estas son las opciones gratuitas reales para Mac, con el límite gratuito de cada app comprobado en su propia web, y una de código abierto sin límite.",
+        "h1": "¿Buscas Recuva para Mac? Aquí tienes una alternativa gratis",
+        "lede": "Recuva no existe para Mac: solo funciona en Windows. La mayoría de las páginas «Recuva para Mac» recomiendan después una app de pago con un límite gratuito pequeño. Estas son las opciones honestas, con cada límite comprobado en la web del fabricante.",
+        "card": "Recuva solo existe para Windows. Las opciones reales para Mac y sus límites gratuitos, comprobados en octubre de 2026."
+      },
+      "pt": {
+        "slug": "recuva-para-mac",
+        "short": "Recuva para Mac",
+        "title": "Recuva para Mac? Uma alternativa grátis e sem limite | RecovMe",
+        "description": "O Recuva é só para Windows. Estas são as opções grátis de verdade para Mac, com o limite grátis de cada app conferido no próprio site, e uma de código aberto sem limite.",
+        "h1": "Procurando o Recuva para Mac? Aqui está uma alternativa grátis",
+        "lede": "O Recuva não existe para Mac: ele só roda no Windows. A maioria das páginas de “Recuva para Mac” recomenda depois um app pago com um limite grátis pequeno. Estas são as opções honestas, com cada limite conferido no site do fabricante.",
+        "card": "O Recuva é só para Windows. As opções reais para Mac e seus limites grátis, conferidos em outubro de 2026."
+      },
+      "de": {
+        "slug": "recuva-fuer-mac",
+        "short": "Recuva für Mac",
+        "title": "Recuva für Mac? Eine kostenlose Alternative ohne Grenze | RecovMe",
+        "description": "Recuva gibt es nur für Windows. Das sind die echten kostenlosen Optionen für den Mac, mit der Gratis-Grenze jeder App auf deren eigener Website geprüft, und eine Open-Source-App ohne Grenze.",
+        "h1": "Suchst du Recuva für Mac? Hier ist eine kostenlose Alternative",
+        "lede": "Recuva gibt es nicht für den Mac: Es läuft nur unter Windows. Die meisten „Recuva für Mac“-Seiten empfehlen dann eine kostenpflichtige App mit kleiner Gratis-Grenze. Hier sind die ehrlichen Optionen, jede Grenze auf der Seite des Herstellers geprüft.",
+        "card": "Recuva gibt es nur für Windows. Die echten Mac-Optionen und ihre Gratis-Grenzen, geprüft im Oktober 2026."
+      },
+      "fr": {
+        "slug": "recuva-pour-mac",
+        "short": "Recuva pour Mac",
+        "title": "Recuva pour Mac ? Une alternative gratuite et sans limite | RecovMe",
+        "description": "Recuva n’existe que pour Windows. Voici les vraies options gratuites pour Mac, avec la limite gratuite de chaque application vérifiée sur son propre site, et une application open source sans limite.",
+        "h1": "Vous cherchez Recuva pour Mac ? Voici une alternative gratuite",
+        "lede": "Recuva n’existe pas sur Mac : il ne fonctionne que sous Windows. La plupart des pages « Recuva pour Mac » recommandent ensuite une application payante avec une petite limite gratuite. Voici les options honnêtes, chaque limite vérifiée sur le site de l’éditeur.",
+        "card": "Recuva n’existe que pour Windows. Les vraies options Mac et leurs limites gratuites, vérifiées en octobre 2026."
       }
     },
     {
@@ -295,6 +547,42 @@
         "h1": "Un’alternativa gratuita a Disk Drill, senza limiti di recupero",
         "lede": "Disk Drill è un’app curata, ma la sua versione gratuita arriva fino a un certo punto. Se ti sei fermato lì, ecco cosa fa di diverso RecovMe e in quali casi Disk Drill resta la scelta migliore.",
         "card": "Disk Drill gratis si ferma a 100 MB su Windows e su Mac mostra solo l’anteprima. Cosa usare invece."
+      },
+      "es": {
+        "slug": "alternativa-gratis-disk-drill",
+        "short": "Alternativa a Disk Drill",
+        "title": "Alternativa gratis a Disk Drill sin límite de recuperación | RecovMe",
+        "description": "¿Llegaste al límite gratuito de Disk Drill (100 MB en Windows, solo vista previa en Mac)? Una alternativa gratuita y de código abierto sin límite, y cuándo Disk Drill sigue siendo mejor.",
+        "h1": "Una alternativa gratis a Disk Drill, sin límite de recuperación",
+        "lede": "Disk Drill es una app muy cuidada, pero su versión gratuita se queda corta. Si has chocado con ese límite, esto es lo que RecovMe hace distinto, y dónde Disk Drill sigue siendo la mejor opción.",
+        "card": "Disk Drill gratis se detiene en 100 MB en Windows y solo previsualiza en Mac. Qué usar en su lugar."
+      },
+      "pt": {
+        "slug": "alternativa-gratis-disk-drill",
+        "short": "Alternativa ao Disk Drill",
+        "title": "Alternativa grátis ao Disk Drill sem limite de recuperação | RecovMe",
+        "description": "Bateu no limite grátis do Disk Drill (100 MB no Windows, só prévia no Mac)? Uma alternativa grátis e de código aberto sem limite, e quando o Disk Drill ainda é a melhor escolha.",
+        "h1": "Uma alternativa grátis ao Disk Drill, sem limite de recuperação",
+        "lede": "O Disk Drill é um app caprichado, mas a versão grátis vai só até certo ponto. Se você bateu nesse limite, veja o que o RecovMe faz de diferente, e onde o Disk Drill ainda é a melhor escolha.",
+        "card": "O Disk Drill grátis para em 100 MB no Windows e só mostra prévia no Mac. O que usar no lugar."
+      },
+      "de": {
+        "slug": "kostenlose-disk-drill-alternative",
+        "short": "Disk-Drill-Alternative",
+        "title": "Kostenlose Disk-Drill-Alternative ohne Wiederherstellungsgrenze | RecovMe",
+        "description": "An die Gratis-Grenze von Disk Drill gestoßen (100 MB unter Windows, nur Vorschau auf dem Mac)? Eine kostenlose Open-Source-Alternative ohne Grenze, und wann Disk Drill trotzdem besser ist.",
+        "h1": "Eine kostenlose Alternative zu Disk Drill, ohne Wiederherstellungsgrenze",
+        "lede": "Disk Drill ist eine ausgereifte App, aber ihre Gratisversion reicht nur so weit. Wenn du an diese Grenze gestoßen bist, erfährst du hier, was RecovMe anders macht und wo Disk Drill trotzdem die bessere Wahl ist.",
+        "card": "Disk Drill gratis endet bei 100 MB unter Windows und zeigt auf dem Mac nur eine Vorschau. Was du stattdessen nutzt."
+      },
+      "fr": {
+        "slug": "alternative-gratuite-disk-drill",
+        "short": "Alternative à Disk Drill",
+        "title": "Alternative gratuite à Disk Drill sans limite de récupération | RecovMe",
+        "description": "Bloqué par la limite gratuite de Disk Drill (100 Mo sous Windows, aperçu seulement sur Mac) ? Une alternative gratuite et open source sans limite, et quand Disk Drill reste le meilleur choix.",
+        "h1": "Une alternative gratuite à Disk Drill, sans limite de récupération",
+        "lede": "Disk Drill est une application soignée, mais sa version gratuite a ses limites. Si vous êtes bloqué, voici ce que RecovMe fait différemment, et là où Disk Drill reste le meilleur choix.",
+        "card": "Disk Drill gratuit s’arrête à 100 Mo sous Windows et n’offre qu’un aperçu sur Mac. Que choisir à la place."
       }
     },
     {
@@ -318,6 +606,42 @@
         "h1": "Programmi di recupero dati gratis nel 2026: quanto sono gratis davvero?",
         "lede": "Quasi tutti i programmi di recupero “gratuiti” ti fanno fare la scansione gratis e poi limitano quanto puoi salvare. Ho controllato la pagina di ogni produttore a ottobre 2026. Ecco la tabella completa, con i programmi davvero gratuiti e RecovMe, che creo io.",
         "card": "Il limite gratuito di ogni app, verificato sul sito del produttore: da 100 MB a nessun limite."
+      },
+      "es": {
+        "slug": "mejores-programas-recuperacion-datos-gratis",
+        "short": "Programas de recuperación gratis comparados",
+        "title": "Programas de recuperación de datos gratis 2026: los límites reales | RecovMe",
+        "description": "¿Qué programa de recuperación de datos es gratis de verdad? El límite gratuito de cada app, comprobado en su web en octubre de 2026: Disk Drill, EaseUS, Recuva, PhotoRec, Stellar y más.",
+        "h1": "Programas de recuperación de datos gratis en 2026: ¿hasta qué punto es gratis cada uno?",
+        "lede": "La mayoría de las apps de recuperación «gratuitas» te dejan escanear gratis y luego limitan lo que puedes guardar. Revisé la página de cada fabricante en octubre de 2026. Aquí está la tabla completa, con las herramientas gratis de verdad y RecovMe, que es mía.",
+        "card": "El límite gratuito de cada app, comprobado en la web de su fabricante: de 100 MB a ningún límite."
+      },
+      "pt": {
+        "slug": "melhores-programas-recuperacao-dados-gratis",
+        "short": "Programas de recuperação grátis comparados",
+        "title": "Programas de recuperação de dados grátis 2026: os limites reais | RecovMe",
+        "description": "Qual programa de recuperação de dados é grátis de verdade? O limite grátis de cada app, conferido no próprio site em outubro de 2026: Disk Drill, EaseUS, Recuva, PhotoRec, Stellar e mais.",
+        "h1": "Programas de recuperação de dados grátis em 2026: quão grátis é cada um?",
+        "lede": "A maioria dos apps de recuperação “grátis” deixa você escanear de graça e depois limita o que você pode salvar. Conferi a página de cada fabricante em outubro de 2026. Aqui está a tabela completa, incluindo as ferramentas grátis de verdade e o RecovMe, que eu faço.",
+        "card": "O limite grátis de cada app, conferido no site do fabricante: de 100 MB a nenhum limite."
+      },
+      "de": {
+        "slug": "beste-kostenlose-datenrettung-software",
+        "short": "Kostenlose Datenrettungs-Software im Vergleich",
+        "title": "Kostenlose Datenrettungs-Software 2026: die echten Grenzen | RecovMe",
+        "description": "Welche Datenrettungs-Software ist wirklich kostenlos? Die Gratis-Grenze jeder App, geprüft auf deren Website im Oktober 2026: Disk Drill, EaseUS, Recuva, PhotoRec, Stellar und mehr.",
+        "h1": "Kostenlose Datenrettungs-Software 2026: Wie kostenlos ist jede wirklich?",
+        "lede": "Die meisten „kostenlosen“ Datenrettungs-Apps lassen dich gratis scannen und begrenzen dann, was du speichern darfst. Ich habe im Oktober 2026 die Seite jedes Herstellers geprüft. Hier ist die vollständige Tabelle, mit den wirklich kostenlosen Werkzeugen und RecovMe, das ich entwickle.",
+        "card": "Die Gratis-Grenze jeder App, geprüft auf der Seite des Herstellers: von 100 MB bis gar keine Grenze."
+      },
+      "fr": {
+        "slug": "meilleurs-logiciels-recuperation-donnees-gratuits",
+        "short": "Logiciels de récupération gratuits comparés",
+        "title": "Logiciels de récupération de données gratuits 2026 : les vraies limites | RecovMe",
+        "description": "Quel logiciel de récupération de données est vraiment gratuit ? La limite gratuite de chaque application, vérifiée sur son site en octobre 2026 : Disk Drill, EaseUS, Recuva, PhotoRec, Stellar et d’autres.",
+        "h1": "Logiciels de récupération de données gratuits en 2026 : à quel point chacun est-il gratuit ?",
+        "lede": "La plupart des logiciels de récupération « gratuits » vous laissent analyser gratuitement, puis limitent ce que vous pouvez enregistrer. J’ai vérifié la page de chaque éditeur en octobre 2026. Voici le tableau complet, avec les outils vraiment gratuits et RecovMe, que je développe.",
+        "card": "La limite gratuite de chaque application, vérifiée sur le site de l’éditeur : de 100 Mo à aucune limite."
       }
     }
   ]

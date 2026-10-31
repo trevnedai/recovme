@@ -1,0 +1,80 @@
+<div class="chance" data-level="high">
+  <p class="label">Tus posibilidades: buenas en un disco duro</p>
+  <p>Los discos duros no borran de verdad los archivos eliminados. Marcan el espacio como libre y dejan los archivos en su sitio hasta que se guarda algo nuevo ahí. Los SSD externos son distintos, así que comprueba abajo cuál tienes.</p>
+</div>
+
+<h2>¿Disco duro, SSD o algo peor?</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Tu disco</th><th scope="col">Tus posibilidades</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Disco duro externo (disco giratorio, como la mayoría de los discos grandes de Seagate, WD, Toshiba o LaCie)</th><td><span class="lvl good">Buenas</span>, tanto si borraste archivos como si vaciaste la papelera o hiciste un formateo rápido.</td></tr>
+      <tr><th scope="row">SSD externo</th><td><span class="lvl mid">Depende.</span> Algunos borran los archivos eliminados en minutos y otros los conservan. Los discos formateados en exFAT suelen conservarlos. Desconéctalo ya y escanéalo antes de volver a usarlo.</td></tr>
+      <tr><th scope="row">El disco hace clics, no se detecta o se desconecta</th><td><span class="lvl low">Para.</span> Tiene una avería física, y usar cualquier programa con él puede empeorarlo. Un laboratorio de recuperación de datos es la opción segura.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Antes de hacer nada</h2>
+  <ul>
+    <li><strong>No guardes nada en el disco</strong> ni instales apps en él. Los archivos nuevos pueden caer donde están los borrados.</li>
+    <li><strong>No lo repares</strong> (Primera ayuda o chkdsk) antes de recuperar lo que necesitas. Las reparaciones escriben en el disco.</li>
+    <li><strong>No guardes los archivos recuperados en el mismo disco.</strong> Usa el disco de tu ordenador u otro disco externo.</li>
+  </ul>
+</section>
+
+<h2>Mira primero en la Papelera</h2>
+<p>En un Mac, los archivos borrados de un disco externo van a la Papelera, pero solo aparecen ahí mientras el disco está conectado. Conéctalo y abre la Papelera. En Windows, los archivos borrados de un disco duro externo suelen ir a la Papelera de reciclaje. Los borrados de memorias USB, o con Mayús + Supr, no pasan por ella.</p>
+
+<h2>Recupera los archivos en 7 pasos</h2>
+<p>Funciona igual en Mac y en Windows. RecovMe es gratis hasta el final: sin prueba, sin límite de tamaño y sin pagar nada antes de guardar. La app está en inglés, así que los nombres de los botones aparecen tal como los verás.</p>
+
+<ol class="steps">
+  <li><b>Conecta el disco y abre RecovMe</b>
+    <p>Descárgalo gratis y ábrelo. En un Mac, introduce tu contraseña cuando te la pida, porque leer el espacio borrado necesita acceso directo al disco. En Windows, si aparece SmartScreen, elige <span class="ui">Más información</span> y luego <span class="ui">Ejecutar de todas formas</span>.</p></li>
+  <li><b>Elige el disco</b>
+    <p>Selecciónalo en la lista de la izquierda. Si el disco tiene más de una parte (volumen) debajo, elige aquella en la que estaban los archivos.</p></li>
+  <li><b>Elige qué buscar</b>
+    <p>Photos, Videos y Documents están activados por defecto. Añade <span class="ui">Music &amp; Audio</span> o <span class="ui">Archives</span>, o elige <span class="ui">All File Types</span>. Menos tipos hacen el escaneo más rápido y los resultados más pequeños.</p></li>
+  <li><b>Mantén Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> recupera primero los archivos borrados con sus nombres y carpetas originales y luego busca el resto en cada bloque. Los nombres originales vuelven en discos formateados para Windows (NTFS, exFAT o FAT32), que es como vienen la mayoría de los discos externos. En discos formateados para Mac (APFS o Mac OS Plus), los archivos vuelven gracias a la búsqueda profunda, ordenados por tipo.</p></li>
+  <li><b>Guarda en otro disco</b>
+    <p>Elige una carpeta en el disco de tu ordenador, o en un segundo disco externo, con espacio libre suficiente para lo que quieres recuperar. Si eliges una carpeta de OneDrive o iCloud, RecovMe te avisa de que los archivos se subirían a la nube.</p></li>
+  <li><b>Empieza el escaneo y déjalo trabajar</b>
+    <p>Pulsa <span class="ui">Start Scan</span>. Un disco grande puede tardar horas, así que deja el ordenador enchufado y sin que entre en reposo. En un Mac, <span class="ui">Protect the drive while scanning</span> desmonta el disco para que nada escriba en él. Vuelve a aparecer cuando termina el escaneo. Puedes pulsar <span class="ui">Stop</span> en cualquier momento y conservar lo encontrado.</p>
+    <figure class="shot">
+      <img src="/assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="Un escaneo en curso con el porcentaje, el tiempo restante y los archivos apareciendo a medida que se encuentran.">
+      <figcaption>Progreso, tiempo restante y fotos encontradas hasta ahora.</figcaption>
+    </figure></li>
+  <li><b>Abre tus archivos</b>
+    <p>Pulsa <span class="ui">Open Recovered Files</span>. Los archivos que conservaron su nombre y su carpeta están en <span class="ui">Original names</span>. Todo lo demás se ordena en Photos, Videos, Music, Documents y Archives, con las fotos y los vídeos nombrados por la fecha en que se hicieron.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>¿Mi disco está formateado para Mac o para Windows?</strong> En un Mac, selecciona el disco en el Finder, elige Archivo › Obtener información y mira Formato. En Windows, haz clic derecho en el disco en Este equipo, elige Propiedades y mira Sistema de archivos.</p>
+</div>
+
+<h2>Preguntas</h2>
+<div class="faq">
+  <details>
+    <summary>¿Cuánto espacio libre necesito para guardar los archivos?</summary>
+    <p>Tanto como ocupen los archivos que quieres recuperar. Elegir solo los tipos que necesitas, como Photos, hace los resultados más pequeños. Los duplicados se eliminan automáticamente.</p>
+  </details>
+  <details>
+    <summary>¿Puedo recuperar archivos borrados del disco interno de mi ordenador?</summary>
+    <p>Solo si es un disco duro, como en muchos PC antiguos. Los SSD internos de los portátiles borran por sí solos los archivos eliminados, y todos los Mac con Apple silicon cifran su disco, así que ninguna app puede recuperarlos escaneando. Prueba primero la Papelera, Time Machine, el Historial de archivos u OneDrive.</p>
+  </details>
+  <details>
+    <summary>¿Funciona con cualquier marca de disco?</summary>
+    <p>Sí. Seagate, WD, Toshiba, LaCie, Samsung y cualquier otro disco que tu ordenador vea como un disco.</p>
+  </details>
+  <details>
+    <summary>¿RecovMe es gratis de verdad?</summary>
+    <p>Sí, al 100%. No hay prueba, ni límite de tamaño, ni nada que desbloquear después del escaneo. Es de código abierto y las donaciones son opcionales.</p>
+  </details>
+  <details>
+    <summary>¿Puede dañar mi disco?</summary>
+    <p>No. RecovMe solo lee el disco que escaneas y se niega a guardar en él los archivos recuperados, porque escribir ahí podría sobrescribir lo que quieres recuperar.</p>
+  </details>
+</div>

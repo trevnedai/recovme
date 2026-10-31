@@ -1,0 +1,80 @@
+<div class="chance" data-level="mid">
+  <p class="label">Deine Chancen: hängt vom Laufwerk ab</p>
+  <p>Auf einer <strong>Festplatte</strong> bleiben gelöschte Dateien meist, bis der Platz wiederverwendet wird, die Chancen sind also gut. Auf einer <strong>SSD</strong>, wie sie die meisten Laptops und neueren PCs haben, weist Windows das Laufwerk an, gelöschte Dateien endgültig zu löschen, meist innerhalb von Minuten. Dort sind die kostenlosen Windows-Funktionen unten deine beste Chance.</p>
+</div>
+
+<h2>Prüfe zuerst diese kostenlosen Orte</h2>
+<ul>
+  <li><strong>Papierkorb.</strong> Öffne ihn auf dem Desktop, klicke mit der rechten Maustaste auf die Datei und wähle Wiederherstellen.</li>
+  <li><strong>Papierkorb von OneDrive.</strong> Wenn der Ordner mit OneDrive synchronisiert wird, melde dich auf onedrive.com an und öffne den Papierkorb. Mit einem privaten Microsoft-Konto bleiben gelöschte Dateien dort 30 Tage.</li>
+  <li><strong>Vorgängerversionen.</strong> Klicke mit der rechten Maustaste auf den Ordner, in dem die Datei lag, wähle Eigenschaften und dann den Reiter Vorgängerversionen. Dort erscheinen Kopien, wenn der Dateiversionsverlauf oder Wiederherstellungspunkte aktiviert waren.</li>
+  <li><strong>Dateiversionsverlauf.</strong> Wenn du ihn mit einem Backup-Laufwerk eingerichtet hast, öffne Systemsteuerung › Dateiversionsverlauf › Persönliche Dateien wiederherstellen.</li>
+</ul>
+
+<h2>Festplatte oder SSD?</h2>
+<p>Drücke <kbd>Strg</kbd> + <kbd>Umschalt</kbd> + <kbd>Esc</kbd>, um den Task-Manager zu öffnen, wähle Leistung und klicke auf dein Laufwerk. Der Typ, <strong>SSD</strong> oder <strong>HDD</strong>, steht rechts.</p>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Dein Laufwerk</th><th scope="col">Deine Chancen</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">HDD (Festplatte)</th><td><span class="lvl good">Gut</span>, solange du den PC für nichts anderes mehr benutzt. Ein laufender PC schreibt ständig auf sein eigenes Laufwerk.</td></tr>
+      <tr><th scope="row">SSD</th><td><span class="lvl low">Gering.</span> Dateinamen können überleben, der Inhalt selten. RecovMe kann es trotzdem versuchen und zeigt dir, welche wiederhergestellten Dateien leer sind.</td></tr>
+      <tr><th scope="row">Die Dateien lagen auf einem USB-Stick, einer SD-Karte oder einem externen Laufwerk</th><td><span class="lvl good">Meist gut.</span> Siehe die <a href="/de/anleitungen/geloeschte-fotos-sd-karte-wiederherstellen/">Anleitung für SD-Karten</a> oder die <a href="/de/anleitungen/geloeschte-dateien-externe-festplatte-wiederherstellen/">Anleitung für externe Laufwerke</a>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Vor dem Scan</h2>
+  <ul>
+    <li><strong>Benutze den PC für nichts anderes mehr</strong>: keine Downloads, keine Updates, keine neuen Dateien.</li>
+    <li class="do"><strong>Halte einen USB-Stick oder ein externes Laufwerk bereit.</strong> RecovMe speichert nichts auf dem Laufwerk, das es scannt. Auf einem PC mit nur einem Laufwerk brauchst du also einen anderen Ort für die Dateien.</li>
+    <li class="do"><strong>Für Dateien, die wirklich wichtig sind</strong>, ist es am sichersten, die Festplatte auszubauen, sie mit einem USB-Adapter an einen anderen Computer anzuschließen und sie dort zu scannen.</li>
+  </ul>
+</section>
+
+<h2>Dateien in 6 Schritten wiederherstellen</h2>
+<p>RecovMe ist bis zum Ende kostenlos: keine Testversion, keine Größengrenze, nichts zu bezahlen, bevor du speichern kannst. Die App ist auf Englisch, daher stehen die Tastennamen hier so, wie du sie sehen wirst.</p>
+
+<ol class="steps">
+  <li><b>Lade RecovMe herunter und öffne es</b>
+    <p>Es läuft unter Windows 10 und 11 (64 Bit). Wenn ein blaues SmartScreen-Fenster erscheint, wähle <span class="ui">Weitere Informationen</span> und dann <span class="ui">Trotzdem ausführen</span>. Erlaube Änderungen, wenn Windows fragt: Es braucht Administratorrechte, um das Laufwerk direkt zu lesen.</p></li>
+  <li><b>Wähle das Laufwerk</b>
+    <p>Wähle in der Liste links das Laufwerk, auf dem die Dateien lagen, meist <span class="ui">C:</span>.</p></li>
+  <li><b>Wähle, wonach gesucht wird</b>
+    <p>Photos, Videos und Documents sind standardmäßig an. Füge bei Bedarf <span class="ui">Music &amp; Audio</span> oder <span class="ui">Archives</span> hinzu. Weniger Typen machen den Scan schneller.</p></li>
+  <li><b>Behalte Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> liest zuerst die Dateitabelle des Laufwerks. Auf Windows-Laufwerken (NTFS) bringt das kürzlich gelöschte Dateien mit ihren ursprünglichen Namen und Ordnern zurück. Danach durchsucht es jeden Block nach dem Rest.</p>
+    <figure class="shot">
+      <img src="/assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="RecovMe mit ausgewähltem Laufwerk, gewählten Dateitypen und empfohlenem Smart Scan.">
+      <figcaption>Wähle Laufwerk, Dateitypen und Speicherort.</figcaption>
+    </figure></li>
+  <li><b>Auf dem USB-Stick oder externen Laufwerk speichern</b>
+    <p>Wähle unter <span class="ui">Save Recovered Files To</span> einen Ordner auf dem anderen Laufwerk. Meide OneDrive-Ordner; RecovMe warnt dich, wenn du einen wählst.</p></li>
+  <li><b>Starte den Scan und öffne deine Dateien</b>
+    <p>Klicke auf <span class="ui">Start Scan</span> und, wenn er fertig ist, auf <span class="ui">Open Recovered Files</span>. Dateien, die ihren Namen behalten haben, liegen in <span class="ui">Original names</span>; der Rest ist nach Typ sortiert.</p></li>
+</ol>
+
+<h2>Fragen</h2>
+<div class="faq">
+  <details>
+    <summary>Ich habe Umschalt + Entf benutzt. Können die Dateien zurückkommen?</summary>
+    <p>Umschalt + Entf überspringt den Papierkorb, das Ergebnis ist also dasselbe wie beim Leeren. Auf einer Festplatte bleiben die Dateien meist, bis der Platz wiederverwendet wird. Auf einer SSD werden sie meist kurz danach endgültig gelöscht.</p>
+  </details>
+  <details>
+    <summary>Mein PC startet nicht. Komme ich trotzdem an meine Dateien?</summary>
+    <p>Wenn der PC ein ausbaubares Laufwerk hat, schließe es mit einem USB-Adapter an einen anderen Computer an und scanne es dort. Viele dünne Laptops haben die SSD fest verlötet, dann ist eine Werkstatt der richtige Weg.</p>
+  </details>
+  <details>
+    <summary>Warum braucht es Administratorrechte?</summary>
+    <p>Gelöschten Speicherplatz zu lesen heißt, das Laufwerk direkt zu lesen, unterhalb der Dateien und Ordner, die Windows anzeigt. Windows erlaubt das nur Apps, die als Administrator laufen. RecovMe liest nur; es schreibt nie auf das Laufwerk, das es scannt.</p>
+  </details>
+  <details>
+    <summary>Ist RecovMe wirklich kostenlos?</summary>
+    <p>Ja, zu 100 %. Es gibt keine Testversion, keine Größengrenze und nichts, was nach dem Scan freigeschaltet werden muss. Es ist Open Source, und Spenden sind freiwillig.</p>
+  </details>
+  <details>
+    <summary>Schickt es meine Dateien irgendwohin?</summary>
+    <p>Nein. Alles passiert auf deinem Computer. RecovMe hat kein Konto, keine Cloud und kein Tracking.</p>
+  </details>
+</div>

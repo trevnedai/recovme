@@ -1,0 +1,80 @@
+<div class="chance" data-level="mid">
+  <p class="label">Vos chances : cela dépend du disque</p>
+  <p>Sur un <strong>disque dur</strong>, les fichiers supprimés restent généralement jusqu’à ce que l’espace soit réutilisé : les chances sont donc bonnes. Sur un <strong>SSD</strong>, présent dans la plupart des portables et des PC récents, Windows demande au disque d’effacer les fichiers supprimés, généralement en quelques minutes. Dans ce cas, les options gratuites de Windows ci-dessous sont votre meilleure chance.</p>
+</div>
+
+<h2>Regardez d’abord dans ces endroits gratuits</h2>
+<ul>
+  <li><strong>Corbeille.</strong> Ouvrez-la sur le bureau, faites un clic droit sur le fichier et choisissez Restaurer.</li>
+  <li><strong>Corbeille de OneDrive.</strong> Si le dossier est synchronisé avec OneDrive, connectez-vous sur onedrive.com et ouvrez la Corbeille. Avec un compte Microsoft personnel, les fichiers supprimés y restent 30 jours.</li>
+  <li><strong>Versions précédentes.</strong> Faites un clic droit sur le dossier où se trouvait le fichier, choisissez Propriétés, puis l’onglet Versions précédentes. Des copies apparaissent si l’Historique des fichiers ou les points de restauration étaient activés.</li>
+  <li><strong>Historique des fichiers.</strong> Si vous l’avez configuré avec un disque de sauvegarde, ouvrez Panneau de configuration › Historique des fichiers › Restaurer des fichiers personnels.</li>
+</ul>
+
+<h2>Disque dur ou SSD ?</h2>
+<p>Appuyez sur <kbd>Ctrl</kbd> + <kbd>Maj</kbd> + <kbd>Échap</kbd> pour ouvrir le Gestionnaire des tâches, choisissez Performances, puis cliquez sur votre disque. Le type, <strong>SSD</strong> ou <strong>HDD</strong>, s’affiche à droite.</p>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Votre disque</th><th scope="col">Vos chances</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">HDD (disque dur)</th><td><span class="lvl good">Bonnes</span>, à condition d’arrêter d’utiliser le PC pour autre chose. Un PC allumé écrit sans arrêt sur son propre disque.</td></tr>
+      <tr><th scope="row">SSD</th><td><span class="lvl low">Faibles.</span> Les noms de fichiers peuvent subsister, le contenu rarement. RecovMe peut quand même essayer et vous indique quels fichiers récupérés sont vides.</td></tr>
+      <tr><th scope="row">Les fichiers étaient sur une clé USB, une carte SD ou un disque externe</th><td><span class="lvl good">Généralement bonnes.</span> Voir le <a href="/fr/guides/recuperer-photos-supprimees-carte-sd/">guide des cartes SD</a> ou le <a href="/fr/guides/recuperer-fichiers-supprimes-disque-dur-externe/">guide des disques externes</a>.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Avant l’analyse</h2>
+  <ul>
+    <li><strong>N’utilisez plus le PC</strong> pour autre chose : pas de téléchargements, pas de mises à jour, pas de nouveaux fichiers.</li>
+    <li class="do"><strong>Préparez une clé USB ou un disque externe.</strong> RecovMe n’enregistre rien sur le disque analysé : sur un PC à un seul disque, il vous faut donc un autre endroit pour les fichiers.</li>
+    <li class="do"><strong>Pour les fichiers qui comptent vraiment</strong>, le plus sûr est de retirer le disque dur, de le brancher sur un autre ordinateur avec un adaptateur USB et de l’analyser là.</li>
+  </ul>
+</section>
+
+<h2>Récupérez les fichiers en 6 étapes</h2>
+<p>RecovMe est gratuit jusqu’au bout : pas d’essai, pas de limite de taille, rien à payer avant d’enregistrer. L’application est en anglais : les noms des boutons sont donc indiqués tels que vous les verrez.</p>
+
+<ol class="steps">
+  <li><b>Téléchargez et ouvrez RecovMe</b>
+    <p>Il fonctionne sous Windows 10 et 11 (64 bits). Si une fenêtre bleue SmartScreen apparaît, choisissez <span class="ui">Informations complémentaires</span> puis <span class="ui">Exécuter quand même</span>. Autorisez-le à apporter des modifications quand Windows le demande : il a besoin des droits d’administrateur pour lire le disque directement.</p></li>
+  <li><b>Choisissez le disque</b>
+    <p>Choisissez dans la liste de gauche le disque où se trouvaient les fichiers, généralement <span class="ui">C:</span>.</p></li>
+  <li><b>Choisissez quoi chercher</b>
+    <p>Photos, Videos et Documents sont cochés par défaut. Ajoutez <span class="ui">Music &amp; Audio</span> ou <span class="ui">Archives</span> si besoin. Moins de types rendent l’analyse plus rapide.</p></li>
+  <li><b>Gardez Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> lit d’abord la table des fichiers du disque, ce qui, sur les disques Windows (NTFS), récupère les fichiers supprimés récemment avec leurs noms et dossiers d’origine. Ensuite, il cherche le reste dans chaque bloc.</p>
+    <figure class="shot">
+      <img src="/assets/app-setup.webp" width="2240" height="1560" loading="lazy" alt="RecovMe avec un disque choisi, les types de fichiers sélectionnés et Smart Scan recommandé.">
+      <figcaption>Choisissez le disque, les types de fichiers et l’emplacement d’enregistrement.</figcaption>
+    </figure></li>
+  <li><b>Enregistrez sur votre clé USB ou disque externe</b>
+    <p>Sous <span class="ui">Save Recovered Files To</span>, choisissez un dossier sur l’autre disque. Évitez les dossiers OneDrive ; RecovMe vous prévient si vous en choisissez un.</p></li>
+  <li><b>Lancez l’analyse et ouvrez vos fichiers</b>
+    <p>Cliquez sur <span class="ui">Start Scan</span>, puis sur <span class="ui">Open Recovered Files</span> une fois terminé. Les fichiers qui ont gardé leur nom sont dans <span class="ui">Original names</span> ; le reste est trié par type.</p></li>
+</ol>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>J’ai utilisé Maj + Suppr. Les fichiers peuvent-ils revenir ?</summary>
+    <p>Maj + Suppr contourne la Corbeille : le résultat est le même que si vous l’aviez vidée. Sur un disque dur, les fichiers restent généralement jusqu’à ce que l’espace soit réutilisé. Sur un SSD, ils sont généralement effacés peu après.</p>
+  </details>
+  <details>
+    <summary>Mon PC ne démarre plus. Puis-je récupérer mes fichiers ?</summary>
+    <p>Si le PC a un disque amovible, branchez-le sur un autre ordinateur avec un adaptateur USB et analysez-le là. Beaucoup de portables fins ont un SSD soudé : dans ce cas, mieux vaut passer par un réparateur.</p>
+  </details>
+  <details>
+    <summary>Pourquoi a-t-il besoin des droits d’administrateur ?</summary>
+    <p>Lire l’espace supprimé, c’est lire le disque directement, sous les fichiers et dossiers qu’affiche Windows. Windows ne l’autorise qu’aux applications exécutées en tant qu’administrateur. RecovMe ne fait que lire ; il n’écrit jamais sur le disque analysé.</p>
+  </details>
+  <details>
+    <summary>RecovMe est-il vraiment gratuit ?</summary>
+    <p>Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse. Il est open source, et les dons sont facultatifs.</p>
+  </details>
+  <details>
+    <summary>Envoie-t-il mes fichiers quelque part ?</summary>
+    <p>Non. Tout se passe sur votre ordinateur. RecovMe n’a ni compte, ni cloud, ni pistage.</p>
+  </details>
+</div>

@@ -1,0 +1,71 @@
+<div class="chance" data-level="mid">
+  <p class="label">Tus posibilidades: depende de dónde sigan existiendo las fotos</p>
+  <p>En un móvil Android no se puede buscar bloque a bloque como en una tarjeta de memoria. Su almacenamiento está cifrado y el espacio de los archivos borrados se limpia. Así que ninguna app puede recuperar una foto que ha desaparecido de todas partes. Pero las fotos borradas a menudo sobreviven en algún sitio: en una papelera, en una app de chat o como miniatura. RecovMe las copia todas de una vez.</p>
+</div>
+
+<h2>Mira primero en estos sitios</h2>
+<ul>
+  <li><strong>Google Fotos.</strong> Abre la app y ve a Colecciones › Papelera (o Biblioteca › Papelera). Las fotos con copia de seguridad se quedan ahí un tiempo después de borrarlas.</li>
+  <li><strong>La papelera de la galería.</strong> En los Samsung, abre Galería › Menú › Papelera. Las galerías de Xiaomi, OPPO, OnePlus, vivo y Huawei tienen un álbum de Eliminados recientemente.</li>
+  <li><strong>Una tarjeta de memoria.</strong> Si el móvil tiene una tarjeta microSD, sácala y sigue la <a href="/es/guias/recuperar-fotos-borradas-tarjeta-sd/">guía de tarjetas SD</a>: en una tarjeta sí se puede buscar bloque a bloque, así que normalmente recupera más.</li>
+</ul>
+
+<h2>Lo que RecovMe puede y no puede recuperar</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Dónde busca</th><th scope="col">Qué vuelve</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">La papelera oculta de Android (Android 11 y posterior)</th><td>Fotos y vídeos borrados en aproximadamente los últimos 30 días, con su nombre original.</td></tr>
+      <tr><th scope="row">Papeleras de la galería y del gestor de archivos</th><td>Galería y Mis Archivos de Samsung (de vuelta en su carpeta original), Xiaomi, Huawei, OPPO, OnePlus, vivo y Files de Google.</td></tr>
+      <tr><th scope="row">Apps de chat</th><td>Fotos y vídeos de WhatsApp (estados incluidos), Telegram, Viber y otros chats, y la caché de Telegram con todo lo que se vio en los chats, aunque nunca se guardara.</td></tr>
+      <tr><th scope="row">Archivos sin terminar y miniaturas</th><td>Fotos y descargas que no terminaron de guardarse, y miniaturas (útiles sobre todo en móviles anteriores a Android 10).</td></tr>
+      <tr><th scope="row">Fotos borradas de todas partes</th><td><span class="lvl low">No es posible</span>, ni con RecovMe ni con ninguna otra app: los datos ya no existen en el móvil.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Recupera las fotos en 6 pasos</h2>
+<p>RecovMe solo copia archivos del móvil; no cambia nada en él. Es gratis hasta el final: sin prueba, sin límite y sin pagar nada antes de guardar. La app está en inglés, así que los nombres de los botones aparecen tal como los verás.</p>
+
+<ol class="steps">
+  <li><b>Activa la depuración USB en el móvil</b>
+    <p>Abre Ajustes › Información del teléfono y toca <strong>Número de compilación</strong> siete veces. Luego abre Ajustes › Opciones para desarrolladores (en algunos móviles, dentro de Sistema) y activa <span class="ui">Depuración por USB</span>.</p></li>
+  <li><b>Conecta el móvil</b>
+    <p>Usa un cable USB, desbloquea el móvil y toca <span class="ui">Permitir</span> cuando pregunte «¿Permitir la depuración por USB?». En Windows, algunos móviles también necesitan el controlador USB de su fabricante.</p></li>
+  <li><b>Abre RecovMe y elige el móvil</b>
+    <p>Descarga RecovMe gratis para Mac o Windows y ábrelo. El móvil aparece en <span class="ui">Phones &amp; Tablets</span> en la lista de la izquierda. Si no aparece, pulsa actualizar. RecovMe te muestra lo que puede y no puede recuperar antes del primer escaneo.</p></li>
+  <li><b>Elige dónde buscar y qué encontrar</b>
+    <p>En <span class="ui">Look In</span>, <span class="ui">Recently Deleted &amp; Trash</span>, <span class="ui">Photo Thumbnails</span> y <span class="ui">WhatsApp, Telegram &amp; Other Chats</span> están activados por defecto. Activa <span class="ui">Everything in the Phone’s Folders</span> para copiar también todas las carpetas del móvil. En <span class="ui">Look For</span>, deja Photos y Videos activados.</p></li>
+  <li><b>Guarda en tu ordenador</b>
+    <p>En <span class="ui">Save Recovered Files To</span>, elige una carpeta de tu ordenador con espacio libre suficiente.</p></li>
+  <li><b>Empieza y abre tus fotos</b>
+    <p>Pulsa <span class="ui">Start Scan</span> y, cuando termine, <span class="ui">Open Recovered Files</span>. Los archivos sin extensión, habituales en las cachés de los chats, se reconocen por su contenido y reciben la extensión correcta.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Cuando termines,</strong> puedes volver a desactivar la depuración USB en las Opciones para desarrolladores.</p>
+</div>
+
+<h2>Preguntas</h2>
+<div class="faq">
+  <details>
+    <summary>¿Alguna app puede recuperar fotos borradas de la memoria de un móvil Android?</summary>
+    <p>Solo si todavía existe una copia en algún sitio, como una papelera, una app de chat o una miniatura. Los móviles Android modernos cifran su almacenamiento y limpian el espacio borrado, así que las apps que prometen escanear la memoria del móvil bloque a bloque no pueden hacerlo sin rootear el móvil, e incluso entonces los datos suelen haber desaparecido.</p>
+  </details>
+  <details>
+    <summary>¿Tengo que rootear el móvil?</summary>
+    <p>No. RecovMe usa la depuración USB, un ajuste estándar de Android, mediante la herramienta adb de Google, que viene incluida con RecovMe.</p>
+  </details>
+  <details>
+    <summary>¿Cambia algo en el móvil?</summary>
+    <p>No. Solo copia archivos a tu ordenador. No se borra, mueve ni instala nada en el móvil.</p>
+  </details>
+  <details>
+    <summary>¿Puede recuperar fotos de WhatsApp?</summary>
+    <p>Copia las fotos y vídeos de WhatsApp que siguen en el móvil, estados incluidos. Las fotos borradas de la carpeta de WhatsApp y de la papelera solo pueden volver desde una copia de seguridad, como la copia de WhatsApp en Google Drive.</p>
+  </details>
+  <details>
+    <summary>¿RecovMe es gratis de verdad?</summary>
+    <p>Sí, al 100%. No hay prueba, ni límite de tamaño, ni nada que desbloquear después del escaneo. Es de código abierto y las donaciones son opcionales.</p>
+  </details>
+</div>

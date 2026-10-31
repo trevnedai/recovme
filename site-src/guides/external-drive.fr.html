@@ -1,0 +1,80 @@
+<div class="chance" data-level="high">
+  <p class="label">Vos chances : bonnes sur un disque dur</p>
+  <p>Les disques durs n’effacent pas vraiment les fichiers supprimés. Ils marquent l’espace comme libre et laissent les fichiers en place jusqu’à ce que quelque chose de nouveau y soit enregistré. Les SSD externes sont différents : vérifiez ci-dessous lequel vous avez.</p>
+</div>
+
+<h2>Disque dur, SSD ou pire ?</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Votre disque</th><th scope="col">Vos chances</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Disque dur externe (disque rotatif, comme la plupart des grands disques Seagate, WD, Toshiba ou LaCie)</th><td><span class="lvl good">Bonnes</span>, que les fichiers aient été supprimés, la corbeille vidée ou le disque formaté rapidement.</td></tr>
+      <tr><th scope="row">SSD externe</th><td><span class="lvl mid">Ça dépend.</span> Certains effacent les fichiers supprimés en quelques minutes, d’autres les gardent. Les disques formatés en exFAT les gardent généralement. Débranchez-le maintenant et analysez-le avant de vous en resservir.</td></tr>
+      <tr><th scope="row">Le disque fait des clics, n’est pas détecté ou se déconnecte</th><td><span class="lvl low">Stop.</span> Il est en panne physique, et utiliser n’importe quel logiciel dessus peut l’aggraver. Un laboratoire de récupération de données est l’option sûre.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="donts" aria-labelledby="donts-title">
+  <h2 id="donts-title">Avant de faire quoi que ce soit</h2>
+  <ul>
+    <li><strong>N’enregistrez rien sur le disque</strong> et n’y installez pas d’applications. Les nouveaux fichiers peuvent atterrir là où se trouvent les fichiers supprimés.</li>
+    <li><strong>Ne lancez pas de réparation</strong> (S.O.S. ou chkdsk) avant d’avoir récupéré ce dont vous avez besoin. Les réparations écrivent sur le disque.</li>
+    <li><strong>N’enregistrez pas les fichiers récupérés sur le même disque.</strong> Utilisez le disque interne de votre ordinateur ou un autre disque externe.</li>
+  </ul>
+</section>
+
+<h2>Regardez d’abord dans la Corbeille</h2>
+<p>Sur Mac, les fichiers supprimés d’un disque externe vont dans la Corbeille, mais n’y apparaissent que lorsque le disque est branché. Branchez-le et ouvrez la Corbeille. Sous Windows, les fichiers supprimés d’un disque dur externe vont généralement dans la Corbeille. Ceux supprimés d’une clé USB, ou avec Maj + Suppr, n’y passent pas.</p>
+
+<h2>Récupérez les fichiers en 7 étapes</h2>
+<p>Cela fonctionne de la même façon sur Mac et sur Windows. RecovMe est gratuit jusqu’au bout : pas d’essai, pas de limite de taille, rien à payer avant d’enregistrer. L’application est en anglais : les noms des boutons sont donc indiqués tels que vous les verrez.</p>
+
+<ol class="steps">
+  <li><b>Branchez le disque et ouvrez RecovMe</b>
+    <p>Téléchargez-le gratuitement et ouvrez-le. Sur Mac, saisissez votre mot de passe quand il est demandé, car lire l’espace supprimé demande un accès direct au disque. Sous Windows, si SmartScreen apparaît, choisissez <span class="ui">Informations complémentaires</span> puis <span class="ui">Exécuter quand même</span>.</p></li>
+  <li><b>Choisissez le disque</b>
+    <p>Sélectionnez-le dans la liste de gauche. Si plusieurs parties (volumes) apparaissent en dessous, choisissez celle où se trouvaient les fichiers.</p></li>
+  <li><b>Choisissez quoi chercher</b>
+    <p>Photos, Videos et Documents sont cochés par défaut. Ajoutez <span class="ui">Music &amp; Audio</span> ou <span class="ui">Archives</span>, ou choisissez <span class="ui">All File Types</span>. Moins de types rendent l’analyse plus rapide et les résultats plus légers.</p></li>
+  <li><b>Gardez Smart Scan</b>
+    <p><span class="ui">Smart Scan</span> récupère d’abord les fichiers supprimés avec leurs noms et dossiers d’origine, puis cherche le reste dans chaque bloc. Les noms d’origine reviennent sur les disques formatés pour Windows (NTFS, exFAT ou FAT32), comme la plupart des disques externes vendus. Sur les disques formatés pour Mac (APFS ou Mac OS étendu), les fichiers reviennent grâce à la recherche approfondie, triés par type.</p></li>
+  <li><b>Enregistrez sur un autre disque</b>
+    <p>Choisissez un dossier sur le disque de votre ordinateur, ou sur un second disque externe, avec assez d’espace libre pour ce que vous voulez récupérer. Si vous choisissez un dossier OneDrive ou iCloud, RecovMe vous prévient que les fichiers seraient envoyés dans le cloud.</p></li>
+  <li><b>Lancez l’analyse et laissez-la tourner</b>
+    <p>Cliquez sur <span class="ui">Start Scan</span>. Un grand disque peut prendre des heures : laissez l’ordinateur branché et empêchez la mise en veille. Sur Mac, <span class="ui">Protect the drive while scanning</span> démonte le disque pour que rien n’y écrive. Il revient à la fin de l’analyse. Vous pouvez cliquer sur <span class="ui">Stop</span> à tout moment et garder ce qui a été trouvé.</p>
+    <figure class="shot">
+      <img src="/assets/app-scan.webp" width="2240" height="1560" loading="lazy" alt="Une analyse en cours avec le pourcentage, le temps restant et les fichiers qui apparaissent au fur et à mesure.">
+      <figcaption>Progression, temps restant et photos trouvées jusqu’ici.</figcaption>
+    </figure></li>
+  <li><b>Ouvrez vos fichiers</b>
+    <p>Cliquez sur <span class="ui">Open Recovered Files</span>. Les fichiers qui ont gardé leur nom et leur dossier sont dans <span class="ui">Original names</span>. Tout le reste est trié dans Photos, Videos, Music, Documents et Archives, avec les photos et vidéos nommées d’après leur date de prise de vue.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Mon disque est-il formaté pour Mac ou pour Windows ?</strong> Sur Mac, sélectionnez le disque dans le Finder, choisissez Fichier › Lire les informations et regardez Format. Sous Windows, faites un clic droit sur le disque dans Ce PC, choisissez Propriétés et regardez Système de fichiers.</p>
+</div>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>De combien d’espace libre ai-je besoin pour enregistrer les fichiers ?</summary>
+    <p>Autant que les fichiers que vous voulez récupérer. Ne choisir que les types nécessaires, comme Photos, réduit la taille des résultats. Les doublons sont supprimés automatiquement.</p>
+  </details>
+  <details>
+    <summary>Puis-je récupérer des fichiers supprimés du disque interne de mon ordinateur ?</summary>
+    <p>Seulement si c’est un disque dur, comme dans beaucoup de PC anciens. Les SSD internes des portables effacent eux-mêmes les fichiers supprimés, et tous les Mac à puce Apple chiffrent leur disque : aucune application ne peut donc les récupérer par analyse. Essayez d’abord la Corbeille, Time Machine, l’Historique des fichiers ou OneDrive.</p>
+  </details>
+  <details>
+    <summary>Est-ce que ça marche avec toutes les marques de disques ?</summary>
+    <p>Oui. Seagate, WD, Toshiba, LaCie, Samsung et tout autre disque que votre ordinateur reconnaît comme un disque.</p>
+  </details>
+  <details>
+    <summary>RecovMe est-il vraiment gratuit ?</summary>
+    <p>Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse. Il est open source, et les dons sont facultatifs.</p>
+  </details>
+  <details>
+    <summary>Peut-il endommager mon disque ?</summary>
+    <p>Non. RecovMe ne fait que lire le disque analysé et refuse d’y enregistrer les fichiers récupérés, car écrire dessus pourrait écraser ce que vous voulez récupérer.</p>
+  </details>
+</div>

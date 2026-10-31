@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Récupérer des photos supprimées d’un téléphone Android gratuitement | RecovMe</title>
+<meta name="description" content="Photos supprimées d’un téléphone Android ? Où elles peuvent encore exister (corbeille, WhatsApp, Telegram, miniatures) et comment toutes les recopier gratuitement, sans root.">
+<meta name="author" content="Dhan Denvert Asuncion">
+<link rel="canonical" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-android/">
+<link rel="alternate" hreflang="en" href="https://recovme.app/guides/recover-deleted-photos-android/">
+<link rel="alternate" hreflang="it" href="https://recovme.app/it/guide/recuperare-foto-cancellate-android/">
+<link rel="alternate" hreflang="es" href="https://recovme.app/es/guias/recuperar-fotos-borradas-android/">
+<link rel="alternate" hreflang="pt" href="https://recovme.app/pt/guias/recuperar-fotos-apagadas-android/">
+<link rel="alternate" hreflang="de" href="https://recovme.app/de/anleitungen/geloeschte-fotos-android-wiederherstellen/">
+<link rel="alternate" hreflang="fr" href="https://recovme.app/fr/guides/recuperer-photos-supprimees-android/">
+<link rel="alternate" hreflang="x-default" href="https://recovme.app/guides/recover-deleted-photos-android/">
+<link rel="icon" href="/assets/favicon.png" sizes="64x64" type="image/png">
+<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0e3b39">
+<meta property="og:site_name" content="RecovMe">
+<meta property="og:title" content="Récupérer des photos supprimées d’un téléphone Android gratuitement | RecovMe">
+<meta property="og:description" content="Photos supprimées d’un téléphone Android ? Où elles peuvent encore exister (corbeille, WhatsApp, Telegram, miniatures) et comment toutes les recopier gratuitement, sans root.">
+<meta property="og:image" content="https://recovme.app/assets/og.png">
+<meta property="og:url" content="https://recovme.app/fr/guides/recuperer-photos-supprimees-android/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/guide.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "Comment récupérer des photos supprimées d’un téléphone Android",
+   "description": "Photos supprimées d’un téléphone Android ? Où elles peuvent encore exister (corbeille, WhatsApp, Telegram, miniatures) et comment toutes les recopier gratuitement, sans root.",
+   "inLanguage": "fr",
+   "datePublished": "2026-10-30",
+   "dateModified": "2026-10-30",
+   "author": {
+    "@id": "https://recovme.app/#maker"
+   },
+   "publisher": {
+    "@id": "https://recovme.app/#org"
+   },
+   "image": "https://recovme.app/assets/og.png",
+   "mainEntityOfPage": "https://recovme.app/fr/guides/recuperer-photos-supprimees-android/",
+   "about": {
+    "@type": "SoftwareApplication",
+    "@id": "https://recovme.app/#app",
+    "name": "RecovMe",
+    "url": "https://recovme.app/"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://recovme.app/#maker",
+   "name": "Dhan Denvert Asuncion",
+   "url": "https://recovme.app/about/",
+   "sameAs": [
+    "https://github.com/trevnedai"
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://recovme.app/#org",
+   "name": "RecovMe",
+   "url": "https://recovme.app/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://recovme.app/assets/icon-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/trevnedai/recovme"
+   ],
+   "founder": {
+    "@id": "https://recovme.app/#maker"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "RecovMe",
+     "item": "https://recovme.app/fr/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://recovme.app/fr/guides/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Photos supprimées sur Android",
+     "item": "https://recovme.app/fr/guides/recuperer-photos-supprimees-android/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Une application peut-elle récupérer des photos supprimées de la mémoire d’un téléphone Android ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Seulement s’il en existe encore une copie quelque part, comme une corbeille, une application de messagerie ou une miniature. Les téléphones Android récents chiffrent leur stockage et nettoient l’espace supprimé : les applications qui promettent d’analyser la mémoire bloc par bloc ne peuvent pas le faire sans rooter le téléphone, et même alors les données ont généralement disparu."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Dois-je rooter le téléphone ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. RecovMe utilise le débogage USB, un réglage standard d’Android, via l’outil adb de Google, fourni avec RecovMe."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Modifie-t-il quelque chose sur le téléphone ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non. Il copie seulement des fichiers vers votre ordinateur. Rien n’est supprimé, déplacé ni installé sur le téléphone."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Peut-il récupérer les photos WhatsApp ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Il copie les médias WhatsApp encore présents sur le téléphone, statuts compris. Les photos supprimées du dossier WhatsApp et de la corbeille ne peuvent revenir que depuis une sauvegarde, comme celle de WhatsApp sur Google Drive."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "RecovMe est-il vraiment gratuit ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse. Il est open source, et les dons sont facultatifs."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/fr/"><img src="/assets/icon-256.png" width="36" height="36" alt="">RecovMe</a>
+    <nav aria-label="Site">
+      <a href="/fr/guides/">Guides</a>
+      <a href="/fr/#questions">Questions</a>
+      <details class="langs"><summary aria-label="Français (Langue)" data-short="FR">Français</summary><div><a href="/guides/recover-deleted-photos-android/" hreflang="en" lang="en">English</a><a href="/it/guide/recuperare-foto-cancellate-android/" hreflang="it" lang="it">Italiano</a><a href="/es/guias/recuperar-fotos-borradas-android/" hreflang="es" lang="es">Español</a><a href="/pt/guias/recuperar-fotos-apagadas-android/" hreflang="pt" lang="pt">Português</a><a href="/de/anleitungen/geloeschte-fotos-android-wiederherstellen/" hreflang="de" lang="de">Deutsch</a></div></details>
+      <a class="get" href="#download">Télécharger</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <ol class="crumbs"><li><a href="/fr/">RecovMe</a></li><li><a href="/fr/guides/">Guides</a></li><li aria-current="page">Photos supprimées sur Android</li></ol>
+    <div class="head">
+      <h1>Comment récupérer des photos supprimées d’un téléphone Android</h1>
+      <p class="lede">Photos ou vidéos supprimées d’un téléphone Android ? Android nettoie l’espace supprimé : la réponse honnête est qu’elles ne reviennent que si une copie subsiste quelque part. Voici où chercher, et comment recopier gratuitement chaque fichier qui subsiste, sans rooter le téléphone.</p>
+      <p class="meta"><a href="/about/">Par Dhan Denvert Asuncion</a><span>Mis à jour le 30 octobre 2026</span><span>Mac et Windows</span></p>
+    </div>
+    <article>
+<div class="chance" data-level="mid">
+  <p class="label">Vos chances : cela dépend d’où les photos existent encore</p>
+  <p>On ne peut pas analyser un téléphone Android bloc par bloc comme une carte mémoire. Son stockage est chiffré et l’espace des fichiers supprimés est nettoyé. Aucune application ne peut donc ramener une photo qui a disparu de partout. Mais les photos supprimées survivent souvent quelque part : dans une corbeille, dans une application de messagerie ou sous forme de miniature. RecovMe copie tout cela en une seule fois.</p>
+</div>
+
+<h2>Regardez d’abord à ces endroits</h2>
+<ul>
+  <li><strong>Google Photos.</strong> Ouvrez l’application, puis Collections › Corbeille (ou Bibliothèque › Corbeille). Les photos sauvegardées y restent un moment après leur suppression.</li>
+  <li><strong>La corbeille de la galerie.</strong> Sur les téléphones Samsung, ouvrez Galerie › Menu › Corbeille. Les galeries Xiaomi, OPPO, OnePlus, vivo et Huawei ont un album « Supprimés récemment ».</li>
+  <li><strong>Une carte mémoire.</strong> Si le téléphone a une carte microSD, retirez-la et suivez le <a href="/fr/guides/recuperer-photos-supprimees-carte-sd/">guide des cartes SD</a> : une carte peut être analysée bloc par bloc, elle rend donc généralement davantage.</li>
+</ul>
+
+<h2>Ce que RecovMe peut et ne peut pas récupérer</h2>
+<div class="table">
+  <table>
+    <thead><tr><th scope="col">Où il cherche</th><th scope="col">Ce qui revient</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">La corbeille cachée d’Android (Android 11 et ultérieur)</th><td>Les photos et vidéos supprimées depuis environ 30 jours, avec leur nom d’origine.</td></tr>
+      <tr><th scope="row">Corbeilles de la galerie et du gestionnaire de fichiers</th><td>Galerie et Mes fichiers de Samsung (remis dans leur dossier d’origine), Xiaomi, Huawei, OPPO, OnePlus, vivo et Files de Google.</td></tr>
+      <tr><th scope="row">Applications de messagerie</th><td>Les médias de WhatsApp (statuts compris), Telegram, Viber et autres, ainsi que le cache de Telegram avec tout ce qui a été vu dans les discussions, même jamais enregistré.</td></tr>
+      <tr><th scope="row">Fichiers inachevés et miniatures</th><td>Les photos et téléchargements dont l’enregistrement n’a jamais abouti, et les miniatures (surtout utiles sur les téléphones antérieurs à Android 10).</td></tr>
+      <tr><th scope="row">Photos supprimées de partout</th><td><span class="lvl low">Impossible</span>, avec RecovMe comme avec toute autre application : les données n’existent plus sur le téléphone.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Récupérez les photos en 6 étapes</h2>
+<p>RecovMe ne fait que copier des fichiers depuis le téléphone ; il n’y modifie rien. Il est gratuit jusqu’au bout : pas d’essai, pas de limite, rien à payer avant d’enregistrer. L’application est en anglais : les noms des boutons sont donc indiqués tels que vous les verrez.</p>
+
+<ol class="steps">
+  <li><b>Activez le débogage USB sur le téléphone</b>
+    <p>Ouvrez Paramètres › À propos du téléphone et touchez sept fois <strong>Numéro de build</strong>. Ouvrez ensuite Paramètres › Options pour les développeurs (dans Système sur certains téléphones) et activez <span class="ui">Débogage USB</span>.</p></li>
+  <li><b>Branchez le téléphone</b>
+    <p>Utilisez un câble USB, déverrouillez le téléphone et touchez <span class="ui">Autoriser</span> quand il demande « Autoriser le débogage USB ? ». Sous Windows, certains téléphones ont aussi besoin du pilote USB de leur fabricant.</p></li>
+  <li><b>Ouvrez RecovMe et choisissez le téléphone</b>
+    <p>Téléchargez RecovMe gratuitement pour Mac ou Windows et ouvrez-le. Le téléphone apparaît sous <span class="ui">Phones &amp; Tablets</span> dans la liste de gauche. Sinon, cliquez sur actualiser. RecovMe vous montre ce qu’il peut et ne peut pas récupérer avant la première analyse.</p></li>
+  <li><b>Choisissez où chercher et quoi trouver</b>
+    <p>Sous <span class="ui">Look In</span>, <span class="ui">Recently Deleted &amp; Trash</span>, <span class="ui">Photo Thumbnails</span> et <span class="ui">WhatsApp, Telegram &amp; Other Chats</span> sont cochés par défaut. Cochez <span class="ui">Everything in the Phone’s Folders</span> pour copier aussi tous les dossiers du téléphone. Sous <span class="ui">Look For</span>, gardez Photos et Videos.</p></li>
+  <li><b>Enregistrez sur votre ordinateur</b>
+    <p>Sous <span class="ui">Save Recovered Files To</span>, choisissez un dossier sur votre ordinateur avec assez d’espace libre.</p></li>
+  <li><b>Lancez et ouvrez vos photos</b>
+    <p>Cliquez sur <span class="ui">Start Scan</span>, puis sur <span class="ui">Open Recovered Files</span> une fois terminé. Les fichiers sans extension, fréquents dans les caches de messagerie, sont reconnus par leur contenu et reçoivent la bonne extension.</p></li>
+</ol>
+
+<div class="note">
+  <p><strong>Une fois terminé,</strong> vous pouvez désactiver le débogage USB dans les Options pour les développeurs.</p>
+</div>
+
+<h2>Questions</h2>
+<div class="faq">
+  <details>
+    <summary>Une application peut-elle récupérer des photos supprimées de la mémoire d’un téléphone Android ?</summary>
+    <p>Seulement s’il en existe encore une copie quelque part, comme une corbeille, une application de messagerie ou une miniature. Les téléphones Android récents chiffrent leur stockage et nettoient l’espace supprimé : les applications qui promettent d’analyser la mémoire bloc par bloc ne peuvent pas le faire sans rooter le téléphone, et même alors les données ont généralement disparu.</p>
+  </details>
+  <details>
+    <summary>Dois-je rooter le téléphone ?</summary>
+    <p>Non. RecovMe utilise le débogage USB, un réglage standard d’Android, via l’outil adb de Google, fourni avec RecovMe.</p>
+  </details>
+  <details>
+    <summary>Modifie-t-il quelque chose sur le téléphone ?</summary>
+    <p>Non. Il copie seulement des fichiers vers votre ordinateur. Rien n’est supprimé, déplacé ni installé sur le téléphone.</p>
+  </details>
+  <details>
+    <summary>Peut-il récupérer les photos WhatsApp ?</summary>
+    <p>Il copie les médias WhatsApp encore présents sur le téléphone, statuts compris. Les photos supprimées du dossier WhatsApp et de la corbeille ne peuvent revenir que depuis une sauvegarde, comme celle de WhatsApp sur Google Drive.</p>
+  </details>
+  <details>
+    <summary>RecovMe est-il vraiment gratuit ?</summary>
+    <p>Oui, à 100 %. Pas d’essai, pas de limite de taille, rien à débloquer après l’analyse. Il est open source, et les dons sont facultatifs.</p>
+  </details>
+</div>
+    </article>
+<section class="get-box" id="download" aria-labelledby="download-title">
+  <img src="/assets/icon-256.png" width="76" height="76" alt="">
+  <div><h2 id="download-title">Téléchargez RecovMe. C’est gratuit.</h2><p>Pas d’essai, pas de limite de taille, rien à payer après l’analyse. Vos fichiers ne quittent jamais votre ordinateur.</p></div>
+  <div class="btns">
+    <a class="btn btn-amber" data-dl="mac" href="https://github.com/trevnedai/recovme/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8ZM14.1 5.9c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3Z"/></svg>Télécharger pour Mac</a>
+    <a class="btn btn-ghost" data-dl="win" href="https://github.com/trevnedai/recovme/releases/latest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zm8-1.1L21 3v8.5H11zM3 12.5h7v7L3 18.5zm8 0h10V21l-10-1.4z"/></svg>Télécharger pour Windows</a>
+  </div>
+  <p class="req">Mac avec puce Apple, macOS 11 ou ultérieur · Windows 10 ou 11, 64 bits</p>
+</section>
+
+    <section class="related" aria-labelledby="more-title">
+      <h2 id="more-title">Plus de guides</h2>
+      <ul class="cards">
+<li><a href="/fr/guides/recuperer-photos-supprimees-carte-sd/"><b>Comment récupérer des photos supprimées d’une carte SD</b><span>Les cartes d’appareils photo, de téléphones et de drones gardent les photos supprimées jusqu’à ce que d’autres soient enregistrées par-dessus.</span><span class="tag">Lire le guide →</span></a></li>
+<li><a href="/fr/guides/recuperer-carte-sd-cle-usb-formatee/"><b>Comment récupérer les fichiers d’une carte SD ou d’une clé USB formatée</b><span>Un formatage normal n’efface que l’index. Quels formatages peuvent être annulés, et comment.</span><span class="tag">Lire le guide →</span></a></li>
+<li><a href="/fr/guides/recuperer-fichiers-supprimes-disque-dur-externe/"><b>Comment récupérer des fichiers supprimés d’un disque dur externe</b><span>Les disques durs laissent les fichiers supprimés en place. Les SSD externes, c’est une autre histoire.</span><span class="tag">Lire le guide →</span></a></li>
+<li><a href="/fr/guides/recuperer-videos-camera-surveillance-dashcam/"><b>Comment récupérer des vidéos supprimées de caméras de surveillance et de dashcams</b><span>L’enregistrement en boucle écrase vite les anciennes vidéos. Retirez d’abord la carte, puis analysez-la.</span><span class="tag">Lire le guide →</span></a></li>
+<li><a href="/fr/guides/recuperer-fichiers-supprimes-windows/"><b>Comment récupérer des fichiers supprimés sous Windows 10 et 11</b><span>Essayez d’abord les options gratuites de Windows. Ensuite, disque dur ou SSD décide du reste.</span><span class="tag">Lire le guide →</span></a></li>
+      </ul>
+      <p><a href="/fr/guides/">Tous les guides →</a></p>
+    </section>
+  </div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>© 2026 Dhan Denvert Asuncion. Gratuit et open source sous licence GPL-3.0.</p>
+    <p><a href="/fr/">Accueil</a> · <a href="/fr/guides/">Guides</a> · <a href="/about/" hreflang="en">À propos</a> · <a href="/privacy/" hreflang="en">Confidentialité</a> · <a href="/terms/" hreflang="en">Conditions</a> · <a href="/press/">Presse</a> · <a href="/code-signing.html">Politique de signature du code</a> · <a href="https://github.com/trevnedai/recovme" rel="noopener">Code source sur GitHub</a></p>
+  </div>
+</footer>
+<script src="/assets/guide.js" defer></script>
+</body>
+</html>

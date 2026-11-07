@@ -212,7 +212,6 @@ ${alt}
 <meta property="og:type" content="${type}">
 <meta property="og:locale" content="${L[lang].locale}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/guide.css">
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 1)}

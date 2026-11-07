@@ -259,9 +259,10 @@ p { margin: 0; }
 
 /* ── hero ── */
 .hero { color: var(--teal-ink); background: var(--teal); overflow: hidden; }
-.hero .wrap { max-width: 1320px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; padding-block: 64px 80px; }
+.hero .wrap { max-width: 1320px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 56px; align-items: center; padding-block: 64px 80px; }
 .hero .wrap > div:not(.hero-art) { max-width: 560px; }
-.hero h1 { font-size: clamp(44px, 5.6vw, 80px); }
+.hero h1 { font-size: clamp(34px, 4.4vw, 68px); }
+html[lang="en"] .hero h1 { font-size: clamp(40px, 4.8vw, 72px); }
 .hero .lede { font-size: 20px; color: var(--teal-ink-2); margin-top: 28px; max-width: 30ch; }
 .downloads { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 .btn {
@@ -288,7 +289,7 @@ p { margin: 0; }
 .facts span { display: block; margin-top: 8px; color: var(--teal-ink-2); font-size: 15px; }
 
 /* ── chance checker ── */
-.check .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.check .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 64px; align-items: start; }
 .check h2, .steps h2, .finds h2, .faq h2 { font-size: clamp(38px, 4.6vw, 64px); }
 .check .intro p { margin-top: 20px; color: var(--ink-2); font-size: 19px; max-width: 34ch; }
 .panel { background: var(--paper); border-radius: 4px; padding: 32px; }
@@ -343,7 +344,7 @@ p { margin: 0; }
 /* ── coffee ── */
 .coffee { background: var(--amber); color: var(--amber-ink); }
 .coffee .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-.coffee h2 { font-size: clamp(36px, 3.8vw, 54px); }
+.coffee h2 { font-size: clamp(32px, 3.8vw, 54px); }
 .coffee p { margin-top: 22px; font-size: 20px; max-width: 40ch; }
 .cup { display: grid; grid-template-columns: 176px minmax(0, 1fr); gap: 28px; align-items: center; }
 .cup-actions { display: grid; gap: 14px; justify-items: start; min-width: 0; }
@@ -357,7 +358,7 @@ p { margin: 0; }
 .cup .alt a { color: inherit; font-weight: 600; }
 
 /* ── faq ── */
-.faq .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; }
+.faq .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; align-items: start; }
 .faq details { border-radius: 4px; background: var(--paper); padding: 0 24px; }
 .faq details + details { margin-top: 10px; }
 .faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 700; font-size: 18px; display: flex; justify-content: space-between; gap: 20px; }
@@ -486,7 +487,7 @@ p { margin: 0; }
     <div class="wrap">
             <div>
         <h1 id="hero-title">Get Your Files Back. Free.</h1>
-        <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards and hard drives, and copies what survives on Android phones and in iPhone backups. 100% free and open source: no trial, no limits, no paywall after the scan.</p>
+        <p class="lede">RecovMe brings back deleted and formatted files from SD cards, USB sticks, dashcam and CCTV cards and hard drives, and copies what is left on Android phones and in iPhone backups. It is free and open source, and you never pay to save what it finds.</p>
         <ul class="types" aria-label="What it recovers">
           <li>Photos</li><li>Videos</li><li>Music</li><li>Voice Recordings</li><li>CCTV &amp; Dashcam Footage</li><li>Documents</li><li>Archives</li>
         </ul>
@@ -517,8 +518,8 @@ p { margin: 0; }
   <section class="free band" id="free" aria-labelledby="free-title">
     <div class="wrap">
       <div class="intro">
-        <h2 id="free-title">Free Means Free</h2>
-        <p>Many "free" recovery apps let you scan for free, show you your lost files, and then ask you to pay before you can save them. RecovMe doesn't. What it finds, you keep.</p>
+        <h2 id="free-title">Free to Save, Too</h2>
+        <p>Most "free" recovery apps scan for free, show you your lost photos, then ask for money before you can save them. With RecovMe you save everything it finds, and pay nothing.</p>
       </div>
       <div>
         <table class="compare">
@@ -539,15 +540,15 @@ p { margin: 0; }
 
   <section class="diff band" id="different" aria-labelledby="diff-title">
     <div class="wrap">
-      <h2 id="diff-title">Why RecovMe Is Different</h2>
-      <p class="lead2">It uses the same proven engines that data recovery professionals rely on, then does the tidy-up work that usually takes hours by hand.</p>
+      <h2 id="diff-title">What It Does Differently</h2>
+      <p class="lead2">It runs PhotoRec and The Sleuth Kit, two free tools that data recovery labs use too, then sorts what they find. By hand, that sorting takes hours.</p>
       <div class="cards">
         <article><h3>Two Engines in One Scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognized by what is inside them, so they come back even after a format.</p></article>
         <article><h3>Sorted for You</h3><p>Results are filed by type. Photos and videos are named and sorted by the date they were taken, and keep that date on your computer. Duplicates are removed and tiny thumbnails are set aside.</p></article>
         <article><h3>Made for Camera Cards</h3><p>CCTV cameras and dashcams fill their cards with recording files. RecovMe searches the whole card by default, then leaves out files that were never deleted, so you only get what was lost.</p></article>
         <article><h3>Safe for Your Drive</h3><p>It only reads the drive you scan and won't save onto it. On a Mac it can unmount the drive during the scan so nothing else writes to it.</p></article>
         <article><h3>Honest About Your Chances</h3><p>SSDs and modern Macs wipe deleted files by themselves. RecovMe tells you up front, and points out files the drive already erased, instead of selling you false hope.</p></article>
-        <article><h3>Private and Transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p></article>
+        <article><h3>Nothing Leaves Your Computer</h3><p>There is no account and no cloud, and the app never sends anything about your files. The Mac app is signed and checked by Apple, and anyone can read the source code.</p></article>
       </div>
     </div>
   </section>
@@ -593,7 +594,7 @@ p { margin: 0; }
     <div class="wrap">
       <div class="head">
         <h2 id="how-title">Three Screens, Start to Finish</h2>
-        <p>Pick the drive, let it search, open your files. It takes care of the rest: sorting, naming and removing duplicates.</p>
+        <p>Pick the drive, let it search, open your files. The sorting, naming and removal of duplicates happen on their own.</p>
       </div>
       <div class="trio">
         <figure>
@@ -633,7 +634,7 @@ p { margin: 0; }
   <section class="finds band" id="finds" aria-labelledby="finds-title">
     <div class="wrap">
       <h2 id="finds-title">What It Finds</h2>
-      <p class="lead2">More than 480 file types, recognized by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.</p>
+      <p class="lead2">More than 480 file types, recognized by what is inside them, so they come back even after a format. That covers photos, videos, voice recordings and the documents people lose most.</p>
       <div class="grid">
         <div><h3>Photos</h3><ul><li>JPG, HEIC, PNG, GIF</li><li>RAW: CR2, CR3, NEF, ARW, DNG, RAF, ORF</li><li>PSD, TIFF, WebP</li></ul></div>
         <div><h3>Videos</h3><ul><li>MP4, MOV, 3GP</li><li>AVI, MKV, MTS, M2TS</li><li>MPG, WMV, FLV</li></ul></div>
@@ -741,8 +742,8 @@ p { margin: 0; }
       <div class="body">
         <p class="who">Dhan Denvert Asuncion</p>
         <p class="role">Creator and Developer of RecovMe</p>
-        <p style="margin-top:22px">I built RecovMe because losing photos and files is stressful enough without being asked to pay just to get them back. Recovery should be simple, honest and free for everyone.</p>
-        <p>RecovMe stands on the shoulders of two respected open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe brings them together in one simple app and sorts what they find.</p>
+        <p style="margin-top:22px">I built RecovMe because losing photos is bad enough without an app asking for money to give them back. Getting your own files back should cost nothing.</p>
+        <p>RecovMe is built on two open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe runs them for you in one app and sorts what they find.</p>
         <div class="links">
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme" target="_blank" rel="noopener">Source Code on GitHub</a>
           <a class="btn btn-line" href="https://github.com/trevnedai/recovme/issues" target="_blank" rel="noopener">Report a Problem</a>

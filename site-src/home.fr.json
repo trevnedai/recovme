@@ -71,11 +71,11 @@
   ],
   [
    ">Get Your Files Back. Free.</h1>",
-   ">Récupérez vos fichiers. Gratuitement.</h1>"
+   ">Vos fichiers, gratuitement.</h1>"
   ],
   [
-   "RecovMe brings back deleted and formatted files from SD cards, USB sticks, CCTV and dashcam cards and hard drives, and copies what survives on Android phones and in iPhone backups. 100% free and open source: no trial, no limits, no paywall after the scan.",
-   "RecovMe récupère les fichiers supprimés et formatés sur cartes SD, clés USB, cartes de caméras de surveillance et de dashcams et disques durs, et copie ce qui subsiste sur les téléphones Android et dans les sauvegardes d’iPhone. 100 % gratuit et open source : pas d’essai, pas de limite, rien à payer après l’analyse."
+   "RecovMe brings back deleted and formatted files from SD cards, USB sticks, dashcam and CCTV cards and hard drives, and copies what is left on Android phones and in iPhone backups. It is free and open source, and you never pay to save what it finds.",
+   "RecovMe récupère les fichiers supprimés et formatés sur cartes SD, clés USB, cartes de dashcams et de caméras de surveillance et disques durs, et copie ce qui reste sur les téléphones Android et dans les sauvegardes d’iPhone. Il est gratuit et open source, et vous ne payez jamais pour enregistrer ce qu’il trouve."
   ],
   [
    "aria-label=\"What it recovers\"",
@@ -118,12 +118,12 @@
    "<b>Open source</b><span>Tout le code est public (GPL-3.0).</span>"
   ],
   [
-   ">Free Means Free</h2>",
-   ">Gratuit, c’est gratuit</h2>"
+   ">Free to Save, Too</h2>",
+   ">Gratuit, même pour enregistrer</h2>"
   ],
   [
-   "Many \"free\" recovery apps let you scan for free, show you your lost files, and then ask you to pay before you can save them. RecovMe doesn't. What it finds, you keep.",
-   "Beaucoup d’applications de récupération « gratuites » vous laissent analyser gratuitement, vous montrent vos fichiers perdus, puis vous font payer avant de pouvoir les enregistrer. Pas RecovMe. Ce qu’il trouve, vous le gardez."
+   "Most \"free\" recovery apps scan for free, show you your lost photos, then ask for money before you can save them. With RecovMe you save everything it finds, and pay nothing.",
+   "La plupart des logiciels de récupération « gratuits » analysent gratuitement, vous montrent vos photos perdues, puis demandent de l’argent pour les enregistrer. Avec RecovMe, vous enregistrez tout ce qu’il trouve, sans payer."
   ],
   [
    "<span class=\"sr\">Feature</span>",
@@ -206,12 +206,12 @@
    "Les dons sont facultatifs et ne changent rien dans l’application."
   ],
   [
-   ">Why RecovMe Is Different</h2>",
-   ">Ce qui rend RecovMe différent</h2>"
+   ">What It Does Differently</h2>",
+   ">Ce qu’il fait autrement</h2>"
   ],
   [
-   "It uses the same proven engines that data recovery professionals rely on, then does the tidy-up work that usually takes hours by hand.",
-   "Il utilise les mêmes moteurs éprouvés que les professionnels de la récupération de données, puis fait le travail de tri qui prend des heures à la main."
+   "It runs PhotoRec and The Sleuth Kit, two free tools that data recovery labs use too, then sorts what they find. By hand, that sorting takes hours.",
+   "Il utilise PhotoRec et The Sleuth Kit, deux outils gratuits qu’utilisent aussi les laboratoires de récupération de données, puis trie ce qu’ils trouvent. À la main, ce tri prend des heures."
   ],
   [
    "<h3>Two Engines in One Scan</h3><p>The Sleuth Kit brings back recently deleted files with their original names and folders. PhotoRec then searches every block of the drive for files recognized by what is inside them, so they come back even after a format.</p>",
@@ -234,8 +234,8 @@
    "<h3>Honnête sur vos chances</h3><p>Les SSD et les Mac récents effacent eux-mêmes les fichiers supprimés. RecovMe vous le dit dès le départ et signale les fichiers que le disque a déjà effacés, au lieu de vous vendre de faux espoirs.</p>"
   ],
   [
-   "<h3>Private and Transparent</h3><p>No account, no cloud, no tracking. The Mac app is signed and checked by Apple, and the full source code is public for anyone to review.</p>",
-   "<h3>Privé et transparent</h3><p>Pas de compte, pas de cloud, pas de pistage. L’application Mac est signée et vérifiée par Apple, et tout le code source est public pour que chacun puisse le relire.</p>"
+   "<h3>Nothing Leaves Your Computer</h3><p>There is no account and no cloud, and the app never sends anything about your files. The Mac app is signed and checked by Apple, and anyone can read the source code.</p>",
+   "<h3>Rien ne quitte votre ordinateur</h3><p>Pas de compte, pas de cloud, et l’application n’envoie jamais rien sur vos fichiers. L’application Mac est signée et vérifiée par Apple, et tout le monde peut lire le code source.</p>"
   ],
   [
    ">What Are Your Chances?</h2>",
@@ -478,8 +478,8 @@
    ">Trois écrans, du début à la fin</h2>"
   ],
   [
-   "Pick the drive, let it search, open your files. It takes care of the rest: sorting, naming and removing duplicates.",
-   "Choisissez le disque, laissez-le chercher, ouvrez vos fichiers. Il s’occupe du reste : tri, nommage et suppression des doublons."
+   "Pick the drive, let it search, open your files. The sorting, naming and removal of duplicates happen on their own.",
+   "Choisissez le disque, laissez-le chercher, ouvrez vos fichiers. Le tri, les noms et les doublons se règlent tout seuls."
   ],
   [
    "alt=\"Choosing the CAMERA card, with Photos, Videos and Documents selected and Smart Scan recommended.\"",
@@ -522,8 +522,8 @@
    ">Ce qu’il trouve</h2>"
   ],
   [
-   "More than 480 file types, recognized by what is inside them, so they come back even after a format. Not just photos: everything people usually lose.",
-   "Plus de 480 types de fichiers, reconnus par leur contenu, qui reviennent donc même après un formatage. Pas seulement des photos : tout ce que les gens perdent d’habitude."
+   "More than 480 file types, recognized by what is inside them, so they come back even after a format. That covers photos, videos, voice recordings and the documents people lose most.",
+   "Plus de 480 types de fichiers, reconnus par leur contenu, qui reviennent donc même après un formatage. Photos, vidéos, enregistrements vocaux et les documents qu’on perd le plus souvent."
   ],
   [
    "<h3>Photos</h3>",
@@ -706,12 +706,12 @@
    ">Créateur et développeur de RecovMe</p>"
   ],
   [
-   "I built RecovMe because losing photos and files is stressful enough without being asked to pay just to get them back. Recovery should be simple, honest and free for everyone.",
-   "J’ai créé RecovMe parce que perdre des photos et des fichiers est déjà assez stressant sans devoir payer pour les récupérer. La récupération devrait être simple, honnête et gratuite pour tous."
+   "I built RecovMe because losing photos is bad enough without an app asking for money to give them back. Getting your own files back should cost nothing.",
+   "J’ai créé RecovMe parce que perdre ses photos est déjà assez pénible sans qu’une application demande de l’argent pour les rendre. Récupérer ses propres fichiers ne devrait rien coûter."
   ],
   [
-   "RecovMe stands on the shoulders of two respected open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe brings them together in one simple app and sorts what they find.",
-   "RecovMe s’appuie sur deux projets open source reconnus : PhotoRec de Christophe Grenier (CGSecurity) et The Sleuth Kit de Brian Carrier et ses contributeurs. RecovMe les réunit dans une application simple et trie ce qu’ils trouvent."
+   "RecovMe is built on two open-source projects: PhotoRec by Christophe Grenier (CGSecurity) and The Sleuth Kit by Brian Carrier and contributors. RecovMe runs them for you in one app and sorts what they find.",
+   "RecovMe repose sur deux projets open source : PhotoRec de Christophe Grenier (CGSecurity) et The Sleuth Kit de Brian Carrier et ses contributeurs. RecovMe les lance pour vous dans une seule application et trie ce qu’ils trouvent."
   ],
   [
    ">Source Code on GitHub</a>",

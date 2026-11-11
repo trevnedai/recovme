@@ -113,7 +113,7 @@ jobs:
           codesign --verify --deep --strict --verbose=2 "$APP"
           spctl --assess --type execute --verbose=4 "$APP" || echo "::warning title=Gatekeeper::spctl did not accept the app yet (expected if notarization secrets are missing)."
           xcrun stapler validate "$APP" || true
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: RecovMe-macOS
           path: src-tauri/target/release/bundle/dmg/*.dmg
@@ -125,7 +125,7 @@ jobs:
           mkdir -p update
           # The updater unpacks this over the installed app (signed and notarized as built).
           COPYFILE_DISABLE=1 tar -czf "update/RecovMe_${VERSION}_aarch64.app.tar.gz" -C "$(dirname "$APP")" "$(basename "$APP")"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: RecovMe-macOS-update
           path: update/*.app.tar.gz
@@ -168,7 +168,7 @@ jobs:
             tail -n 30 "$LOG" | sed 's/%/%25/g' | awk 'BEGIN{printf "::error title=App build log tail::"} {printf "%s%%0A", $0} END{print ""}'
             exit 1
           }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         id: upload-unsigned
         with:
           name: ${{ env.HAS_SIGNPATH == 'true' && 'RecovMe-Windows-unsigned' || 'RecovMe-Windows' }}
@@ -193,7 +193,7 @@ jobs:
             Write-Host "$($_.Name): $($sig.Status) — $($sig.SignerCertificate.Subject)"
             if ($sig.Status -ne 'Valid') { Write-Host "::error title=Signature::$($_.Name) is not validly signed"; exit 1 }
           }
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: env.HAS_SIGNPATH == 'true'
         with:
           name: RecovMe-Windows

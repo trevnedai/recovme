@@ -133,10 +133,21 @@ fn stop_scan(state: State<'_, AppState>) {
     }
 }
 
+/// Opens a results folder in Finder or Explorer. Only plain folders are allowed:
+/// never a file or an app bundle, so nothing can be launched through it.
 #[tauri::command]
 fn open_path(app: AppHandle, path: String) -> Result<(), String> {
+    let p = std::fs::canonicalize(&path).map_err(|_| "That folder no longer exists.".to_string())?;
+    let ext = p.extension().and_then(|e| e.to_str()).unwrap_or("").to_ascii_lowercase();
+    const BUNDLES: [&str; 8] = ["app", "appex", "bundle", "framework", "kext", "pkg", "mpkg", "prefpane"];
+    if !p.is_dir() || BUNDLES.contains(&ext.as_str()) {
+        return Err("Only folders can be opened.".into());
+    }
+    // Windows writes canonical paths as \\?\C:\..., which Explorer doesn't take.
+    let shown = p.to_string_lossy().to_string();
+    let shown = shown.strip_prefix(r"\\?\").map(str::to_string).unwrap_or(shown);
     app.opener()
-        .open_path(path, None::<&str>)
+        .open_path(shown, None::<&str>)
         .map_err(|e| e.to_string())
 }
 
@@ -204,7 +215,11 @@ fn open_url(app: AppHandle, url: String) -> Result<(), String> {
         "https://trevnedai.github.io/recovme",
         "https://recovme.app/",
     ];
-    if !ALLOWED.iter().any(|p| url.starts_with(p)) {
+    // A prefix must end at a path boundary, so ".../recovme" can't match ".../recovme-fake".
+    let allowed = ALLOWED.iter().any(|p| {
+        url.strip_prefix(p).is_some_and(|rest| p.ends_with('/') || rest.is_empty() || rest.starts_with(['/', '?', '#']))
+    });
+    if !allowed {
         return Err("That link isn't allowed.".into());
     }
     app.opener()

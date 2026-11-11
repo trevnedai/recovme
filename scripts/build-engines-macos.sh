@@ -47,10 +47,25 @@ brew list jpeg-turbo >/dev/null 2>&1 || brew install jpeg-turbo
 JPEG="$(brew --prefix jpeg-turbo)"
 cp "$JPEG/lib/libjpeg.a" "$WORK/static/"
 
+# Downloads are checked against the SHA-256 their publishers list, so a tampered
+# file stops the build instead of shipping inside the signed app.
+PLATFORM_TOOLS_VERSION=37.0.3
+check_sha256() {  # file expected
+  got="$(shasum -a 256 "$1" | cut -d' ' -f1)"
+  if [ "$got" != "$2" ]; then
+    echo "ERROR: checksum mismatch for $1" >&2
+    echo "  expected $2" >&2
+    echo "  got      $got" >&2
+    exit 1
+  fi
+  echo "  checksum OK: $1"
+}
+
 echo "── PhotoRec ($TESTDISK_COMMIT) ──"
 git clone --quiet https://github.com/cgsecurity/testdisk.git "$WORK/testdisk"
 cd "$WORK/testdisk"
 git checkout --quiet "$TESTDISK_COMMIT"
+[ "$(git rev-parse HEAD)" = "$TESTDISK_COMMIT" ] || { echo "ERROR: PhotoRec source is not at $TESTDISK_COMMIT" >&2; exit 1; }
 autoreconf --install --force -W all -I config
 ./configure --disable-qt --without-ntfs --without-ntfs3g --without-ewf --without-ext2fs \
   --without-reiserfs --without-iconv --without-uuid --enable-missing-uuid-ok \
@@ -62,6 +77,8 @@ cp COPYING "$OUT/photorec/COPYING.txt"
 echo "── The Sleuth Kit $TSK_VERSION ──"
 cd "$WORK"
 curl -fsSL -o tsk.tgz "https://github.com/sleuthkit/sleuthkit/releases/download/sleuthkit-$TSK_VERSION/sleuthkit-$TSK_VERSION.tar.gz"
+[ "$TSK_VERSION" = "4.15.0" ] || { echo "ERROR: add the SHA-256 for The Sleuth Kit $TSK_VERSION to this script" >&2; exit 1; }
+check_sha256 tsk.tgz 3a8c1e7d18a9b81f3e5e8aa78313974aceaafc6e051d636bc92cd7168286eca9  # GitHub release digest
 tar xzf tsk.tgz
 cd "sleuthkit-$TSK_VERSION"
 ./configure --disable-java --disable-cppunit --disable-shared --enable-static \
@@ -72,7 +89,8 @@ cp tools/autotools/tsk_recover "$OUT/tsk/tsk_recover"
 
 echo "── Android platform tools (adb) ──"
 cd "$WORK"
-curl -fsSL -o platform-tools.zip "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+curl -fsSL -o platform-tools.zip "https://dl.google.com/android/repository/platform-tools_r$PLATFORM_TOOLS_VERSION-darwin.zip"
+check_sha256 platform-tools.zip f89baeb829903ceaf3ac92a78a2d25152728049d6316ebeaaca06d716e64842d  # matches Google's SHA-1 eca4effb...
 unzip -q platform-tools.zip
 cp platform-tools/adb "$OUT/adb/adb"
 cp platform-tools/NOTICE.txt "$OUT/adb/NOTICE.txt" 2>/dev/null || true

@@ -12,6 +12,23 @@ $out = Join-Path $root 'src-tauri/resources/engines'
 $tmp = Join-Path ($env:RUNNER_TEMP ?? $env:TEMP) 'recovme-engines'
 $testdiskVersion = $env:TESTDISK_WIN_VERSION ?? '7.2'
 $tskVersion = $env:TSK_VERSION ?? '4.15.0'
+$platformToolsVersion = '37.0.3'
+
+# Every download is checked against the SHA-256 its publisher lists, so a
+# tampered file stops the build instead of shipping inside the signed installer.
+# Change a version here together with its hash.
+$sha256 = @{
+  'testdisk-7.2.win64.zip'           = 'e97e203ce77b6b1a3a37d01beccf069dc6c4632b579ffbb82ae739cdda229f38' # cgsecurity.org/testdisk_sha256.txt
+  'sleuthkit-4.15.0-win32.zip'       = 'c2ebab8105b893d97bd8ce35b88e01985e2a106efc97f03adf95840a631b20ce' # GitHub release digest
+  'platform-tools_r37.0.3-win.zip'   = 'b5d2015f5d5b7a24a2ac646a245f20f63fb501e4174c61863c74bed1df6de4bd' # matches Google's SHA-1 b3fde523...
+}
+function Assert-Hash([string]$file, [string]$name) {
+  $want = $sha256[$name]
+  if (-not $want) { throw "No checksum recorded for $name. Add it to `$sha256 before changing the version." }
+  $got = (Get-FileHash -Algorithm SHA256 $file).Hash.ToLower()
+  if ($got -ne $want) { throw "Checksum mismatch for $name`n  expected $want`n  got      $got" }
+  Write-Host "  checksum OK: $name"
+}
 
 Remove-Item -Recurse -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk'), (Join-Path $out 'adb') -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force $tmp, (Join-Path $out 'photorec'), (Join-Path $out 'tsk'), (Join-Path $out 'adb') | Out-Null
@@ -30,6 +47,7 @@ foreach ($u in $urls) {
   } catch { Write-Host "  $u failed: $_" }
 }
 if (-not $ok) { throw 'Could not download PhotoRec for Windows' }
+Assert-Hash $zip "testdisk-$testdiskVersion.win64.zip"
 Expand-Archive $zip (Join-Path $tmp 'testdisk') -Force
 $exe = Get-ChildItem (Join-Path $tmp 'testdisk') -Recurse -Filter 'photorec_win.exe' | Select-Object -First 1
 if (-not $exe) { throw 'photorec_win.exe not found in the download' }
@@ -41,6 +59,7 @@ Get-ChildItem $exe.DirectoryName | Where-Object {
 Write-Host "── The Sleuth Kit $tskVersion ──"
 $tzip = Join-Path $tmp 'tsk.zip'
 Invoke-WebRequest -Uri "https://github.com/sleuthkit/sleuthkit/releases/download/sleuthkit-$tskVersion/sleuthkit-$tskVersion-win32.zip" -OutFile $tzip -UseBasicParsing
+Assert-Hash $tzip "sleuthkit-$tskVersion-win32.zip"
 Expand-Archive $tzip (Join-Path $tmp 'tsk') -Force
 $bin = Get-ChildItem (Join-Path $tmp 'tsk') -Recurse -Filter 'tsk_recover.exe' | Select-Object -First 1
 if (-not $bin) { throw 'tsk_recover.exe not found in the download' }
@@ -52,7 +71,8 @@ if ($lic) { Copy-Item $lic.FullName (Join-Path $out 'tsk/licenses') -Recurse -Fo
 
 Write-Host '── Android platform tools (adb) ──'
 $pzip = Join-Path $tmp 'platform-tools.zip'
-Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile $pzip -UseBasicParsing
+Invoke-WebRequest -Uri "https://dl.google.com/android/repository/platform-tools_r$platformToolsVersion-win.zip" -OutFile $pzip -UseBasicParsing
+Assert-Hash $pzip "platform-tools_r$platformToolsVersion-win.zip"
 Expand-Archive $pzip (Join-Path $tmp 'pt') -Force
 # adb and the two USB DLLs it loads; the other platform tools aren't used.
 foreach ($f in 'adb.exe', 'AdbWinApi.dll', 'AdbWinUsbApi.dll', 'NOTICE.txt') {

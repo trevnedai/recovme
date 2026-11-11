@@ -545,6 +545,43 @@ fn remount_now(r: &Remount) {
 
 // ───────────── runners ─────────────
 
+/// Standard base64 (no external crate needed for this one use).
+#[cfg(unix)]
+fn base64(data: &[u8]) -> String {
+    const T: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    let mut out = String::with_capacity((data.len() + 2) / 3 * 4);
+    for c in data.chunks(3) {
+        let n = (c[0] as u32) << 16 | (*c.get(1).unwrap_or(&0) as u32) << 8 | *c.get(2).unwrap_or(&0) as u32;
+        out.push(T[(n >> 18) as usize & 63] as char);
+        out.push(T[(n >> 12) as usize & 63] as char);
+        out.push(if c.len() > 1 { T[(n >> 6) as usize & 63] as char } else { '=' });
+        out.push(if c.len() > 2 { T[n as usize & 63] as char } else { '=' });
+    }
+    out
+}
+
+/// Extra codesign requirement for the engines: when this copy of RecovMe is the
+/// official build (signed by the developer's Team ID), the engines must be signed
+/// by the same team. Self-built copies only get the integrity check.
+#[cfg(target_os = "macos")]
+fn engine_requirement() -> String {
+    const OFFICIAL_TEAM: &str = "GH6TUBY83F";
+    let own_team = std::env::current_exe()
+        .ok()
+        .and_then(|exe| cmd("/usr/bin/codesign").args(["-dv", "--verbose=2"]).arg(exe).output().ok())
+        .map(|o| String::from_utf8_lossy(&o.stderr).to_string())
+        .and_then(|txt| txt.lines().find_map(|l| l.strip_prefix("TeamIdentifier=").map(|t| t.trim().to_string())));
+    if own_team.as_deref() == Some(OFFICIAL_TEAM) {
+        format!(" -R={}", shq(&format!("anchor apple generic and certificate leaf[subject.OU] = \"{OFFICIAL_TEAM}\"")))
+    } else {
+        String::new()
+    }
+}
+#[cfg(all(unix, not(target_os = "macos")))]
+fn engine_requirement() -> String {
+    String::new()
+}
+
 #[cfg(unix)]
 fn runner_script(steps: &[Step], work: &Path, status: &Path, stop: &Path) -> String {
     let uid = unsafe { libc::getuid() };
@@ -574,6 +611,21 @@ export TERM=xterm-256color
         for st in steps {
             s.push_str(&format!("/usr/bin/xattr -d com.apple.quarantine {} 2>/dev/null\n", shq(&st.program.to_string_lossy())));
         }
+        // The engines run as root, so check each one is intact (and, in the official
+        // build, signed by the same developer as RecovMe) right before it runs.
+        // A program swapped inside the app stops the scan instead of getting root.
+        let req = engine_requirement();
+        let mut seen = std::collections::HashSet::new();
+        for st in steps {
+            if !seen.insert(st.program.clone()) {
+                continue;
+            }
+            s.push_str(&format!(
+                "/usr/bin/codesign --verify --strict{} {} 2>/dev/null || {{ echo \"FAIL A recovery engine failed its safety check. Download RecovMe again from recovme.app.\" >> \"$S\"; exit 1; }}\n",
+                req,
+                shq(&st.program.to_string_lossy())
+            ));
+        }
     }
     for st in steps {
         let mut line = format!("[ -f \"$STOP\" ] || run_step {} {} {}", st.phase, shq(&st.out.to_string_lossy()), shq(&st.program.to_string_lossy()));
@@ -600,24 +652,22 @@ fn launch(
     _stop_flag: Arc<AtomicBool>,
     launch_failed: Arc<std::sync::Mutex<Option<String>>>,
 ) -> Result<(), String> {
-    // The script lives in a private temp folder without spaces, so it is easy to quote.
-    let tmp = std::env::temp_dir().join(format!("recovme-{}-{}", std::process::id(), chrono::Local::now().timestamp_millis()));
-    fs::create_dir_all(&tmp).map_err(|e| e.to_string())?;
-    let script = tmp.join("run.sh");
-    fs::write(&script, runner_script(steps, work, status, stop)).map_err(|e| e.to_string())?;
-    let script_s = script.to_string_lossy().to_string();
+    // The script is handed straight to the root shell, never written to a file:
+    // a file in a folder the user owns could be swapped by other software between
+    // being written and being run as root. Base64 keeps it free of quoting issues.
+    let script = runner_script(steps, work, status, stop);
+    let b64 = base64(script.as_bytes());
     let is_root = unsafe { libc::geteuid() } == 0;
 
     #[cfg(target_os = "macos")]
     let mut child_cmd = {
         if is_root {
             let mut c = cmd("/bin/sh");
-            c.arg(&script_s);
+            c.args(["-c", &script]);
             c
         } else {
-            let esc = shq(&script_s).replace('\\', "\\\\").replace('"', "\\\"");
             let apple = format!(
-                "do shell script \"/bin/sh {esc} >/dev/null 2>&1 &\" with administrator privileges with prompt \"RecovMe needs your password to read the drive. Nothing on the drive will be changed.\""
+                "do shell script \"/bin/echo {b64} | /usr/bin/base64 -D | /bin/sh >/dev/null 2>&1 &\" with administrator privileges with prompt \"RecovMe needs your password to read the drive. Nothing on the drive will be changed.\""
             );
             let mut c = cmd("/usr/bin/osascript");
             c.args(["-e", &apple]);
@@ -626,13 +676,14 @@ fn launch(
     };
     #[cfg(not(target_os = "macos"))]
     let mut child_cmd = {
+        let _ = &b64;
         if is_root {
             let mut c = cmd("/bin/sh");
-            c.arg(&script_s);
+            c.args(["-c", &script]);
             c
         } else {
             let mut c = cmd("pkexec");
-            c.args(["/bin/sh", &script_s]);
+            c.args(["/bin/sh", "-c", &script]);
             c
         }
     };

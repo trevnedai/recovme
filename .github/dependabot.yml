@@ -1,0 +1,13 @@
+# Proposes updates as pull requests; nothing changes until you merge one.
+# Keeps the pinned GitHub Actions (exact commits) and dependencies current.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }
+  - package-ecosystem: npm
+    directory: /
+    schedule: { interval: monthly }
+  - package-ecosystem: cargo
+    directory: /src-tauri
+    schedule: { interval: monthly }

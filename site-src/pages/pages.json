@@ -24,7 +24,7 @@
   {
    "id": "privacy",
    "type": "WebPage",
-   "updated": "2026-10-30",
+   "updated": "2026-11-11",
    "en": {
     "path": "/privacy/",
     "short": "Privacy",
@@ -43,7 +43,7 @@
   {
    "id": "terms",
    "type": "WebPage",
-   "updated": "2026-10-30",
+   "updated": "2026-11-11",
    "en": {
     "path": "/terms/",
     "short": "Terms",

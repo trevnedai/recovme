@@ -271,7 +271,7 @@ jobs:
           find . -type f \( -name '*.dmg' -o -name '*.exe' -o -name '*.app.tar.gz' \) -print0 \
             | xargs -0 sha256sum | sed 's#  \./[^/]*/#  #' | sort -k2 > SHA256SUMS.txt
           cat SHA256SUMS.txt
-      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+      - uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           files: dist/**/*
           # Creates the tag on this commit when it doesn't exist yet ("Run workflow").

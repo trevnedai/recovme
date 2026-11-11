@@ -179,7 +179,7 @@ const person = {
 };
 const org = {
   "@type": "Organization", "@id": SITE + "/#org", name: "RecovMe", url: SITE + "/",
-  logo: { "@type": "ImageObject", url: SITE + "/assets/icon-512.png", width: 512, height: 512 },
+  logo: { "@type": "ImageObject", url: SITE + "/assets/icon-512.png?v=3", width: 512, height: 512 },
   sameAs: ["https://github.com/trevnedai/recovme"], founder: { "@id": person["@id"] },
 };
 const app = { "@type": "SoftwareApplication", "@id": SITE + "/#app", name: "RecovMe", url: SITE + "/" };
@@ -199,15 +199,15 @@ function head({ lang, title, desc, canonical, alternates, type, ld }) {
 <meta name="author" content="Dhan Denvert Asuncion">
 <link rel="canonical" href="${canonical}">
 ${alt}
-<link rel="icon" href="/assets/favicon.png" sizes="64x64" type="image/png">
-<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="icon" href="/assets/favicon.png?v=3" sizes="64x64" type="image/png">
+<link rel="icon" href="/assets/icon-192.png?v=3" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=3">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e3b39">
 <meta property="og:site_name" content="RecovMe">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:image" content="${SITE}/assets/og.png">
+<meta property="og:image" content="${SITE}/assets/og.png?v=3">
 <meta property="og:url" content="${canonical}">
 <meta property="og:type" content="${type}">
 <meta property="og:locale" content="${L[lang].locale}">
@@ -233,7 +233,7 @@ function topbar(lang, links, current) {
   const t = L[lang];
   return `<header class="top">
   <div class="wrap">
-    <a class="brand" href="${t.root}"><img src="/assets/icon-256.png" width="36" height="36" alt="">RecovMe</a>
+    <a class="brand" href="${t.root}"><img src="/assets/icon-256.png?v=3" width="36" height="36" alt="">RecovMe</a>
     <nav aria-label="Site">
       <a href="${t.hub}"${current ? ' aria-current="page"' : ""}>${t.hubName}</a>
       <a href="${t.root}#questions">${t.questions}</a>
@@ -248,7 +248,7 @@ function topbar(lang, links, current) {
 function getBox(lang) {
   const t = L[lang];
   return `<section class="get-box" id="download" aria-labelledby="download-title">
-  <img src="/assets/icon-256.png" width="76" height="76" alt="">
+  <img src="/assets/icon-256.png?v=3" width="76" height="76" alt="">
   <div><h2 id="download-title">${t.getTitle}</h2><p>${t.getText}</p></div>
   <div class="btns">
     <a class="btn btn-amber" data-dl="mac" href="${RELEASES}">${ICON_MAC}${t.mac}</a>
@@ -303,7 +303,7 @@ for (const g of guides) {
         {
           "@type": "Article", headline: p.h1, description: p.description, inLanguage: lang,
           datePublished: g.published, dateModified: date, author: { "@id": person["@id"] }, publisher: { "@id": org["@id"] },
-          image: SITE + "/assets/og.png", mainEntityOfPage: canonical, about: app,
+          image: SITE + "/assets/og.png?v=3", mainEntityOfPage: canonical, about: app,
         },
         person, org,
         {
@@ -515,7 +515,7 @@ for (const lang of homeLangs) {
         downloadUrl: RELEASES,
         releaseNotes: "https://github.com/trevnedai/recovme/blob/main/CHANGELOG.md",
         screenshot: ["app-setup.webp", "app-scan.webp", "app-done.webp"].map((f) => `${SITE}/assets/${f}`),
-        image: SITE + "/assets/og.png",
+        image: SITE + "/assets/og.png?v=3",
         author: { "@id": person["@id"] }, publisher: { "@id": org["@id"] },
         codeRepository: "https://github.com/trevnedai/recovme",
       },

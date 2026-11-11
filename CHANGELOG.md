@@ -1,5 +1,9 @@
 # What's New in RecovMe
 
+## 0.3.2 (November 2026)
+
+- Security: RecovMe now trusts a new update-signing key, kept with a safe offline backup. Nothing else changes, and updates keep arriving automatically.
+
 ## 0.3.1
 
 - The update bar has a **What's New** link, so you can read what changed before

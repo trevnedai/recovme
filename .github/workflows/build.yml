@@ -76,7 +76,7 @@ jobs:
           KEY="$RUNNER_TEMP/AuthKey.p8"
           printf '%s\n' "$APPLE_API_PRIVATE_KEY" > "$KEY"
           echo "APPLE_API_KEY_PATH=$KEY" >> "$GITHUB_ENV"
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -149,7 +149,7 @@ jobs:
             Write-Host "::error title=Engine fetch failed::$m"
             exit 1
           }
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
@@ -223,7 +223,7 @@ jobs:
           path: dist
       - name: Leave out the unsigned Windows copy
         run: rm -rf dist/*-unsigned
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         if: env.HAS_UPDATER_KEY == 'true'
         with:
           node-version: 22

@@ -135,7 +135,9 @@ npx tauri build --bundles nsis
 ```
 
 Or push to GitHub and run **Actions → Build installers → Run workflow**: it produces a
-`.dmg` and a Windows installer. Pushing a tag like `v0.1.0` also publishes a GitHub Release.
+`.dmg` and a Windows installer. Pushing a tag like `v0.1.0` (or Run workflow on `main` with a
+`release_tag`) also publishes a GitHub Release. Publishing waits for the owner to press
+**Approve** (GitHub email or the GitHub mobile app), and only runs from `main` or a `v*` tag.
 
 ### Automatic updates
 

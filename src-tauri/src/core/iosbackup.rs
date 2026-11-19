@@ -402,7 +402,7 @@ fn app_folder(domain: &str) -> Option<String> {
     let known = APPS.iter().find(|(a, _)| id == *a || id.starts_with(&format!("{a}.")));
     Some(match known {
         Some((_, name)) => name.to_string(),
-        None => format!("Apps/{id}"),
+        None => format!("Apps/{}", clean_part(id)),
     })
 }
 
@@ -460,7 +460,7 @@ fn destination(domain: &str, rel: &str, everything: bool) -> Option<PathBuf> {
             let rel = rel.strip_prefix("Recordings/").or_else(|| rel.strip_prefix("Message/")).unwrap_or(rel);
             path(&top, rel)
         }
-        _ if everything => path(&format!("System/{domain}"), rel),
+        _ if everything => path(&format!("System/{}", clean_part(domain)), rel),
         _ => None,
     }
 }
@@ -749,7 +749,7 @@ pub fn run(dir: &Path, password: Option<&str>, ctx: &mut Ctx) -> Result<(), Stri
     let mut copy_db = |row: &Row| -> Option<PathBuf> {
         db_n += 1;
         let dir = work.join(format!("db{db_n}"));
-        let name = row.rel.rsplit('/').next().unwrap_or("db").to_string();
+        let name = clean_part(row.rel.rsplit('/').next().unwrap_or("db"));
         let db = dir.join(&name);
         backup.extract(&row.file_id, &record(&row.blob), &db).ok()?;
         for suffix in ["-wal", "-shm"] {
@@ -858,13 +858,21 @@ Dates are in this computer's time zone.\n\n",
     let total = planned.len() as u64;
     let camera_roll = rows.iter().filter(|r| r.domain == "CameraRollDomain" && r.rel.starts_with("Media/DCIM/")).count();
     let (mut done, mut bytes, mut locked, mut missing, mut write_err, mut recently_deleted) = (0u64, 0u64, 0u64, 0u64, 0u64, 0u64);
+    let mut odd_names = 0u64;
     ctx.progress(0, total, 0);
     for (row, dest) in planned {
         if ctx.stopped() {
             break;
         }
         let rec = record(&row.blob);
-        let dst = super::organize::unique(ctx.out.join(&dest));
+        // Whatever the backup's file list says, nothing is written outside the results folder.
+        let Some(dst) = super::devices::inside(&ctx.out, &dest) else {
+            odd_names += 1;
+            done += 1;
+            ctx.progress(done, total, bytes);
+            continue;
+        };
+        let dst = super::organize::unique(dst);
         match backup.extract(&row.file_id, &rec, &dst) {
             Ok(n) => {
                 let dst = super::devices::fix_name(&dst);
@@ -941,6 +949,13 @@ Everything that was on the device when the backup was made is here, even if it w
             if missing == 1 { "is" } else { "are" }
         ));
     }
+    if odd_names > 0 {
+        ctx.notes.push(format!(
+            "{odd_names} file{} had a name that can't be used on this computer, so {} left out.",
+            if odd_names == 1 { "" } else { "s" },
+            if odd_names == 1 { "it was" } else { "they were" }
+        ));
+    }
     Ok(())
 }
 
@@ -960,6 +975,10 @@ mod tests {
         assert_eq!(d("AppDomain-com.example.app", "Documents/a.pdf").as_deref(), Some("Apps/com.example.app/Documents/a.pdf"));
         assert_eq!(d("AppDomain-com.example.app", "Library/Caches/a.jpg"), None);
         assert_eq!(d("KeychainDomain", "keychain-backup.plist"), None);
+        // An app id or domain from the file list stays one folder name.
+        assert_eq!(d("AppDomain-../../x", "Documents/a.pdf").as_deref(), Some("Apps/-..-x/Documents/a.pdf"));
+        let sys = destination("../../x", "a/../../b.txt", true).map(|p| p.to_string_lossy().replace('\\', "/"));
+        assert_eq!(sys.as_deref(), Some("System/-..-x/a/b.txt"));
     }
 
     #[test]

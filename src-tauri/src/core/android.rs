@@ -14,7 +14,7 @@
 //!
 //! The phone is only read: files are copied off it with `adb pull`.
 
-use super::devices::{clean_part, clean_rel, fix_name, untrash_name, Ctx};
+use super::devices::{clean_part, clean_rel, fix_name, inside, plain_name, untrash_name, Ctx};
 use super::types::Drive;
 use super::util::{cmd, output_with_timeout, shq};
 use std::collections::{BTreeMap, HashSet};
@@ -265,7 +265,9 @@ fn plan(listing: &str, ctx: &Ctx) -> (Vec<Planned>, u64) {
             continue;
         }
         let name = file.rsplit('/').next().unwrap_or(file);
-        if name == ".nomedia" {
+        // adb names the copy after the phone's file, so it must be one plain name
+        // here too (Windows reads "\" and "C:" in a name as folders and drives).
+        if name == ".nomedia" || !plain_name(name) {
             continue;
         }
         let shown = untrash_name(name).unwrap_or(name);
@@ -340,7 +342,10 @@ pub fn run(adb_path: &Path, serial: &str, places: &[String], ctx: &mut Ctx) -> R
     let (mut done, mut bytes, mut failed) = (0u64, 0u64, 0u64);
     ctx.progress(0, total, 0);
     'outer: for ((_, dest_rel), files) in batches {
-        let dest = ctx.out.join(&dest_rel);
+        let Some(dest) = inside(&ctx.out, &dest_rel) else {
+            failed += files.len() as u64;
+            continue;
+        };
         if fs::create_dir_all(&dest).is_err() {
             failed += files.len() as u64;
             continue;

@@ -19,7 +19,7 @@ use super::organize::{move_file, organize, unique, write_report, OrgOptions, ORI
 use super::types::{CategoryCount, Drive, FoundFile, ScanEvent, ScanOptions, Summary};
 use super::util::human_size;
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::{Component, Path, PathBuf};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::{Duration, Instant};
@@ -321,12 +321,13 @@ fn ext_of_name(name: &str) -> String {
 }
 
 /// One path part, made safe for Windows and macOS and visible in Finder and
-/// Explorer (phones hide folders like ".thumbnails" and ".Statuses").
+/// Explorer (phones hide folders like ".thumbnails" and ".Statuses"). A "/" in
+/// a name ("Meeting 3/4") stays in the name instead of making a folder.
 pub fn clean_part(s: &str) -> String {
     let t: String = s
         .chars()
         .map(|c| match c {
-            '\\' | ':' | '*' | '?' | '"' | '<' | '>' | '|' => '-',
+            '/' | '\\' | ':' | '*' | '?' | '"' | '<' | '>' | '|' => '-',
             c if c.is_control() => '-',
             c => c,
         })
@@ -345,6 +346,22 @@ pub fn clean_rel(rel: &str) -> PathBuf {
         .filter(|p| !p.is_empty() && *p != "." && *p != "..")
         .map(clean_part)
         .collect()
+}
+
+/// `root` joined with a relative path made from names on a phone or in a
+/// backup, or None if that path could lead anywhere else (empty, absolute, a
+/// drive letter, "." or ".."). Every file is checked with this before it's written.
+pub fn inside(root: &Path, rel: &Path) -> Option<PathBuf> {
+    let plain = rel.components().next().is_some() && rel.components().all(|c| matches!(c, Component::Normal(_)));
+    let p = root.join(rel);
+    (plain && p.starts_with(root)).then_some(p)
+}
+
+/// True if `name` is one plain file name on this computer: no folder parts,
+/// drive letter, "." or "..".
+pub fn plain_name(name: &str) -> bool {
+    let mut parts = Path::new(name).components();
+    matches!((parts.next(), parts.next()), (Some(Component::Normal(n)), None) if n == name)
 }
 
 /// Android's trash renames "IMG_1.jpg" to ".trashed-1712345678-IMG_1.jpg"
@@ -435,5 +452,30 @@ mod tests {
         assert_eq!(clean_part(".thumbnails"), "thumbnails");
         assert_eq!(clean_part("a:b?"), "a-b-");
         assert_eq!(clean_rel("../.Statuses/x.jpg"), PathBuf::from("Statuses").join("x.jpg"));
+        assert_eq!(clean_part("Meeting 3/4"), "Meeting 3-4");
+        assert_eq!(clean_part("../../x.jpg"), "-..-x.jpg");
+    }
+
+    #[test]
+    fn stays_inside() {
+        let root = Path::new("out");
+        assert_eq!(inside(root, Path::new("Camera Roll/IMG_1.jpg")), Some(root.join("Camera Roll").join("IMG_1.jpg")));
+        for bad in ["", "../x.jpg", "a/../../x.jpg", "./x.jpg", "/etc/x"] {
+            assert_eq!(inside(root, Path::new(bad)), None, "{bad}");
+        }
+        assert!(plain_name("IMG_1.jpg"));
+        assert!(plain_name("..x.jpg"));
+        for bad in ["", ".", "..", "a/b.jpg", "/x.jpg", "x/"] {
+            assert!(!plain_name(bad), "{bad}");
+        }
+        #[cfg(windows)]
+        {
+            for bad in [r"C:\x.exe", "C:x.exe", r"\\server\share\x.exe", r"\x.exe", r"a\..\..\x.exe"] {
+                assert_eq!(inside(root, Path::new(bad)), None, "{bad}");
+            }
+            for bad in [r"a\b.jpg", "C:x.jpg", r"..\x.jpg"] {
+                assert!(!plain_name(bad), "{bad}");
+            }
+        }
     }
 }

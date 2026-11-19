@@ -1,5 +1,12 @@
 # What's New in RecovMe
 
+## 0.3.3 (November 2026)
+
+- Files copied from iPhone backups and Android phones keep safe, tidy names. A
+  "/" in a name (like a voice memo called "Meeting 3/4") no longer makes an
+  extra folder.
+- Security: the built-in SQLite library that reads iPhone backups is updated.
+
 ## 0.3.2 (November 2026)
 
 - Security: RecovMe now trusts a new update-signing key, kept with a safe offline backup. Nothing else changes, and updates keep arriving automatically.

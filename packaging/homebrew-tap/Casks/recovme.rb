@@ -1,6 +1,6 @@
 cask "recovme" do
-  version "0.3.1"
-  sha256 "e53fd5bcfe93982f2ee1945ba53000c007045f4190c7281acd5bc030722a843f"
+  version "0.3.3"
+  sha256 "42b31a4db4cc997903a55b95bca200281cc573fe61966064cfccba65c88e90bb"
 
   url "https://github.com/trevnedai/recovme/releases/download/v#{version}/RecovMe_#{version}_aarch64.dmg",
       verified: "github.com/trevnedai/recovme/"

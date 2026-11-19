@@ -53,6 +53,10 @@ struct Step {
     program: PathBuf,
     args: Vec<String>,
     out: PathBuf,
+    /// The disk image being scanned, if it is one: checked again right before
+    /// the engine starts (see `runner_script`).
+    #[cfg_attr(windows, allow(dead_code))]
+    image: Option<PathBuf>,
 }
 
 pub fn start(opts: ScanOptions, engines: Engines, emit: Emit) -> Result<Job, String> {
@@ -86,12 +90,19 @@ pub fn start(opts: ScanOptions, engines: Engines, emit: Emit) -> Result<Job, Str
     }
 
     // The runner works inside the save folder, so image paths must be absolute.
+    // On macOS and Linux a disk image is also used by its real path (no links),
+    // because the root runner checks it again before each engine starts.
     let mut opts = opts;
-    if Path::new(&opts.device).is_relative() && Path::new(&opts.device).exists() {
+    let canon = {
+        let p = Path::new(&opts.device);
+        (p.is_relative() || (cfg!(unix) && p.is_file())) && p.exists()
+    };
+    if canon {
         if let Ok(abs) = fs::canonicalize(&opts.device) {
             opts.device = abs.to_string_lossy().to_string();
         }
     }
+    let image = Path::new(&opts.device).is_file().then(|| PathBuf::from(&opts.device));
 
     // A drive that is almost full (security cameras and dashcams fill their
     // cards with pre-made recording files) has no free space worth searching:
@@ -117,12 +128,28 @@ so RecovMe searched the whole drive instead of only its free space."
     let work = session.join(".recovme");
     let quick_dir = work.join("quick");
     let deep_dir = work.join("deep");
-    fs::create_dir_all(&quick_dir).map_err(|e| format!("Can't write to the save folder: {e}"))?;
-    fs::create_dir_all(&deep_dir).map_err(|e| format!("Can't write to the save folder: {e}"))?;
+    // On macOS (and Linux) the root runner makes the work folder itself and
+    // owns it while the engines run (see `runner_script`), so the stop file the
+    // app writes sits next to it instead of inside it.
+    let stop_file = if cfg!(unix) {
+        fs::create_dir_all(&session).map_err(|e| format!("Can't write to the save folder: {e}"))?;
+        session.join(".recovme-stop")
+    } else {
+        fs::create_dir_all(&quick_dir).map_err(|e| format!("Can't write to the save folder: {e}"))?;
+        fs::create_dir_all(&deep_dir).map_err(|e| format!("Can't write to the save folder: {e}"))?;
+        work.join("stop")
+    };
     let status_file = work.join("status");
-    let stop_file = work.join("stop");
     let _ = fs::remove_file(&status_file);
     let _ = fs::remove_file(&stop_file);
+    // The root runner gives the engines paths relative to its work folder.
+    let out_arg = |dir: &Path, rel: &str, for_photorec: bool| {
+        if cfg!(unix) {
+            rel.to_string()
+        } else {
+            path_arg(dir, for_photorec)
+        }
+    };
 
     // ── Build the engine commands ──
     let mut steps: Vec<Step> = Vec::new();
@@ -130,8 +157,9 @@ so RecovMe searched the whole drive instead of only its free space."
         steps.push(Step {
             phase: "quick",
             program: engines.tsk_recover.clone().unwrap(),
-            args: vec![opts.device.clone(), path_arg(&quick_dir, false)],
+            args: vec![opts.device.clone(), out_arg(&quick_dir, "quick", false)],
             out: work.join("quick.out"),
+            image: image.clone(),
         });
     }
     if do_deep {
@@ -146,12 +174,13 @@ so RecovMe searched the whole drive instead of only its free space."
             args: vec![
                 "/log".into(),
                 "/d".into(),
-                path_arg(&deep_dir.join("recup"), true),
+                out_arg(&deep_dir.join("recup"), "deep/recup", true),
                 "/cmd".into(),
                 opts.device.clone(),
                 cmdline,
             ],
             out: work.join("deep.out"),
+            image: image.clone(),
         });
     }
 
@@ -301,6 +330,7 @@ so RecovMe searched the whole drive instead of only its free space."
 
         // 3) Remember whether the user stopped the scan before organizing starts.
         let stopped = stop_flag.load(Ordering::SeqCst) || stop_file.exists();
+        let _ = fs::remove_file(&stop_file);
         remount_now(&remount);
         if let Some(f) = fail_msg {
             remove_if_empty(&session);
@@ -432,10 +462,11 @@ pub(crate) fn new_session(opts: &ScanOptions) -> Result<PathBuf, String> {
     Ok(session)
 }
 
-/// Remove a session folder that holds nothing but the engines' work files.
+/// Remove a session folder that holds nothing but the engines' work files
+/// (".recovme" and the ".recovme-stop" file).
 pub(crate) fn remove_if_empty(session: &Path) {
     let has_results = fs::read_dir(session)
-        .map(|it| it.flatten().any(|e| e.file_name() != ".recovme"))
+        .map(|it| it.flatten().any(|e| !e.file_name().to_string_lossy().starts_with(".recovme")))
         .unwrap_or(true);
     if !has_results {
         let _ = fs::remove_dir_all(session);
@@ -582,64 +613,133 @@ fn engine_requirement() -> String {
     String::new()
 }
 
+/// The shell script the scan runs as root (macOS: one password prompt).
+///
+/// Root never writes through a path the user's other software could change:
+///   - it makes the work folder itself (`mkdir` refuses a name that already
+///     exists, links included), steps into it, and checks it really is inside the
+///     session folder (same device and inode as the app saw) and still empty;
+///   - from then on every write is relative to that folder, or goes to the status
+///     file it opened once (fd 3), so renaming or swapping folders above it
+///     changes nothing;
+///   - the stop file is only looked at, never written;
+///   - a disk image is checked to be the same plain file right before each engine;
+///   - at the end the work folder is handed back to the user before "DONE".
+/// Drives that don't keep file owners (exFAT, FAT, or "Ignore ownership" turned
+/// on) can't close the folder to other programs. That is accepted rather than
+/// refusing such drives: it needs software already running as the user, during
+/// a scan the user started and gave the password for.
 #[cfg(unix)]
-fn runner_script(steps: &[Step], work: &Path, status: &Path, stop: &Path) -> String {
+fn runner_script(steps: &[Step], work: &Path, stop: &Path) -> String {
+    use std::os::unix::fs::MetadataExt;
     let uid = unsafe { libc::getuid() };
     let gid = unsafe { libc::getgid() };
+    let session = work.parent().unwrap_or(work);
+    let work_name = work.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_else(|| ".recovme".into());
+    let want = fs::metadata(session).map(|m| format!("{}:{}", m.dev(), m.ino())).unwrap_or_default();
+    let mac = cfg!(target_os = "macos");
+    let stat_id = if mac { "stat -f %d:%i" } else { "stat -c %d:%i" };
+    let no_acl = if mac { "chmod -N . 2>/dev/null" } else { ":" };
+    // -P -h: a link inside the folder is changed itself, never what it points to.
+    let hand_back = if uid != 0 { format!("chown -R -P -h {uid}:{gid} . 2>/dev/null") } else { ":".into() };
     let mut s = String::from("#!/bin/sh\n# RecovMe scan runner (read-only on the source drive)\n");
-    s.push_str(&format!("W={}\nS={}\nSTOP={}\n", shq(&work.to_string_lossy()), shq(&status.to_string_lossy()), shq(&stop.to_string_lossy())));
-    s.push_str(
-        r#"echo START > "$S"
-run_step() {
+    s.push_str(&format!(
+        "SESSION={}\nWORK={}\nSTOP={}\nWANT={}\nE=\nREADY=\nHANDED=\n",
+        shq(&session.to_string_lossy()),
+        shq(&work_name),
+        shq(&stop.to_string_lossy()),
+        shq(&want)
+    ));
+    s.push_str(&format!(
+        r#"umask 022
+export TERM=xterm-256color
+hand_back() {{
+  if [ -n "$READY" ] && [ -z "$HANDED" ]; then {hand_back}; HANDED=1; fi
+}}
+cleanup() {{
+  hand_back
+  if [ -n "$E" ]; then /bin/rm -rf "$E"; fi
+}}
+trap cleanup EXIT
+fail() {{ hand_back; echo "FAIL $*" >&3; exit 1; }}
+same_file() {{ [ -f "$1" ] && [ ! -L "$1" ] && [ "$({stat_id} "$1")" = "$2" ]; }}
+run_step() {{
   phase="$1"; out="$2"; shift 2
-  echo "PHASE $phase" >> "$S"
-  "$@" </dev/null >"$out" 2>&1 &
+  echo "PHASE $phase" >&3
+  "$@" </dev/null >"$out" 2>&1 3>&- &
   pid=$!
   while kill -0 "$pid" 2>/dev/null; do
     if [ -f "$STOP" ]; then kill "$pid" 2>/dev/null; sleep 2; kill -9 "$pid" 2>/dev/null; break; fi
     sleep 1
   done
   wait "$pid"; rc=$?
-  echo "END $phase $rc" >> "$S"
-}
-cd "$W" || { echo "FAIL cannot open work folder" >> "$S"; exit 1; }
-export TERM=xterm-256color
-"#,
-    );
-    if cfg!(target_os = "macos") {
-        // A downloaded app is quarantined; clear it on the engines so macOS lets them run.
-        for st in steps {
-            s.push_str(&format!("/usr/bin/xattr -d com.apple.quarantine {} 2>/dev/null\n", shq(&st.program.to_string_lossy())));
-        }
-        // The engines run as root, so check each one is intact (and, in the official
-        // build, signed by the same developer as RecovMe) right before it runs.
-        // A program swapped inside the app stops the scan instead of getting root.
+  echo "END $phase $rc" >&3
+}}
+cd "$SESSION" && mkdir "$WORK" && cd "$WORK" || exit 1
+[ "$({stat_id} ..)" = "$WANT" ] || exit 1
+chown 0:0 . 2>/dev/null; chmod 755 . 2>/dev/null; {no_acl}
+[ -z "$(ls -A .)" ] || exit 1
+READY=1
+set -C
+exec 3>status || exit 1
+echo START >&3
+mkdir quick deep || fail "cannot create the work folder"
+"#
+    ));
+    // What each step runs, as a shell word.
+    let mut run_as: std::collections::HashMap<PathBuf, String> = std::collections::HashMap::new();
+    if mac {
+        // The engines run as root, but the app's folder can be changed by other
+        // software the user runs. So each engine is copied into a new folder only
+        // root can write to, checked there (intact and, in the official build,
+        // signed by the same developer as RecovMe) and run from there. A program
+        // swapped inside the app stops the scan instead of getting root.
+        let fail = "fail \"A recovery engine failed its safety check. Download RecovMe again from recovme.app.\"";
+        s.push_str(&format!("E=$(/usr/bin/mktemp -d /private/var/tmp/recovme.XXXXXX) || {{ E=; {fail}; }}\n"));
+        s.push_str("/bin/chmod 700 \"$E\"\n");
         let req = engine_requirement();
-        let mut seen = std::collections::HashSet::new();
         for st in steps {
-            if !seen.insert(st.program.clone()) {
+            if run_as.contains_key(&st.program) {
                 continue;
             }
+            let n = run_as.len();
+            let name = st.program.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_else(|| "engine".into());
+            let copy = format!("\"$E\"/{n}/{}", shq(&name));
             s.push_str(&format!(
-                "/usr/bin/codesign --verify --strict{} {} 2>/dev/null || {{ echo \"FAIL A recovery engine failed its safety check. Download RecovMe again from recovme.app.\" >> \"$S\"; exit 1; }}\n",
-                req,
-                shq(&st.program.to_string_lossy())
+                "/bin/mkdir \"$E\"/{n} && /bin/cp {src} {copy} || {fail}\n\
+                 /usr/bin/xattr -d com.apple.quarantine {copy} 2>/dev/null\n\
+                 /usr/bin/codesign --verify --strict{req} {copy} 2>/dev/null || {fail}\n",
+                src = shq(&st.program.to_string_lossy()),
             ));
+            run_as.insert(st.program.clone(), copy);
         }
     }
     for st in steps {
-        let mut line = format!("[ -f \"$STOP\" ] || run_step {} {} {}", st.phase, shq(&st.out.to_string_lossy()), shq(&st.program.to_string_lossy()));
+        let program = run_as.get(&st.program).cloned().unwrap_or_else(|| shq(&st.program.to_string_lossy()));
+        // The engine's screen output goes next to the status file, by name only.
+        let out = st.out.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_else(|| format!("{}.out", st.phase));
+        let mut line = format!("run_step {} {} {}", st.phase, shq(&out), program);
         for a in &st.args {
             line.push(' ');
             line.push_str(&shq(a));
         }
-        s.push_str(&line);
-        s.push('\n');
+        // A disk image must still be the same plain file the app picked (not
+        // swapped for a link to something else) right before root reads it.
+        let check = match &st.image {
+            Some(img) => {
+                let id = fs::metadata(img).map(|m| format!("{}:{}", m.dev(), m.ino())).unwrap_or_default();
+                format!(
+                    "same_file {} {} || fail \"the disk image changed while the scan was starting\"; ",
+                    shq(&img.to_string_lossy()),
+                    shq(&id)
+                )
+            }
+            None => String::new(),
+        };
+        s.push_str(&format!("[ -f \"$STOP\" ] || {{ {check}{line}; }}\n"));
     }
-    if uid != 0 {
-        s.push_str(&format!("chown -R {uid}:{gid} \"$W\" 2>/dev/null\n"));
-    }
-    s.push_str("echo DONE >> \"$S\"\n");
+    // The app starts tidying the results as soon as it sees DONE.
+    s.push_str("hand_back\necho DONE >&3\n");
     s
 }
 
@@ -647,7 +747,7 @@ export TERM=xterm-256color
 fn launch(
     steps: &[Step],
     work: &Path,
-    status: &Path,
+    _status: &Path,
     stop: &Path,
     _stop_flag: Arc<AtomicBool>,
     launch_failed: Arc<std::sync::Mutex<Option<String>>>,
@@ -655,7 +755,8 @@ fn launch(
     // The script is handed straight to the root shell, never written to a file:
     // a file in a folder the user owns could be swapped by other software between
     // being written and being run as root. Base64 keeps it free of quoting issues.
-    let script = runner_script(steps, work, status, stop);
+    // It writes the status file as "<work>/status" (see `runner_script`).
+    let script = runner_script(steps, work, stop);
     let b64 = base64(script.as_bytes());
     let is_root = unsafe { libc::geteuid() } == 0;
 

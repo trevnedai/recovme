@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "::error title=Signing::This is a release, but the Apple signing or notarization secrets are missing. Nothing was published."
           exit 1
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Build recovery engines
         run: bash scripts/build-engines-macos.sh
       - name: Import Developer ID certificate
@@ -153,7 +153,7 @@ jobs:
       # installer is built unsigned, as before.
       HAS_SIGNPATH: ${{ secrets.SIGNPATH_API_TOKEN != '' && secrets.SIGNPATH_ORGANIZATION_ID != '' }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Fetch recovery engines
         shell: pwsh
         run: |
@@ -229,7 +229,7 @@ jobs:
       # them the release is published as before, and installed apps see no update.
       HAS_UPDATER_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY != '' }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check the tag matches the app's version
         run: |
           VERSION="$(jq -r .version src-tauri/tauri.conf.json)"

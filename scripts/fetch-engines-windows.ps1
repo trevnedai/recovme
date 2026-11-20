@@ -20,7 +20,7 @@ $platformToolsVersion = '37.0.3'
 $sha256 = @{
   'testdisk-7.2.win64.zip'           = 'e97e203ce77b6b1a3a37d01beccf069dc6c4632b579ffbb82ae739cdda229f38' # cgsecurity.org/testdisk_sha256.txt
   'sleuthkit-4.15.0-win32.zip'       = 'c2ebab8105b893d97bd8ce35b88e01985e2a106efc97f03adf95840a631b20ce' # GitHub release digest
-  'platform-tools_r37.0.3-win.zip'   = 'b5d2015f5d5b7a24a2ac646a245f20f63fb501e4174c61863c74bed1df6de4bd' # matches Google's SHA-1 b3fde523...
+  'platform-tools_r37.0.3-win.zip'   = '89d108360a3bf2924d3bea837239edaccc22fd6ff5befd3787c4348a9fe4f09d' # matches Google's SHA-1 7fea85bc... (re-published 19 Nov 2026)
 }
 function Assert-Hash([string]$file, [string]$name) {
   $want = $sha256[$name]

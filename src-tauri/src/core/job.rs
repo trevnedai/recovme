@@ -623,7 +623,8 @@ fn engine_requirement() -> String {
 ///     file it opened once (fd 3), so renaming or swapping folders above it
 ///     changes nothing;
 ///   - the stop file is only looked at, never written;
-///   - a disk image is checked to be the same plain file right before each engine;
+///   - each engine (macOS: its signature) and a disk image (the same plain
+///     file) are checked right before the engine starts;
 ///   - at the end the work folder is handed back to the user before "DONE".
 /// Drives that don't keep file owners (exFAT, FAT, or "Ignore ownership" turned
 /// on) can't close the folder to other programs. That is accepted rather than
@@ -686,36 +687,13 @@ echo START >&3
 mkdir quick deep || fail "cannot create the work folder"
 "#
     ));
-    // What each step runs, as a shell word.
-    let mut run_as: std::collections::HashMap<PathBuf, String> = std::collections::HashMap::new();
-    if mac {
-        // The engines run as root, but the app's folder can be changed by other
-        // software the user runs. So each engine is copied into a new folder only
-        // root can write to, checked there (intact and, in the official build,
-        // signed by the same developer as RecovMe) and run from there. A program
-        // swapped inside the app stops the scan instead of getting root.
-        let fail = "fail \"A recovery engine failed its safety check. Download RecovMe again from recovme.app.\"";
-        s.push_str(&format!("E=$(/usr/bin/mktemp -d /private/var/tmp/recovme.XXXXXX) || {{ E=; {fail}; }}\n"));
-        s.push_str("/bin/chmod 700 \"$E\"\n");
-        let req = engine_requirement();
-        for st in steps {
-            if run_as.contains_key(&st.program) {
-                continue;
-            }
-            let n = run_as.len();
-            let name = st.program.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_else(|| "engine".into());
-            let copy = format!("\"$E\"/{n}/{}", shq(&name));
-            s.push_str(&format!(
-                "/bin/mkdir \"$E\"/{n} && /bin/cp {src} {copy} || {fail}\n\
-                 /usr/bin/xattr -d com.apple.quarantine {copy} 2>/dev/null\n\
-                 /usr/bin/codesign --verify --strict{req} {copy} 2>/dev/null || {fail}\n",
-                src = shq(&st.program.to_string_lossy()),
-            ));
-            run_as.insert(st.program.clone(), copy);
-        }
-    }
+    // On macOS each engine is checked right before it starts: intact and, in the
+    // official build, signed by the same developer as RecovMe. It runs from inside
+    // the app (not a copy), so macOS keeps treating it as RecovMe for the folders
+    // and drives the user gave RecovMe access to (a copy elsewhere loses that).
+    let req = if mac { engine_requirement() } else { String::new() };
     for st in steps {
-        let program = run_as.get(&st.program).cloned().unwrap_or_else(|| shq(&st.program.to_string_lossy()));
+        let program = shq(&st.program.to_string_lossy());
         // The engine's screen output goes next to the status file, by name only.
         let out = st.out.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_else(|| format!("{}.out", st.phase));
         let mut line = format!("run_step {} {} {}", st.phase, shq(&out), program);
@@ -725,17 +703,23 @@ mkdir quick deep || fail "cannot create the work folder"
         }
         // A disk image must still be the same plain file the app picked (not
         // swapped for a link to something else) right before root reads it.
-        let check = match &st.image {
-            Some(img) => {
-                let id = fs::metadata(img).map(|m| format!("{}:{}", m.dev(), m.ino())).unwrap_or_default();
-                format!(
-                    "same_file {} {} || fail \"the disk image changed while the scan was starting\"; ",
-                    shq(&img.to_string_lossy()),
-                    shq(&id)
-                )
-            }
-            None => String::new(),
-        };
+        let mut check = String::new();
+        if mac {
+            // A downloaded app is quarantined; clear it on the engine so macOS lets it run.
+            check.push_str(&format!(
+                "/usr/bin/xattr -d com.apple.quarantine {program} 2>/dev/null; \
+                 /usr/bin/codesign --verify --strict{req} {program} 2>/dev/null || \
+                 fail \"A recovery engine failed its safety check. Download RecovMe again from recovme.app.\"; "
+            ));
+        }
+        if let Some(img) = &st.image {
+            let id = fs::metadata(img).map(|m| format!("{}:{}", m.dev(), m.ino())).unwrap_or_default();
+            check.push_str(&format!(
+                "same_file {} {} || fail \"the disk image changed while the scan was starting\"; ",
+                shq(&img.to_string_lossy()),
+                shq(&id)
+            ));
+        }
         s.push_str(&format!("[ -f \"$STOP\" ] || {{ {check}{line}; }}\n"));
     }
     // The app starts tidying the results as soon as it sees DONE.

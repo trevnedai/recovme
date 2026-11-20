@@ -1,5 +1,10 @@
 # What's New in RecovMe
 
+## 0.3.4 (November 2026)
+
+- Security: scans are set up more carefully, and RecovMe checks each recovery
+  tool right before it starts.
+
 ## 0.3.3 (November 2026)
 
 - Files copied from iPhone backups and Android phones keep safe, tidy names. A

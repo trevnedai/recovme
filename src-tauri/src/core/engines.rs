@@ -81,8 +81,14 @@ fn find_on_path(names: &[&str]) -> Option<PathBuf> {
 }
 
 /// `resource_root` is the folder that contains `photorec/` and `tsk/`.
+///
+/// The engines run with administrator rights, so a released app only uses the
+/// ones it was installed with. Looking elsewhere (RECOVME_ENGINES, PATH, the
+/// Android SDK) is for development builds only: those folders can be changed by
+/// any program the user runs.
 pub fn locate(resource_root: Option<&Path>) -> Engines {
     let mut roots: Vec<PathBuf> = Vec::new();
+    #[cfg(debug_assertions)]
     if let Ok(dev) = std::env::var("RECOVME_ENGINES") {
         roots.push(dev.into());
     }
@@ -101,19 +107,21 @@ pub fn locate(resource_root: Option<&Path>) -> Engines {
             e.adb = find_in(&r.join("adb"), ADB_NAMES);
         }
     }
-    if e.photorec.is_none() {
-        e.photorec = find_on_path(PHOTOREC_NAMES);
-    }
-    if e.tsk_recover.is_none() {
-        e.tsk_recover = find_on_path(TSK_NAMES);
-    }
-    if e.adb.is_none() {
-        e.adb = find_on_path(ADB_NAMES).or_else(|| {
-            sdk_platform_tools()
-                .into_iter()
-                .map(|d| d.join(ADB_NAMES[0]))
-                .find(|p| p.is_file())
-        });
+    if cfg!(debug_assertions) {
+        if e.photorec.is_none() {
+            e.photorec = find_on_path(PHOTOREC_NAMES);
+        }
+        if e.tsk_recover.is_none() {
+            e.tsk_recover = find_on_path(TSK_NAMES);
+        }
+        if e.adb.is_none() {
+            e.adb = find_on_path(ADB_NAMES).or_else(|| {
+                sdk_platform_tools()
+                    .into_iter()
+                    .map(|d| d.join(ADB_NAMES[0]))
+                    .find(|p| p.is_file())
+            });
+        }
     }
     #[cfg(unix)]
     for p in [&e.photorec, &e.tsk_recover, &e.adb].into_iter().flatten() {

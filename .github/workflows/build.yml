@@ -12,8 +12,9 @@ on:
   push:
     tags: ["v*"]
 
+# Read-only by default; only the release job can write (to publish the release).
 permissions:
-  contents: write
+  contents: read
 
 env:
   TESTDISK_COMMIT: f9e57dc98be47a952078e6a7f54cb134bddfb141
@@ -30,7 +31,13 @@ jobs:
       # the app is built unsigned, as before.
       HAS_APPLE_CERT: ${{ secrets.APPLE_CERTIFICATE != '' }}
       HAS_APPLE_NOTARY: ${{ secrets.APPLE_API_PRIVATE_KEY != '' }}
+      IS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/v') || startsWith(inputs.release_tag, 'v') }}
     steps:
+      - name: A release must be signed and notarized
+        if: env.IS_RELEASE == 'true' && (env.HAS_APPLE_CERT != 'true' || env.HAS_APPLE_NOTARY != 'true')
+        run: |
+          echo "::error title=Signing::This is a release, but the Apple signing or notarization secrets are missing. Nothing was published."
+          exit 1
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Build recovery engines
         run: bash scripts/build-engines-macos.sh
@@ -109,10 +116,17 @@ jobs:
       - name: Check signature and notarization
         if: env.HAS_APPLE_CERT == 'true'
         run: |
+          set -euo pipefail
           APP="$(ls -d src-tauri/target/release/bundle/macos/*.app | head -1)"
           codesign --verify --deep --strict --verbose=2 "$APP"
-          spctl --assess --type execute --verbose=4 "$APP" || echo "::warning title=Gatekeeper::spctl did not accept the app yet (expected if notarization secrets are missing)."
-          xcrun stapler validate "$APP" || true
+          if [ "$IS_RELEASE" = "true" ]; then
+            # A release stops here unless macOS accepts the app as notarized.
+            spctl --assess --type execute --verbose=4 "$APP"
+            xcrun stapler validate "$APP"
+          else
+            spctl --assess --type execute --verbose=4 "$APP" || echo "::warning title=Gatekeeper::spctl did not accept the app yet (expected if notarization secrets are missing)."
+            xcrun stapler validate "$APP" || true
+          fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: RecovMe-macOS
@@ -207,6 +221,8 @@ jobs:
     # Waits for the owner's "Approve" on GitHub before publishing, and only runs
     # from main or a v* tag (rules set in Settings → Environments → release).
     environment: release
+    permissions:
+      contents: write
     env:
       TAG: ${{ inputs.release_tag || github.ref_name }}
       # Automatic updates switch on once these secrets exist (see README). Without

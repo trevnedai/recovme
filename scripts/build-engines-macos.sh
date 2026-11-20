@@ -90,7 +90,7 @@ cp tools/autotools/tsk_recover "$OUT/tsk/tsk_recover"
 echo "── Android platform tools (adb) ──"
 cd "$WORK"
 curl -fsSL -o platform-tools.zip "https://dl.google.com/android/repository/platform-tools_r$PLATFORM_TOOLS_VERSION-darwin.zip"
-check_sha256 platform-tools.zip f89baeb829903ceaf3ac92a78a2d25152728049d6316ebeaaca06d716e64842d  # matches Google's SHA-1 eca4effb...
+check_sha256 platform-tools.zip df21339b9371fef9b19264404338dc686f59a88a1dce634b963da344909001d6  # matches Google's SHA-1 d48920e2... (re-published 19 Nov 2026)
 unzip -q platform-tools.zip
 cp platform-tools/adb "$OUT/adb/adb"
 cp platform-tools/NOTICE.txt "$OUT/adb/NOTICE.txt" 2>/dev/null || true
